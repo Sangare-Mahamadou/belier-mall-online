@@ -1553,54 +1553,147 @@
     <!-- (Gestion complète, baux, suppressions, stocks)           -->
     <!-- ======================================================== -->
     <div id="tab-admin" class="tab-content">
-      <!-- 1. ÉCRAN DE DÉVERROUILLAGE SÉCURISÉ (Si non connecté) -->
-      <div id="admin-login-screen" class="card" style="max-width:540px;margin:2rem auto;text-align:center;padding:2rem">
+      <!-- 1. ÉCRAN DE CONNEXION SÉCURISÉ (SUPERADMIN & 2 ADMINS) -->
+      <div id="admin-login-screen" class="card" style="max-width:520px;margin:2rem auto;text-align:center;padding:2.1rem;border:1.5px solid rgba(245,185,66,.35)">
         <div style="font-size:2.8rem;margin-bottom:.5rem">🔐</div>
-        <div class="card-title" style="margin-bottom:.4rem">Espace Administrateur · Direction Générale</div>
-        <p style="color:var(--muted);font-size:.84rem;margin-bottom:1.4rem">
-          Console de supervision et modération de <strong>BÉLIER MALL</strong>.<br>
-          Validez les demandes d'implantation, supprimez les boutiques fermées ou indisponibles, gérez les stocks.
+        <div class="card-title" style="margin-bottom:.35rem">Portail d'Administration · BÉLIER MALL ON LINE</div>
+        <p style="color:var(--muted);font-size:.83rem;margin-bottom:1.4rem">
+          Accès réservé aux <strong>3 membres de l'Administration</strong> :<br>
+          <strong>1 SuperAdmin</strong> (droits complets &amp; suppression) et <strong>2 Administrateurs</strong> (gestion &amp; validation).
         </p>
 
-        <form onsubmit="handleAdminLogin(event)" style="display:flex;flex-direction:column;gap:.9rem;text-align:left">
+        <div id="admin-login-error-box" style="display:none;background:rgba(239,68,68,.16);border:1px solid #ef4444;color:#fca5a5;padding:.75rem;border-radius:10px;margin-bottom:1rem;font-size:.8rem;text-align:left"></div>
+
+        <form onsubmit="handleAdminLogin(event)" style="display:flex;flex-direction:column;gap:1rem;text-align:left">
           <div>
-            <label style="font-size:.78rem;color:var(--muted);display:block;margin-bottom:4px">Code PIN Direction (Par défaut : <strong>2026</strong>)</label>
-            <input type="password" id="admin-pin-input" class="main-search-input" style="padding-left:1rem;font-size:1.1rem;letter-spacing:4px;text-align:center" placeholder="••••" required maxlength="6">
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Identifiant / Login <small style="color:var(--muted);font-weight:400">(Optionnel pour le SuperAdmin, obligatoire pour un Admin)</small>
+            </label>
+            <input type="text" id="admin-login-user" class="main-search-input" style="padding-left:1rem;font-size:.92rem" placeholder="Ex: superadmin ou login créé par le SuperAdmin" autocomplete="username">
           </div>
-          <button type="submit" class="btn-primary" style="justify-content:center;padding:.8rem;font-size:.9rem">
-            🔓 Déverrouiller la Console Administrateur
+
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Mot de passe *
+            </label>
+            <input type="password" id="admin-pin-input" class="main-search-input" style="padding-left:1rem;font-size:.95rem" placeholder="Saisissez votre mot de passe..." required autocomplete="current-password">
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.88rem;font-size:.92rem;font-weight:800">
+            🔓 Se connecter à l'Espace Administration
           </button>
         </form>
 
-        <div style="margin-top:1.2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:1rem;display:flex;flex-direction:column;gap:.6rem">
-          <button class="btn-secondary" onclick="quickDemoAdminLogin()" style="width:100%;font-size:.76rem;padding:.5rem;justify-content:center">
-            ⚡ Connexion Rapide Superviseur (Démo)
-          </button>
-          <button type="button" class="btn-secondary" onclick="closeAdminSpace()" style="background:none;border:none;color:var(--muted);font-size:.76rem;cursor:pointer;text-decoration:underline">
-            ✕ Quitter l'Espace Direction (Retour au Marketplace)
+        <div style="margin-top:1.2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:1rem">
+          <button type="button" class="btn-secondary" onclick="closeAdminSpace()" style="background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;text-decoration:underline">
+            ✕ Quitter l'Espace Administration (Retour au Marketplace)
           </button>
         </div>
       </div>
 
-      <!-- 2. TABLEAU DE BORD ADMINISTRATEUR (Une fois connecté) -->
+      <!-- 2A. ÉCRAN DE RENSEIGNEMENT DES INFORMATIONS DU SUPERADMIN (Nom, Prénom, Email) -->
+      <div id="superadmin-profile-screen" class="card" style="display:none;max-width:560px;margin:2rem auto;padding:2rem;border:1.5px solid var(--gold);background:linear-gradient(135deg,rgba(245,185,66,.1),rgba(15,23,42,.96))">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+          <span style="font-size:2.4rem;background:rgba(245,185,66,.2);border:1px solid var(--gold);width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center">👑</span>
+          <div>
+            <div style="font-weight:900;font-size:1.2rem;color:#fff">Identification du Super Administrateur</div>
+            <div style="font-size:.8rem;color:var(--gold)">Veuillez renseigner vos informations personnelles pour configurer votre espace SuperAdmin.</div>
+          </div>
+        </div>
+
+        <form onsubmit="submitSuperAdminProfile(event)" style="display:flex;flex-direction:column;gap:1rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:4px">Nom *</label>
+              <input type="text" id="superadmin-nom-input" class="main-search-input" style="padding-left:1rem" placeholder="Ex: SANGARÉ" required>
+            </div>
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:4px">Prénom(s) *</label>
+              <input type="text" id="superadmin-prenom-input" class="main-search-input" style="padding-left:1rem" placeholder="Ex: Kadi" required>
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:4px">Adresse Email officielle *</label>
+            <input type="email" id="superadmin-email-input" class="main-search-input" style="padding-left:1rem" placeholder="Ex: kadi.sangare@beliermall.ci" required>
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.9rem;font-size:.95rem;font-weight:800;margin-top:.4rem">
+            👑 Valider mes informations &amp; Accéder à mon Espace SuperAdmin
+          </button>
+        </form>
+      </div>
+
+      <!-- 2B. ÉCRAN DE PREMIÈRE CONNEXION D'UN ADMIN (CHANGEMENT OBLIGATOIRE DU MOT DE PASSE) -->
+      <div id="admin-first-login-screen" class="card" style="display:none;max-width:560px;margin:2rem auto;padding:2rem;border:1.5px solid #38bdf8;background:linear-gradient(135deg,rgba(56,189,248,.1),rgba(15,23,42,.96))">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+          <span style="font-size:2.3rem;background:rgba(56,189,248,.2);border:1px solid #38bdf8;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center">🛡️</span>
+          <div>
+            <div style="font-weight:900;font-size:1.18rem;color:#fff">Première Connexion Administrateur</div>
+            <div style="font-size:.8rem;color:#bae6fd">Pour votre sécurité, vous devez obligatoirement remplacer votre mot de passe provisoire créé par le SuperAdmin.</div>
+          </div>
+        </div>
+
+        <form onsubmit="submitAdminFirstLoginPasswordChange(event)" style="display:flex;flex-direction:column;gap:.95rem">
+          <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .9rem;font-size:.82rem;color:#cbd5e1">
+            Compte connecté : <strong style="color:var(--gold)" id="first-login-admin-label">admin</strong>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+            <div>
+              <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Nom *</label>
+              <input type="text" id="first-login-nom" class="main-search-input" style="padding-left:.9rem" required placeholder="Votre nom">
+            </div>
+            <div>
+              <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Prénom *</label>
+              <input type="text" id="first-login-prenom" class="main-search-input" style="padding-left:.9rem" required placeholder="Votre prénom">
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Email *</label>
+            <input type="email" id="first-login-email" class="main-search-input" style="padding-left:.9rem" required placeholder="exemple@beliermall.ci">
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+            <div>
+              <label style="font-size:.76rem;color:#5df0b0;font-weight:700;display:block;margin-bottom:4px">Nouveau mot de passe *</label>
+              <input type="password" id="first-login-new-pwd" class="main-search-input" style="padding-left:.9rem" required minlength="4" placeholder="Nouveau mot de passe">
+            </div>
+            <div>
+              <label style="font-size:.76rem;color:#5df0b0;font-weight:700;display:block;margin-bottom:4px">Confirmer le mot de passe *</label>
+              <input type="password" id="first-login-confirm-pwd" class="main-search-input" style="padding-left:.9rem" required minlength="4" placeholder="Confirmez le mot de passe">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.88rem;font-size:.92rem;font-weight:800;margin-top:.3rem">
+            ✅ Enregistrer mon nouveau mot de passe &amp; Accéder à l'Espace Admin
+          </button>
+        </form>
+      </div>
+
+      <!-- 3. TABLEAU DE BORD ADMINISTRATEUR / SUPERADMIN (Une fois connecté) -->
       <div id="admin-dashboard-screen" style="display:none;">
         <!-- Header Console DG -->
         <div class="card" style="margin-bottom:1.2rem;padding:1.2rem 1.4rem;background:linear-gradient(135deg,rgba(245,185,66,.12),rgba(15,23,42,.85));border-color:rgba(245,185,66,.35)">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem">
             <div style="display:flex;align-items:center;gap:.8rem">
-              <span style="font-size:2.2rem;background:rgba(245,185,66,.15);border:1px solid rgba(245,185,66,.4);width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center">👑</span>
+              <span id="admin-header-role-icon" style="font-size:2.2rem;background:rgba(245,185,66,.15);border:1px solid rgba(245,185,66,.4);width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center">👑</span>
               <div>
-                <div style="font-weight:800;font-size:1.15rem;color:#fff;display:flex;align-items:center;gap:6px">
-                  <span>Console Direction Générale</span>
-                  <span class="badge badge-success">Session Active</span>
+                <div style="font-weight:800;font-size:1.15rem;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span id="admin-header-console-title">Espace Super Administrateur</span>
+                  <span class="badge badge-success" id="admin-header-role-badge">👑 SUPER ADMIN · Tous les droits + Suppression</span>
                 </div>
-                <div style="font-size:.78rem;color:var(--gold)">
-                  Mme KOUASSI Amenan Grace · Superviseur Général Bélier Mall
+                <div style="font-size:.82rem;color:var(--gold);margin-top:2px" id="admin-connected-identity">
+                  SuperAdmin · BÉLIER MALL ON LINE
                 </div>
               </div>
             </div>
 
-            <div style="display:flex;align-items:center;gap:.6rem">
+            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+              <button class="btn-secondary" id="btn-edit-superadmin-profile" onclick="openSuperAdminProfileEdit()" style="font-size:.76rem;padding:.4rem .85rem;color:var(--gold);border-color:rgba(245,185,66,.4)">
+                ✏️ Modifier mes infos (Nom / Mail)
+              </button>
               <button class="btn-secondary" onclick="closeAdminSpace()" style="font-size:.76rem;padding:.4rem .9rem;color:#cbd5e1;border-color:rgba(255,255,255,.2)">
                 🚪 Retour Vitrine
               </button>
@@ -1613,20 +1706,20 @@
           <!-- KPIs Exécutifs -->
           <div class="admin-kpis-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin-top:1.2rem">
             <div class="admin-kpi-card">
-              <div class="admin-kpi-val" style="color:var(--gold)">11 500 000 <small style="font-size:.65rem">FCFA/m</small></div>
-              <div class="admin-kpi-lbl">Revenus Locatifs Garantis (46 baux)</div>
+              <div class="admin-kpi-val" style="color:var(--gold)">12 500 000 <small style="font-size:.65rem">FCFA/m</small></div>
+              <div class="admin-kpi-lbl">Revenus Locatifs (50 Boutiques en Location)</div>
             </div>
             <div class="admin-kpi-card">
-              <div class="admin-kpi-val" style="color:#38bdf8" id="kpi-admin-stores-count">50</div>
-              <div class="admin-kpi-lbl">Boutiques &amp; Pôles du Complexe</div>
+              <div class="admin-kpi-val" style="color:#38bdf8" id="kpi-admin-stores-count">58</div>
+              <div class="admin-kpi-lbl">Boutiques &amp; Espaces (5 Hectares)</div>
             </div>
             <div class="admin-kpi-card">
               <div class="admin-kpi-val" style="color:#f5b942" id="kpi-admin-pending-count">3</div>
-              <div class="admin-kpi-lbl">Demandes d'Implantation à Valider</div>
+              <div class="admin-kpi-lbl">Demandes de Location à Valider</div>
             </div>
             <div class="admin-kpi-card">
-              <div class="admin-kpi-val" style="color:#5df0b0">184 / 300</div>
-              <div class="admin-kpi-lbl">Places Parking Disponibles (200 F / 500 F)</div>
+              <div class="admin-kpi-val" style="color:#5df0b0" id="kpi-admin-team-count">1 / 3</div>
+              <div class="admin-kpi-lbl">Membres Équipe Admin Actifs (1 SuperAdmin + 2 Admins)</div>
             </div>
           </div>
         </div>
@@ -1634,13 +1727,16 @@
         <!-- Sous-navigation des onglets Admin -->
         <div class="admin-subnav" style="display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap">
           <button class="admin-tab-pill active" id="btn-admin-subtab-apps" onclick="switchAdminSubtab('apps')">
-            📋 Demandes d'Implantation <span class="badge badge-warning" id="badge-admin-pending-apps">3</span>
+            📋 Demandes de Location <span class="badge badge-warning" id="badge-admin-pending-apps">3</span>
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-team" onclick="switchAdminSubtab('team')" style="border-color:rgba(245,185,66,.45)">
+            👥 Gestion des Admins (1 SuperAdmin + 2 Admins)
           </button>
           <button class="admin-tab-pill" id="btn-admin-subtab-stores" onclick="switchAdminSubtab('stores')">
             🏬 Gestion des Boutiques <span class="badge badge-primary" id="badge-admin-stores-count">50</span>
           </button>
           <button class="admin-tab-pill" id="btn-admin-subtab-products" onclick="switchAdminSubtab('products')">
-            📦 Gestion des Articles &amp; Stocks <span class="badge badge-primary" id="badge-admin-prods-count">20</span>
+            📦 Gestion des Articles &amp; Stocks <span class="badge badge-primary" id="badge-admin-prods-count">10</span>
           </button>
           <button class="admin-tab-pill" id="btn-admin-subtab-create" onclick="switchAdminSubtab('create')">
             ➕ Implantation Manuelle
@@ -1654,8 +1750,8 @@
         <div id="admin-view-apps" class="card">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
             <div>
-              <div class="card-title" style="margin-bottom:.2rem">📋 Demandes d'Implantation &amp; Baux Commerciaux en Attente</div>
-              <p style="color:var(--muted);font-size:.82rem">Examinez les candidatures pour les cellules du centre. Cliquez sur « ✅ Accepter la demande » pour implanter immédiatement la boutique dans le centre et sur la carte.</p>
+              <div class="card-title" style="margin-bottom:.2rem">📋 Demandes de Location Commerciale en Attente</div>
+              <p style="color:var(--muted);font-size:.82rem">Examinez les candidatures pour les 50 boutiques du centre. Les demandes immédiates sont mises en évidence.</p>
             </div>
           </div>
 
@@ -1670,12 +1766,66 @@
           </div>
         </div>
 
+        <!-- SOUS-ONGLET ÉQUIPE : GESTION DES 3 PERSONNES (1 SUPERADMIN + 2 ADMINS) -->
+        <div id="admin-view-team" class="card" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.25rem">👥 Gestion de l'Équipe d'Administration (3 Personnes : 1 SuperAdmin &amp; 2 Admins)</div>
+              <p style="color:var(--muted);font-size:.83rem">
+                Le <strong>SuperAdmin</strong> peut créer jusqu'à <strong>2 comptes Administrateurs</strong> (login + mot de passe provisoire) et supprimer un Admin en saisissant son mot de passe SuperAdmin.<br>
+                À leur première connexion, les Admins doivent obligatoirement personnaliser leur mot de passe.
+              </p>
+            </div>
+            <span class="badge badge-success" id="admin-team-slots-badge">Capacité : 3 Personnes</span>
+          </div>
+
+          <!-- Cartes des 3 membres (1 SuperAdmin + 2 Admins) -->
+          <div id="admin-team-members-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:1.5rem">
+            <!-- Rendu dynamique par app.js -->
+          </div>
+
+          <!-- Formulaire de Création d'un Admin (Réservé au SuperAdmin) -->
+          <div id="superadmin-create-admin-box" style="background:rgba(245,185,66,.07);border:1.5px solid rgba(245,185,66,.35);border-radius:14px;padding:1.3rem">
+            <div style="font-weight:800;font-size:.98rem;color:var(--gold);margin-bottom:.35rem">
+              ➕ Créer un Compte Administrateur (Poste Admin 1 ou Admin 2)
+            </div>
+            <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">
+              Définissez un <strong>Login</strong> et un <strong>Mot de passe provisoire</strong> pour votre collaborateur. Lors de sa première connexion, il sera invité à modifier son mot de passe. Il aura tous les droits de gestion <strong>sauf la suppression</strong>.
+            </p>
+
+            <form id="create-admin-account-form" onsubmit="handleCreateAdminAccount(event)" style="display:flex;flex-direction:column;gap:.95rem">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem">
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Login de connexion de l'Admin *</label>
+                  <input type="text" id="new-admin-login" class="main-search-input" style="padding-left:.9rem" required placeholder="Ex: admin1 ou kouassi.yao">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Mot de passe provisoire *</label>
+                  <input type="text" id="new-admin-temp-pwd" class="main-search-input" style="padding-left:.9rem" required placeholder="Ex: Belier2026!">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Nom &amp; Prénom (ou complété à la 1ère connexion)</label>
+                  <input type="text" id="new-admin-fullname" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: M. YAO Kouadio">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Email (optionnel)</label>
+                  <input type="email" id="new-admin-email" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: admin1@beliermall.ci">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="justify-content:center;padding:.8rem;font-size:.88rem;font-weight:800">
+                ✨ Créer ce Compte Administrateur
+              </button>
+            </form>
+          </div>
+        </div>
+
         <!-- SOUS-ONGLET 2 : GESTION DES BOUTIQUES (STATUTS & SUPPRESSION) -->
         <div id="admin-view-stores" class="card" style="display:none;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
             <div>
               <div class="card-title" style="margin-bottom:.2rem">🏬 Répertoire &amp; Modération des Boutiques</div>
-              <p style="color:var(--muted);font-size:.82rem">Contrôlez l'accessibilité des boutiques, marquez celles en maintenance ou supprimez définitivement les commerces non disponibles.</p>
+              <p style="color:var(--muted);font-size:.82rem">Contrôlez l'accessibilité des boutiques (Actif / Maintenance). <strong>Note : Seul le SuperAdmin peut supprimer définitivement une boutique en saisissant son mot de passe.</strong></p>
             </div>
             <input type="text" id="admin-search-store" class="main-search-input" style="max-width:280px;padding-left:1rem;font-size:.8rem" placeholder="🔍 Filtrer les boutiques..." oninput="renderAdminStoresTable(this.value)">
           </div>
@@ -1690,7 +1840,7 @@
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
             <div>
               <div class="card-title" style="margin-bottom:.2rem">📦 Modération des Articles &amp; Stocks</div>
-              <p style="color:var(--muted);font-size:.82rem">Supprimez les articles indisponibles ou basculez le statut de stock pour les clients de Yamoussoukro.</p>
+              <p style="color:var(--muted);font-size:.82rem">Basculez le statut de stock. <strong>Note : Seul le SuperAdmin a le droit de supprimer un article.</strong></p>
             </div>
             <input type="text" id="admin-search-prod" class="main-search-input" style="max-width:280px;padding-left:1rem;font-size:.8rem" placeholder="🔍 Filtrer les articles..." oninput="renderAdminProductsTable(this.value)">
           </div>
@@ -1929,6 +2079,43 @@
           🏢 Je suis déjà à l'entrée du Centre Commercial (Mode sur place)
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- MODALE HAUTE SÉCURITÉ : CONFIRMATION DE SUPPRESSION PAR MOT DE PASSE SUPERADMIN -->
+  <div class="order-modal-backdrop" id="superadmin-delete-modal-backdrop" style="display:none;z-index:10000" onclick="if(event.target === this) closeSuperAdminDeleteModal()">
+    <div class="order-modal-box" style="max-width:460px;padding:1.7rem;border:1.5px solid #ef4444;box-shadow:0 20px 50px rgba(0,0,0,0.85), 0 0 28px rgba(239,68,68,0.3)">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem">
+        <span style="font-size:2rem;background:rgba(239,68,68,.18);border:1px solid #ef4444;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center">👑</span>
+        <div>
+          <div style="font-weight:900;font-size:1.08rem;color:#fff">Confirmation SuperAdmin Requise</div>
+          <div style="font-size:.75rem;color:#fca5a5">Seul le SuperAdmin est habilité à supprimer un élément.</div>
+        </div>
+      </div>
+
+      <div id="superadmin-delete-target-label" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.75rem;font-size:.83rem;color:#e2e8f0;margin-bottom:1rem">
+        Élément à supprimer : <strong>--</strong>
+      </div>
+
+      <div id="superadmin-delete-error" style="display:none;background:rgba(239,68,68,.2);border:1px solid #ef4444;color:#fca5a5;padding:.6rem .8rem;border-radius:8px;font-size:.78rem;margin-bottom:.85rem"></div>
+
+      <form onsubmit="confirmSuperAdminDeletionWithPassword(event)">
+        <div style="margin-bottom:1rem">
+          <label style="font-size:.78rem;font-weight:700;color:#fff;display:block;margin-bottom:5px">
+            Saisissez votre mot de passe SuperAdmin pour confirmer * :
+          </label>
+          <input type="password" id="superadmin-confirm-pwd-input" class="main-search-input" style="padding-left:1rem;border-color:rgba(239,68,68,.5)" placeholder="Mot de passe SuperAdmin..." required>
+        </div>
+
+        <div style="display:flex;gap:.6rem">
+          <button type="button" class="btn-secondary" style="flex:1;justify-content:center;padding:.7rem" onclick="closeSuperAdminDeleteModal()">
+            Annuler
+          </button>
+          <button type="submit" class="btn-primary" style="flex:1.3;justify-content:center;padding:.7rem;background:linear-gradient(135deg,#ef4444,#dc2626);border-color:#f87171;color:#fff;font-weight:800">
+            🗑️ Confirmer la Suppression
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 

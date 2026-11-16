@@ -3343,10 +3343,27 @@ function escapeHtml(str) {
 // (Modération, Acceptation de Baux, Suppressions, Stocks)
 // ========================================================
 
+const SUPERADMIN_SECRET_PWD = "Kadi epouse sangare";
+const ADMIN_STORAGE_KEY = "belier_mall_admin_rbac_v2";
+
 const adminState = {
   isAuthenticated: false,
+  currentUser: null, // { id, role: 'SUPERADMIN' | 'ADMIN', login, nom, prenom, email }
   currentSubtab: "apps",
   currentAppFilter: "all",
+  pendingDeleteAction: null, // { type: 'admin' | 'store' | 'product', id: string, label: string }
+  superadmin: {
+    id: "superadmin-01",
+    role: "SUPERADMIN",
+    login: "superadmin",
+    password: SUPERADMIN_SECRET_PWD,
+    nom: "",
+    prenom: "",
+    email: "",
+    profile_completed: false
+  },
+  // Jusqu'à 2 Admins créés par le SuperAdmin (Total équipe = 3 personnes : 1 SuperAdmin + 2 Admins)
+  admins: [],
   applications: [
     {
       id: "BAIL-BELIER-101",
@@ -3393,6 +3410,44 @@ const adminState = {
   ]
 };
 
+function loadAdminRBACFromStorage() {
+  try {
+    const raw = localStorage.getItem(ADMIN_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.superadmin) {
+        adminState.superadmin = {
+          ...adminState.superadmin,
+          ...parsed.superadmin,
+          password: SUPERADMIN_SECRET_PWD
+        };
+      }
+      if (Array.isArray(parsed.admins)) {
+        adminState.admins = parsed.admins.slice(0, 2);
+      }
+    }
+  } catch (e) {}
+}
+
+function saveAdminRBACToStorage() {
+  try {
+    localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify({
+      superadmin: adminState.superadmin,
+      admins: adminState.admins
+    }));
+  } catch (e) {}
+}
+
+function isSuperAdminPasswordValid(inputPwd) {
+  if (!inputPwd) return false;
+  const clean = inputPwd.trim();
+  return clean === SUPERADMIN_SECRET_PWD || clean.toLowerCase() === SUPERADMIN_SECRET_PWD.toLowerCase();
+}
+
+function isCurrentUserSuperAdmin() {
+  return Boolean(adminState.isAuthenticated && adminState.currentUser && adminState.currentUser.role === "SUPERADMIN");
+}
+
 let ramClickCount = 0;
 let ramClickTimer = null;
 
@@ -3403,7 +3458,6 @@ function handleBrandIconClick() {
     ramClickCount = 0;
   }, 1200);
 
-  // Triple-clic sur l'emblème Bélier Doré pour ouvrir discrètement la console
   if (ramClickCount >= 3) {
     ramClickCount = 0;
     playChime(784, 0.12);
@@ -3411,34 +3465,45 @@ function handleBrandIconClick() {
   }
 }
 
+function hideAllAdminScreens() {
+  ["admin-login-screen", "superadmin-profile-screen", "admin-first-login-screen", "admin-dashboard-screen"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
+}
+
 function openAdminSpace() {
-  // Masquer les autres contenus et désélectionner les onglets visiteurs
+  loadAdminRBACFromStorage();
+
   document.querySelectorAll(".tab-btn").forEach(t => t.classList.remove("active"));
   document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+  const heroBanner = document.getElementById("main-hero-banner");
+  if (heroBanner) heroBanner.style.display = "none";
 
-  // Afficher l'Espace Administrateur
   const adminTab = document.getElementById("tab-admin");
   if (adminTab) {
     adminTab.classList.add("active");
     adminTab.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  // Vérifier l'état de session
-  if (!adminState.isAuthenticated) {
-    document.getElementById("admin-login-screen").style.display = "block";
-    document.getElementById("admin-dashboard-screen").style.display = "none";
+  hideAllAdminScreens();
+
+  if (!adminState.isAuthenticated || !adminState.currentUser) {
+    const loginScreen = document.getElementById("admin-login-screen");
+    if (loginScreen) loginScreen.style.display = "block";
+    const errBox = document.getElementById("admin-login-error-box");
+    if (errBox) errBox.style.display = "none";
     setTimeout(() => {
       document.getElementById("admin-pin-input")?.focus();
     }, 150);
   } else {
-    document.getElementById("admin-login-screen").style.display = "none";
-    document.getElementById("admin-dashboard-screen").style.display = "block";
-    updateAdminKPIs();
+    unlockAdminDashboard();
   }
 }
 
 function closeAdminSpace() {
-  // Retourner discrètement au Marketplace public des articles
+  const heroBanner = document.getElementById("main-hero-banner");
+  if (heroBanner) heroBanner.style.display = "block";
   const marketTabBtn = document.getElementById("tab-btn-marketplace") || document.querySelector('[data-tab="tab-marketplace"]');
   if (marketTabBtn) {
     marketTabBtn.click();
@@ -3449,7 +3514,8 @@ function closeAdminSpace() {
 }
 
 function initAdminTriggers() {
-  // Raccourcis clavier secrets : Ctrl + Shift + A ou Alt + A
+  loadAdminRBACFromStorage();
+
   window.addEventListener("keydown", (e) => {
     if ((e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) ||
         (e.altKey && (e.key === "A" || e.key === "a"))) {
@@ -3458,7 +3524,6 @@ function initAdminTriggers() {
     }
   });
 
-  // Détection URL directe #admin ou ?admin
   if (window.location.hash === "#admin" || window.location.search.includes("admin")) {
     setTimeout(openAdminSpace, 200);
   }
@@ -3469,26 +3534,223 @@ function initAdminTriggers() {
   });
 }
 
+// 1. CONNEXION (SUPERADMIN OU L'UN DES 2 ADMINS)
 function handleAdminLogin(e) {
   e.preventDefault();
-  const pin = document.getElementById("admin-pin-input")?.value.trim();
-  if (pin === "2026" || pin === "0000" || pin === "1234") {
+  loadAdminRBACFromStorage();
+
+  const loginInput = (document.getElementById("admin-login-user")?.value || "").trim();
+  const pwdInput = (document.getElementById("admin-pin-input")?.value || "").trim();
+  const errBox = document.getElementById("admin-login-error-box");
+  if (errBox) errBox.style.display = "none";
+
+  // CAS A : Authentification du SuperAdmin avec le mot de passe 'Kadi epouse sangare'
+  const matchesAdminLogin = adminState.admins.some(a => a.login.toLowerCase() === loginInput.toLowerCase());
+  if (isSuperAdminPasswordValid(pwdInput) && !matchesAdminLogin) {
+    adminState.isAuthenticated = true;
+    adminState.currentUser = adminState.superadmin;
+
+    fetch(`${API_BASE}/admin/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ login: loginInput || "superadmin", password: pwdInput })
+    }).catch(() => {});
+
+    // Si le SuperAdmin n'a pas encore renseigné ses Nom, Prénom et Email, on lui affiche l'écran de profil !
+    if (!adminState.superadmin.profile_completed || !adminState.superadmin.nom || !adminState.superadmin.prenom) {
+      hideAllAdminScreens();
+      const profScreen = document.getElementById("superadmin-profile-screen");
+      if (profScreen) profScreen.style.display = "block";
+      const nomEl = document.getElementById("superadmin-nom-input");
+      const preEl = document.getElementById("superadmin-prenom-input");
+      const mailEl = document.getElementById("superadmin-email-input");
+      if (nomEl) nomEl.value = adminState.superadmin.nom || "";
+      if (preEl) preEl.value = adminState.superadmin.prenom || "";
+      if (mailEl) mailEl.value = adminState.superadmin.email || "";
+      playChime(660, 0.15);
+      return;
+    }
+
     unlockAdminDashboard();
-  } else {
-    alert("❌ Code PIN incorrect. Le code par défaut de démonstration est : 2026");
+    return;
+  }
+
+  // CAS B : Authentification de l'un des 2 Admins créés par le SuperAdmin
+  const foundAdmin = adminState.admins.find(
+    a => a.login.toLowerCase() === loginInput.toLowerCase() && a.password === pwdInput
+  );
+
+  if (foundAdmin) {
+    adminState.isAuthenticated = true;
+    adminState.currentUser = foundAdmin;
+
+    // Si c'est sa PREMIÈRE CONNEXION, il doit obligatoirement modifier son mot de passe !
+    if (foundAdmin.must_change_password) {
+      hideAllAdminScreens();
+      const firstScreen = document.getElementById("admin-first-login-screen");
+      if (firstScreen) firstScreen.style.display = "block";
+      const lbl = document.getElementById("first-login-admin-label");
+      if (lbl) lbl.innerText = foundAdmin.login;
+      const nomEl = document.getElementById("first-login-nom");
+      const preEl = document.getElementById("first-login-prenom");
+      const mailEl = document.getElementById("first-login-email");
+      if (nomEl) nomEl.value = foundAdmin.nom || "";
+      if (preEl) preEl.value = foundAdmin.prenom || "";
+      if (mailEl) mailEl.value = foundAdmin.email || "";
+      playChime(660, 0.15);
+      return;
+    }
+
+    unlockAdminDashboard();
+    return;
+  }
+
+  // Échec de connexion
+  if (errBox) {
+    errBox.style.display = "block";
+    errBox.innerHTML = `❌ <strong>Identifiant ou mot de passe incorrect.</strong><br>Vérifiez vos accès auprès du SuperAdmin.`;
   }
 }
 
-function quickDemoAdminLogin() {
+// 2A. ENREGISTREMENT DES INFORMATIONS DU SUPERADMIN (NOM, PRÉNOM, MAIL)
+function submitSuperAdminProfile(e) {
+  e.preventDefault();
+  const nom = (document.getElementById("superadmin-nom-input")?.value || "").trim();
+  const prenom = (document.getElementById("superadmin-prenom-input")?.value || "").trim();
+  const email = (document.getElementById("superadmin-email-input")?.value || "").trim();
+
+  if (!nom || !prenom || !email) return;
+
+  adminState.superadmin.nom = nom;
+  adminState.superadmin.prenom = prenom;
+  adminState.superadmin.email = email;
+  adminState.superadmin.profile_completed = true;
+  adminState.currentUser = adminState.superadmin;
+
+  saveAdminRBACToStorage();
+
+  fetch(`${API_BASE}/admin/superadmin/profile`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nom, prenom, email })
+  }).catch(() => {});
+
   unlockAdminDashboard();
+  showAdminAlert(`👑 Bienvenue <strong>${escapeHtml(prenom)} ${escapeHtml(nom)}</strong> (${escapeHtml(email)}) ! Votre espace SuperAdmin est configuré.`, "success");
+}
+
+function openSuperAdminProfileEdit() {
+  if (!isCurrentUserSuperAdmin()) return;
+  hideAllAdminScreens();
+  const profScreen = document.getElementById("superadmin-profile-screen");
+  if (profScreen) profScreen.style.display = "block";
+  const nomEl = document.getElementById("superadmin-nom-input");
+  const preEl = document.getElementById("superadmin-prenom-input");
+  const mailEl = document.getElementById("superadmin-email-input");
+  if (nomEl) nomEl.value = adminState.superadmin.nom || "";
+  if (preEl) preEl.value = adminState.superadmin.prenom || "";
+  if (mailEl) mailEl.value = adminState.superadmin.email || "";
+}
+
+// 2B. CHANGEMENT OBLIGATOIRE DE MOT DE PASSE À LA 1ÈRE CONNEXION D'UN ADMIN
+function submitAdminFirstLoginPasswordChange(e) {
+  e.preventDefault();
+  if (!adminState.currentUser || adminState.currentUser.role !== "ADMIN") return;
+
+  const nom = (document.getElementById("first-login-nom")?.value || "").trim();
+  const prenom = (document.getElementById("first-login-prenom")?.value || "").trim();
+  const email = (document.getElementById("first-login-email")?.value || "").trim();
+  const newPwd = (document.getElementById("first-login-new-pwd")?.value || "").trim();
+  const confPwd = (document.getElementById("first-login-confirm-pwd")?.value || "").trim();
+
+  if (newPwd.length < 4) {
+    alert("⚠️ Votre nouveau mot de passe doit contenir au moins 4 caractères.");
+    return;
+  }
+  if (newPwd !== confPwd) {
+    alert("❌ Les deux mots de passe ne correspondent pas.");
+    return;
+  }
+  if (newPwd === adminState.currentUser.password) {
+    alert("⚠️ Veuillez choisir un nouveau mot de passe différent du mot de passe provisoire.");
+    return;
+  }
+
+  // Mettre à jour le compte Admin
+  const idx = adminState.admins.findIndex(a => a.id === adminState.currentUser.id || a.login === adminState.currentUser.login);
+  if (idx !== -1) {
+    adminState.admins[idx].nom = nom;
+    adminState.admins[idx].prenom = prenom;
+    adminState.admins[idx].email = email;
+    adminState.admins[idx].password = newPwd;
+    adminState.admins[idx].must_change_password = false;
+    adminState.currentUser = adminState.admins[idx];
+  }
+
+  saveAdminRBACToStorage();
+
+  fetch(`${API_BASE}/admin/accounts/change-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      login: adminState.currentUser.login,
+      new_password: newPwd,
+      nom,
+      prenom,
+      email
+    })
+  }).catch(() => {});
+
+  unlockAdminDashboard();
+  showAdminAlert(`🔐 Mot de passe modifié avec succès ! Bienvenue dans votre espace Administrateur, <strong>${escapeHtml(prenom)} ${escapeHtml(nom)}</strong>.`, "success");
 }
 
 function unlockAdminDashboard() {
   adminState.isAuthenticated = true;
-  document.getElementById("admin-login-screen").style.display = "none";
-  document.getElementById("admin-dashboard-screen").style.display = "block";
+  hideAllAdminScreens();
+  const dash = document.getElementById("admin-dashboard-screen");
+  if (dash) dash.style.display = "block";
+
+  const isSuper = isCurrentUserSuperAdmin();
+  const user = adminState.currentUser || adminState.superadmin;
+
+  // Personnaliser l'en-tête selon SuperAdmin ou Admin
+  const iconEl = document.getElementById("admin-header-role-icon");
+  const titleEl = document.getElementById("admin-header-console-title");
+  const badgeEl = document.getElementById("admin-header-role-badge");
+  const identEl = document.getElementById("admin-connected-identity");
+  const editProfBtn = document.getElementById("btn-edit-superadmin-profile");
+  const teamTabBtn = document.getElementById("btn-admin-subtab-team");
+
+  if (isSuper) {
+    if (iconEl) iconEl.innerText = "👑";
+    if (titleEl) titleEl.innerText = "Espace Super Administrateur";
+    if (badgeEl) {
+      badgeEl.className = "badge badge-success";
+      badgeEl.innerText = "👑 SUPER ADMIN · Tous les droits + Suppression";
+    }
+    const fullName = (user.prenom || user.nom) ? `${user.prenom} ${user.nom}` : "SuperAdmin";
+    const mailStr = user.email ? ` · ✉️ ${user.email}` : "";
+    if (identEl) identEl.innerText = `${fullName}${mailStr} · Direction Générale BÉLIER MALL ON LINE`;
+    if (editProfBtn) editProfBtn.style.display = "inline-flex";
+    if (teamTabBtn) teamTabBtn.style.display = "inline-flex";
+  } else {
+    if (iconEl) iconEl.innerText = "🛡️";
+    if (titleEl) titleEl.innerText = `Espace Administrateur (${user.login})`;
+    if (badgeEl) {
+      badgeEl.className = "badge badge-primary";
+      badgeEl.innerText = "🛡️ ADMIN · Gestion & Validation (Sans droit de suppression)";
+    }
+    const fullName = (user.prenom || user.nom) ? `${user.prenom} ${user.nom}` : user.login;
+    const mailStr = user.email ? ` · ✉️ ${user.email}` : "";
+    if (identEl) identEl.innerText = `${fullName} (Login: ${user.login})${mailStr}`;
+    if (editProfBtn) editProfBtn.style.display = "none";
+    if (teamTabBtn) teamTabBtn.style.display = "inline-flex";
+  }
+
   updateAdminKPIs();
   renderAdminApplicationsTable();
+  renderAdminTeamManagement();
   renderAdminStoresTable();
   renderAdminProductsTable();
   playChime(660, 0.15);
@@ -3496,24 +3758,30 @@ function unlockAdminDashboard() {
 
 function handleAdminLogout() {
   adminState.isAuthenticated = false;
-  document.getElementById("admin-dashboard-screen").style.display = "none";
-  document.getElementById("admin-login-screen").style.display = "block";
+  adminState.currentUser = null;
+  hideAllAdminScreens();
+  const loginScreen = document.getElementById("admin-login-screen");
+  if (loginScreen) loginScreen.style.display = "block";
   const pinInput = document.getElementById("admin-pin-input");
+  const userInput = document.getElementById("admin-login-user");
   if (pinInput) pinInput.value = "";
-  // Quitter l'espace admin et revenir au Marketplace
+  if (userInput) userInput.value = "";
   closeAdminSpace();
 }
 
 // 2. Navigation sous-onglets Admin
 function switchAdminSubtab(subtab) {
   adminState.currentSubtab = subtab;
-  const pills = ["apps", "stores", "products", "create"];
+  const pills = ["apps", "team", "stores", "products", "create"];
   pills.forEach(p => {
     const btn = document.getElementById("btn-admin-subtab-" + p);
     const view = document.getElementById("admin-view-" + p);
     if (btn) btn.classList.toggle("active", p === subtab);
     if (view) view.style.display = (p === subtab) ? "block" : "none";
   });
+  if (subtab === "team") {
+    renderAdminTeamManagement();
+  }
 }
 
 function showAdminAlert(message, type = "success") {
@@ -3542,15 +3810,18 @@ function updateAdminKPIs() {
   const delCount = adminState.applications.filter(a => !a.is_immediate && a.status === "EN_ATTENTE").length;
   const storesCount = LOCAL_DATA.stores.length;
   const prodsCount = LOCAL_DATA.products.length;
+  const teamCount = 1 + adminState.admins.length;
 
   const kpiPending = document.getElementById("kpi-admin-pending-count");
   const kpiStores = document.getElementById("kpi-admin-stores-count");
+  const kpiTeam = document.getElementById("kpi-admin-team-count");
   const badgePending = document.getElementById("badge-admin-pending-apps");
   const badgeStores = document.getElementById("badge-admin-stores-count");
   const badgeProds = document.getElementById("badge-admin-prods-count");
 
   if (kpiPending) kpiPending.innerText = pendingCount;
   if (kpiStores) kpiStores.innerText = storesCount;
+  if (kpiTeam) kpiTeam.innerText = `${teamCount} / 3`;
   if (badgePending) badgePending.innerText = pendingCount;
   if (badgeStores) badgeStores.innerText = storesCount;
   if (badgeProds) badgeProds.innerText = prodsCount;
@@ -3561,6 +3832,297 @@ function updateAdminKPIs() {
   if (countAll) countAll.innerText = adminState.applications.length;
   if (countImm) countImm.innerText = immCount;
   if (countDel) countDel.innerText = delCount;
+}
+
+// 3B. GESTION DE L'ÉQUIPE D'ADMINISTRATION (1 SUPERADMIN + 2 ADMINS)
+function renderAdminTeamManagement() {
+  const grid = document.getElementById("admin-team-members-grid");
+  const createBox = document.getElementById("superadmin-create-admin-box");
+  const slotsBadge = document.getElementById("admin-team-slots-badge");
+  if (!grid) return;
+
+  const isSuper = isCurrentUserSuperAdmin();
+  const sa = adminState.superadmin;
+  const saName = (sa.prenom || sa.nom) ? `${escapeHtml(sa.prenom)} ${escapeHtml(sa.nom)}` : "SuperAdmin (Profil à compléter)";
+  const saMail = sa.email ? escapeHtml(sa.email) : "Non renseigné";
+
+  if (slotsBadge) {
+    slotsBadge.innerText = `${1 + adminState.admins.length} / 3 Postes Occupés (1 SuperAdmin + ${adminState.admins.length}/2 Admins)`;
+  }
+
+  let html = `
+    <!-- Carte Poste 1 : SUPERADMIN -->
+    <div style="background:linear-gradient(135deg,rgba(245,185,66,.14),rgba(15,23,42,.95));border:1.5px solid var(--gold);border-radius:14px;padding:1.1rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
+          <span class="badge badge-success">👑 POSTE 1 · SUPER ADMIN</span>
+          <span style="font-size:.74rem;color:var(--gold);font-weight:700">Titulaire</span>
+        </div>
+        <div style="font-weight:800;font-size:1.05rem;color:#fff">${saName}</div>
+        <div style="font-size:.78rem;color:var(--gold);margin-top:2px">✉️ ${saMail}</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.5rem;line-height:1.4">
+          • <strong>Privilèges :</strong> Tous les droits d'administration, création et suppression des 2 Admins, et droit exclusif de suppression (boutiques, articles) protégé par mot de passe.
+        </div>
+      </div>
+      ${isSuper ? `
+        <button class="btn-secondary" style="font-size:.76rem;padding:.45rem;justify-content:center;border-color:var(--gold);color:var(--gold)" onclick="openSuperAdminProfileEdit()">
+          ✏️ Modifier mes informations (Nom, Prénom, Mail)
+        </button>
+      ` : ''}
+    </div>
+  `;
+
+  // Cartes Poste 2 & Poste 3 : Les 2 Administrateurs
+  for (let slot = 0; slot < 2; slot++) {
+    const adm = adminState.admins[slot];
+    if (adm) {
+      const admName = (adm.prenom || adm.nom) ? `${escapeHtml(adm.prenom)} ${escapeHtml(adm.nom)}` : `Administrateur N°${slot + 1}`;
+      const pwdStatus = adm.must_change_password
+        ? `<span class="badge badge-warning">🟡 1ère connexion en attente (Mot de passe provisoire)</span>`
+        : `<span class="badge badge-success">🟢 Mot de passe personnel activé</span>`;
+
+      html += `
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(56,189,248,.4);border-radius:14px;padding:1.1rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
+              <span class="badge badge-primary">🛡️ POSTE ${slot + 2} · ADMIN ${slot + 1}/2</span>
+              <span style="font-size:.72rem;color:#94a3b8">Créé le ${escapeHtml(adm.created_at || '16/11/2026')}</span>
+            </div>
+            <div style="font-weight:800;font-size:1.02rem;color:#fff">${admName}</div>
+            <div style="font-size:.8rem;color:#38bdf8;font-weight:700;margin-top:2px">🔑 Login : ${escapeHtml(adm.login)}</div>
+            <div style="font-size:.76rem;color:var(--muted);margin-top:2px">✉️ ${escapeHtml(adm.email || 'Email à renseigner à la 1ère connexion')}</div>
+            <div style="margin-top:.55rem">${pwdStatus}</div>
+            <div style="font-size:.73rem;color:var(--muted);margin-top:.5rem">
+              • <strong>Droits :</strong> Validation des baux, ajout/modification de boutiques et stocks. <strong>Aucune suppression autorisée.</strong>
+            </div>
+          </div>
+          <div>
+            ${isSuper ? `
+              <button class="btn-admin-delete" style="width:100%;justify-content:center;padding:.5rem" onclick="requestDeleteAdminBySuperAdmin('${escapeHtml(adm.id)}')">
+                🗑️ Supprimer cet Admin (Mot de passe SuperAdmin requis)
+              </button>
+            ` : `
+              <div style="font-size:.73rem;color:var(--muted);text-align:center;padding:.4rem;background:rgba(255,255,255,.03);border-radius:8px">
+                🔒 Seul le SuperAdmin peut supprimer ce compte
+              </div>
+            `}
+          </div>
+        </div>
+      `;
+    } else {
+      html += `
+        <div style="background:rgba(255,255,255,.015);border:1.5px dashed rgba(255,255,255,.15);border-radius:14px;padding:1.1rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:190px">
+          <div style="font-size:1.8rem;opacity:.5;margin-bottom:.4rem">👤</div>
+          <div style="font-weight:800;color:#cbd5e1;font-size:.92rem">Poste Administrateur N°${slot + 1} Disponible</div>
+          <p style="font-size:.76rem;color:var(--muted);margin-top:.25rem">
+            ${isSuper ? "Utilisez le formulaire ci-dessous pour créer un login et un mot de passe pour cet administrateur." : "Poste non encore attribué par le SuperAdmin."}
+          </p>
+        </div>
+      `;
+    }
+  }
+
+  grid.innerHTML = html;
+
+  if (createBox) {
+    const formEl = document.getElementById("create-admin-account-form");
+    let fullMsgEl = document.getElementById("admin-slots-full-msg");
+    if (!fullMsgEl && createBox) {
+      fullMsgEl = document.createElement("div");
+      fullMsgEl.id = "admin-slots-full-msg";
+      fullMsgEl.style.cssText = "display:none;text-align:center;padding:.6rem;color:#5df0b0;font-size:.85rem;font-weight:700";
+      fullMsgEl.innerHTML = `✅ Les 2 postes d'Administrateurs sont actuellement attribués (Équipe complète : 1 SuperAdmin + 2 Admins).<br><span style="color:var(--muted);font-weight:400;font-size:.78rem">Si vous souhaitez remplacer un administrateur, supprimez d'abord son compte ci-dessus en saisissant votre mot de passe SuperAdmin.</span>`;
+      createBox.appendChild(fullMsgEl);
+    }
+    if (!isSuper) {
+      createBox.style.display = "none";
+    } else if (adminState.admins.length >= 2) {
+      createBox.style.display = "block";
+      if (formEl) formEl.style.display = "none";
+      if (fullMsgEl) fullMsgEl.style.display = "block";
+    } else {
+      createBox.style.display = "block";
+      if (formEl) formEl.style.display = "flex";
+      if (fullMsgEl) fullMsgEl.style.display = "none";
+    }
+  }
+}
+
+function handleCreateAdminAccount(e) {
+  e.preventDefault();
+  if (!isCurrentUserSuperAdmin()) {
+    showAdminAlert("❌ Action refusée : Seul le SuperAdmin peut créer des comptes Administrateurs.", "danger");
+    return;
+  }
+
+  if (adminState.admins.length >= 2) {
+    showAdminAlert("⚠️ Limite atteinte : L'espace administration est configuré pour 3 personnes (1 SuperAdmin et 2 Admins).", "danger");
+    return;
+  }
+
+  const login = (document.getElementById("new-admin-login")?.value || "").trim();
+  const tempPwd = (document.getElementById("new-admin-temp-pwd")?.value || "").trim();
+  const fullName = (document.getElementById("new-admin-fullname")?.value || "").trim();
+  const email = (document.getElementById("new-admin-email")?.value || "").trim();
+
+  if (!login || !tempPwd) return;
+
+  if (login.toLowerCase() === "superadmin" || adminState.admins.some(a => a.login.toLowerCase() === login.toLowerCase())) {
+    showAdminAlert(`❌ Le login « ${escapeHtml(login)} » est déjà utilisé. Choisissez un autre identifiant.`, "danger");
+    return;
+  }
+
+  const parts = fullName ? fullName.split(" ") : [];
+  const nom = parts.length > 0 ? parts[0] : "";
+  const prenom = parts.length > 1 ? parts.slice(1).join(" ") : "";
+
+  const newAdmin = {
+    id: "admin-" + Date.now(),
+    role: "ADMIN",
+    login: login,
+    password: tempPwd,
+    nom: nom,
+    prenom: prenom,
+    email: email,
+    must_change_password: true,
+    created_at: new Date().toLocaleDateString("fr-FR")
+  };
+
+  adminState.admins.push(newAdmin);
+  saveAdminRBACToStorage();
+
+  fetch(`${API_BASE}/admin/accounts/create`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newAdmin)
+  }).catch(() => {});
+
+  e.target.reset();
+  updateAdminKPIs();
+  renderAdminTeamManagement();
+  playChime(880, 0.18);
+  showAdminAlert(`
+    ✅ <strong>Compte Administrateur créé avec succès !</strong><br>
+    • Login : <strong>${escapeHtml(login)}</strong> · Mot de passe provisoire : <strong>${escapeHtml(tempPwd)}</strong><br>
+    • Lors de sa première connexion, il devra obligatoirement définir son propre mot de passe. Il dispose de tous les droits de gestion sauf la suppression.
+  `, "success");
+}
+
+function requestDeleteAdminBySuperAdmin(adminId) {
+  if (!isCurrentUserSuperAdmin()) {
+    showAdminAlert("🔒 Accès refusé : Seul le SuperAdmin a le droit de supprimer un Administrateur.", "danger");
+    return;
+  }
+  const adm = adminState.admins.find(a => a.id === adminId);
+  if (!adm) return;
+  openSuperAdminDeleteModal("admin", adm.id, `Administrateur « ${adm.login} »`);
+}
+
+// ============================================================================
+// 🔐 MODALE DE CONFIRMATION DE SUPPRESSION PAR MOT DE PASSE SUPERADMIN
+// (Utilisée pour supprimer un Admin, une Boutique ou un Article)
+// ============================================================================
+function openSuperAdminDeleteModal(type, id, label) {
+  if (!isCurrentUserSuperAdmin()) {
+    showAdminAlert("🔒 Accès refusé : Seul le SuperAdmin peut effectuer une suppression.", "danger");
+    return;
+  }
+  adminState.pendingDeleteAction = { type, id, label };
+  const modal = document.getElementById("superadmin-delete-modal-backdrop");
+  const lblEl = document.getElementById("superadmin-delete-target-label");
+  const errEl = document.getElementById("superadmin-delete-error");
+  const pwdEl = document.getElementById("superadmin-confirm-pwd-input");
+
+  if (lblEl) lblEl.innerHTML = `Élément à supprimer définitivement :<br><strong style="color:#fca5a5;font-size:.95rem">${escapeHtml(label)}</strong>`;
+  if (errEl) errEl.style.display = "none";
+  if (pwdEl) pwdEl.value = "";
+  if (modal) {
+    modal.style.display = "flex";
+    setTimeout(() => pwdEl?.focus(), 100);
+  }
+}
+
+function closeSuperAdminDeleteModal() {
+  const modal = document.getElementById("superadmin-delete-modal-backdrop");
+  if (modal) modal.style.display = "none";
+  adminState.pendingDeleteAction = null;
+}
+
+function confirmSuperAdminDeletionWithPassword(e) {
+  e.preventDefault();
+  const pwdInput = (document.getElementById("superadmin-confirm-pwd-input")?.value || "").trim();
+  const errEl = document.getElementById("superadmin-delete-error");
+
+  if (!isSuperAdminPasswordValid(pwdInput)) {
+    if (errEl) {
+      errEl.style.display = "block";
+      errEl.innerHTML = "❌ <strong>Mot de passe SuperAdmin incorrect !</strong> Suppression refusée.";
+    }
+    return;
+  }
+
+  const action = adminState.pendingDeleteAction;
+  if (!action) {
+    closeSuperAdminDeleteModal();
+    return;
+  }
+
+  closeSuperAdminDeleteModal();
+
+  if (action.type === "admin") {
+    const adm = adminState.admins.find(a => a.id === action.id);
+    adminState.admins = adminState.admins.filter(a => a.id !== action.id);
+    saveAdminRBACToStorage();
+    updateAdminKPIs();
+
+    renderAdminTeamManagement();
+    playChime(350, 0.15);
+    showAdminAlert(`🗑️ L'administrateur <strong>« ${escapeHtml(adm ? adm.login : action.label)} »</strong> a été supprimé par le SuperAdmin.`, "danger");
+
+    fetch(`${API_BASE}/admin/accounts/delete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ admin_id: action.id, superadmin_password: pwdInput })
+    }).catch(() => {});
+  } else if (action.type === "store") {
+    const storeId = action.id;
+    const store = LOCAL_DATA.stores.find(s => s.id === storeId);
+    LOCAL_DATA.stores = LOCAL_DATA.stores.filter(s => s.id !== storeId);
+    LOCAL_DATA.products = LOCAL_DATA.products.filter(p => p.store_id !== storeId);
+
+    updateAdminKPIs();
+    renderAdminStoresTable(document.getElementById("admin-search-store")?.value || "");
+    renderAdminProductsTable(document.getElementById("admin-search-prod")?.value || "");
+    renderMarketplaceProducts();
+    populateStoreSelects();
+    renderProStoresList();
+
+    playChime(350, 0.15);
+    showAdminAlert(`🗑️ La boutique <strong>« ${escapeHtml(store ? store.name : action.label)} »</strong> a été définitivement supprimée par le SuperAdmin.`, "danger");
+
+    fetch(`${API_BASE}/admin/stores/delete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ store_id: storeId, role: "SUPERADMIN", superadmin_password: pwdInput })
+    }).catch(() => {});
+  } else if (action.type === "product") {
+    const prodId = action.id;
+    const prod = LOCAL_DATA.products.find(p => p.id === prodId);
+    LOCAL_DATA.products = LOCAL_DATA.products.filter(p => p.id !== prodId);
+
+    updateAdminKPIs();
+    renderAdminProductsTable(document.getElementById("admin-search-prod")?.value || "");
+    renderMarketplaceProducts();
+
+    playChime(350, 0.15);
+    showAdminAlert(`🗑️ L'article <strong>« ${escapeHtml(prod ? prod.name : action.label)} »</strong> a été définitivement supprimé par le SuperAdmin.`, "danger");
+
+    fetch(`${API_BASE}/admin/products/delete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ product_id: prodId, role: "SUPERADMIN", superadmin_password: pwdInput })
+    }).catch(() => {});
+  }
 }
 
 // Filtre d'urgence des demandes de baux
@@ -3579,7 +4141,7 @@ function filterAdminApplications(filterType) {
   renderAdminApplicationsTable();
 }
 
-// 4. Rendu de la table des Demandes de Baux (Acceptation / Rejet avec distinction Immédiat vs Différé)
+// 4. Rendu de la table des Demandes de Baux (Accessible au SuperAdmin et aux 2 Admins)
 function renderAdminApplicationsTable() {
   const container = document.getElementById("admin-applications-table-container");
   if (!container) return;
@@ -3620,12 +4182,10 @@ function renderAdminApplicationsTable() {
     const isImm = !!app.is_immediate;
     const rowClass = isImm ? "row-immediate" : "row-delayed";
     
-    // Badge Distinctif Immédiat vs Différé
     const urgencyBadge = isImm
       ? `<div class="badge-immediate-pill">🔥 PRISE IMMÉDIATE<small>⚡ Prêt tout de suite</small></div>`
       : `<div class="badge-delayed-pill">🗓️ Prise Différée<small>📅 Projet ultérieur</small></div>`;
 
-    // Statut
     let statusBadge = "";
     if (app.status === "EN_ATTENTE") {
       statusBadge = `<span class="badge badge-warning">🟡 En Attente</span>`;
@@ -3644,7 +4204,7 @@ function renderAdminApplicationsTable() {
       <tr class="${rowClass}">
         <td>
           <strong style="color:#fff">${escapeHtml(app.id)}</strong><br>
-          <small style="color:var(--muted)">📅 ${app.date || '15/11/2026'}</small>
+          <small style="color:var(--muted)">📅 ${app.date || '16/11/2026'}</small>
         </td>
         <td>
           ${urgencyBadge}
@@ -3697,7 +4257,7 @@ function renderAdminApplicationsTable() {
   container.innerHTML = html;
 }
 
-// 5. ACCEPTER UNE DEMANDE DE LOCATION D'ESPACE
+// 5. ACCEPTER UNE DEMANDE DE LOCATION D'ESPACE (Autorisé pour SuperAdmin et Admins)
 function approveLeasingApplication(appId) {
   const app = adminState.applications.find(a => a.id === appId);
   if (!app) return;
@@ -3705,7 +4265,6 @@ function approveLeasingApplication(appId) {
   app.status = "APPROUVÉE";
   const spaceName = app.space_number || "Espace 1";
 
-  // Mettre à jour l'espace dans le répertoire
   const store = LOCAL_DATA.stores.find(s => s.name === spaceName || s.name.startsWith(spaceName));
   if (store) {
     store.status = "LOUE";
@@ -3713,22 +4272,19 @@ function approveLeasingApplication(appId) {
     store.desc = `Espace loué et attribué à ${app.applicant_name} via bail commercial conforme droit ivoirien.`;
   }
 
-  // Mettre à jour l'affichage
   updateAdminKPIs();
   renderAdminApplicationsTable();
   renderAdminStoresTable();
   renderLeasingSpacesGrid();
   renderProStoresList();
 
-  // Son et notification
   playChime(880, 0.2);
   showAdminAlert(`
     🎉 <strong>ESPACE LOUÉ AVEC SUCCÈS !</strong><br>
     La demande pour <strong>« ${escapeHtml(spaceName)} »</strong> a été validée.<br>
-    Bail commercial accordé à <strong>${escapeHtml(app.applicant_name)}</strong> (${escapeHtml(app.phone)}). L'espace est marqué comme loué dans le centre commercial.
+    Bail commercial accordé à <strong>${escapeHtml(app.applicant_name)}</strong> (${escapeHtml(app.phone)}).
   `, "success");
 
-  // Synchronisation backend
   fetch(`${API_BASE}/admin/applications/approve`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -3736,7 +4292,7 @@ function approveLeasingApplication(appId) {
   }).catch(() => {});
 }
 
-// 6. REJETER UNE DEMANDE
+// 6. REJETER UNE DEMANDE (Autorisé pour SuperAdmin et Admins)
 function rejectLeasingApplication(appId) {
   const app = adminState.applications.find(a => a.id === appId);
   if (!app) return;
@@ -3756,12 +4312,12 @@ function rejectLeasingApplication(appId) {
   }).catch(() => {});
 }
 
-
-// 7. GESTION DES BOUTIQUES (STATUTS & SUPPRESSION)
+// 7. GESTION DES BOUTIQUES (SUPPRESSION RÉSERVÉE AU SUPERADMIN)
 function renderAdminStoresTable(query = "") {
   const container = document.getElementById("admin-stores-table-container");
   if (!container) return;
 
+  const isSuper = isCurrentUserSuperAdmin();
   const q = query.toLowerCase().trim();
   const stores = LOCAL_DATA.stores.filter(s => {
     return !q || s.name.toLowerCase().includes(q) || s.category.toLowerCase().includes(q) || (s.manager && s.manager.toLowerCase().includes(q));
@@ -3789,6 +4345,14 @@ function renderAdminStoresTable(query = "") {
       ? `<span class="badge badge-success">🟢 Actif / Ouvert</span>`
       : `<span class="badge badge-danger">🔴 Inaccessible / Fermé</span>`;
 
+    const deleteActionHtml = isSuper
+      ? `<button class="btn-admin-delete" onclick="deleteStoreByAdmin('${s.id}')" title="Supprimer définitivement la boutique (Mot de passe SuperAdmin requis)">
+           🗑️ Supprimer
+         </button>`
+      : `<span style="font-size:.7rem;color:var(--muted);padding:.3rem .55rem;border:1px dashed rgba(255,255,255,.15);border-radius:6px" title="Les Administrateurs n'ont pas le droit de suppression">
+           🔒 SuperAdmin seul
+         </span>`;
+
     html += `
       <tr>
         <td>
@@ -3808,13 +4372,11 @@ function renderAdminStoresTable(query = "") {
         </td>
         <td>${statusPill}</td>
         <td style="text-align:right">
-          <div style="display:inline-flex;gap:6px">
+          <div style="display:inline-flex;gap:6px;align-items:center">
             <button class="btn-admin-toggle" onclick="toggleStoreAvailability('${s.id}')" title="Marquer ouvert ou temporairement inaccessible">
               ${isActive ? '⏸️ Désactiver' : '▶️ Réactiver'}
             </button>
-            <button class="btn-admin-delete" onclick="deleteStoreByAdmin('${s.id}')" title="Supprimer définitivement la boutique">
-              🗑️ Supprimer
-            </button>
+            ${deleteActionHtml}
           </div>
         </td>
       </tr>
@@ -3830,7 +4392,7 @@ function renderAdminStoresTable(query = "") {
   container.innerHTML = html;
 }
 
-// 8. BASCULER DISPONIBILITÉ D'UNE BOUTIQUE (ACTIF / INACCESSIBLE)
+// 8. BASCULER DISPONIBILITÉ D'UNE BOUTIQUE (Autorisé pour SuperAdmin et Admins)
 function toggleStoreAvailability(storeId) {
   const store = LOCAL_DATA.stores.find(s => s.id === storeId);
   if (!store) return;
@@ -3855,44 +4417,24 @@ function toggleStoreAvailability(storeId) {
   }).catch(() => {});
 }
 
-// 9. SUPPRIMER DÉFINITIVEMENT UNE BOUTIQUE
+// 9. SUPPRIMER DÉFINITIVEMENT UNE BOUTIQUE (Exige SuperAdmin + Saisie du mot de passe 'Kadi epouse sangare')
 function deleteStoreByAdmin(storeId) {
+  if (!isCurrentUserSuperAdmin()) {
+    showAdminAlert("🔒 Action bloquée : Seul le SuperAdmin a le droit de suppression.", "danger");
+    return;
+  }
   const store = LOCAL_DATA.stores.find(s => s.id === storeId);
   if (!store) return;
 
-  if (!confirm(`⚠️ ATTENTION : Confirmez-vous la SUPPRESSION DÉFINITIVE de la boutique "${store.name}" ?\nTous les articles associés seront également retirés.`)) {
-    return;
-  }
-
-  // 1. Supprimer la boutique
-  LOCAL_DATA.stores = LOCAL_DATA.stores.filter(s => s.id !== storeId);
-
-  // 2. Supprimer ses articles
-  LOCAL_DATA.products = LOCAL_DATA.products.filter(p => p.store_id !== storeId);
-
-  // 3. Mettre à jour l'interface
-  updateAdminKPIs();
-  renderAdminStoresTable(document.getElementById("admin-search-store")?.value || "");
-  renderAdminProductsTable(document.getElementById("admin-search-prod")?.value || "");
-  renderMarketplaceProducts();
-  populateStoreSelects();
-  renderProStoresList();
-
-  playChime(350, 0.15);
-  showAdminAlert(`🗑️ La boutique <strong>« ${escapeHtml(store.name)} »</strong> a été définitivement supprimée du complexe commercial.`, "danger");
-
-  fetch(`${API_BASE}/admin/stores/delete`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ store_id: storeId })
-  }).catch(() => {});
+  openSuperAdminDeleteModal("store", store.id, `Boutique « ${store.name} »`);
 }
 
-// 10. GESTION DES ARTICLES DU MARKETPLACE
+// 10. GESTION DES ARTICLES DU MARKETPLACE (SUPPRESSION RÉSERVÉE AU SUPERADMIN)
 function renderAdminProductsTable(query = "") {
   const container = document.getElementById("admin-products-table-container");
   if (!container) return;
 
+  const isSuper = isCurrentUserSuperAdmin();
   const q = query.toLowerCase().trim();
   const prods = LOCAL_DATA.products.filter(p => {
     return !q || p.name.toLowerCase().includes(q) || (p.tags && p.tags.some(t => t.includes(q)));
@@ -3918,6 +4460,14 @@ function renderAdminProductsTable(query = "") {
     const store = LOCAL_DATA.stores.find(s => s.id === p.store_id) || { name: 'Boutique Inconnue' };
     const inStock = p.in_stock;
 
+    const deleteProdHtml = isSuper
+      ? `<button class="btn-admin-delete" onclick="deleteProductByAdmin('${p.id}')" title="Supprimer cet article (Mot de passe SuperAdmin requis)">
+           🗑️ Supprimer
+         </button>`
+      : `<span style="font-size:.7rem;color:var(--muted);padding:.3rem .55rem;border:1px dashed rgba(255,255,255,.15);border-radius:6px">
+           🔒 SuperAdmin seul
+         </span>`;
+
     html += `
       <tr>
         <td>
@@ -3940,13 +4490,11 @@ function renderAdminProductsTable(query = "") {
           </span>
         </td>
         <td style="text-align:right">
-          <div style="display:inline-flex;gap:6px">
+          <div style="display:inline-flex;gap:6px;align-items:center">
             <button class="btn-admin-toggle" onclick="toggleProductStockByAdmin('${p.id}')" title="Basculer En stock / Rupture">
               ${inStock ? 'Marquer Rupture' : 'Marquer En Stock'}
             </button>
-            <button class="btn-admin-delete" onclick="deleteProductByAdmin('${p.id}')" title="Supprimer cet article">
-              🗑️ Supprimer
-            </button>
+            ${deleteProdHtml}
           </div>
         </td>
       </tr>
@@ -3962,7 +4510,7 @@ function renderAdminProductsTable(query = "") {
   container.innerHTML = html;
 }
 
-// 11. BASCULER STOCK D'UN ARTICLE
+// 11. BASCULER STOCK D'UN ARTICLE (Autorisé pour SuperAdmin et Admins)
 function toggleProductStockByAdmin(prodId) {
   const prod = LOCAL_DATA.products.find(p => p.id === prodId);
   if (!prod) return;
@@ -3974,28 +4522,19 @@ function toggleProductStockByAdmin(prodId) {
   showAdminAlert(`Statut de stock mis à jour pour <strong>« ${escapeHtml(prod.name)} »</strong> : ${prod.in_stock ? 'En Stock' : 'Rupture'}.`, "success");
 }
 
-// 12. SUPPRIMER UN ARTICLE
+// 12. SUPPRIMER UN ARTICLE (Exige SuperAdmin + Saisie du mot de passe 'Kadi epouse sangare')
 function deleteProductByAdmin(prodId) {
+  if (!isCurrentUserSuperAdmin()) {
+    showAdminAlert("🔒 Action bloquée : Seul le SuperAdmin a le droit de suppression.", "danger");
+    return;
+  }
   const prod = LOCAL_DATA.products.find(p => p.id === prodId);
   if (!prod) return;
 
-  if (!confirm(`Confirmez-vous la suppression de l'article "${prod.name}" ?`)) return;
-
-  LOCAL_DATA.products = LOCAL_DATA.products.filter(p => p.id !== prodId);
-  updateAdminKPIs();
-  renderAdminProductsTable(document.getElementById("admin-search-prod")?.value || "");
-  renderMarketplaceProducts();
-
-  showAdminAlert(`🗑️ L'article <strong>« ${escapeHtml(prod.name)} »</strong> a été retiré du catalogue.`, "danger");
-
-  fetch(`${API_BASE}/admin/products/delete`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ product_id: prodId })
-  }).catch(() => {});
+  openSuperAdminDeleteModal("product", prod.id, `Article « ${prod.name} »`);
 }
 
-// 13. IMPLANTATION DIRECTE PAR FORMULAIRE ADMIN
+// 13. IMPLANTATION DIRECTE PAR FORMULAIRE ADMIN (Autorisé pour SuperAdmin et Admins)
 function handleAdminDirectStoreCreate(e) {
   e.preventDefault();
   const name = document.getElementById("admin-new-store-name")?.value.trim();
@@ -4032,8 +4571,6 @@ function handleAdminDirectStoreCreate(e) {
   playChime(750, 0.2);
   showAdminAlert(`✨ La boutique <strong>« ${escapeHtml(name)} »</strong> a été implantée avec succès !`, "success");
 }
-
-
 
 // ========================================================
 // 🔑 ESPACES COMMERCIAUX EN LOCATION (46 CELLULES)

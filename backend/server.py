@@ -76,6 +76,35 @@ LEASING_APPLICATIONS = [
 ]
 
 
+
+
+# ==============================================================================
+# SYSTÈME D'ADMINISTRATION À 3 PERSONNES (1 SUPERADMIN + 2 ADMINS)
+# Mot de passe SuperAdmin : 'Kadi epouse sangare'
+# ==============================================================================
+SUPERADMIN_PASSWORD = "Kadi epouse sangare"
+
+SUPERADMIN_ACCOUNT = {
+    "id": "superadmin-01",
+    "role": "SUPERADMIN",
+    "login": "superadmin",
+    "password": SUPERADMIN_PASSWORD,
+    "nom": "",
+    "prenom": "",
+    "email": "",
+    "profile_completed": False
+}
+
+# Liste des 2 Administrateurs créés par le SuperAdmin (max 2 Admins + 1 SuperAdmin = 3 personnes)
+ADMIN_ACCOUNTS = []
+
+
+def verify_superadmin_password(pwd: str) -> bool:
+    if not pwd:
+        return False
+    return pwd.strip() == SUPERADMIN_PASSWORD or pwd.strip().lower() == SUPERADMIN_PASSWORD.lower()
+
+
 class SmartMallAPIHandler(BaseHTTPRequestHandler):
     def _send_cors_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -299,6 +328,36 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 "delayed_count": del_count
             })
 
+        elif path == "/api/admin/accounts":
+            safe_admins = [
+                {
+                    "id": a["id"],
+                    "role": "ADMIN",
+                    "login": a["login"],
+                    "nom": a.get("nom", ""),
+                    "prenom": a.get("prenom", ""),
+                    "email": a.get("email", ""),
+                    "must_change_password": a.get("must_change_password", True),
+                    "created_at": a.get("created_at", "16/11/2026")
+                }
+                for a in ADMIN_ACCOUNTS
+            ]
+            return self._send_json(200, {
+                "success": True,
+                "superadmin": {
+                    "id": SUPERADMIN_ACCOUNT["id"],
+                    "role": "SUPERADMIN",
+                    "login": SUPERADMIN_ACCOUNT["login"],
+                    "nom": SUPERADMIN_ACCOUNT["nom"],
+                    "prenom": SUPERADMIN_ACCOUNT["prenom"],
+                    "email": SUPERADMIN_ACCOUNT["email"],
+                    "profile_completed": SUPERADMIN_ACCOUNT["profile_completed"]
+                },
+                "admins": safe_admins,
+                "max_admins": 2,
+                "total_team_capacity": 3
+            })
+
         elif path == "/api/admin/overview":
             imm_count = sum(1 for a in LEASING_APPLICATIONS if a.get("is_immediate") and a["status"] == "EN_ATTENTE")
             del_count = sum(1 for a in LEASING_APPLICATIONS if not a.get("is_immediate") and a["status"] == "EN_ATTENTE")
@@ -441,6 +500,142 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
         # ========================================================
         # ENDPOINTS ADMINISTRATEUR (GESTION & MODÉRATION)
         # ========================================================
+        # ========================================================
+        # AUTHENTIFICATION & GESTION DES 3 COMPTES (1 SUPERADMIN + 2 ADMINS)
+        # ========================================================
+        elif path == "/api/admin/auth/login":
+            login_input = (data.get("login") or "").strip()
+            password_input = (data.get("password") or "").strip()
+
+            # 1. Vérifier si c'est le SuperAdmin (via son mot de passe 'Kadi epouse sangare')
+            if verify_superadmin_password(password_input):
+                return self._send_json(200, {
+                    "success": True,
+                    "role": "SUPERADMIN",
+                    "account": {
+                        "id": SUPERADMIN_ACCOUNT["id"],
+                        "role": "SUPERADMIN",
+                        "login": SUPERADMIN_ACCOUNT["login"],
+                        "nom": SUPERADMIN_ACCOUNT["nom"],
+                        "prenom": SUPERADMIN_ACCOUNT["prenom"],
+                        "email": SUPERADMIN_ACCOUNT["email"],
+                        "profile_completed": SUPERADMIN_ACCOUNT["profile_completed"],
+                        "must_change_password": False
+                    }
+                })
+
+            # 2. Vérifier si c'est l'un des 2 Admins créés par le SuperAdmin
+            admin_user = next(
+                (a for a in ADMIN_ACCOUNTS if a["login"].lower() == login_input.lower() and a["password"] == password_input),
+                None
+            )
+            if admin_user:
+                return self._send_json(200, {
+                    "success": True,
+                    "role": "ADMIN",
+                    "account": {
+                        "id": admin_user["id"],
+                        "role": "ADMIN",
+                        "login": admin_user["login"],
+                        "nom": admin_user.get("nom", ""),
+                        "prenom": admin_user.get("prenom", ""),
+                        "email": admin_user.get("email", ""),
+                        "profile_completed": True,
+                        "must_change_password": admin_user.get("must_change_password", True)
+                    }
+                })
+
+            return self._send_json(401, {
+                "success": False,
+                "error": "Identifiant ou mot de passe incorrect."
+            })
+
+        elif path == "/api/admin/superadmin/profile":
+            SUPERADMIN_ACCOUNT["nom"] = (data.get("nom") or "").strip()
+            SUPERADMIN_ACCOUNT["prenom"] = (data.get("prenom") or "").strip()
+            SUPERADMIN_ACCOUNT["email"] = (data.get("email") or "").strip()
+            if SUPERADMIN_ACCOUNT["nom"] and SUPERADMIN_ACCOUNT["prenom"]:
+                SUPERADMIN_ACCOUNT["profile_completed"] = True
+            return self._send_json(200, {
+                "success": True,
+                "message": "Profil SuperAdmin enregistré avec succès.",
+                "superadmin": SUPERADMIN_ACCOUNT
+            })
+
+        elif path == "/api/admin/accounts/create":
+            if len(ADMIN_ACCOUNTS) >= 2:
+                return self._send_json(400, {
+                    "success": False,
+                    "error": "Limite atteinte : L'espace administration est configuré pour 3 personnes (1 SuperAdmin et 2 Admins maximum)."
+                })
+            new_login = (data.get("login") or "").strip()
+            new_pwd = (data.get("password") or "").strip()
+            if not new_login or not new_pwd:
+                return self._send_json(400, {"error": "Le login et le mot de passe provisoire sont obligatoires."})
+
+            if any(a["login"].lower() == new_login.lower() for a in ADMIN_ACCOUNTS) or new_login.lower() == "superadmin":
+                return self._send_json(400, {"error": f"Le login '{new_login}' est déjà utilisé."})
+
+            new_admin = {
+                "id": f"admin-0{len(ADMIN_ACCOUNTS) + 1}-{len( new_login )}",
+                "role": "ADMIN",
+                "login": new_login,
+                "password": new_pwd,
+                "nom": (data.get("nom") or "").strip(),
+                "prenom": (data.get("prenom") or "").strip(),
+                "email": (data.get("email") or "").strip(),
+                "must_change_password": True,
+                "created_at": "16/11/2026"
+            }
+            ADMIN_ACCOUNTS.append(new_admin)
+            return self._send_json(201, {
+                "success": True,
+                "message": f"Compte Admin '{new_login}' créé. Il devra obligatoirement modifier son mot de passe à sa première connexion.",
+                "admin": new_admin
+            })
+
+        elif path == "/api/admin/accounts/change-password":
+            login_input = (data.get("login") or "").strip()
+            new_pwd = (data.get("new_password") or "").strip()
+            admin_user = next((a for a in ADMIN_ACCOUNTS if a["login"].lower() == login_input.lower()), None)
+            if not admin_user:
+                return self._send_json(404, {"error": "Compte administrateur introuvable."})
+            if len(new_pwd) < 4:
+                return self._send_json(400, {"error": "Le nouveau mot de passe doit contenir au moins 4 caractères."})
+
+            admin_user["password"] = new_pwd
+            if data.get("nom"):
+                admin_user["nom"] = data.get("nom").strip()
+            if data.get("prenom"):
+                admin_user["prenom"] = data.get("prenom").strip()
+            if data.get("email"):
+                admin_user["email"] = data.get("email").strip()
+            admin_user["must_change_password"] = False
+
+            return self._send_json(200, {
+                "success": True,
+                "message": "Votre mot de passe personnel a été mis à jour avec succès.",
+                "account": admin_user
+            })
+
+        elif path == "/api/admin/accounts/delete":
+            super_pwd = data.get("superadmin_password", "")
+            if not verify_superadmin_password(super_pwd):
+                return self._send_json(403, {
+                    "success": False,
+                    "error": "Action refusée : Mot de passe SuperAdmin incorrect. Seul le SuperAdmin peut supprimer un Admin."
+                })
+            admin_id = data.get("admin_id") or data.get("login")
+            idx = next((i for i, a in enumerate(ADMIN_ACCOUNTS) if a["id"] == admin_id or a["login"] == admin_id), None)
+            if idx is None:
+                return self._send_json(404, {"error": "Administrateur introuvable."})
+            removed = ADMIN_ACCOUNTS.pop(idx)
+            return self._send_json(200, {
+                "success": True,
+                "message": f"L'administrateur '{removed['login']}' a été supprimé par le SuperAdmin.",
+                "deleted_login": removed["login"]
+            })
+
         # 1. Validation / Approbation d'une demande de location d'espace
         elif path == "/api/admin/applications/approve":
             app_id = data.get("application_id")
@@ -476,8 +671,12 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 "application": app
             })
 
-        # 3. Suppression d'une boutique (Inaccessible / Non disponible)
+        # 3. Suppression d'une boutique (Réservée exclusivement au SuperAdmin avec son mot de passe)
         elif path == "/api/admin/stores/delete":
+            if data.get("role") == "ADMIN":
+                return self._send_json(403, {"error": "Accès refusé : Seul le SuperAdmin a le droit de suppression."})
+            if "superadmin_password" in data and not verify_superadmin_password(data.get("superadmin_password", "")):
+                return self._send_json(403, {"error": "Mot de passe SuperAdmin incorrect. Suppression annulée."})
             store_id = data.get("store_id")
             idx = next((i for i, s in enumerate(STORES) if s["id"] == store_id), None)
             if idx is None:
@@ -504,8 +703,12 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 "store": store
             })
 
-        # 5. Suppression d'un article
+        # 5. Suppression d'un article (Réservée exclusivement au SuperAdmin avec son mot de passe)
         elif path == "/api/admin/products/delete":
+            if data.get("role") == "ADMIN":
+                return self._send_json(403, {"error": "Accès refusé : Seul le SuperAdmin a le droit de suppression."})
+            if "superadmin_password" in data and not verify_superadmin_password(data.get("superadmin_password", "")):
+                return self._send_json(403, {"error": "Mot de passe SuperAdmin incorrect. Suppression annulée."})
             prod_id = data.get("product_id")
             idx = next((i for i, p in enumerate(PRODUCTS_CATALOG) if p["id"] == prod_id), None)
             if idx is None:
