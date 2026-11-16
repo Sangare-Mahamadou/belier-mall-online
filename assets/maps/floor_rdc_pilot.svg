@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="100%" height="100%" id="smartmall-svg">
+  <defs>
+    <style>
+      .mall-bg { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 3; }
+      .wall { fill: none; stroke: #334155; stroke-width: 4; stroke-linejoin: round; }
+      .corridor { fill: #f1f5f9; }
+      .store-cell {
+        cursor: pointer;
+        transition: all 0.25s ease;
+        stroke-width: 2;
+      }
+      .store-cell:hover {
+        filter: brightness(0.95);
+        stroke-width: 3.5 !important;
+      }
+      .store-highlighted {
+        stroke: #ef4444 !important;
+        stroke-width: 4 !important;
+        animation: pulseHighlight 1.5s infinite;
+      }
+      @keyframes pulseHighlight {
+        0% { filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.4)); }
+        50% { filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8)); }
+        100% { filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.4)); }
+      }
+      .store-label { font-family: system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 13px; fill: #1e293b; pointer-events: none; }
+      .store-category { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; fill: #64748b; pointer-events: none; }
+      .amenity-label { font-family: system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 11px; fill: #0f766e; pointer-events: none; }
+      .door-label { font-family: system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 11px; fill: #ffffff; pointer-events: none; text-anchor: middle; }
+      .qr-station { cursor: pointer; transition: transform 0.2s; }
+      .qr-station:hover { transform: scale(1.15); transform-origin: center; }
+      .route-path {
+        fill: none;
+        stroke: #3b82f6;
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 10, 8;
+        animation: dashAnimation 1.2s linear infinite;
+        filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.5));
+      }
+      @keyframes dashAnimation {
+        to { stroke-dashoffset: -36; }
+      }
+      .walker-dot {
+        fill: #2563eb;
+        stroke: #ffffff;
+        stroke-width: 3;
+        filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.8));
+      }
+    </style>
+  </defs>
+
+  <!-- Fond Général du Centre -->
+  <rect x="30" y="30" width="940" height="640" rx="20" class="mall-bg" />
+
+  <!-- Réseau des Allées & Couloirs Principaux -->
+  <g id="corridors" class="corridor">
+    <!-- Allée Centrale Nord-Sud -->
+    <rect x="430" y="45" width="140" height="610" rx="6" />
+    <!-- Allée Transversale Est-Ouest -->
+    <rect x="45" y="300" width="910" height="90" rx="6" />
+    <!-- Allée Secondaire Ouest -->
+    <rect x="250" y="45" width="80" height="345" />
+    <!-- Allée Secondaire Est -->
+    <rect x="520" y="45" width="70" height="580" />
+    <!-- Place Centrale (Carrefour Central) -->
+    <circle cx="500" cy="345" r="75" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2" />
+    <text x="500" y="350" font-family="system-ui" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">Place Centrale</text>
+  </g>
+
+  <!-- MURS EXTÉRIEURS ET PORTES -->
+  <rect x="40" y="40" width="920" height="620" rx="16" class="wall" />
+
+  <!-- Porte Nord -->
+  <g id="door-north">
+    <rect x="440" y="32" width="120" height="16" rx="4" fill="#0284c7" />
+    <text x="500" y="44" class="door-label">PORTE NORD (Entrée)</text>
+  </g>
+
+  <!-- Porte Sud -->
+  <g id="door-south">
+    <rect x="440" y="652" width="120" height="16" rx="4" fill="#0284c7" />
+    <text x="500" y="664" class="door-label">PORTE SUD (Esplanade)</text>
+  </g>
+
+  <!-- BOUTIQUES & ESPACES COMMERCIAUX (CELLULES) -->
+  <g id="stores-layer">
+    <!-- 1. FNAC (Librairie, High-Tech, Disques) -->
+    <g class="store-group" data-store-id="store-fnac" data-cell="LOT-101">
+      <rect id="cell-fnac" x="60" y="60" width="180" height="130" rx="8" fill="#fef3c7" stroke="#d97706" class="store-cell" />
+      <text x="75" y="105" class="store-label">FNAC</text>
+      <text x="75" y="125" class="store-category">Livres, Musique & Tech</text>
+      <rect x="220" y="110" width="20" height="30" fill="#d97706" rx="2" /> <!-- Entrée -->
+    </g>
+
+    <!-- 2. APPLE STORE (High-Tech & Accessoires) -->
+    <g class="store-group" data-store-id="store-apple" data-cell="LOT-102">
+      <rect id="cell-apple" x="260" y="60" width="150" height="130" rx="8" fill="#f1f5f9" stroke="#64748b" class="store-cell" />
+      <text x="275" y="105" class="store-label">Apple Store</text>
+      <text x="275" y="125" class="store-category">Smartphones & Informatique</text>
+      <rect x="390" y="110" width="20" height="30" fill="#64748b" rx="2" />
+    </g>
+
+    <!-- 3. ZARA (Mode Homme / Femme / Enfant) -->
+    <g class="store-group" data-store-id="store-zara" data-cell="LOT-103">
+      <rect id="cell-zara" x="60" y="210" width="180" height="170" rx="8" fill="#fce7f3" stroke="#db2777" class="store-cell" />
+      <text x="75" y="285" class="store-label">ZARA</text>
+      <text x="75" y="305" class="store-category">Prêt-à-porter & Accessoires</text>
+      <rect x="220" y="280" width="20" height="30" fill="#db2777" rx="2" />
+    </g>
+
+    <!-- 4. DISTRIBUTEUR ATM / BANQUE -->
+    <g class="store-group" data-store-id="amenity-atm" data-cell="LOT-ATM">
+      <rect id="cell-atm" x="260" y="210" width="70" height="60" rx="6" fill="#ecfdf5" stroke="#059669" class="store-cell" />
+      <text x="272" y="245" font-family="system-ui" font-weight="700" font-size="12" fill="#047857">ATM</text>
+      <text x="267" y="260" font-family="system-ui" font-size="8" fill="#047857">Banque</text>
+    </g>
+
+    <!-- 5. JARDIN INTÉRIEUR & ESPACE VERT DÉTENTE -->
+    <g class="store-group" data-store-id="space-greenpark" data-cell="LOT-PARK">
+      <rect id="cell-greenpark" x="60" y="410" width="340" height="150" rx="12" fill="#dcfce7" stroke="#16a34a" class="store-cell" />
+      <text x="80" y="470" class="store-label" fill="#15803d">Espace Vert & Jardin Intérieur</text>
+      <text x="80" y="490" class="store-category" fill="#166534">Zone de détente ombragée, bancs et fontaine</text>
+      <circle cx="340" cy="485" r="25" fill="#bbf7d0" stroke="#16a34a" />
+      <text x="340" y="490" font-family="system-ui" font-size="9" fill="#166534" text-anchor="middle">Fontaine</text>
+    </g>
+
+    <!-- 6. CINÉMA MULTIPLEXE (6 Salles) -->
+    <g class="store-group" data-store-id="space-cinema" data-cell="LOT-CINEMA">
+      <rect id="cell-cinema" x="590" y="60" width="230" height="220" rx="10" fill="#ede9fe" stroke="#7c3aed" class="store-cell" />
+      <text x="610" y="145" class="store-label" fill="#5b21b6">Cinéma Multiplexe (6 Salles)</text>
+      <text x="610" y="165" class="store-category" fill="#6d28d9">Films à l'affiche, Séances 3D & 4DX</text>
+      <rect x="590" y="180" width="20" height="30" fill="#7c3aed" rx="2" />
+    </g>
+
+    <!-- 7. ESPACE JEUX ARCADE & VR -->
+    <g class="store-group" data-store-id="space-arcade" data-cell="LOT-ARCADE">
+      <rect id="cell-arcade" x="840" y="60" width="105" height="130" rx="8" fill="#fae8ff" stroke="#c026d3" class="store-cell" />
+      <text x="850" y="115" class="store-label" fill="#86198f" font-size="12">Pixel Zone</text>
+      <text x="850" y="130" class="store-category" fill="#a21caf">Arcade & VR</text>
+      <rect x="840" y="140" width="15" height="25" fill="#c026d3" rx="2" />
+    </g>
+
+    <!-- 8. TOILETTES & ESPACE BÉBÉ -->
+    <g class="store-group" data-store-id="amenity-toilettes" data-cell="LOT-WC">
+      <rect id="cell-toilettes" x="840" y="210" width="105" height="70" rx="8" fill="#ccfbf1" stroke="#0d9488" class="store-cell" />
+      <text x="855" y="245" class="amenity-label">Toilettes / WC</text>
+      <text x="855" y="260" class="store-category">Espace Bébé & PMR</text>
+    </g>
+
+    <!-- 9. FOOD COURT (Burgers, Pâtes, Cafés) -->
+    <g class="store-group" data-store-id="space-foodcourt" data-cell="LOT-FOOD">
+      <rect id="cell-foodcourt" x="590" y="310" width="355" height="170" rx="10" fill="#ffedd5" stroke="#ea580c" class="store-cell" />
+      <text x="610" y="375" class="store-label" fill="#c2410c">Food Court & Terrasses</text>
+      <text x="610" y="395" class="store-category" fill="#9a3412">Burgers Gourmet, Pasta Bar, Cafés & Glaces</text>
+      <rect x="590" y="350" width="20" height="30" fill="#ea580c" rx="2" />
+    </g>
+
+    <!-- 10. ACCÈS PARKING SUD (Ascenseurs & Escaliers vers P1/P2) -->
+    <g class="store-group" data-store-id="space-parking-sud" data-cell="LOT-PARKING">
+      <rect id="cell-parking-sud" x="590" y="500" width="220" height="140" rx="10" fill="#e0f2fe" stroke="#0284c7" class="store-cell" />
+      <text x="610" y="555" class="store-label" fill="#0369a1">Accès Parking Sud (P1/P2)</text>
+      <text x="610" y="575" class="store-category" fill="#0284c7">Ascenseurs, Escaliers & Paiement</text>
+      <rect x="590" y="535" width="20" height="30" fill="#0284c7" rx="2" />
+    </g>
+
+    <!-- 11. ESPACE REPOS ET BORNE RECHARGE -->
+    <g class="store-group" data-store-id="amenity-rest" data-cell="LOT-REST">
+      <rect id="cell-rest" x="830" y="500" width="115" height="140" rx="10" fill="#f1f5f9" stroke="#94a3b8" class="store-cell" />
+      <text x="840" y="555" class="store-label" font-size="11">Borne Recharge</text>
+      <text x="840" y="575" class="store-category">Wifi & Prises</text>
+    </g>
+  </g>
+
+  <!-- STATIONS QR CODES (Repères 'Vous êtes ici') -->
+  <g id="qr-stations-layer">
+    <!-- QR 1 : Entrée Nord -->
+    <g id="qr-station-north" class="qr-station" transform="translate(500, 95)" data-node="QR_PORTE_NORD">
+      <circle cx="0" cy="0" r="16" fill="#ef4444" stroke="#ffffff" stroke-width="3" />
+      <rect x="-6" y="-6" width="12" height="12" fill="#ffffff" />
+      <text x="0" y="28" font-family="system-ui" font-weight="700" font-size="11" fill="#b91c1c" text-anchor="middle">QR 1 - Porte Nord</text>
+    </g>
+
+    <!-- QR 2 : Carrefour Central -->
+    <g id="qr-station-center" class="qr-station" transform="translate(500, 345)" data-node="QR_PLACE_CENTRALE">
+      <circle cx="0" cy="0" r="16" fill="#ef4444" stroke="#ffffff" stroke-width="3" />
+      <rect x="-6" y="-6" width="12" height="12" fill="#ffffff" />
+      <text x="0" y="28" font-family="system-ui" font-weight="700" font-size="11" fill="#b91c1c" text-anchor="middle">QR 2 - Place Centrale</text>
+    </g>
+
+    <!-- QR 3 : Entrée Sud -->
+    <g id="qr-station-south" class="qr-station" transform="translate(500, 605)" data-node="QR_PORTE_SUD">
+      <circle cx="0" cy="0" r="16" fill="#ef4444" stroke="#ffffff" stroke-width="3" />
+      <rect x="-6" y="-6" width="12" height="12" fill="#ffffff" />
+      <text x="0" y="28" font-family="system-ui" font-weight="700" font-size="11" fill="#b91c1c" text-anchor="middle">QR 3 - Porte Sud</text>
+    </g>
+
+    <!-- QR 4 : Sortie Parking Sud -->
+    <g id="qr-station-parking" class="qr-station" transform="translate(560, 550)" data-node="QR_PARKING_SUD">
+      <circle cx="0" cy="0" r="14" fill="#ef4444" stroke="#ffffff" stroke-width="2.5" />
+      <rect x="-5" y="-5" width="10" height="10" fill="#ffffff" />
+      <text x="0" y="24" font-family="system-ui" font-weight="700" font-size="10" fill="#b91c1c" text-anchor="middle">QR 4 - Parking</text>
+    </g>
+  </g>
+
+  <!-- CONTENEUR DU TRACÉ D'ITINÉRAIRE (CALCULÉ DYNAMIQUEMENT) -->
+  <g id="route-path-container">
+    <path id="active-route-line" class="route-path" d="" />
+    <circle id="start-position-pin" class="walker-dot" cx="-100" cy="-100" r="9" />
+    <circle id="end-position-pin" cx="-100" cy="-100" r="10" fill="#ef4444" stroke="#ffffff" stroke-width="3" />
+  </g>
+</svg>
