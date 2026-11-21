@@ -200,926 +200,1406 @@ const LOCAL_DATA = {
       status: "ACTIVE"
     },
 
-    // --- LES 46 ESPACES COMMERCIAUX EN LOCATION (ESPACE 1 À 46) ---
+    // --- LES 50 BOUTIQUES EN LOCATION (ESPACE 1 À 50 : TOUTES LIBRES / NON OCCUPÉES EN DEHORS DES 2 MAGASINS ADMIN) ---
     {
       id: "store-espace-1",
       name: "Espace 1",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-fnac",
       cell_code: "ESPACE-01",
       floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-2",
       name: "Espace 2",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-apple",
       cell_code: "ESPACE-02",
       floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-3",
       name: "Espace 3",
-      category: "Espace Commercial en Location (35 m²)",
+      category: "Boutique d'Angle (35 m²)",
+      format_label: "Boutique d'Angle",
+      surface_sqm: 35,
+      dimension: "35 m²",
       cell_id: "cell-resto-vip",
       cell_code: "ESPACE-03",
       floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 35 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique d'Angle moderne climatisé de 35 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 435 000 FCFA/mois · Caution légale (3 mois) : 1 305 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "35 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-4",
       name: "Espace 4",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Moyenne Surface / Showroom (45 m²)",
+      format_label: "Moyenne Surface / Showroom",
+      surface_sqm: 45,
+      dimension: "45 m²",
       cell_id: "cell-foodcourt",
       cell_code: "ESPACE-04",
       floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Moyenne Surface / Showroom moderne climatisé de 45 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 560 000 FCFA/mois · Caution légale (3 mois) : 1 680 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 560000,
+      deposit_fcfa: 1680000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-5",
       name: "Espace 5",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Kiosque / Box Compact (15 m²)",
+      format_label: "Kiosque / Box Compact",
+      surface_sqm: 15,
+      dimension: "15 m²",
       cell_id: "cell-arcade",
       cell_code: "ESPACE-05",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Kiosque / Box Compact moderne climatisé de 15 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 185 000 FCFA/mois · Caution légale (3 mois) : 555 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 185000,
+      deposit_fcfa: 555000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-6",
       name: "Espace 6",
-      category: "Espace Commercial en Location (30 m²)",
+      category: "Boutique Double Vitrine (30 m²)",
+      format_label: "Boutique Double Vitrine",
+      surface_sqm: 30,
+      dimension: "30 m²",
       cell_id: "cell-zara",
       cell_code: "ESPACE-06",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 30 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Double Vitrine moderne climatisé de 30 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 375 000 FCFA/mois · Caution légale (3 mois) : 1 125 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "30 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 375000,
+      deposit_fcfa: 1125000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-7",
       name: "Espace 7",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Grand Magasin (60 m²)",
+      format_label: "Grand Magasin",
+      surface_sqm: 60,
+      dimension: "60 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-07",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Grand Magasin moderne climatisé de 60 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 750 000 FCFA/mois · Caution légale (3 mois) : 2 250 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 750000,
+      deposit_fcfa: 2250000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-8",
       name: "Espace 8",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-08",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-9",
       name: "Espace 9",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-09",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-10",
       name: "Espace 10",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique d'Angle (35 m²)",
+      format_label: "Boutique d'Angle",
+      surface_sqm: 35,
+      dimension: "35 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-10",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique d'Angle moderne climatisé de 35 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 435 000 FCFA/mois · Caution légale (3 mois) : 1 305 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-11",
       name: "Espace 11",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Double Vitrine (30 m²)",
+      format_label: "Boutique Double Vitrine",
+      surface_sqm: 30,
+      dimension: "30 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-11",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Double Vitrine moderne climatisé de 30 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 375 000 FCFA/mois · Caution légale (3 mois) : 1 125 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 375000,
+      deposit_fcfa: 1125000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-12",
       name: "Espace 12",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Moyenne Surface / Showroom (45 m²)",
+      format_label: "Moyenne Surface / Showroom",
+      surface_sqm: 45,
+      dimension: "45 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-12",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Moyenne Surface / Showroom moderne climatisé de 45 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 560 000 FCFA/mois · Caution légale (3 mois) : 1 680 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 560000,
+      deposit_fcfa: 1680000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-13",
       name: "Espace 13",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Kiosque / Box Compact (15 m²)",
+      format_label: "Kiosque / Box Compact",
+      surface_sqm: 15,
+      dimension: "15 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-13",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Kiosque / Box Compact moderne climatisé de 15 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 185 000 FCFA/mois · Caution légale (3 mois) : 555 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 185000,
+      deposit_fcfa: 555000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-14",
       name: "Espace 14",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-14",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-15",
       name: "Espace 15",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Grand Magasin (60 m²)",
+      format_label: "Grand Magasin",
+      surface_sqm: 60,
+      dimension: "60 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-15",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Grand Magasin moderne climatisé de 60 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 750 000 FCFA/mois · Caution légale (3 mois) : 2 250 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 750000,
+      deposit_fcfa: 2250000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-16",
       name: "Espace 16",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-16",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-17",
       name: "Espace 17",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Double Vitrine (30 m²)",
+      format_label: "Boutique Double Vitrine",
+      surface_sqm: 30,
+      dimension: "30 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-17",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Double Vitrine moderne climatisé de 30 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 375 000 FCFA/mois · Caution légale (3 mois) : 1 125 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 375000,
+      deposit_fcfa: 1125000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-18",
       name: "Espace 18",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique d'Angle (35 m²)",
+      format_label: "Boutique d'Angle",
+      surface_sqm: 35,
+      dimension: "35 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-18",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique d'Angle moderne climatisé de 35 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 435 000 FCFA/mois · Caution légale (3 mois) : 1 305 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-19",
       name: "Espace 19",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-19",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-20",
       name: "Espace 20",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Moyenne Surface / Showroom (45 m²)",
+      format_label: "Moyenne Surface / Showroom",
+      surface_sqm: 45,
+      dimension: "45 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-20",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Moyenne Surface / Showroom moderne climatisé de 45 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 560 000 FCFA/mois · Caution légale (3 mois) : 1 680 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 560000,
+      deposit_fcfa: 1680000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-21",
       name: "Espace 21",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Kiosque / Box Compact (15 m²)",
+      format_label: "Kiosque / Box Compact",
+      surface_sqm: 15,
+      dimension: "15 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-21",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Kiosque / Box Compact moderne climatisé de 15 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 185 000 FCFA/mois · Caution légale (3 mois) : 555 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 185000,
+      deposit_fcfa: 555000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-22",
       name: "Espace 22",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-22",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-23",
       name: "Espace 23",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Grand Magasin (60 m²)",
+      format_label: "Grand Magasin",
+      surface_sqm: 60,
+      dimension: "60 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-23",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Grand Magasin moderne climatisé de 60 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 750 000 FCFA/mois · Caution légale (3 mois) : 2 250 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 750000,
+      deposit_fcfa: 2250000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-24",
       name: "Espace 24",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-24",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-25",
       name: "Espace 25",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Double Vitrine (30 m²)",
+      format_label: "Boutique Double Vitrine",
+      surface_sqm: 30,
+      dimension: "30 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-25",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Double Vitrine moderne climatisé de 30 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 375 000 FCFA/mois · Caution légale (3 mois) : 1 125 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 375000,
+      deposit_fcfa: 1125000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-26",
       name: "Espace 26",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique d'Angle (35 m²)",
+      format_label: "Boutique d'Angle",
+      surface_sqm: 35,
+      dimension: "35 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-26",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique d'Angle moderne climatisé de 35 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 435 000 FCFA/mois · Caution légale (3 mois) : 1 305 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-27",
       name: "Espace 27",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-27",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-28",
       name: "Espace 28",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Moyenne Surface / Showroom (45 m²)",
+      format_label: "Moyenne Surface / Showroom",
+      surface_sqm: 45,
+      dimension: "45 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-28",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Moyenne Surface / Showroom moderne climatisé de 45 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 560 000 FCFA/mois · Caution légale (3 mois) : 1 680 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 560000,
+      deposit_fcfa: 1680000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-29",
       name: "Espace 29",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Kiosque / Box Compact (15 m²)",
+      format_label: "Kiosque / Box Compact",
+      surface_sqm: 15,
+      dimension: "15 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-29",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Kiosque / Box Compact moderne climatisé de 15 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 185 000 FCFA/mois · Caution légale (3 mois) : 555 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 185000,
+      deposit_fcfa: 555000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-30",
       name: "Espace 30",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Magasin Prestige / Flagship (80 m²)",
+      format_label: "Magasin Prestige / Flagship",
+      surface_sqm: 80,
+      dimension: "80 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-30",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Magasin Prestige / Flagship moderne climatisé de 80 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 980 000 FCFA/mois · Caution légale (3 mois) : 2 940 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 980000,
+      deposit_fcfa: 2940000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-31",
       name: "Espace 31",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-31",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-32",
       name: "Espace 32",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Double Vitrine (30 m²)",
+      format_label: "Boutique Double Vitrine",
+      surface_sqm: 30,
+      dimension: "30 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-32",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Double Vitrine moderne climatisé de 30 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 375 000 FCFA/mois · Caution légale (3 mois) : 1 125 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 375000,
+      deposit_fcfa: 1125000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-33",
       name: "Espace 33",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-33",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-34",
       name: "Espace 34",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique d'Angle (35 m²)",
+      format_label: "Boutique d'Angle",
+      surface_sqm: 35,
+      dimension: "35 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-34",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique d'Angle moderne climatisé de 35 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 435 000 FCFA/mois · Caution légale (3 mois) : 1 305 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-35",
       name: "Espace 35",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Moyenne Surface / Showroom (45 m²)",
+      format_label: "Moyenne Surface / Showroom",
+      surface_sqm: 45,
+      dimension: "45 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-35",
       floor: "R+1",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Moyenne Surface / Showroom moderne climatisé de 45 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 560 000 FCFA/mois · Caution légale (3 mois) : 1 680 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 560000,
+      deposit_fcfa: 1680000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-36",
       name: "Espace 36",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Grand Magasin (60 m²)",
+      format_label: "Grand Magasin",
+      surface_sqm: 60,
+      dimension: "60 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-36",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Grand Magasin moderne climatisé de 60 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 750 000 FCFA/mois · Caution légale (3 mois) : 2 250 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 750000,
+      deposit_fcfa: 2250000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-37",
       name: "Espace 37",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Kiosque / Box Compact (15 m²)",
+      format_label: "Kiosque / Box Compact",
+      surface_sqm: 15,
+      dimension: "15 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-37",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Kiosque / Box Compact moderne climatisé de 15 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 185 000 FCFA/mois · Caution légale (3 mois) : 555 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 185000,
+      deposit_fcfa: 555000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-38",
       name: "Espace 38",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-38",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-39",
       name: "Espace 39",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-39",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-40",
       name: "Espace 40",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Double Vitrine (30 m²)",
+      format_label: "Boutique Double Vitrine",
+      surface_sqm: 30,
+      dimension: "30 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-40",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Double Vitrine moderne climatisé de 30 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 375 000 FCFA/mois · Caution légale (3 mois) : 1 125 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 375000,
+      deposit_fcfa: 1125000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-41",
       name: "Espace 41",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique d'Angle (35 m²)",
+      format_label: "Boutique d'Angle",
+      surface_sqm: 35,
+      dimension: "35 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-41",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique d'Angle moderne climatisé de 35 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 435 000 FCFA/mois · Caution légale (3 mois) : 1 305 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-42",
       name: "Espace 42",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Moyenne Surface / Showroom (45 m²)",
+      format_label: "Moyenne Surface / Showroom",
+      surface_sqm: 45,
+      dimension: "45 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-42",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Moyenne Surface / Showroom moderne climatisé de 45 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 560 000 FCFA/mois · Caution légale (3 mois) : 1 680 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 560000,
+      deposit_fcfa: 1680000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-43",
       name: "Espace 43",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-43",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
       monthly_rent_fcfa: 250000,
       deposit_fcfa: 750000,
-      dimension: "20 m²",
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-44",
       name: "Espace 44",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Grand Magasin (60 m²)",
+      format_label: "Grand Magasin",
+      surface_sqm: 60,
+      dimension: "60 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-44",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Grand Magasin moderne climatisé de 60 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 750 000 FCFA/mois · Caution légale (3 mois) : 2 250 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 750000,
+      deposit_fcfa: 2250000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-45",
       name: "Espace 45",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Kiosque / Box Compact (15 m²)",
+      format_label: "Kiosque / Box Compact",
+      surface_sqm: 15,
+      dimension: "15 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-45",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Kiosque / Box Compact moderne climatisé de 15 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 185 000 FCFA/mois · Caution légale (3 mois) : 555 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 185000,
+      deposit_fcfa: 555000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "store-espace-46",
       name: "Espace 46",
-      category: "Espace Commercial en Location (20 m²)",
+      category: "Boutique Confort (25 m²)",
+      format_label: "Boutique Confort",
+      surface_sqm: 25,
+      dimension: "25 m²",
       cell_id: "cell-greenpark",
       cell_code: "ESPACE-46",
-      floor: "R+1",
+      floor: "RDC",
       phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
+      hours: "Disponible à la location",
       logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location à Bélier Mall. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Réglementation commerciale de Côte d'Ivoire. Contact officiel régie : +225 05 65 98 22 29.",
+      desc: "Boutique Confort moderne climatisé de 25 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 310 000 FCFA/mois · Caution légale (3 mois) : 930 000 FCFA. Contact régie : +225 05 65 98 22 29.",
       manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 310000,
+      deposit_fcfa: 930000,
       contact_phone: "+225 05 65 98 22 29",
       is_admin: false,
       is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
+    },
+    {
+      id: "store-espace-47",
+      name: "Espace 47",
+      category: "Boutique Double Vitrine (30 m²)",
+      format_label: "Boutique Double Vitrine",
+      surface_sqm: 30,
+      dimension: "30 m²",
+      cell_id: "cell-greenpark",
+      cell_code: "ESPACE-47",
+      floor: "RDC",
+      phone: "+225 05 65 98 22 29",
+      hours: "Disponible à la location",
+      logo: "🔑",
+      desc: "Boutique Double Vitrine moderne climatisé de 30 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 375 000 FCFA/mois · Caution légale (3 mois) : 1 125 000 FCFA. Contact régie : +225 05 65 98 22 29.",
+      manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 375000,
+      deposit_fcfa: 1125000,
+      contact_phone: "+225 05 65 98 22 29",
+      is_admin: false,
+      is_leasable: true,
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
+    },
+    {
+      id: "store-espace-48",
+      name: "Espace 48",
+      category: "Boutique Standard (20 m²)",
+      format_label: "Boutique Standard",
+      surface_sqm: 20,
+      dimension: "20 m²",
+      cell_id: "cell-greenpark",
+      cell_code: "ESPACE-48",
+      floor: "RDC",
+      phone: "+225 05 65 98 22 29",
+      hours: "Disponible à la location",
+      logo: "🔑",
+      desc: "Boutique Standard moderne climatisé de 20 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 250 000 FCFA/mois · Caution légale (3 mois) : 750 000 FCFA. Contact régie : +225 05 65 98 22 29.",
+      manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 250000,
+      deposit_fcfa: 750000,
+      contact_phone: "+225 05 65 98 22 29",
+      is_admin: false,
+      is_leasable: true,
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
+    },
+    {
+      id: "store-espace-49",
+      name: "Espace 49",
+      category: "Boutique d'Angle (35 m²)",
+      format_label: "Boutique d'Angle",
+      surface_sqm: 35,
+      dimension: "35 m²",
+      cell_id: "cell-greenpark",
+      cell_code: "ESPACE-49",
+      floor: "RDC",
+      phone: "+225 05 65 98 22 29",
+      hours: "Disponible à la location",
+      logo: "🔑",
+      desc: "Boutique d'Angle moderne climatisé de 35 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 435 000 FCFA/mois · Caution légale (3 mois) : 1 305 000 FCFA. Contact régie : +225 05 65 98 22 29.",
+      manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
+      contact_phone: "+225 05 65 98 22 29",
+      is_admin: false,
+      is_leasable: true,
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
+    },
+    {
+      id: "store-espace-50",
+      name: "Espace 50",
+      category: "Magasin Prestige / Flagship (80 m²)",
+      format_label: "Magasin Prestige / Flagship",
+      surface_sqm: 80,
+      dimension: "80 m²",
+      cell_id: "cell-greenpark",
+      cell_code: "ESPACE-50",
+      floor: "RDC",
+      phone: "+225 05 65 98 22 29",
+      hours: "Disponible à la location",
+      logo: "🔑",
+      desc: "Magasin Prestige / Flagship moderne climatisé de 80 m² disponible en location (non occupé) à Bélier Mall On Line. Tarif selon la dimension : 980 000 FCFA/mois · Caution légale (3 mois) : 2 940 000 FCFA. Contact régie : +225 05 65 98 22 29.",
+      manager: "Disponible à la location · Contact Régie",
+      tenant_name: "",
+      tenant_activity: "Disponible tout commerce",
+      monthly_rent_fcfa: 980000,
+      deposit_fcfa: 2940000,
+      contact_phone: "+225 05 65 98 22 29",
+      is_admin: false,
+      is_leasable: true,
+      status: "DISPONIBLE_LOCATION",
+      rent_paid: true,
+      unpaid_months: 0,
+      unpaid_amount_fcfa: 0,
+      due_date: "05/12/2026"
     },
     {
       id: "space-event-hall",
@@ -1131,7 +1611,7 @@ const LOCAL_DATA = {
       phone: "+225 05 65 98 22 29",
       hours: "08:00 - 00:00 (7j/7)",
       logo: "🎪",
-      desc: "Salle polyvalente moderne et climatisée de 400 m² à l'Ouest du complexe de 5 hectares. Mariages, congrès, séminaires d'entreprises et spectacles.",
+      desc: "Salle polyvalente moderne et climatisée de 400 m² à l'Ouest du complexe de 5 hectares.",
       manager: "Direction des Événements Bélier Mall On Line",
       is_admin: true,
       is_leasable: false,
@@ -1147,93 +1627,12 @@ const LOCAL_DATA = {
       phone: "+225 05 65 98 22 29",
       hours: "08:00 - 19:00",
       logo: "🏛️",
-      desc: "Bâtiment administratif de 200 m² : Direction Générale de BÉLIER MALL ON LINE, gestion des baux des 50 boutiques en location et poste de commandement sécurité.",
-      manager: "Mme KOUASSI Amenan Grace (DG)",
+      desc: "Bâtiment administratif de 200 m² : Direction Générale de BÉLIER MALL ON LINE et gestion des 50 baux.",
+      manager: "Direction Générale",
       is_admin: true,
       is_leasable: false,
       status: "ACTIVE"
-    },
-    {
-      id: "store-espace-47",
-      name: "Espace 47",
-      category: "Espace Commercial en Location (20 m²)",
-      cell_id: "cell-greenpark",
-      cell_code: "ESPACE-47",
-      floor: "R+1",
-      phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
-      logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location dans le Centre Commercial (3 ha / 30 000 m²) de Bélier Mall On Line. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Contact officiel régie : +225 05 65 98 22 29.",
-      manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
-      contact_phone: "+225 05 65 98 22 29",
-      is_admin: false,
-      is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
-    },
-    {
-      id: "store-espace-48",
-      name: "Espace 48",
-      category: "Espace Commercial en Location (20 m²)",
-      cell_id: "cell-greenpark",
-      cell_code: "ESPACE-48",
-      floor: "R+1",
-      phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
-      logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location dans le Centre Commercial (3 ha / 30 000 m²) de Bélier Mall On Line. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Contact officiel régie : +225 05 65 98 22 29.",
-      manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
-      contact_phone: "+225 05 65 98 22 29",
-      is_admin: false,
-      is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
-    },
-    {
-      id: "store-espace-49",
-      name: "Espace 49",
-      category: "Espace Commercial en Location (20 m²)",
-      cell_id: "cell-greenpark",
-      cell_code: "ESPACE-49",
-      floor: "R+1",
-      phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
-      logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location dans le Centre Commercial (3 ha / 30 000 m²) de Bélier Mall On Line. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Contact officiel régie : +225 05 65 98 22 29.",
-      manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
-      contact_phone: "+225 05 65 98 22 29",
-      is_admin: false,
-      is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
-    },
-    {
-      id: "store-espace-50",
-      name: "Espace 50",
-      category: "Espace Commercial en Location (20 m²)",
-      cell_id: "cell-greenpark",
-      cell_code: "ESPACE-50",
-      floor: "R+1",
-      phone: "+225 05 65 98 22 29",
-      hours: "08:30 - 20:30 (7j/7)",
-      logo: "🔑",
-      desc: "Espace commercial moderne climatisé de 20 m² disponible à la location dans le Centre Commercial (3 ha / 30 000 m²) de Bélier Mall On Line. Loyer fixe : 250 000 FCFA/mois. Caution : 750 000 FCFA (3 mois). Contact officiel régie : +225 05 65 98 22 29.",
-      manager: "Disponible à la location · Contact Régie",
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
-      contact_phone: "+225 05 65 98 22 29",
-      is_admin: false,
-      is_leasable: true,
-      status: "DISPONIBLE_LOCATION"
-    },
-
+    }
   ],
   products: [
     // SUPERMARCHÉ YAKRO MARKET (800 m² - PÔLE 1 RDC - ADMIN)
@@ -3385,8 +3784,8 @@ const adminState = {
       phone: "+225 05 06 78 90 12",
       space_number: "Espace 3",
       is_immediate: false,
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
+      monthly_rent_fcfa: 435000,
+      deposit_fcfa: 1305000,
       dimension: "35 m²",
       contact_phone: "+225 05 65 98 22 29",
       ci_reglement_accepted: true,
@@ -3399,9 +3798,9 @@ const adminState = {
       phone: "+225 01 02 33 44 55",
       space_number: "Espace 5",
       is_immediate: true,
-      monthly_rent_fcfa: 250000,
-      deposit_fcfa: 750000,
-      dimension: "20 m²",
+      monthly_rent_fcfa: 185000,
+      deposit_fcfa: 555000,
+      dimension: "15 m²",
       contact_phone: "+225 05 65 98 22 29",
       ci_reglement_accepted: true,
       status: "EN_ATTENTE",
@@ -3749,6 +4148,7 @@ function unlockAdminDashboard() {
   }
 
   updateAdminKPIs();
+  renderAdminStatisticsDashboard();
   renderAdminApplicationsTable();
   renderAdminTeamManagement();
   renderAdminStoresTable();
@@ -3772,7 +4172,7 @@ function handleAdminLogout() {
 // 2. Navigation sous-onglets Admin
 function switchAdminSubtab(subtab) {
   adminState.currentSubtab = subtab;
-  const pills = ["apps", "team", "stores", "products", "create"];
+  const pills = ["stats", "apps", "team", "stores", "products", "create"];
   pills.forEach(p => {
     const btn = document.getElementById("btn-admin-subtab-" + p);
     const view = document.getElementById("admin-view-" + p);
@@ -3781,6 +4181,9 @@ function switchAdminSubtab(subtab) {
   });
   if (subtab === "team") {
     renderAdminTeamManagement();
+  }
+  if (subtab === "stats") {
+    renderAdminStatisticsDashboard();
   }
 }
 
@@ -4268,11 +4671,19 @@ function approveLeasingApplication(appId) {
   const store = LOCAL_DATA.stores.find(s => s.name === spaceName || s.name.startsWith(spaceName));
   if (store) {
     store.status = "LOUE";
+    store.tenant_name = app.applicant_name;
+    store.tenant_activity = "Commerce & Distribution";
+    store.phone = app.phone;
     store.manager = `${app.applicant_name} (${app.phone})`;
-    store.desc = `Espace loué et attribué à ${app.applicant_name} via bail commercial conforme droit ivoirien.`;
+    store.rent_paid = true;
+    store.unpaid_months = 0;
+    store.unpaid_amount_fcfa = 0;
+    store.due_date = "05/12/2026";
+    store.desc = `${store.format_label || 'Espace commercial'} de ${store.dimension} loué à ${app.applicant_name} (${fcfa(store.monthly_rent_fcfa)}/mois).`;
   }
 
   updateAdminKPIs();
+  renderAdminStatisticsDashboard();
   renderAdminApplicationsTable();
   renderAdminStoresTable();
   renderLeasingSpacesGrid();
@@ -4301,6 +4712,7 @@ function rejectLeasingApplication(appId) {
 
   app.status = "REJETÉE";
   updateAdminKPIs();
+  renderAdminStatisticsDashboard();
   renderAdminApplicationsTable();
 
   showAdminAlert(`ℹ️ La demande pour <strong>« ${escapeHtml(spaceName)} »</strong> (${escapeHtml(app.applicant_name)}) a été rejetée.`, "danger");
@@ -4660,19 +5072,26 @@ function populateModalSpaceSelect() {
   const leasableStores = LOCAL_DATA.stores.filter(s => s.is_leasable && s.name && s.name.startsWith("Espace"));
   select.innerHTML = leasableStores.map(s => {
     const dim = s.dimension || "20 m²";
+    const rent = s.monthly_rent_fcfa || 250000;
     const floor = s.floor === "R+1" ? "Étage R+1" : "RDC";
-    const isLoue = (s.status === "LOUE") ? " (LOUÉ)" : "";
-    return `<option value="${escapeHtml(s.name)}">${escapeHtml(s.name)} · ${escapeHtml(dim)} (${floor})${isLoue}</option>`;
+    const isLoue = (s.status === "LOUE") ? " — [OCCUPÉ]" : " — [LIBRE]";
+    return `<option value="${escapeHtml(s.name)}">${escapeHtml(s.name)} · ${escapeHtml(dim)} · ${fcfa(rent)}/mois (${floor})${isLoue}</option>`;
   }).join("");
 }
 
 function updateModalLeaseInfo(spaceName) {
   const store = LOCAL_DATA.stores.find(s => s.name === spaceName);
   const titleEl = document.getElementById("modal-lease-space-title");
-  if (!titleEl) return;
+  const rentEl = document.getElementById("modal-lease-rent-val");
+  const depEl = document.getElementById("modal-lease-deposit-val");
   const dim = store ? (store.dimension || "20 m²") : "20 m²";
+  const rent = store ? (store.monthly_rent_fcfa || 250000) : 250000;
+  const dep = store ? (store.deposit_fcfa || rent * 3) : 750000;
+  const fmt = store ? (store.format_label || "Boutique Climatisée") : "Boutique Climatisée";
   const floor = store ? (store.floor === "R+1" ? "Étage R+1" : "RDC") : "Pôle 1";
-  titleEl.innerText = `${spaceName} (${dim} Climatisé · ${floor})`;
+  if (titleEl) titleEl.innerText = `${spaceName} · ${dim} (${fmt} · ${floor})`;
+  if (rentEl) rentEl.innerText = fcfa(rent);
+  if (depEl) depEl.innerText = fcfa(dep);
 }
 
 function openLeaseModal(spaceName = "Espace 1") {
@@ -4726,6 +5145,8 @@ function submitLeasingApplication(e) {
 
   const space = LOCAL_DATA.stores.find(s => s.name === spaceName) || {};
   const dim = space.dimension || "20 m²";
+  const spaceRent = space.monthly_rent_fcfa || 250000;
+  const spaceDep = space.deposit_fcfa || (spaceRent * 3);
   const appId = "BAIL-BELIER-" + Math.floor(100 + Math.random() * 899);
 
   const newApp = {
@@ -4734,8 +5155,8 @@ function submitLeasingApplication(e) {
     phone: phone,
     space_number: spaceName,
     is_immediate: isImmediate,
-    monthly_rent_fcfa: 250000,
-    deposit_fcfa: 750000,
+    monthly_rent_fcfa: spaceRent,
+    deposit_fcfa: spaceDep,
     dimension: dim,
     contact_phone: "+225 05 65 98 22 29",
     ci_reglement_accepted: true,
@@ -4746,6 +5167,7 @@ function submitLeasingApplication(e) {
   // Ajouter au state admin en tête de liste
   adminState.applications.unshift(newApp);
   updateAdminKPIs();
+  renderAdminStatisticsDashboard();
   renderAdminApplicationsTable();
 
   // Afficher la confirmation dans la modale
@@ -4800,19 +5222,27 @@ function populatePageSpaceSelect() {
   const leasableStores = LOCAL_DATA.stores.filter(s => s.is_leasable && s.name && s.name.startsWith("Espace"));
   select.innerHTML = leasableStores.map(s => {
     const dim = s.dimension || "20 m²";
+    const rent = s.monthly_rent_fcfa || 250000;
     const floor = s.floor === "R+1" ? "Étage R+1" : "Pôle 1 · RDC";
-    const isLoue = (s.status === "LOUE") ? " (LOUÉ)" : "";
-    return `<option value="${escapeHtml(s.name)}">${escapeHtml(s.name)} · ${escapeHtml(dim)} (${floor})${isLoue}</option>`;
+    const isLoue = (s.status === "LOUE") ? " — [OCCUPÉ]" : " — [LIBRE]";
+    return `<option value="${escapeHtml(s.name)}">${escapeHtml(s.name)} · ${escapeHtml(dim)} · ${fcfa(rent)}/mois (${floor})${isLoue}</option>`;
   }).join("");
+  if (select.value) updatePageLeaseInfo(select.value);
 }
 
 function updatePageLeaseInfo(spaceName) {
   const store = LOCAL_DATA.stores.find(s => s.name === spaceName);
   const titleEl = document.getElementById("page-lease-space-title");
-  if (!titleEl) return;
+  const rentEl = document.getElementById("page-lease-rent-val");
+  const depEl = document.getElementById("page-lease-deposit-val");
   const dim = store ? (store.dimension || "20 m²") : "20 m²";
+  const rent = store ? (store.monthly_rent_fcfa || 250000) : 250000;
+  const dep = store ? (store.deposit_fcfa || rent * 3) : 750000;
+  const fmt = store ? (store.format_label || "Boutique Climatisée") : "Boutique Climatisée";
   const floor = store ? (store.floor === "R+1" ? "Étage R+1" : "Pôle 1 · RDC") : "Pôle 1";
-  titleEl.innerText = `${spaceName} (${dim} Climatisé · ${floor})`;
+  if (titleEl) titleEl.innerText = `${spaceName} · ${dim} (${fmt} · ${floor})`;
+  if (rentEl) rentEl.innerText = fcfa(rent);
+  if (depEl) depEl.innerText = fcfa(dep);
 }
 
 function selectSpaceForApplication(spaceName) {
@@ -4863,6 +5293,8 @@ function submitPageLeasingForm(e) {
 
   const space = LOCAL_DATA.stores.find(s => s.name === spaceName) || {};
   const dim = space.dimension || "20 m²";
+  const spaceRent = space.monthly_rent_fcfa || 250000;
+  const spaceDep = space.deposit_fcfa || (spaceRent * 3);
   const appId = "BAIL-BELIER-" + Math.floor(100 + Math.random() * 899);
 
   const newApp = {
@@ -4871,8 +5303,8 @@ function submitPageLeasingForm(e) {
     phone: phone,
     space_number: spaceName,
     is_immediate: isImmediate,
-    monthly_rent_fcfa: 250000,
-    deposit_fcfa: 750000,
+    monthly_rent_fcfa: spaceRent,
+    deposit_fcfa: spaceDep,
     dimension: dim,
     contact_phone: "+225 05 65 98 22 29",
     ci_reglement_accepted: true,
@@ -4883,6 +5315,7 @@ function submitPageLeasingForm(e) {
   // Ajouter au state admin en tête de liste
   adminState.applications.unshift(newApp);
   updateAdminKPIs();
+  renderAdminStatisticsDashboard();
   renderAdminApplicationsTable();
 
   // Afficher la confirmation
@@ -4896,7 +5329,7 @@ function submitPageLeasingForm(e) {
       <div style="font-size:.88rem;line-height:1.55;color:#f4f6fb">
         Félicitations <strong>${escapeHtml(name)}</strong> ! Votre candidature pour <strong>${escapeHtml(spaceName)}</strong> (${dim}) est bien enregistrée.<br>
         Statut de prise en main : <strong>${isImmediate ? '🔥 Prise Immédiate (Traitement prioritaire sous 24h)' : '🗓️ Prise Différée (Réservation)'}</strong>.<br>
-        Loyer : <strong>250 000 FCFA / mois</strong> · Caution légale CI (3 mois) : <strong>750 000 FCFA</strong>.<br>
+        Loyer (selon dimension) : <strong>${fcfa(spaceRent)} / mois</strong> · Caution légale CI (3 mois) : <strong>${fcfa(spaceDep)}</strong>.<br>
         Notre régie commerciale vous contactera au <strong>${escapeHtml(phone)}</strong>.<br>
         <span style="color:var(--gold);font-weight:700">Ligne directe Régie Bélier Mall : +225 05 65 98 22 29</span>.
       </div>
@@ -5460,4 +5893,423 @@ function drawFallbackRoadLine(startLat, startLng) {
   const timeEl = document.getElementById("yango-road-time");
   if (distEl) distEl.innerText = `${distKm} km`;
   if (timeEl) timeEl.innerText = `~${durMin} min`;
+}
+
+
+
+// ============================================================================
+// 📊 TABLEAU DE BORD STATISTIQUES, CHIFFRE D'AFFAIRES & LOYERS IMPAYÉS
+// (Accessible au SuperAdmin et aux Administrateurs)
+// ============================================================================
+
+let currentTenantFilter = "all";
+
+function computeMallStatistics() {
+  const adminStores = LOCAL_DATA.stores.filter(s => s.is_admin && ["store-yakro-market", "store-mimos-fashion"].includes(s.id));
+  const leasableSpaces = LOCAL_DATA.stores.filter(s => s.is_leasable && s.name && s.name.startsWith("Espace"));
+
+  const occupiedSpaces = leasableSpaces.filter(s => s.status === "LOUE");
+  const freeSpaces = leasableSpaces.filter(s => s.status !== "LOUE");
+
+  const totalCommercialCount = adminStores.length + leasableSpaces.length; // 2 + 50 = 52
+  const totalOccupiedCount = adminStores.length + occupiedSpaces.length;   // 2 + 12 = 14
+  const occupancyRate = Math.round((totalOccupiedCount / totalCommercialCount) * 1000) / 10;
+
+  // Calcul des loyers facturés, encaissés et impayés
+  let billedMonthlyRent = 0;
+  let collectedMonthlyRent = 0;
+  let unpaidRentTotal = 0;
+  let totalDepositsHeld = 0;
+  let maxPotentialMonthlyRent = 0;
+
+  leasableSpaces.forEach(s => {
+    const rent = s.monthly_rent_fcfa || 250000;
+    const dep = s.deposit_fcfa || (rent * 3);
+    maxPotentialMonthlyRent += rent;
+
+    if (s.status === "LOUE") {
+      billedMonthlyRent += rent;
+      totalDepositsHeld += dep;
+      if (s.rent_paid !== false) {
+        collectedMonthlyRent += rent;
+      } else {
+        const months = s.unpaid_months || 1;
+        unpaidRentTotal += (rent * months);
+      }
+    }
+  });
+
+  const paidTenants = occupiedSpaces.filter(s => s.rent_paid !== false);
+  const unpaidTenants = occupiedSpaces.filter(s => s.rent_paid === false);
+
+  // Chiffre d'affaires des locomotives Admin & Pôles de services
+  const caYakroMarket = 28500000;
+  const caMimosFashion = 9400000;
+  const caCinemaManegeEvent = 4250000;
+  const caParkingSouterrain = 2200000;
+
+  const totalGlobalCA = caYakroMarket + caMimosFashion + collectedMonthlyRent + caCinemaManegeEvent + caParkingSouterrain;
+
+  return {
+    totalCommercialCount,
+    totalOccupiedCount,
+    adminStoresCount: adminStores.length,
+    leasableTotalCount: leasableSpaces.length,
+    occupiedLeasableCount: occupiedSpaces.length,
+    freeLeasableCount: freeSpaces.length,
+    occupancyRate,
+    billedMonthlyRent,
+    collectedMonthlyRent,
+    unpaidRentTotal,
+    totalDepositsHeld,
+    maxPotentialMonthlyRent,
+    occupiedSpaces,
+    paidTenants,
+    unpaidTenants,
+    caYakroMarket,
+    caMimosFashion,
+    caCinemaManegeEvent,
+    caParkingSouterrain,
+    totalGlobalCA,
+    leasableSpaces
+  };
+}
+
+function renderAdminStatisticsDashboard() {
+  const cardsContainer = document.getElementById("admin-stats-exec-cards");
+  const revBarsContainer = document.getElementById("admin-stats-revenue-bars");
+  const dimsContainer = document.getElementById("admin-stats-dimensions-breakdown");
+  if (!cardsContainer) return;
+
+  const st = computeMallStatistics();
+
+  // Mettre à jour les badges d'en-tête
+  const occPill = document.getElementById("stat-header-occupancy-pill");
+  const unpPill = document.getElementById("stat-header-unpaid-pill");
+  const navUnpaidBadge = document.getElementById("badge-admin-unpaid-count");
+  if (occPill) occPill.innerText = `Taux d'occupation : ${st.occupancyRate}% (${st.totalOccupiedCount}/${st.totalCommercialCount})`;
+  if (unpPill) {
+    unpPill.innerText = st.unpaidTenants.length > 0
+      ? `🚨 ${st.unpaidTenants.length} Loyer(s) Impayé(s) (${fcfa(st.unpaidRentTotal)})`
+      : `✅ 0 Loyer Impayé (100% à jour)`;
+    unpPill.className = st.unpaidTenants.length > 0 ? "badge badge-danger" : "badge badge-success";
+  }
+  if (navUnpaidBadge) {
+    navUnpaidBadge.innerText = st.unpaidTenants.length;
+    navUnpaidBadge.style.display = st.unpaidTenants.length > 0 ? "inline-block" : "none";
+  }
+
+  // 1. Rendu des 6 cartes exécutives
+  cardsContainer.innerHTML = `
+    <div class="stat-exec-card" style="border-left:4px solid #10b981">
+      <div class="stat-exec-top">
+        <span>🏬 Boutiques &amp; Magasins Occupés</span>
+        <span class="badge badge-success">${st.occupancyRate}%</span>
+      </div>
+      <div class="stat-exec-val" style="color:#5df0b0">${st.totalOccupiedCount} <small style="font-size:.85rem;color:var(--muted)">/ ${st.totalCommercialCount}</small></div>
+      <div class="stat-exec-sub">
+        <strong>${st.adminStoresCount}</strong> Magasins Admin + <strong>${st.occupiedLeasableCount}</strong> Boutiques louées
+      </div>
+    </div>
+
+    <div class="stat-exec-card" style="border-left:4px solid #38bdf8">
+      <div class="stat-exec-top">
+        <span>🔑 Boutiques Libres (Disponibles)</span>
+        <span class="badge badge-primary">À Louer</span>
+      </div>
+      <div class="stat-exec-val" style="color:#38bdf8">${st.freeLeasableCount} <small style="font-size:.85rem;color:var(--muted)">/ ${st.leasableTotalCount}</small></div>
+      <div class="stat-exec-sub">
+        Espaces libres de <strong>15 m² à 80 m²</strong> prêts à louer
+      </div>
+    </div>
+
+    <div class="stat-exec-card" style="border-left:4px solid var(--gold)">
+      <div class="stat-exec-top">
+        <span>💰 Chiffre d'Affaires Global (Mois)</span>
+        <span class="badge badge-success">+14,2%</span>
+      </div>
+      <div class="stat-exec-val" style="color:var(--gold);font-size:1.35rem">${fcfa(st.totalGlobalCA)}</div>
+      <div class="stat-exec-sub">
+        Ventes Admin + Loyers encaissés + Loisirs &amp; Parking
+      </div>
+    </div>
+
+    <div class="stat-exec-card" style="border-left:4px solid #22c55e">
+      <div class="stat-exec-top">
+        <span>🏦 Loyers Mensuels Encaissés</span>
+        <span class="badge badge-success">${st.paidTenants.length} à jour</span>
+      </div>
+      <div class="stat-exec-val" style="color:#4ade80;font-size:1.35rem">${fcfa(st.collectedMonthlyRent)}</div>
+      <div class="stat-exec-sub">
+        Sur <strong>${fcfa(st.billedMonthlyRent)}</strong> facturés ce mois-ci
+      </div>
+    </div>
+
+    <div class="stat-exec-card" style="border-left:4px solid #ef4444;background:rgba(239,68,68,.06)">
+      <div class="stat-exec-top">
+        <span style="color:#fca5a5">🚨 Loyers Impayés (Arriérés)</span>
+        <span class="badge badge-danger">${st.unpaidTenants.length} locataire(s)</span>
+      </div>
+      <div class="stat-exec-val" style="color:#f87171;font-size:1.35rem">${fcfa(st.unpaidRentTotal)}</div>
+      <div class="stat-exec-sub" style="color:#fecaca">
+        À recouvrer auprès de <strong>${st.unpaidTenants.length} locataire(s) en retard</strong>
+      </div>
+    </div>
+
+    <div class="stat-exec-card" style="border-left:4px solid #a855f7">
+      <div class="stat-exec-top">
+        <span>🛡️ Cautions Détenues (3 Mois)</span>
+        <span class="badge badge-primary">Garantie CI</span>
+      </div>
+      <div class="stat-exec-val" style="color:#d8b4fe;font-size:1.32rem">${fcfa(st.totalDepositsHeld)}</div>
+      <div class="stat-exec-sub">
+        Potentiel 100% loué (50 baux) : <strong>${fcfa(st.maxPotentialMonthlyRent)}/m</strong>
+      </div>
+    </div>
+  `;
+
+  // 2. Rendu des barres de ventilation du Chiffre d'Affaires
+  if (revBarsContainer) {
+    const poles = [
+      { label: "🛒 Supermarché YAKRO MARKET (800 m² · Admin)", val: st.caYakroMarket, color: "#38bdf8" },
+      { label: "👗 Magasin MIMOS FASHION (Mode · Admin)", val: st.caMimosFashion, color: "#f472b6" },
+      { label: "🔑 Loyers des Boutiques Encaissés (Régie)", val: st.collectedMonthlyRent, color: "#f5b942" },
+      { label: "🍿 Cinéma Dolby (800 m²), Manège (500 m²) & Salle Événement", val: st.caCinemaManegeEvent, color: "#a855f7" },
+      { label: "🚗 Parking Souterrain & Visiteurs (200 F / 500 F)", val: st.caParkingSouterrain, color: "#10b981" }
+    ];
+
+    revBarsContainer.innerHTML = poles.map(p => {
+      const pct = Math.min(100, Math.round((p.val / st.totalGlobalCA) * 100));
+      return `
+        <div class="stat-bar-row">
+          <div class="stat-bar-header">
+            <span style="color:#e2e8f0">${p.label}</span>
+            <span style="color:${p.color}">${fcfa(p.val)} (${pct}%)</span>
+          </div>
+          <div class="stat-bar-track">
+            <div class="stat-bar-fill" style="width:${pct}%;background:${p.color}"></div>
+          </div>
+        </div>
+      `;
+    }).join("") + `
+      <div style="margin-top:.9rem;padding-top:.75rem;border-top:1px dashed var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.82rem">
+        <span style="color:var(--muted)">Taux de recouvrement des loyers facturés :</span>
+        <strong style="color:${st.unpaidRentTotal > 0 ? '#f5b942' : '#4ade80'}">
+          ${st.billedMonthlyRent > 0 ? Math.round((st.collectedMonthlyRent / st.billedMonthlyRent) * 100) : 100}% encaissé (${fcfa(st.collectedMonthlyRent)} / ${fcfa(st.billedMonthlyRent)})
+        </strong>
+      </div>
+    `;
+  }
+
+  // 3. Rendu de l'occupation & barème par dimension (15 m² à 80 m²)
+  if (dimsContainer) {
+    const tiers = [
+      { dim: "15 m²", rent: 185000, label: "Kiosque / Box" },
+      { dim: "20 m²", rent: 250000, label: "Boutique Standard" },
+      { dim: "25 m²", rent: 310000, label: "Boutique Confort" },
+      { dim: "30 m²", rent: 375000, label: "Double Vitrine" },
+      { dim: "35 m²", rent: 435000, label: "Boutique d'Angle" },
+      { dim: "45 m²", rent: 560000, label: "Moyenne Surface" },
+      { dim: "60 m²", rent: 750000, label: "Grand Magasin" },
+      { dim: "80 m²", rent: 980000, label: "Flagship Prestige" }
+    ];
+
+    dimsContainer.innerHTML = `
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:.55rem">
+        ${tiers.map(t => {
+          const matching = st.leasableSpaces.filter(s => s.dimension === t.dim);
+          const occ = matching.filter(s => s.status === "LOUE").length;
+          const free = matching.length - occ;
+          return `
+            <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:.55rem .75rem;display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:800;font-size:.84rem;color:#fff">📐 ${t.dim} <small style="color:var(--muted);font-weight:500">(${t.label})</small></div>
+                <div style="font-size:.75rem;color:var(--gold);font-weight:700">${fcfa(t.rent)} / mois</div>
+              </div>
+              <div style="text-align:right;font-size:.72rem">
+                <div style="color:#4ade80;font-weight:700">${occ} occupé(s)</div>
+                <div style="color:#38bdf8">${free} libre(s)</div>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  // 4. Rendu du tableau des locataires et des loyers impayés
+  renderAdminTenantsUnpaidTable();
+}
+
+function filterAdminTenants(filterType) {
+  currentTenantFilter = filterType;
+  ["all", "unpaid", "paid"].forEach(k => {
+    const btn = document.getElementById("btn-tenant-filter-" + k);
+    if (btn) {
+      btn.classList.remove("active", "active-immediate");
+      if (k === filterType) {
+        btn.classList.add(k === "unpaid" ? "active-immediate" : "active");
+      }
+    }
+  });
+  renderAdminTenantsUnpaidTable();
+}
+
+function renderAdminTenantsUnpaidTable() {
+  const container = document.getElementById("admin-tenants-unpaid-table-container");
+  if (!container) return;
+
+  const st = computeMallStatistics();
+
+  const countAll = document.getElementById("count-tenants-all");
+  const countUnp = document.getElementById("count-tenants-unpaid");
+  const countPaid = document.getElementById("count-tenants-paid");
+  if (countAll) countAll.innerText = st.occupiedSpaces.length;
+  if (countUnp) countUnp.innerText = st.unpaidTenants.length;
+  if (countPaid) countPaid.innerText = st.paidTenants.length;
+
+  let list = st.occupiedSpaces;
+  if (currentTenantFilter === "unpaid") {
+    list = st.unpaidTenants;
+  } else if (currentTenantFilter === "paid") {
+    list = st.paidTenants;
+  }
+
+  // Trier pour afficher les loyers impayés en premier !
+  list = [...list].sort((a, b) => {
+    if (a.rent_paid === b.rent_paid) return 0;
+    return a.rent_paid === false ? -1 : 1;
+  });
+
+  if (list.length === 0) {
+    if (st.occupiedSpaces.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center;padding:1.6rem;background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.15);border-radius:12px">
+          <div style="font-size:1.8rem;margin-bottom:.4rem">🔑</div>
+          <div style="color:#fff;font-weight:800;font-size:.95rem;margin-bottom:.3rem">
+            Les 50 boutiques en location (Espace 1 à Espace 50) sont actuellement libres (non occupées)
+          </div>
+          <p style="color:var(--muted);font-size:.8rem;max-width:620px;margin:0 auto .8rem">
+            Seuls les <strong>2 magasins de l'Administration</strong> (<em>Supermarché YAKRO MARKET</em> et <em>Magasin MIMOS FASHION</em>) sont occupés.<br>
+            Dès que vous validez une candidature dans l'onglet <strong>« 📋 Demandes de Location »</strong>, le locataire s'affichera ici pour le suivi de son loyer et des éventuels impayés.
+          </p>
+          <button class="btn-primary" style="font-size:.78rem;padding:.45rem .95rem" onclick="switchAdminSubtab('apps')">
+            📋 Voir les Demandes de Location en Attente
+          </button>
+        </div>
+      `;
+    } else {
+      container.innerHTML = `<div style="text-align:center;padding:1.5rem;color:#5df0b0;font-weight:700">🎉 Aucun locataire dans cette catégorie (0 loyer impayé — tous les locataires sont à jour !).</div>`;
+    }
+    return;
+  }
+
+  let html = `
+    <div class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Espace &amp; Dimension</th>
+            <th>Locataire &amp; Activité</th>
+            <th>Contact</th>
+            <th>Loyer Mensuel</th>
+            <th>État du Loyer</th>
+            <th>Montant Impayé / Retard</th>
+            <th style="text-align:right">Actions de Gestion</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  list.forEach(s => {
+    const isUnpaid = (s.rent_paid === false);
+    const rent = s.monthly_rent_fcfa || 250000;
+    const months = isUnpaid ? (s.unpaid_months || 1) : 0;
+    const unpaidAmt = isUnpaid ? (rent * months) : 0;
+    const tenantName = s.tenant_name || (s.manager ? s.manager.split("(")[0].trim() : "Locataire Actif");
+    const activity = s.tenant_activity || s.format_label || "Commerce";
+    const phone = s.phone || "+225 07 00 00 00 00";
+    const cleanPhone = phone.replace(/[^0-9]/g, "");
+    const waText = encodeURIComponent(
+      `Bonjour ${tenantName}, sauf erreur de notre part, votre loyer pour l'${s.name} (${s.dimension}) à BÉLIER MALL ON LINE présente un impayé de ${fcfa(unpaidAmt)} (${months} mois). Merci de régulariser auprès de la Régie (+225 05 65 98 22 29).`
+    );
+
+    html += `
+      <tr class="${isUnpaid ? 'row-unpaid-rent' : 'row-paid-rent'}">
+        <td>
+          <strong style="color:var(--gold);font-size:.92rem">🔑 ${escapeHtml(s.name)}</strong><br>
+          <span class="badge badge-primary" style="margin-top:2px">📐 ${escapeHtml(s.dimension || '20 m²')} · ${escapeHtml(s.floor || 'RDC')}</span>
+        </td>
+        <td>
+          <div style="font-weight:800;color:#fff">${escapeHtml(tenantName)}</div>
+          <small style="color:var(--muted)">${escapeHtml(activity)}</small>
+        </td>
+        <td>
+          <a href="tel:${escapeHtml(phone)}" style="color:var(--gold);text-decoration:none;font-size:.78rem;font-weight:700">📞 ${escapeHtml(phone)}</a>
+        </td>
+        <td>
+          <strong style="color:#e2e8f0">${fcfa(rent)}</strong><small style="color:var(--muted)">/mois</small><br>
+          <small style="color:var(--muted)">Caution : ${fcfa(s.deposit_fcfa || rent * 3)}</small>
+        </td>
+        <td>
+          ${isUnpaid
+            ? `<span class="badge-unpaid-alert">🚨 LOYER IMPAYÉ<small style="font-weight:600;color:#fca5a5">Échéance : ${escapeHtml(s.due_date || '05/11/2026')}</small></span>`
+            : `<span class="badge badge-success">✅ PAYÉ À JOUR</span>`
+          }
+        </td>
+        <td>
+          ${isUnpaid
+            ? `<strong style="color:#f87171;font-size:.95rem">${fcfa(unpaidAmt)}</strong><br><small style="color:#fca5a5">${months} mois d'arriéré</small>`
+            : `<span style="color:#4ade80;font-weight:700">0 FCFA dû</span>`
+          }
+        </td>
+        <td style="text-align:right">
+          <div style="display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+            ${isUnpaid ? `
+              <a href="https://wa.me/${cleanPhone}?text=${waText}" target="_blank" class="btn-secondary" style="text-decoration:none;font-size:.72rem;padding:.35rem .65rem;border-color:#f97316;color:#fdba74" title="Envoyer une relance WhatsApp au locataire">
+                💬 Relancer
+              </a>
+              <button class="btn-admin-approve" onclick="toggleTenantRentPaymentStatus('${s.id}', true)" title="Enregistrer le paiement et régulariser ce locataire">
+                💳 Encaisser Loyer
+              </button>
+            ` : `
+              <button class="btn-admin-toggle" onclick="toggleTenantRentPaymentStatus('${s.id}', false)" title="Signaler un retard de paiement sur ce locataire">
+                ⚠️ Signaler Impayé
+              </button>
+            `}
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+function toggleTenantRentPaymentStatus(storeId, markAsPaid) {
+  const store = LOCAL_DATA.stores.find(s => s.id === storeId);
+  if (!store) return;
+
+  if (markAsPaid) {
+    store.rent_paid = true;
+    store.unpaid_months = 0;
+    store.unpaid_amount_fcfa = 0;
+    playChime(880, 0.18);
+    showAdminAlert(`✅ Le loyer de <strong>${escapeHtml(store.tenant_name || store.name)}</strong> (${escapeHtml(store.name)} · ${fcfa(store.monthly_rent_fcfa)}) a été encaissé et régularisé !`, "success");
+  } else {
+    store.rent_paid = false;
+    store.unpaid_months = 1;
+    store.unpaid_amount_fcfa = store.monthly_rent_fcfa || 250000;
+    playChime(440, 0.15);
+    showAdminAlert(`🚨 Retard de loyer signalé pour <strong>${escapeHtml(store.tenant_name || store.name)}</strong> (${escapeHtml(store.name)} · Impayé : ${fcfa(store.unpaid_amount_fcfa)}).`, "danger");
+  }
+
+  renderAdminStatisticsDashboard();
+  updateAdminKPIs();
 }

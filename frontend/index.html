@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BÉLIER MALL ON LINE · Centre Commercial Moderne de Yamoussoukro (5 Hectares)</title>
+  <link rel="icon" type="image/jpeg" href="Belier_mall.jpeg">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +19,7 @@
   <header>
     <div class="header-container">
       <div class="brand">
-        <div class="brand-icon" id="brand-ram-icon" onclick="handleBrandIconClick()" title="Emblème du Bélier Doré de Yamoussoukro (Triple-clic pour accès Direction)" style="cursor:pointer">♈</div>
+        <div class="brand-icon logo-image-box" id="brand-ram-icon" onclick="handleBrandIconClick()" title="Logo Officiel BÉLIER MALL ON LINE (Triple-clic pour accès Administration)" style="cursor:pointer"><img src="Belier_mall.jpeg" alt="Logo Bélier Mall" class="brand-logo-img"></div>
         <div>
           <div class="brand-title">BÉLIER MALL ON LINE</div>
           <div class="brand-subtitle">Centre Commercial Moderne de Yamoussoukro · 5 Hectares (50 000 m²) · 316,2 m × 158,1 m</div>
@@ -36,32 +37,13 @@
     </div>
   </header>
 
-  <section class="hero" id="main-hero-banner">
-    <div class="hero-tag">♈ Centre Commercial Moderne de Yamoussoukro · Carrefour Mimos</div>
-    <h1><span class="shine">BÉLIER MALL ON LINE</span></h1>
-    <p>Découvrez les articles disponibles en direct, commandez en livraison express ou cliquez sur <em>« 📍 S'y rendre »</em> pour activer votre localisation GPS et afficher l'itinéraire jusqu'à la boutique.</p>
-    <div class="stats" style="grid-template-columns: repeat(5, minmax(0, 1fr));">
-      <div class="stat">
-        <b>50</b>
-        <span>Boutiques en Location (Centre 3 ha)</span>
-      </div>
-      <div class="stat">
-        <b>5 ha</b>
-        <span>Complexe Intégré (50 000 m²)</span>
-      </div>
-      <div class="stat">
-        <b>800 m²</b>
-        <span>Cinéma Moderne Dolby</span>
-      </div>
-      <div class="stat">
-        <b>500 m²</b>
-        <span>Manège &amp; Loisirs Enfants</span>
-      </div>
-      <div class="stat">
-        <b>24/7</b>
-        <span>Parking Souterrain Sécurisé</span>
-      </div>
+  <section class="hero" id="main-hero-banner" style="padding: 1.5rem 1.2rem 0.8rem;">
+    <div class="hero-logo-medallion" onclick="handleBrandIconClick()" style="cursor:pointer" title="BÉLIER MALL ON LINE · Shoppez • Profitez • Vivez mieux">
+      <img src="Belier_mall.jpeg" alt="Logo Officiel Bélier Mall">
     </div>
+    <div class="hero-tag"> Centre Commercial Moderne de Yamoussoukro · Carrefour Mimos</div>
+    <h1><span class="shine">BÉLIER MALL ON LINE</span></h1>
+    <p style="margin-bottom:0.4rem"><em>« Shoppez • Profitez • Vivez mieux »</em> — Découvrez les articles disponibles en direct, commandez en livraison express ou cliquez sur <strong>« 📍 S'y rendre »</strong> pour activer le guidage GPS jusqu'à la boutique.</p>
   </section>
 
   <main>
@@ -164,7 +146,7 @@
               <span>50 Boutiques en Location dans le Centre Commercial (3 ha / 30 000 m²) · BÉLIER MALL ON LINE</span>
             </div>
             <div class="marketplace-header-subtitle">
-              Cellules commerciales modernes climatisées (20 m² à 35 m²) au <strong>Carrefour Mimos</strong>. Loyer fixe : <strong>250 000 FCFA / mois</strong> · Caution légale 3 mois (<strong>750 000 FCFA</strong>). Conforme à la réglementation des baux commerciaux en République de Côte d'Ivoire.
+              50 cellules commerciales modernes climatisées de <strong>dimensions variées (15 m² à 80 m²)</strong> au <strong>Carrefour Mimos</strong>. <strong>Le prix mensuel varie selon la superficie choisie (de 185 000 FCFA à 980 000 FCFA / mois)</strong> · Caution légale 3 mois. Conforme à la réglementation des baux commerciaux en République de Côte d'Ivoire.
             </div>
           </div>
           <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
@@ -180,9 +162,9 @@
         <!-- 5 Métriques Clés de la Location -->
         <div class="leasing-kpi-grid" style="margin-top:1.2rem">
           <div class="leasing-kpi"><b>50</b><span>Boutiques en Location (Centre 3 ha)</span></div>
-          <div class="leasing-kpi"><b>250 000 F</b><span>Loyer Fixe Net (FCFA / mois)</span></div>
-          <div class="leasing-kpi"><b>750 000 F</b><span>Caution Légale CI (3 Mois de garantie)</span></div>
-          <div class="leasing-kpi"><b>20 à 35 m²</b><span>Surfaces Climatisées avec Compteur CIE</span></div>
+          <div class="leasing-kpi"><b>185k à 980k F</b><span>Loyer Mensuel selon la Dimension</span></div>
+          <div class="leasing-kpi"><b>3 Mois</b><span>Caution Légale CI (selon superficie)</span></div>
+          <div class="leasing-kpi"><b>15 à 80 m²</b><span>8 Formats de Surfaces Climatisées</span></div>
           <div class="leasing-kpi"><b>+225 05 65 98 22 29</b><span>Ligne Directe Direction Commerciale</span></div>
         </div>
       </div>
@@ -242,8 +224,8 @@
               <div style="font-size:.76rem;color:#cbd5e1;margin-top:2px">Climatisation individuelle, compteur CIE prépayé, sécurité 24/7</div>
             </div>
             <div style="text-align:right">
-              <div style="font-size:1.25rem;font-weight:900;color:#5df0b0">250 000 FCFA <small style="font-size:.7rem;color:#cbd5e1">/ mois</small></div>
-              <div style="font-size:.75rem;color:var(--gold);font-weight:700">Caution (3 mois) : 750 000 FCFA</div>
+              <div style="font-size:1.25rem;font-weight:900;color:#5df0b0"><span id="page-lease-rent-val">250 000 FCFA</span> <small style="font-size:.7rem;color:#cbd5e1">/ mois</small></div>
+              <div style="font-size:.75rem;color:var(--gold);font-weight:700">Caution (3 mois) : <span id="page-lease-deposit-val">750 000 FCFA</span></div>
             </div>
           </div>
 
@@ -1555,7 +1537,7 @@
     <div id="tab-admin" class="tab-content">
       <!-- 1. ÉCRAN DE CONNEXION SÉCURISÉ (SUPERADMIN & 2 ADMINS) -->
       <div id="admin-login-screen" class="card" style="max-width:520px;margin:2rem auto;text-align:center;padding:2.1rem;border:1.5px solid rgba(245,185,66,.35)">
-        <div style="font-size:2.8rem;margin-bottom:.5rem">🔐</div>
+        <div class="hero-logo-medallion" style="width:84px;height:84px;margin-bottom:.75rem"><img src="Belier_mall.jpeg" alt="Logo Bélier Mall"></div>
         <div class="card-title" style="margin-bottom:.35rem">Portail d'Administration · BÉLIER MALL ON LINE</div>
         <p style="color:var(--muted);font-size:.83rem;margin-bottom:1.4rem">
           Accès réservé aux <strong>3 membres de l'Administration</strong> :<br>
@@ -1726,7 +1708,10 @@
 
         <!-- Sous-navigation des onglets Admin -->
         <div class="admin-subnav" style="display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap">
-          <button class="admin-tab-pill active" id="btn-admin-subtab-apps" onclick="switchAdminSubtab('apps')">
+          <button class="admin-tab-pill active" id="btn-admin-subtab-stats" onclick="switchAdminSubtab('stats')">
+            📊 Statistiques, CA &amp; Loyers Impayés <span class="badge badge-danger" id="badge-admin-unpaid-count">4</span>
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-apps" onclick="switchAdminSubtab('apps')">
             📋 Demandes de Location <span class="badge badge-warning" id="badge-admin-pending-apps">3</span>
           </button>
           <button class="admin-tab-pill" id="btn-admin-subtab-team" onclick="switchAdminSubtab('team')" style="border-color:rgba(245,185,66,.45)">
@@ -1746,8 +1731,82 @@
         <!-- Notification d'action Admin -->
         <div id="admin-action-alert" style="display:none;padding:.85rem 1.1rem;border-radius:12px;margin-bottom:1.2rem;font-size:.84rem"></div>
 
+                <!-- SOUS-ONGLET 0 : VUE STATISTIQUES, CHIFFRE D'AFFAIRES, OCCUPATION & LOYERS IMPAYÉS -->
+        <div id="admin-view-stats" class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem;border-bottom:1px solid var(--border);padding-bottom:1rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.25rem">📊 Tableau de Bord Statistique, Occupation &amp; Suivi Financier</div>
+              <p style="color:var(--muted);font-size:.83rem">
+                Pilotage en temps réel du centre commercial : <strong>boutiques occupées vs libres</strong>, <strong>chiffre d'affaires global</strong>, <strong>barème par dimension (15 m² à 80 m²)</strong> et <strong>état des loyers impayés</strong>.
+              </p>
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+              <span class="badge badge-success" id="stat-header-occupancy-pill">Taux d'occupation : -- %</span>
+              <span class="badge badge-danger" id="stat-header-unpaid-pill">🚨 4 Loyers Impayés</span>
+            </div>
+          </div>
+
+          <!-- 6 CARTES KPI DÉTAILLÉES -->
+          <div class="stats-exec-grid" id="admin-stats-exec-cards">
+            <!-- Rempli dynamiquement par renderAdminStatisticsDashboard() -->
+          </div>
+
+          <!-- GRAPHIQUES : VENTILATION DU CA & OCCUPATION PAR DIMENSION -->
+          <div class="stats-charts-grid">
+            <div style="background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:14px;padding:1.15rem">
+              <div style="font-weight:800;font-size:.94rem;color:var(--gold);margin-bottom:.85rem;display:flex;justify-content:space-between;align-items:center">
+                <span>💰 Ventilation du Chiffre d'Affaires Mensuel par Pôle</span>
+                <span class="badge badge-success">Temps Réel</span>
+              </div>
+              <div id="admin-stats-revenue-bars">
+                <!-- Barres de progression CA -->
+              </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:14px;padding:1.15rem">
+              <div style="font-weight:800;font-size:.94rem;color:#38bdf8;margin-bottom:.85rem;display:flex;justify-content:space-between;align-items:center">
+                <span>📐 Occupation &amp; Tarifs par Dimension (15 m² à 80 m²)</span>
+                <span class="badge badge-primary">8 Formats</span>
+              </div>
+              <div id="admin-stats-dimensions-breakdown">
+                <!-- Répartition par superficie -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TABLEAU DES LOCATAIRES OCCUPANTS & GESTION DES LOYERS IMPAYÉS -->
+          <div style="background:rgba(15,23,42,.65);border:1.5px solid rgba(239,68,68,.35);border-radius:16px;padding:1.2rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;margin-bottom:1rem">
+              <div>
+                <div style="font-weight:800;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:8px">
+                  <span>🚨</span> État des Locataires Actifs &amp; Recouvrement des Loyers Impayés
+                </div>
+                <p style="font-size:.79rem;color:var(--muted);margin-top:2px">
+                  Identifiez immédiatement les locataires en retard de paiement, relancez-les sur WhatsApp ou encaissez leur loyer en 1 clic.
+                </p>
+              </div>
+
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                <button class="filter-btn-pill active" id="btn-tenant-filter-all" onclick="filterAdminTenants('all')">
+                  📋 Tous les Locataires (<span id="count-tenants-all">12</span>)
+                </button>
+                <button class="filter-btn-pill" id="btn-tenant-filter-unpaid" onclick="filterAdminTenants('unpaid')">
+                  🚨 Loyers Impayés (<span id="count-tenants-unpaid">4</span>)
+                </button>
+                <button class="filter-btn-pill" id="btn-tenant-filter-paid" onclick="filterAdminTenants('paid')">
+                  ✅ Loyers à Jour (<span id="count-tenants-paid">8</span>)
+                </button>
+              </div>
+            </div>
+
+            <div id="admin-tenants-unpaid-table-container">
+              <!-- Rempli dynamiquement par app.js -->
+            </div>
+          </div>
+        </div>
+
         <!-- SOUS-ONGLET 1 : VALIDATION DES DEMANDES D'IMPLANTATION (ACCEPTER / REFUSER) -->
-        <div id="admin-view-apps" class="card">
+        <div id="admin-view-apps" class="card" style="display:none;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
             <div>
               <div class="card-title" style="margin-bottom:.2rem">📋 Demandes de Location Commerciale en Attente</div>
@@ -1968,8 +2027,8 @@
             <div style="font-size:.76rem;color:var(--muted)">BÉLIER MALL · Carrefour Mimos · Axe Yamoussoukro-Bouaké</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:1.1rem;font-weight:900;color:#5df0b0">250 000 FCFA <small style="font-size:.7rem;color:#cbd5e1">/ mois</small></div>
-            <div style="font-size:.72rem;color:var(--muted)">Caution (3 mois) : <strong>750 000 FCFA</strong></div>
+            <div style="font-size:1.1rem;font-weight:900;color:#5df0b0"><span id="modal-lease-rent-val">250 000 FCFA</span> <small style="font-size:.7rem;color:#cbd5e1">/ mois</small></div>
+            <div style="font-size:.72rem;color:var(--muted)">Caution (3 mois) : <strong id="modal-lease-deposit-val">750 000 FCFA</strong></div>
           </div>
         </div>
         <div style="margin-top:.5rem;padding-top:.5rem;border-top:1px dashed rgba(245,185,66,.25);font-size:.76rem;color:#fef08a">
