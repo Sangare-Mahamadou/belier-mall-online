@@ -340,7 +340,7 @@ main { max-width: 1440px; margin: 0 auto 1.8rem; padding: 0 1.4rem; }
   box-shadow: 0 8px 24px rgba(245, 185, 66, 0.35);
 }
 
-/* BOUSSOLE GOOGLE MAPS (INDICATEUR NORD CARREFOUR MIMOS) */
+/* BOUSSOLE GOOGLE MAPS (INDICATEUR NORD ZONE PRESIDENTIEL) */
 .gmaps-compass-btn {
   position: absolute;
   right: 14px;

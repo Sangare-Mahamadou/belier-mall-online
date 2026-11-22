@@ -30,79 +30,93 @@ from seed_data import (
     LEASING_INFO
 )
 
-LEASING_APPLICATIONS = [
-    {
-        "id": "BAIL-BELIER-101",
-        "applicant_name": "KOUASSI Yao Jean",
-        "phone": "+225 07 48 12 34 56",
-        "space_number": "Espace 1",
-        "is_immediate": True,
-        "monthly_rent_fcfa": 250000,
-        "deposit_fcfa": 750000,
-        "dimension": "35 m²",
-        "contact_phone": "+225 05 65 98 22 29",
-        "ci_reglement_accepted": True,
-        "status": "EN_ATTENTE",
-        "date": "14/11/2026"
-    },
-    {
-        "id": "BAIL-BELIER-102",
-        "applicant_name": "DIALLO Awa",
-        "phone": "+225 05 06 78 90 12",
-        "space_number": "Espace 3",
-        "is_immediate": False,
-        "monthly_rent_fcfa": 250000,
-        "deposit_fcfa": 750000,
-        "dimension": "20 m²",
-        "contact_phone": "+225 05 65 98 22 29",
-        "ci_reglement_accepted": True,
-        "status": "EN_ATTENTE",
-        "date": "15/11/2026"
-    },
-    {
-        "id": "BAIL-BELIER-103",
-        "applicant_name": "KOFFI N'Guessan Charles",
-        "phone": "+225 01 02 33 44 55",
-        "space_number": "Espace 5",
-        "is_immediate": True,
-        "monthly_rent_fcfa": 250000,
-        "deposit_fcfa": 750000,
-        "dimension": "20 m²",
-        "contact_phone": "+225 05 65 98 22 29",
-        "ci_reglement_accepted": True,
-        "status": "EN_ATTENTE",
-        "date": "15/11/2026"
-    }
-]
-
-
-
-
 # ==============================================================================
-# SYSTÈME D'ADMINISTRATION À 3 PERSONNES (1 SUPERADMIN + 2 ADMINS)
-# Mot de passe SuperAdmin : 'Kadi epouse sangare'
+# BASE DE DONNÉES DE PRODUCTION PERSISTANTE (ZÉRO DONNÉE FIGÉE)
+# Tout est sauvegardé dans backend/production_db.json et partagé entre tous
+# les visiteurs, les 2 Admins et le SuperAdmin.
 # ==============================================================================
-SUPERADMIN_PASSWORD = "Kadi epouse sangare"
+DB_FILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "production_db.json")
+
+SUPERADMIN_INITIAL_PASSWORD = "Kadi epouse sangare"
+
+# Au départ en production : 0 demande figée, 0 commande figée !
+LEASING_APPLICATIONS = []
+EXPRESS_ORDERS = []
 
 SUPERADMIN_ACCOUNT = {
     "id": "superadmin-01",
     "role": "SUPERADMIN",
     "login": "superadmin",
-    "password": SUPERADMIN_PASSWORD,
+    "password": SUPERADMIN_INITIAL_PASSWORD,
     "nom": "",
     "prenom": "",
     "email": "",
-    "profile_completed": False
+    "profile_completed": False,
+    "must_change_password": True
 }
 
-# Liste des 2 Administrateurs créés par le SuperAdmin (max 2 Admins + 1 SuperAdmin = 3 personnes)
 ADMIN_ACCOUNTS = []
 
 
 def verify_superadmin_password(pwd: str) -> bool:
     if not pwd:
         return False
-    return pwd.strip() == SUPERADMIN_PASSWORD or pwd.strip().lower() == SUPERADMIN_PASSWORD.lower()
+    clean = pwd.strip()
+    current_pwd = SUPERADMIN_ACCOUNT.get("password", SUPERADMIN_INITIAL_PASSWORD)
+    if clean == current_pwd:
+        return True
+    # Tant que le SuperAdmin n'a pas encore changé son mot de passe initial, accepter aussi insensible à la casse
+    if SUPERADMIN_ACCOUNT.get("must_change_password", True):
+        if clean.lower() == SUPERADMIN_INITIAL_PASSWORD.lower():
+            return True
+    return False
+
+
+def save_production_db():
+    try:
+        payload = {
+            "superadmin": SUPERADMIN_ACCOUNT,
+            "admins": ADMIN_ACCOUNTS,
+            "applications": LEASING_APPLICATIONS,
+            "orders": EXPRESS_ORDERS,
+            "stores": STORES,
+            "products": PRODUCTS_CATALOG
+        }
+        with open(DB_FILE_PATH, "w", encoding="utf-8") as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"[ProductionDB] Erreur sauvegarde: {e}")
+
+
+def load_production_db():
+    global SUPERADMIN_ACCOUNT, ADMIN_ACCOUNTS, LEASING_APPLICATIONS, EXPRESS_ORDERS
+    if not os.path.exists(DB_FILE_PATH):
+        return
+    try:
+        with open(DB_FILE_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if "superadmin" in data and isinstance(data["superadmin"], dict):
+            SUPERADMIN_ACCOUNT.update(data["superadmin"])
+        if "admins" in data and isinstance(data["admins"], list):
+            ADMIN_ACCOUNTS.clear()
+            ADMIN_ACCOUNTS.extend(data["admins"][:2])
+        if "applications" in data and isinstance(data["applications"], list):
+            LEASING_APPLICATIONS.clear()
+            LEASING_APPLICATIONS.extend(data["applications"])
+        if "orders" in data and isinstance(data["orders"], list):
+            EXPRESS_ORDERS.clear()
+            EXPRESS_ORDERS.extend(data["orders"])
+        if "stores" in data and isinstance(data["stores"], list) and len(data["stores"]) > 0:
+            STORES.clear()
+            STORES.extend(data["stores"])
+        if "products" in data and isinstance(data["products"], list) and len(data["products"]) > 0:
+            PRODUCTS_CATALOG.clear()
+            PRODUCTS_CATALOG.extend(data["products"])
+    except Exception as e:
+        print(f"[ProductionDB] Erreur lecture: {e}")
+
+
+load_production_db()
 
 
 class SmartMallAPIHandler(BaseHTTPRequestHandler):
@@ -198,7 +212,40 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 return
 
         # 1. Info Mall & Plan Directeur 5 hectares
-        if path == "/api/mall":
+        if path == "/api/state":
+            safe_admins = [
+                {
+                    "id": a["id"],
+                    "role": "ADMIN",
+                    "login": a["login"],
+                    "nom": a.get("nom", ""),
+                    "prenom": a.get("prenom", ""),
+                    "email": a.get("email", ""),
+                    "must_change_password": a.get("must_change_password", True),
+                    "created_at": a.get("created_at", "")
+                }
+                for a in ADMIN_ACCOUNTS
+            ]
+            return self._send_json(200, {
+                "success": True,
+                "stores": [s for s in STORES if not s.get("id", "").startswith("cell-")],
+                "products": PRODUCTS_CATALOG,
+                "applications": LEASING_APPLICATIONS,
+                "orders": EXPRESS_ORDERS,
+                "superadmin": {
+                    "id": SUPERADMIN_ACCOUNT["id"],
+                    "role": "SUPERADMIN",
+                    "login": SUPERADMIN_ACCOUNT["login"],
+                    "nom": SUPERADMIN_ACCOUNT["nom"],
+                    "prenom": SUPERADMIN_ACCOUNT["prenom"],
+                    "email": SUPERADMIN_ACCOUNT["email"],
+                    "profile_completed": SUPERADMIN_ACCOUNT["profile_completed"],
+                    "must_change_password": SUPERADMIN_ACCOUNT.get("must_change_password", True)
+                },
+                "admins": safe_admins
+            })
+
+        elif path == "/api/mall":
             return self._send_json(200, {
                 "success": True,
                 "mall": MALL_INFO,
@@ -449,6 +496,7 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 "services": data.get("services", [])
             }
             STORES.insert(0, new_store)
+            save_production_db()
             return self._send_json(201, {"success": True, "store": new_store})
 
         # 4. Espace Commerçant : Ajout d'un produit
@@ -469,11 +517,12 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 "tags": [t.strip().lower() for t in data.get("tags", "").split(",") if t.strip()]
             }
             PRODUCTS_CATALOG.append(new_prod)
+            save_production_db()
             return self._send_json(201, {"success": True, "product": new_prod})
 
         # 5. Candidature Location d'un Espace (Espace 1 à 50 - 250 000 FCFA/mois)
         elif path == "/api/leasing/apply":
-            app_id = f"BAIL-BELIER-{len(LEASING_APPLICATIONS) + 101}"
+            app_id = data.get("id") or f"BAIL-BELIER-{len(LEASING_APPLICATIONS) + 101}-{int(os.urandom(2).hex(), 16) % 900 + 100}"
             is_imm = bool(data.get("is_immediate", True))
             space_num = data.get("space_number", "Espace 1")
             application = {
@@ -491,6 +540,7 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 "date": "15/11/2026"
             }
             LEASING_APPLICATIONS.insert(0, application)
+            save_production_db()
             return self._send_json(201, {
                 "success": True,
                 "message": f"Demande pour '{space_num}' enregistrée avec succès ! Notre régie vous contactera au +225 05 65 98 22 29.",
@@ -503,28 +553,54 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
         # ========================================================
         # AUTHENTIFICATION & GESTION DES 3 COMPTES (1 SUPERADMIN + 2 ADMINS)
         # ========================================================
+        elif path == "/api/orders":
+            order_id = f"CMD-{len(EXPRESS_ORDERS) + 101}-{int(os.urandom(2).hex(), 16) % 900 + 100}"
+            new_order = {
+                "id": order_id,
+                "customer_name": (data.get("customer_name") or "").strip(),
+                "customer_phone": (data.get("customer_phone") or "").strip(),
+                "customer_address": (data.get("customer_address") or "Zone Présidentielle").strip(),
+                "payment_method": data.get("payment_method", "Wave"),
+                "product_id": data.get("product_id", ""),
+                "product_name": data.get("product_name", "Article"),
+                "store_name": data.get("store_name", "Boutique"),
+                "price_fcfa": int(data.get("price_fcfa", 0)),
+                "delivery_fee_fcfa": 500,
+                "total_fcfa": int(data.get("price_fcfa", 0)) + 500,
+                "date": data.get("date") or "Aujourd'hui"
+            }
+            EXPRESS_ORDERS.insert(0, new_order)
+            save_production_db()
+            return self._send_json(201, {"success": True, "order": new_order})
+
+        elif path == "/api/admin/orders/complete":
+            order_id = data.get("order_id")
+            idx = next((i for i, o in enumerate(EXPRESS_ORDERS) if o["id"] == order_id), None)
+            if idx is not None:
+                EXPRESS_ORDERS.pop(idx)
+                save_production_db()
+            return self._send_json(200, {"success": True, "deleted_id": order_id})
+
+        elif path == "/api/admin/stores/rent-status":
+            store_id = data.get("store_id")
+            mark_paid = bool(data.get("rent_paid", True))
+            store = next((s for s in STORES if s["id"] == store_id), None)
+            if not store:
+                return self._send_json(404, {"error": "Boutique introuvable"})
+            store["rent_paid"] = mark_paid
+            store["unpaid_months"] = 0 if mark_paid else int(data.get("unpaid_months", 1))
+            store["unpaid_amount_fcfa"] = 0 if mark_paid else (store.get("monthly_rent_fcfa", 250000) * store["unpaid_months"])
+            save_production_db()
+            return self._send_json(200, {"success": True, "store": store})
+
         elif path == "/api/admin/auth/login":
             login_input = (data.get("login") or "").strip()
             password_input = (data.get("password") or "").strip()
 
-            # 1. Vérifier si c'est le SuperAdmin (via son mot de passe 'Kadi epouse sangare')
-            if verify_superadmin_password(password_input):
-                return self._send_json(200, {
-                    "success": True,
-                    "role": "SUPERADMIN",
-                    "account": {
-                        "id": SUPERADMIN_ACCOUNT["id"],
-                        "role": "SUPERADMIN",
-                        "login": SUPERADMIN_ACCOUNT["login"],
-                        "nom": SUPERADMIN_ACCOUNT["nom"],
-                        "prenom": SUPERADMIN_ACCOUNT["prenom"],
-                        "email": SUPERADMIN_ACCOUNT["email"],
-                        "profile_completed": SUPERADMIN_ACCOUNT["profile_completed"],
-                        "must_change_password": False
-                    }
-                })
+            if not login_input or not password_input:
+                return self._send_json(400, {"success": False, "error": "Veuillez saisir votre Login et votre Mot de passe."})
 
-            # 2. Vérifier si c'est l'un des 2 Admins créés par le SuperAdmin
+            # 1. Vérifier si c'est l'un des 2 Admins créés par le SuperAdmin
             admin_user = next(
                 (a for a in ADMIN_ACCOUNTS if a["login"].lower() == login_input.lower() and a["password"] == password_input),
                 None
@@ -545,21 +621,72 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                     }
                 })
 
+            # 2. Vérifier si c'est le SuperAdmin
+            # À la 1ère connexion (must_change_password == True), il peut saisir n'importe quel login (ex: superadmin) avec 'Kadi epouse sangare'.
+            # Aux connexions suivantes, il saisit son login configuré + son nouveau mot de passe personnel !
+            sa_login = SUPERADMIN_ACCOUNT.get("login", "superadmin")
+            is_first_sa = SUPERADMIN_ACCOUNT.get("must_change_password", True)
+            login_matches_sa = is_first_sa or (login_input.lower() == sa_login.lower()) or (SUPERADMIN_ACCOUNT.get("email") and login_input.lower() == SUPERADMIN_ACCOUNT["email"].lower())
+
+            if login_matches_sa and verify_superadmin_password(password_input):
+                if is_first_sa and login_input:
+                    SUPERADMIN_ACCOUNT["login"] = login_input
+                return self._send_json(200, {
+                    "success": True,
+                    "role": "SUPERADMIN",
+                    "account": {
+                        "id": SUPERADMIN_ACCOUNT["id"],
+                        "role": "SUPERADMIN",
+                        "login": SUPERADMIN_ACCOUNT["login"],
+                        "nom": SUPERADMIN_ACCOUNT["nom"],
+                        "prenom": SUPERADMIN_ACCOUNT["prenom"],
+                        "email": SUPERADMIN_ACCOUNT["email"],
+                        "profile_completed": SUPERADMIN_ACCOUNT["profile_completed"],
+                        "must_change_password": SUPERADMIN_ACCOUNT.get("must_change_password", True)
+                    }
+                })
+
             return self._send_json(401, {
                 "success": False,
-                "error": "Identifiant ou mot de passe incorrect."
+                "error": "Login ou mot de passe incorrect."
             })
 
         elif path == "/api/admin/superadmin/profile":
-            SUPERADMIN_ACCOUNT["nom"] = (data.get("nom") or "").strip()
-            SUPERADMIN_ACCOUNT["prenom"] = (data.get("prenom") or "").strip()
-            SUPERADMIN_ACCOUNT["email"] = (data.get("email") or "").strip()
+            new_login = (data.get("login") or SUPERADMIN_ACCOUNT["login"] or "superadmin").strip()
+            new_pwd = (data.get("new_password") or "").strip()
+            nom = (data.get("nom") or "").strip()
+            prenom = (data.get("prenom") or "").strip()
+            email = (data.get("email") or "").strip()
+
+            if nom:
+                SUPERADMIN_ACCOUNT["nom"] = nom
+            if prenom:
+                SUPERADMIN_ACCOUNT["prenom"] = prenom
+            if email:
+                SUPERADMIN_ACCOUNT["email"] = email
+            if new_login:
+                SUPERADMIN_ACCOUNT["login"] = new_login
+            if new_pwd and len(new_pwd) >= 4:
+                SUPERADMIN_ACCOUNT["password"] = new_pwd
+                SUPERADMIN_ACCOUNT["must_change_password"] = False
+
             if SUPERADMIN_ACCOUNT["nom"] and SUPERADMIN_ACCOUNT["prenom"]:
                 SUPERADMIN_ACCOUNT["profile_completed"] = True
+
+            save_production_db()
             return self._send_json(200, {
                 "success": True,
-                "message": "Profil SuperAdmin enregistré avec succès.",
-                "superadmin": SUPERADMIN_ACCOUNT
+                "message": "Profil et nouveau mot de passe SuperAdmin enregistrés avec succès.",
+                "superadmin": {
+                    "id": SUPERADMIN_ACCOUNT["id"],
+                    "role": "SUPERADMIN",
+                    "login": SUPERADMIN_ACCOUNT["login"],
+                    "nom": SUPERADMIN_ACCOUNT["nom"],
+                    "prenom": SUPERADMIN_ACCOUNT["prenom"],
+                    "email": SUPERADMIN_ACCOUNT["email"],
+                    "profile_completed": SUPERADMIN_ACCOUNT["profile_completed"],
+                    "must_change_password": SUPERADMIN_ACCOUNT["must_change_password"]
+                }
             })
 
         elif path == "/api/admin/accounts/create":
@@ -573,11 +700,11 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
             if not new_login or not new_pwd:
                 return self._send_json(400, {"error": "Le login et le mot de passe provisoire sont obligatoires."})
 
-            if any(a["login"].lower() == new_login.lower() for a in ADMIN_ACCOUNTS) or new_login.lower() == "superadmin":
+            if any(a["login"].lower() == new_login.lower() for a in ADMIN_ACCOUNTS) or new_login.lower() == SUPERADMIN_ACCOUNT["login"].lower():
                 return self._send_json(400, {"error": f"Le login '{new_login}' est déjà utilisé."})
 
             new_admin = {
-                "id": f"admin-0{len(ADMIN_ACCOUNTS) + 1}-{len( new_login )}",
+                "id": data.get("id") or f"admin-0{len(ADMIN_ACCOUNTS) + 1}-{len(new_login)}",
                 "role": "ADMIN",
                 "login": new_login,
                 "password": new_pwd,
@@ -585,12 +712,13 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 "prenom": (data.get("prenom") or "").strip(),
                 "email": (data.get("email") or "").strip(),
                 "must_change_password": True,
-                "created_at": "16/11/2026"
+                "created_at": data.get("created_at") or "22/11/2026"
             }
             ADMIN_ACCOUNTS.append(new_admin)
+            save_production_db()
             return self._send_json(201, {
                 "success": True,
-                "message": f"Compte Admin '{new_login}' créé. Il devra obligatoirement modifier son mot de passe à sa première connexion.",
+                "message": f"Compte Admin '{new_login}' créé.",
                 "admin": new_admin
             })
 
@@ -611,6 +739,7 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
             if data.get("email"):
                 admin_user["email"] = data.get("email").strip()
             admin_user["must_change_password"] = False
+            save_production_db()
 
             return self._send_json(200, {
                 "success": True,
@@ -623,52 +752,62 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
             if not verify_superadmin_password(super_pwd):
                 return self._send_json(403, {
                     "success": False,
-                    "error": "Action refusée : Mot de passe SuperAdmin incorrect. Seul le SuperAdmin peut supprimer un Admin."
+                    "error": "Action refusée : Mot de passe SuperAdmin incorrect."
                 })
             admin_id = data.get("admin_id") or data.get("login")
             idx = next((i for i, a in enumerate(ADMIN_ACCOUNTS) if a["id"] == admin_id or a["login"] == admin_id), None)
             if idx is None:
                 return self._send_json(404, {"error": "Administrateur introuvable."})
             removed = ADMIN_ACCOUNTS.pop(idx)
+            save_production_db()
             return self._send_json(200, {
                 "success": True,
                 "message": f"L'administrateur '{removed['login']}' a été supprimé par le SuperAdmin.",
                 "deleted_login": removed["login"]
             })
 
-        # 1. Validation / Approbation d'une demande de location d'espace
+        # 1. Validation / Approbation d'une demande de location d'espace (Disparaît de la liste des demandes !)
         elif path == "/api/admin/applications/approve":
             app_id = data.get("application_id")
-            app = next((a for a in LEASING_APPLICATIONS if a["id"] == app_id), None)
-            if not app:
+            idx = next((i for i, a in enumerate(LEASING_APPLICATIONS) if a["id"] == app_id), None)
+            if idx is None:
                 return self._send_json(404, {"error": "Demande introuvable"})
 
-            app["status"] = "APPROUVÉE"
+            app = LEASING_APPLICATIONS.pop(idx)
             space_num = app.get("space_number", "Espace 1")
             
-            store = next((s for s in STORES if s.get("name") == space_num or s.get("id") == f"store-{space_num.lower().replace(' ', '-')}" ), None)
+            store = next((s for s in STORES if s.get("name") == space_num or s.get("id") == f"store-{space_num.lower().replace(' ', '-')}"), None)
             if store:
                 store["status"] = "LOUE"
+                store["tenant_name"] = app["applicant_name"]
+                store["tenant_activity"] = "Commerce & Distribution"
+                store["phone"] = app["phone"]
                 store["manager"] = f"{app['applicant_name']} ({app['phone']})"
+                store["rent_paid"] = True
+                store["unpaid_months"] = 0
+                store["unpaid_amount_fcfa"] = 0
 
+            save_production_db()
             return self._send_json(200, {
                 "success": True,
-                "message": f"Demande pour '{space_num}' approuvée avec succès ! Bail accordé à {app['applicant_name']}.",
-                "application": app
+                "message": f"Demande pour '{space_num}' approuvée et retirée de la liste d'attente ! Bail accordé à {app['applicant_name']}.",
+                "approved_application": app,
+                "store": store
             })
 
-        # 2. Rejet d'une demande de création
+        # 2. Rejet d'une demande de location (Disparaît de la liste des demandes !)
         elif path == "/api/admin/applications/reject":
             app_id = data.get("application_id")
-            app = next((a for a in LEASING_APPLICATIONS if a["id"] == app_id), None)
-            if not app:
+            idx = next((i for i, a in enumerate(LEASING_APPLICATIONS) if a["id"] == app_id), None)
+            if idx is None:
                 return self._send_json(404, {"error": "Demande introuvable"})
-            app["status"] = "REJETÉE"
-            target_name = app.get("space_number") or app.get("brand_name") or app.get("applicant_name", "Dossier")
+            app = LEASING_APPLICATIONS.pop(idx)
+            save_production_db()
+            target_name = app.get("space_number") or app.get("applicant_name", "Dossier")
             return self._send_json(200, {
                 "success": True,
-                "message": f"Demande pour '{target_name}' rejetée.",
-                "application": app
+                "message": f"Demande pour '{target_name}' rejetée et retirée de la liste.",
+                "rejected_id": app_id
             })
 
         # 3. Suppression d'une boutique (Réservée exclusivement au SuperAdmin avec son mot de passe)
@@ -682,13 +821,14 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
             if idx is None:
                 return self._send_json(404, {"error": "Boutique introuvable"})
             deleted = STORES.pop(idx)
+            save_production_db()
             return self._send_json(200, {
                 "success": True,
                 "message": f"Boutique '{deleted.get('name')}' supprimée avec succès.",
                 "deleted_id": store_id
             })
 
-        # 4. Basculer le statut d'une boutique (Active / Non disponible / Maintenance)
+        # 4. Basculer le statut d'une boutique
         elif path == "/api/admin/stores/toggle-status":
             store_id = data.get("store_id")
             store = next((s for s in STORES if s["id"] == store_id), None)
@@ -697,6 +837,7 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
             cur = store.get("status", "ACTIVE")
             new_st = "INACTIVE" if cur == "ACTIVE" else "ACTIVE"
             store["status"] = new_st
+            save_production_db()
             return self._send_json(200, {
                 "success": True,
                 "message": f"Statut de '{store.get('name')}' mis à jour : {new_st}.",
@@ -714,6 +855,7 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
             if idx is None:
                 return self._send_json(404, {"error": "Article introuvable"})
             deleted_p = PRODUCTS_CATALOG.pop(idx)
+            save_production_db()
             return self._send_json(200, {
                 "success": True,
                 "message": f"Article '{deleted_p.get('name')}' supprimé.",
