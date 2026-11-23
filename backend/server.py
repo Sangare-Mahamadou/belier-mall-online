@@ -831,11 +831,23 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
         # 1. Validation / Approbation d'une demande de location d'espace (Disparaît de la liste des demandes !)
         elif path == "/api/admin/applications/approve":
             app_id = data.get("application_id")
-            idx = next((i for i, a in enumerate(LEASING_APPLICATIONS) if a["id"] == app_id), None)
-            if idx is None:
+            app = next((a for a in LEASING_APPLICATIONS if a["id"] == app_id), None)
+            if not app:
                 return self._send_json(404, {"error": "Demande introuvable"})
 
-            app = LEASING_APPLICATIONS.pop(idx)
+            # Règle stricte: Une demande peut être confirmée ou refusée une et une seule fois !
+            if app.get("status") in ["CONFIRMEE", "APPROUVEE"]:
+                return self._send_json(400, {
+                    "error": f"Cette demande ({app_id}) a déjà été confirmée. Le bail a déjà été accordé (action unique).",
+                    "already_processed": True,
+                    "status": app.get("status")
+                })
+            if app.get("status") in ["REFUSEE", "REJETEE"]:
+                return self._send_json(400, {
+                    "error": f"Cette demande ({app_id}) a déjà été refusée et ne peut plus être confirmée.",
+                    "already_processed": True,
+                    "status": app.get("status")
+                })
             space_num = app.get("space_number", "Espace 1")
             
             # Recherche de la boutique
@@ -882,6 +894,12 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
                 store["unpaid_months"] = 0
                 store["unpaid_amount_fcfa"] = 0
                 store["tenant_account_login"] = tenant_login
+
+            # Verrouillage définitif du statut de la demande (Confirmée & non modifiable)
+            app["status"] = "CONFIRMEE"
+            app["tenant_login"] = tenant_login
+            app["processed_at"] = data.get("processed_at") or "23/11/2026"
+            app["processed_by"] = data.get("admin_name") or data.get("role") or "Administration"
 
             save_production_db()
 
@@ -1134,16 +1152,34 @@ class SmartMallAPIHandler(BaseHTTPRequestHandler):
         # 2. Rejet d'une demande de location (Disparaît de la liste des demandes !)
         elif path == "/api/admin/applications/reject":
             app_id = data.get("application_id")
-            idx = next((i for i, a in enumerate(LEASING_APPLICATIONS) if a["id"] == app_id), None)
-            if idx is None:
+            app = next((a for a in LEASING_APPLICATIONS if a["id"] == app_id), None)
+            if not app:
                 return self._send_json(404, {"error": "Demande introuvable"})
-            app = LEASING_APPLICATIONS.pop(idx)
+
+            # Règle stricte: Une demande peut être confirmée ou refusée une et une seule fois !
+            if app.get("status") in ["CONFIRMEE", "APPROUVEE"]:
+                return self._send_json(400, {
+                    "error": f"Cette demande ({app_id}) a déjà été confirmée. Impossible de la refuser.",
+                    "already_processed": True,
+                    "status": app.get("status")
+                })
+            if app.get("status") in ["REFUSEE", "REJETEE"]:
+                return self._send_json(400, {
+                    "error": f"Cette demande ({app_id}) a déjà été refusée (action unique).",
+                    "already_processed": True,
+                    "status": app.get("status")
+                })
+
+            app["status"] = "REFUSEE"
+            app["processed_at"] = data.get("processed_at") or "23/11/2026"
+            app["processed_by"] = data.get("admin_name") or data.get("role") or "Administration"
             save_production_db()
             target_name = app.get("space_number") or app.get("applicant_name", "Dossier")
             return self._send_json(200, {
                 "success": True,
-                "message": f"Demande pour '{target_name}' rejetée et retirée de la liste.",
-                "rejected_id": app_id
+                "message": f"Demande pour '{target_name}' définitivement refusée (action unique enregistrée).",
+                "rejected_id": app_id,
+                "application": app
             })
 
         # 3. Suppression d'une boutique (Réservée exclusivement au SuperAdmin avec son mot de passe)

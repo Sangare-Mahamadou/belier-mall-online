@@ -11,7 +11,20 @@
     "must_change_password": true
   },
   "admins": [],
-  "tenant_accounts": [],
+  "tenant_accounts": [
+    {
+      "id": "tenant-kyao5982",
+      "login": "kyao5982",
+      "password": "BM2026!",
+      "default_password": "BM2026!",
+      "must_change_password": true,
+      "space_number": "Espace 5",
+      "store_id": "store-espace-5",
+      "tenant_name": "Kouassi Yao",
+      "phone": "+225 07 11 22 33 44",
+      "created_at": "15/11/2026"
+    }
+  ],
   "applications": [],
   "orders": [],
   "stores": [
@@ -377,11 +390,11 @@
       "cell_id": "cell-arcade",
       "cell_code": "ESPACE-05",
       "floor": 1,
-      "phone": "+225 05 65 98 22 29",
+      "phone": "+225 27 30 64 00 00",
       "description": "Kiosque / Box Compact climatisé de 15 m² (Étage R+1). Disponible en location : 185000 FCFA/mois · Caution (3 mois) : 555000 FCFA.",
       "opening_hours": "Disponible à la location",
       "logo": "🔑",
-      "manager": "Disponible à la location · Régie (+225 05 65 98 22 29)",
+      "manager": "Responsable Espace",
       "tenant_name": "",
       "tenant_activity": "Disponible tout commerce",
       "is_admin": false,
@@ -392,7 +405,7 @@
       "monthly_rent_fcfa": 185000,
       "deposit_fcfa": 555000,
       "contact_phone": "+225 05 65 98 22 29",
-      "status": "DISPONIBLE_LOCATION",
+      "status": "A_LOUER",
       "rent_paid": true,
       "unpaid_months": 0,
       "unpaid_amount_fcfa": 0,
@@ -406,11 +419,11 @@
       "cell_id": "cell-zara",
       "cell_code": "ESPACE-06",
       "floor": 1,
-      "phone": "+225 05 65 98 22 29",
+      "phone": "+225 27 30 64 00 00",
       "description": "Boutique Double Vitrine climatisé de 30 m² (Étage R+1). Disponible en location : 375000 FCFA/mois · Caution (3 mois) : 1125000 FCFA.",
       "opening_hours": "Disponible à la location",
       "logo": "🔑",
-      "manager": "Disponible à la location · Régie (+225 05 65 98 22 29)",
+      "manager": "Responsable Espace",
       "tenant_name": "",
       "tenant_activity": "Disponible tout commerce",
       "is_admin": false,
@@ -421,7 +434,7 @@
       "monthly_rent_fcfa": 375000,
       "deposit_fcfa": 1125000,
       "contact_phone": "+225 05 65 98 22 29",
-      "status": "DISPONIBLE_LOCATION",
+      "status": "A_LOUER",
       "rent_paid": true,
       "unpaid_months": 0,
       "unpaid_amount_fcfa": 0,
@@ -1781,7 +1794,13 @@
       "description": "Espace 5 en location",
       "cell_id": "cell-foodcourt",
       "floor": 0,
-      "phone": "+225 05 65 98 22 29"
+      "phone": "+225 27 30 64 00 00",
+      "status": "A_LOUER",
+      "tenant_name": "",
+      "manager": "Responsable Espace",
+      "rent_paid": true,
+      "unpaid_months": 0,
+      "unpaid_amount_fcfa": 0
     },
     {
       "id": "space-parking-sud",
@@ -2016,6 +2035,5 @@
         "externe"
       ]
     }
-  ],
-  "leasing_applications": []
+  ]
 }

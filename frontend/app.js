@@ -4826,16 +4826,18 @@ function renderAdminApplicationsTable() {
     const rowClass = isImm ? "row-immediate" : "row-delayed";
     
     const urgencyBadge = isImm
-      ? `<div class="badge-immediate-pill">🔥 PRISE IMMÉDIATE<small>⚡ Prêt tout de suite</small></div>`
-      : `<div class="badge-delayed-pill">🗓️ Prise Différée<small>📅 Projet ultérieur</small></div>`;
+      ? `<div class="badge-immediate-pill">⚡ PRISE IMMÉDIATE<small>⏱ Prêt tout de suite</small></div>`
+      : `<div class="badge-delayed-pill">📅 Prise Différée<small>🗓 Projet ultérieur</small></div>`;
 
     let statusBadge = "";
     if (app.status === "EN_ATTENTE") {
-      statusBadge = `<span class="badge badge-warning">🟡 En Attente</span>`;
-    } else if (app.status === "APPROUVÉE") {
-      statusBadge = `<span class="badge badge-success">🟢 Approuvée &amp; Louée</span>`;
+      statusBadge = `<span class="badge badge-warning" style="font-weight:800;letter-spacing:.3px">⏳ En Attente</span>`;
+    } else if (app.status === "CONFIRMEE" || app.status === "APPROUVÉE" || app.status === "APPROUVEE") {
+      statusBadge = `<span class="badge badge-success" style="font-weight:800;letter-spacing:.3px">✅ Confirmée &amp; Louée</span>`;
+    } else if (app.status === "REFUSEE" || app.status === "REJETÉE" || app.status === "REJETEE") {
+      statusBadge = `<span class="badge badge-danger" style="font-weight:800;letter-spacing:.3px">❌ Refusée</span>`;
     } else {
-      statusBadge = `<span class="badge badge-danger">🔴 Rejetée</span>`;
+      statusBadge = `<span class="badge">${escapeHtml(app.status)}</span>`;
     }
 
     const spaceName = app.space_number || "Espace Commercial";
@@ -4860,7 +4862,7 @@ function renderAdminApplicationsTable() {
           </div>
         </td>
         <td>
-          <strong style="color:var(--gold);font-size:.92rem">🔑 ${escapeHtml(spaceName)}</strong><br>
+          <strong style="color:var(--gold);font-size:.92rem">🏬 ${escapeHtml(spaceName)}</strong><br>
           <small style="color:var(--muted)">Surface : ${escapeHtml(spaceDim)}</small>
         </td>
         <td>
@@ -4876,15 +4878,24 @@ function renderAdminApplicationsTable() {
         <td style="text-align:right">
           ${app.status === "EN_ATTENTE" ? `
             <div style="display:inline-flex;gap:6px">
-              <button class="btn-admin-approve" onclick="approveLeasingApplication('${app.id}')" title="Valider le bail et marquer l'espace comme loué">
-                ✅ Louer l'Espace
+              <button class="btn-admin-approve" onclick="approveLeasingApplication('${app.id}')" title="Confirmer le bail (1 seule confirmation par dossier)">
+                ✓ Confirmer
               </button>
-              <button class="btn-admin-reject" onclick="rejectLeasingApplication('${app.id}')" title="Refuser cette demande">
-                ❌ Refuser
+              <button class="btn-admin-reject" onclick="rejectLeasingApplication('${app.id}')" title="Refuser cette demande (1 seul refus par dossier)">
+                ✗ Refuser
               </button>
             </div>
+          ` : (app.status === "CONFIRMEE" || app.status === "APPROUVÉE" || app.status === "APPROUVEE") ? `
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+              <span style="font-size:.78rem;color:#5df0b0;font-weight:800">🔒 Bail Confirmé (Action unique)</span>
+              ${app.tenant_login ? `<span style="font-size:.72rem;color:var(--gold);font-family:monospace">Login: ${escapeHtml(app.tenant_login)}</span>` : ''}
+              ${app.processed_by ? `<small style="font-size:.68rem;color:var(--muted)">Par: ${escapeHtml(app.processed_by)}</small>` : ''}
+            </div>
           ` : `
-            <span style="font-size:.74rem;color:var(--muted)">Dossier clôturé</span>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+              <span style="font-size:.78rem;color:#fca5a5;font-weight:800">🔒 Demande Refusée (Action unique)</span>
+              ${app.processed_by ? `<small style="font-size:.68rem;color:var(--muted)">Par: ${escapeHtml(app.processed_by)}</small>` : ''}
+            </div>
           `}
         </td>
       </tr>
@@ -4905,14 +4916,25 @@ async function approveLeasingApplication(appId) {
   const app = adminState.applications.find(a => a.id === appId);
   if (!app) return;
 
+  // Règle métier stricte: Une demande peut être confirmée ou refusée une et une seule fois !
+  if (app.status === "CONFIRMEE" || app.status === "APPROUVÉE" || app.status === "APPROUVEE" || app.status === "REFUSEE" || app.status === "REJETÉE" || app.status === "REJETEE") {
+    alert("Cette demande a déjà été traitée (" + app.status + ") et ne peut plus être modifiée.");
+    return;
+  }
+
   const spaceName = app.space_number || "Espace 1";
   const numDigits = spaceName.replace(/[^0-9]/g, "") || "1";
   // Format officiel: 1ère lettre du Nom + 3 lettres du Prénom + 4 chiffres aléatoires
   const tenantLogin = generateTenantLogin(app.applicant_name);
   const defaultPwd = "BM2026!";
 
-  // 1. Retirer définitivement la demande de la liste des demandes en attente
-  adminState.applications = adminState.applications.filter(a => a.id !== appId);
+  // 1. Verrouiller le statut en CONFIRMEE (persistant, ne revient JAMAIS à l'état d'attente à l'actualisation)
+  app.status = "CONFIRMEE";
+  app.tenant_login = tenantLogin;
+  app.processed_at = new Date().toLocaleDateString("fr-FR");
+  app.processed_by = (adminState.currentUser && adminState.currentUser.nom)
+    ? `${adminState.currentUser.prenom || ''} ${adminState.currentUser.nom}`.trim()
+    : (adminState.currentUser ? adminState.currentUser.role : "Direction");
 
   // 2. Marquer la boutique comme LOUÉE / OCCUPÉE avec les coordonnées du locataire
   let store = LOCAL_DATA.stores.find(s => s.name === spaceName || s.name.startsWith(spaceName));
@@ -4952,6 +4974,7 @@ async function approveLeasingApplication(appId) {
     };
     LOCAL_DATA.tenant_accounts.push(existingAcc);
   } else {
+    existingAcc.login = tenantLogin;
     existingAcc.tenant_name = app.applicant_name;
     existingAcc.phone = app.phone;
   }
@@ -4979,15 +5002,27 @@ async function approveLeasingApplication(appId) {
 
   const activePassword = existingAcc.password || defaultPwd;
   const waMessage = 
-    `🎉 Félicitations ${app.applicant_name} ! Votre contrat de location pour *${spaceName}* à *BÉLIER MALL ON LINE* a été validé avec succès par la Direction.\n\n` +
-    `Voici vos identifiants personnels pour accéder à votre Espace Boutique et configurer votre magasin en ligne :\n` +
-    `🔑 *Identifiant (Login fixe)* : \`${tenantLogin}\`\n` +
-    `🔐 *Mot de passe temporaire* : \`${activePassword}\`\n\n` +
-    `👉 Cliquez sur l'onglet *« 🏪 Espace Boutique »* sur Bélier Mall pour :\n` +
-    `1. Donner un nom personnalisé à votre magasin (ex: votre enseigne commerciale)\n` +
-    `2. Ajouter vos articles et produits avec leurs prix en FCFA\n` +
-    `3. Définir vos moyens de paiement (Wave, Orange Money, etc.)\n` +
-    `4. Modifier votre mot de passe pour sécuriser votre compte (votre identifiant \`${tenantLogin}\` reste fixe).\n\n` +
+    `🎉 Félicitations ${app.applicant_name} ! Votre contrat de location pour *${spaceName}* à *BÉLIER MALL ON LINE* a été validé avec succès par la Direction.
+
+` +
+    `Voici vos identifiants personnels pour accéder à votre Espace Boutique et configurer votre magasin en ligne :
+` +
+    `🔑 *Identifiant (Login fixe)* : \`${tenantLogin}\`
+` +
+    `🔐 *Mot de passe temporaire* : \`${activePassword}\`
+
+` +
+    `👉 Cliquez sur l'onglet *« 🏪 Espace Boutique »* sur Bélier Mall pour :
+` +
+    `1. Donner un nom personnalisé à votre magasin (ex: votre enseigne commerciale)
+` +
+    `2. Ajouter vos articles et produits avec leurs prix en FCFA
+` +
+    `3. Définir vos moyens de paiement (Wave, Orange Money, etc.)
+` +
+    `4. Modifier votre mot de passe pour sécuriser votre compte (votre identifiant \`${tenantLogin}\` reste fixe).
+
+` +
     `La Régie Bélier Mall vous souhaite un excellent commerce !`;
 
   const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waMessage)}`;
@@ -5009,7 +5044,11 @@ async function approveLeasingApplication(appId) {
     const resp = await fetch(`${API_BASE}/admin/applications/approve`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ application_id: appId })
+      body: JSON.stringify({ 
+        application_id: appId,
+        role: adminState.currentUser ? adminState.currentUser.role : "ADMIN",
+        admin_name: adminState.currentUser ? (adminState.currentUser.prenom + " " + adminState.currentUser.nom).trim() : "Administration"
+      })
     });
     if (resp.ok) {
       const data = await resp.json();
@@ -5025,26 +5064,43 @@ async function approveLeasingApplication(appId) {
   }
 }
 
-// 6. REJETER UNE DEMANDE (La demande rejetée disparaît de la liste !)
+// 6. REJETER UNE DEMANDE (Une seule fois, statut persistant en REFUSEE)
 function rejectLeasingApplication(appId) {
   const app = adminState.applications.find(a => a.id === appId);
   if (!app) return;
-  const spaceName = app.space_number || "cet espace";
-  if (!confirm(`Confirmez-vous le rejet de la demande de bail pour "${spaceName}" de ${app.applicant_name} ?`)) return;
 
-  adminState.applications = adminState.applications.filter(a => a.id !== appId);
+  // Règle métier stricte: Une demande peut être confirmée ou refusée une et une seule fois !
+  if (app.status === "CONFIRMEE" || app.status === "APPROUVÉE" || app.status === "APPROUVEE" || app.status === "REFUSEE" || app.status === "REJETÉE" || app.status === "REJETEE") {
+    alert("Cette demande a déjà été traitée (" + app.status + ") et ne peut plus être modifiée.");
+    return;
+  }
+
+  const spaceName = app.space_number || "cet espace";
+  if (!confirm(`Confirmez-vous le refus définitif de la demande de bail pour "${spaceName}" de ${app.applicant_name} ?\n\nCette action est irréversible (une seule confirmation ou refus par dossier).`)) return;
+
+  // Verrouiller définitivement le statut en REFUSEE (persistant, ne revient JAMAIS à l'état d'attente à l'actualisation)
+  app.status = "REFUSEE";
+  app.processed_at = new Date().toLocaleDateString("fr-FR");
+  app.processed_by = (adminState.currentUser && adminState.currentUser.nom)
+    ? `${adminState.currentUser.prenom || ''} ${adminState.currentUser.nom}`.trim()
+    : (adminState.currentUser ? adminState.currentUser.role : "Direction");
+
   saveProductionStateToLocal();
 
   updateAdminKPIs();
   renderAdminApplicationsTable();
 
-  showAdminAlert(`ℹ️ La demande pour <strong>« ${escapeHtml(spaceName)} »</strong> (${escapeHtml(app.applicant_name)}) a été rejetée et retirée de la liste.`, "danger");
+  showAdminAlert(`⛔ La demande pour <strong>« ${escapeHtml(spaceName)} »</strong> (${escapeHtml(app.applicant_name)}) a été refusée définitivement.`, "danger");
 
   isSubmittingStateChange = true;
   fetch(`${API_BASE}/admin/applications/reject`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ application_id: appId })
+    body: JSON.stringify({ 
+      application_id: appId,
+      role: adminState.currentUser ? adminState.currentUser.role : "ADMIN",
+      admin_name: adminState.currentUser ? (adminState.currentUser.prenom + " " + adminState.currentUser.nom).trim() : "Administration"
+    })
   }).catch(() => {}).finally(() => { isSubmittingStateChange = false; });
 }
 
