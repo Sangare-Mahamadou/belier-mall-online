@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: belier-mall-online
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python backend/server.py $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0

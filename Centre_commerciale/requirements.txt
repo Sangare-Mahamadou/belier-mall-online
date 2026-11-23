@@ -1,0 +1,1 @@
+# BÉLIER MALL ON LINE - 100% Python Standard Library (Zéro dépendance externe requise)

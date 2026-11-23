@@ -1,0 +1,48 @@
+services:
+  # Base de données PostgreSQL avec extension PostGIS
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: smartmall_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: smartmall_user
+      POSTGRES_PASSWORD: smartmall_password
+      POSTGRES_DB: smartmall_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docs/DATA_MODEL.md:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartmall_user -d smartmall_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Moteur de recherche instantanée (Tolérance fautes, < 20ms)
+  meilisearch:
+    image: getmeili/meilisearch:v1.7
+    container_name: smartmall_meilisearch
+    restart: always
+    environment:
+      MEILI_MASTER_KEY: "smartmall_master_search_key_2026"
+      MEILI_ENV: "development"
+    ports:
+      - "7700:7700"
+    volumes:
+      - meili_data:/meili_data
+
+  # Cache & synchronisation temps réel (parkings, quotas)
+  redis:
+    image: redis:7-alpine
+    container_name: smartmall_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  meili_data:
+  redis_data:

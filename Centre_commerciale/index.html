@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BÉLIER MALL ON LINE · Centre Commercial Moderne de Yamoussoukro (5 Hectares)</title>
+  <link rel="icon" type="image/jpeg" href="Belier_mall.jpeg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+</head>
+<body>
+  <div class="aurora"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+  <div class="grain"></div>
+
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon logo-image-box" id="brand-ram-icon" onclick="handleBrandIconClick()" title="Logo Officiel BÉLIER MALL ON LINE (Triple-clic pour accès Administration)" style="cursor:pointer"><img src="Belier_mall.jpeg" alt="Logo Bélier Mall" class="brand-logo-img"></div>
+        <div>
+          <div class="brand-title">BÉLIER MALL ON LINE</div>
+          <div class="brand-subtitle">Centre Commercial Moderne de Yamoussoukro · 5 Hectares (50 000 m²) · 316,2 m × 158,1 m</div>
+        </div>
+      </div>
+      <nav class="main-tabs">
+        <button class="tab-btn active" data-tab="tab-marketplace" id="tab-btn-marketplace">🛍️ Articles &amp; Marketplace</button>
+        <button class="tab-btn" data-tab="tab-leasing" id="tab-btn-leasing">🔑 50 Boutiques en Location</button>
+        <button class="tab-btn" data-tab="tab-map" id="tab-btn-map">🗺️ Plan 5 Ha &amp; GPS Temps Réel</button>
+        <button class="tab-btn" data-tab="tab-entertainment" id="tab-btn-entertainment">🎡 Loisirs, Cinéma &amp; Événements</button>
+        <button class="tab-btn" data-tab="tab-parking" id="tab-btn-parking">🚗 Parking Souterrain</button>
+        <button class="tab-btn" data-tab="tab-client-space" id="tab-btn-client-space">🏪 Espace Boutique</button>
+        <button class="tab-btn" data-tab="tab-admin" id="tab-btn-admin" style="display:none;" aria-hidden="true"></button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="main-hero-banner" style="padding: 1.5rem 1.2rem 0.8rem;">
+    <div class="hero-logo-medallion" onclick="handleBrandIconClick()" style="cursor:pointer" title="BÉLIER MALL ON LINE · Shoppez • Profitez • Vivez mieux">
+      <img src="Belier_mall.jpeg" alt="Logo Officiel Bélier Mall">
+    </div>
+    <div class="hero-tag"> Centre Commercial Moderne de Yamoussoukro · Zone Présidentielle</div>
+    <h1><span class="shine">BÉLIER MALL ON LINE</span></h1>
+    <p style="margin-bottom:0.4rem"><em>« Shoppez • Profitez • Vivez mieux »</em> — Découvrez les articles disponibles en direct, commandez en livraison express ou cliquez sur <strong>« 📍 S'y rendre »</strong> pour activer le guidage GPS jusqu'à la boutique.</p>
+  </section>
+
+  <main>
+    <!-- ======================================================== -->
+    <!-- PREMIÈRE VUE : MARKETPLACE & ARTICLES DU CENTRE COMMERCIAL -->
+    <!-- ======================================================== -->
+    <div id="tab-marketplace" class="tab-content active">
+      <div class="marketplace-hero-card">
+        <div class="marketplace-header-title">
+          <span>🛍️</span>
+          <span>Vitrine des Articles &amp; Boutiques · YAMO-APP</span>
+        </div>
+        <div class="marketplace-header-subtitle">
+          Parcourez les produits disponibles en direct à <strong>BÉLIER MALL</strong> (5 000 références). Commandez en livraison moto en 45 min ou cliquez sur <strong>« 📍 S'y rendre »</strong> sur un article pour ouvrir le plan et afficher votre itinéraire guidé jusqu'au rayon.
+        </div>
+
+        <!-- 4 Locomotives Commerciales & Pôles en raccourcis -->
+        <div class="locomotives-showcase">
+          <div class="loco-card" onclick="filterMarketplaceByStore('store-yakro-market')">
+            <div class="loco-icon">🛒</div>
+            <div class="loco-info">
+              <div class="loco-name">YAKRO MARKET</div>
+              <div class="loco-meta">Supermarché 800 m² · Pôle 1 RDC (Admin)</div>
+              <div class="loco-desc">Alimentation, frais &amp; Made in Yamoussoukro</div>
+            </div>
+          </div>
+
+          <div class="loco-card" onclick="filterMarketplaceByStore('store-mimos-fashion')">
+            <div class="loco-icon">👗</div>
+            <div class="loco-info">
+              <div class="loco-name">ZONE PRÉSIDENTIELLE FASHION</div>
+              <div class="loco-meta">Mode Tendance TikTok · Pôle 1 R+1 (Admin)</div>
+              <div class="loco-desc">Robes tendance, lin homme &amp; accessoires</div>
+            </div>
+          </div>
+
+          <div class="loco-card" onclick="openLeasingTab()">
+            <div class="loco-icon" style="background:rgba(245,185,66,.2);border-color:var(--gold)">🔑</div>
+            <div class="loco-info">
+              <div class="loco-name" style="color:var(--gold)">50 BOUTIQUES EN LOCATION</div>
+              <div class="loco-meta">Cellules 20 à 35 m² · 250 000 F/mois</div>
+              <div class="loco-desc">Caution 3 mois · Contact : +225 05 65 98 22 29</div>
+            </div>
+          </div>
+
+          <div class="loco-card" onclick="switchMallView('entertainment')">
+            <div class="loco-icon">🍿</div>
+            <div class="loco-info">
+              <div class="loco-name">LOISIRS &amp; CINÉMA</div>
+              <div class="loco-meta">Dolby 100 pl. &amp; Jeux Enfants 300 m²</div>
+              <div class="loco-desc">Billetterie &amp; Pass enfants (1 500 F/h)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barre de recherche et filtres du Marketplace -->
+        <div class="marketplace-filter-section">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="marketplace-search-input" class="main-search-input" placeholder="Rechercher un article : riz Dinor, carpe braisée, robe TikTok, forfait mariage, place cinéma, pass enfants..." autocomplete="off">
+          </div>
+
+          <div class="filter-chips" style="margin-top:.6rem">
+            <span class="chip active" data-market-tag="" onclick="filterMarketplaceTag('', this)">✨ Tous les articles</span>
+            <span class="chip" data-market-tag="supermarché" onclick="filterMarketplaceTag('supermarché', this)">🛒 Yakro Market (800 m²)</span>
+            <span class="chip" data-market-tag="mode" onclick="filterMarketplaceTag('mode', this)">👗 Zone Présidentielle Fashion</span>
+            <span class="chip" data-market-tag="cinéma" onclick="filterMarketplaceTag('cinéma', this)">🍿 Cinéma Dolby (100 pl.)</span>
+            <span class="chip" data-market-tag="enfants" onclick="filterMarketplaceTag('enfants', this)">🎡 Loisirs Enfants (300 m²)</span>
+            <span class="chip" data-market-tag="parking" onclick="filterMarketplaceTag('parking', this)">🚗 Parking 300 Pl. (200 F)</span>
+            <span class="chip" data-market-tag="local" onclick="filterMarketplaceTag('local', this)">🇨🇮 Made in Yamoussoukro</span>
+          </div>
+
+          <div class="marketplace-stats-bar">
+            <div><span id="marketplace-count-badge"><strong>18 articles</strong> répertoriés</span> · Prix affichés en <strong>FCFA</strong></div>
+            <div>🛵 Livraison moto express : <strong>45 min</strong> à Yamoussoukro (500 F)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grille des Cartes Produits -->
+      <div class="marketplace-products-grid" id="marketplace-products-container">
+        <!-- Rempli dynamiquement par app.js -->
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- DEUXIÈME VUE : PLAN DU MALL & GUIDAGE GPS INDOOR          -->
+    <!-- (Ouvert UNIQUEMENT quand l'utilisateur veut s'y rendre)   -->
+        <!-- ======================================================== -->
+    <!-- ESPACES EN LOCATION : 46 BOUTIQUES (250 000 FCFA/MOIS)   -->
+    <!-- ======================================================== -->
+    <div id="tab-leasing" class="tab-content">
+      
+      <!-- 1. CARTE HERO DES 46 ESPACES & CONTACT REGIE -->
+      <div class="marketplace-hero-card" style="margin-bottom:1.5rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem">
+          <div>
+            <div class="marketplace-header-title">
+              <span>🔑</span>
+              <span>50 Boutiques en Location dans le Centre Commercial (3 ha / 30 000 m²) · BÉLIER MALL ON LINE</span>
+            </div>
+            <div class="marketplace-header-subtitle">
+              50 cellules commerciales modernes climatisées de <strong>dimensions variées (15 m² à 80 m²)</strong> au <strong>Zone Présidentielle</strong>. <strong>Le prix mensuel varie selon la superficie choisie (de 185 000 FCFA à 980 000 FCFA / mois)</strong> · Caution légale 3 mois. Conforme à la réglementation des baux commerciaux en République de Côte d'Ivoire.
+            </div>
+          </div>
+          <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+            <a href="tel:+2250565982229" class="btn-primary" style="text-decoration:none;font-size:.85rem;padding:.7rem 1.15rem;display:inline-flex;align-items:center;gap:6px">
+              📞 Appeler la Régie (+225 05 65 98 22 29)
+            </a>
+            <a href="https://wa.me/2250565982229?text=Bonjour%20la%20R%C3%A9gie%20B%C3%A9lier%20Mall,%20je%20souhaite%20des%20informations%20pour%20louer%20un%20espace%20commercial." target="_blank" class="btn-secondary" style="text-decoration:none;font-size:.85rem;padding:.7rem 1.15rem;background:rgba(25,195,125,.15);border-color:#19c37d;color:#5df0b0;display:inline-flex;align-items:center;gap:6px">
+              💬 WhatsApp Régie (+225 05 65 98 22 29)
+            </a>
+          </div>
+        </div>
+
+        <!-- 5 Métriques Clés de la Location -->
+        <div class="leasing-kpi-grid" style="margin-top:1.2rem">
+          <div class="leasing-kpi"><b>50</b><span>Boutiques en Location (Centre 3 ha)</span></div>
+          <div class="leasing-kpi"><b>185k à 980k F</b><span>Loyer Mensuel selon la Dimension</span></div>
+          <div class="leasing-kpi"><b>3 Mois</b><span>Caution Légale CI (selon superficie)</span></div>
+          <div class="leasing-kpi"><b>15 à 80 m²</b><span>8 Formats de Surfaces Climatisées</span></div>
+          <div class="leasing-kpi"><b>+225 05 65 98 22 29</b><span>Ligne Directe Direction Commerciale</span></div>
+        </div>
+      </div>
+
+      <!-- 2. FORMULAIRE OFFICIEL DE DEMANDE DE LOCATION (DIRECTEMENT SUR LA PAGE) -->
+      <div id="page-leasing-form-container" class="card" style="margin-bottom:2rem;background:linear-gradient(135deg,rgba(245,185,66,.07),rgba(15,23,42,.95));border:1.5px solid rgba(245,185,66,.35);padding:1.6rem">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:1rem">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px">
+              <span style="font-size:2rem;background:rgba(245,185,66,.2);width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(245,185,66,.4)">📋</span>
+              <span>Formulaire Officiel de Demande de Location Commerciale</span>
+            </div>
+            <p style="color:var(--muted);font-size:.85rem;margin-top:.4rem">
+              Remplissez les informations ci-dessous pour soumettre votre dossier à la <strong>Direction Générale de BÉLIER MALL</strong>.<br>
+              Les demandes avec <strong>prise immédiate</strong> sont examinées en priorité sous <strong>24 heures</strong>.
+            </p>
+          </div>
+          <div style="background:rgba(25,195,125,.1);border:1px solid rgba(25,195,125,.3);border-radius:12px;padding:.6rem .9rem;font-size:.76rem;color:#5df0b0">
+            🇨🇮 <strong>Cadre Juridique Côte d'Ivoire &amp; OHADA</strong><br>
+            <span style="color:#cbd5e1">Bail commercial conforme · Dépôt de garantie légal 3 mois</span>
+          </div>
+        </div>
+
+        <form id="page-leasing-form" onsubmit="submitPageLeasingForm(event)" style="display:flex;flex-direction:column;gap:1.2rem">
+          
+          <!-- Ligne 1 : Nom et Téléphone -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem">
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+                1. Nom &amp; Prénom(s) du Promoteur / Gérant *
+              </label>
+              <input type="text" id="page-lease-name" class="main-search-input" style="padding-left:1.1rem;font-size:.88rem" placeholder="Ex: M. KOUASSI Yao Jean" required>
+            </div>
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+                2. Numéro de Téléphone / WhatsApp (+225) *
+              </label>
+              <input type="tel" id="page-lease-phone" class="main-search-input" style="padding-left:1.1rem;font-size:.88rem" placeholder="+225 07 48 12 34 56" required>
+            </div>
+          </div>
+
+          <!-- Ligne 2 : Sélection de l'espace souhaité -->
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              3. Numéro de l'Espace Souhaité (Espace 1 à Espace 50) *
+            </label>
+            <select id="page-lease-space-select" class="select-qr" style="width:100%;font-size:.9rem;padding:.7rem 1rem" onchange="updatePageLeaseInfo(this.value)">
+              <!-- Rempli dynamiquement de Espace 1 à Espace 46 -->
+            </select>
+          </div>
+
+          <!-- Encadré Récapitulatif de l'Espace Sélectionné -->
+          <div style="background:rgba(245,185,66,.1);border:1px solid rgba(245,185,66,.3);border-radius:14px;padding:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+            <div>
+              <div style="font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Espace Commercial Sélectionné</div>
+              <div style="font-size:1.15rem;font-weight:800;color:var(--gold)" id="page-lease-space-title">Espace 1 (20 m² Climatisé · Pôle 1 RDC)</div>
+              <div style="font-size:.76rem;color:#cbd5e1;margin-top:2px">Climatisation individuelle, compteur CIE prépayé, sécurité 24/7</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:1.25rem;font-weight:900;color:#5df0b0"><span id="page-lease-rent-val">250 000 FCFA</span> <small style="font-size:.7rem;color:#cbd5e1">/ mois</small></div>
+              <div style="font-size:.75rem;color:var(--gold);font-weight:700">Caution (3 mois) : <span id="page-lease-deposit-val">750 000 FCFA</span></div>
+            </div>
+          </div>
+
+          <!-- Ligne 3 : Disponibilité / Prêt à prendre immédiatement ? -->
+          <div>
+            <label style="font-size:.82rem;font-weight:800;color:#fff;display:block;margin-bottom:7px">
+              4. ÊTES-VOUS PRÊT À PRENDRE L'ESPACE MAINTENANT IMMÉDIATEMENT ? *
+            </label>
+            <div class="timing-radio-grid">
+              <label class="timing-radio-card active-immediate" id="card-page-timing-immediate">
+                <input type="radio" name="page-lease-readiness" value="immediate" checked onchange="togglePageTimingRadio(this)" style="margin-top:4px;transform:scale(1.2)">
+                <div class="timing-content">
+                  <div style="font-weight:800;color:#f97316;font-size:.92rem;display:flex;align-items:center;gap:6px">
+                    <span>🔥</span> Prise Immédiate (Tout de suite)
+                  </div>
+                  <div style="font-size:.76rem;color:var(--muted);line-height:1.4;margin-top:3px">
+                    Je suis prêt à signer le bail, payer la caution et emménager <strong>immédiatement ce mois-ci</strong>.
+                  </div>
+                </div>
+              </label>
+
+              <label class="timing-radio-card" id="card-page-timing-delayed">
+                <input type="radio" name="page-lease-readiness" value="delayed" onchange="togglePageTimingRadio(this)" style="margin-top:4px;transform:scale(1.2)">
+                <div class="timing-content">
+                  <div style="font-weight:700;color:#38bdf8;font-size:.92rem;display:flex;align-items:center;gap:6px">
+                    <span>🗓️</span> Prise Différée (Projet futur)
+                  </div>
+                  <div style="font-size:.76rem;color:var(--muted);line-height:1.4;margin-top:3px">
+                    Réservation pour les <strong>prochains mois</strong>, préparation de financement ou projet ultérieur.
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Ligne 4 : Case à Cocher Obligatoire Règlement Location Côte d'Ivoire -->
+          <div class="ci-legal-box">
+            <div style="font-weight:800;color:#5df0b0;margin-bottom:.5rem;display:flex;align-items:center;gap:8px;font-size:.88rem">
+              <span>🇨🇮</span> Règlement des Baux Commerciaux en République de Côte d'Ivoire
+            </div>
+            <div style="font-size:.76rem;color:#cbd5e1;line-height:1.5;margin-bottom:.8rem">
+              • <strong>Dépôt de Garantie (Caution) :</strong> 3 mois de loyer net soit <strong>750 000 FCFA</strong> exigibles à la signature du bail, conformément à la législation ivoirienne.<br>
+              • <strong>Loyer d'Avance :</strong> Paiement du premier mois de loyer (<strong>250 000 FCFA</strong>) dès remise des clés et accès à la cellule.<br>
+              • <strong>Bail Commercial :</strong> Réglementé par l'Acte Uniforme OHADA relatif au Droit Commercial Général et la législation ivoirienne en vigueur.<br>
+              • <strong>Contact Officiel de la Régie :</strong> <strong>+225 05 65 98 22 29</strong> pour toute visite sur place ou renseignement complémentaire.
+            </div>
+            <label style="display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;font-size:.82rem;color:#fff;font-weight:700;background:rgba(0,0,0,.25);padding:.75rem;border-radius:8px;border:1px solid rgba(25,195,125,.3)">
+              <input type="checkbox" id="page-lease-reglement-check" required style="margin-top:2px;transform:scale(1.3)">
+              <span>Je certifie avoir pris connaissance et j'accepte expressément le règlement de location commerciale en vigueur en République de Côte d'Ivoire et le règlement intérieur de Bélier Mall. *</span>
+            </label>
+          </div>
+
+          <!-- Bouton de soumission -->
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:1.1rem;font-size:1.02rem;font-weight:800;letter-spacing:.3px;box-shadow:0 6px 20px rgba(255,122,26,.45)">
+            🚀 Envoyer ma Demande de Location à la Direction Commerciale
+          </button>
+        </form>
+
+        <div id="page-lease-success-msg" style="display:none;background:rgba(25,195,125,.18);border:1.5px solid #19c37d;padding:1.3rem;border-radius:14px;margin-top:1.2rem;color:#5df0b0;font-size:.88rem;text-align:center"></div>
+      </div>
+
+      <!-- 3. RÉPERTOIRE & DISPONIBILITÉ DES 50 BOUTIQUES EN LOCATION -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem">
+        <div>
+          <div style="font-weight:800;font-size:1.2rem;color:#fff;display:flex;align-items:center;gap:8px">
+            <span>🏬</span> Répertoire des 50 Boutiques en Location (Espace 1 à Espace 50)
+          </div>
+          <div style="font-size:.82rem;color:var(--muted)">
+            Cliquez sur « ✍️ Choisir cet Espace » pour pré-remplir instantanément le formulaire ci-dessus.
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <span class="badge badge-success">● 50 Boutiques en Location</span>
+          <span style="font-size:.8rem;color:var(--gold);font-weight:700">Loyer fixe : 250 000 F/mois</span>
+        </div>
+      </div>
+
+      <!-- Grille des 46 Espaces en Location -->
+      <div id="leasing-spaces-grid" class="marketplace-products-grid">
+        <!-- Rempli dynamiquement par app.js -->
+      </div>
+    </div>
+
+<!-- ======================================================== -->
+    <div id="tab-map" class="tab-content">
+      <!-- Bannière de guidage actif avec bouton retour aux articles -->
+      <div class="map-guidance-banner" id="map-guidance-banner">
+        <div style="display:flex;align-items:center;gap:.65rem">
+          <span style="font-size:1.4rem">🛰️</span>
+          <div>
+            <div style="font-weight:800;font-size:.92rem;color:#fff" id="guidance-banner-title">Plan Masterplan 5 Hectares (316,2 m × 158,1 m) &amp; GPS Temps Réel · BÉLIER MALL ON LINE</div>
+            <div style="font-size:.76rem;color:var(--muted)" id="guidance-banner-subtitle">Activez votre GPS en temps réel ou cliquez sur un bâtiment / article pour être guidé pas à pas jusqu'à destination.</div>
+          </div>
+        </div>
+        <button class="btn-back-to-marketplace" onclick="returnToMarketplace()">
+          ◀ Revenir aux Articles
+        </button>
+      </div>
+
+      <!-- CARTE ROUTIÈRE EXTÉRIEURE TEMPS RÉEL (COMME YANGO / GOOGLE MAPS : DE VOTRE POSITION AU CENTRE COMMERCIAL) -->
+      <div class="card" id="yango-road-map-card" style="margin-bottom:1.1rem;padding:1.1rem;border:1.5px solid rgba(56,189,248,.45);background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(7,9,15,.98))">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;margin-bottom:.85rem">
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <span style="font-size:1.8rem;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.4);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center">🚕</span>
+            <div>
+              <div style="font-weight:800;font-size:.98rem;color:#fff;display:flex;align-items:center;gap:8px">
+                <span id="yango-route-title">Étape 1 : Trajet GPS en Temps Réel jusqu'au Centre Commercial</span>
+                <span class="badge badge-success" id="yango-gps-badge">GPS En Direct</span>
+              </div>
+              <div style="font-size:.76rem;color:var(--muted)" id="yango-route-subtitle">
+                Itinéraire routier calculé depuis votre position GPS réelle jusqu'à l'entrée de <strong>BÉLIER MALL ON LINE</strong>, suivi du plan intérieur jusqu'à la boutique.
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+            <div class="gps-telemetry-pill" style="font-size:.8rem">🚗 Distance route : <strong id="yango-road-dist">-- km</strong></div>
+            <div class="gps-telemetry-pill" style="font-size:.8rem">⏱️ Durée estimée : <strong id="yango-road-time" style="color:var(--gold)">-- min</strong></div>
+            <button class="btn-secondary" onclick="scrollToIndoorMallMap()" style="font-size:.76rem;padding:.42rem .85rem;border-color:var(--gold);color:var(--gold)">
+              🏬 Étape 2 : Voir Plan Intérieur 5 Ha ⬇
+            </button>
+          </div>
+        </div>
+
+        <!-- Vraie Carte Routière Interactive (Leaflet + OpenStreetMap + OSRM) -->
+        <div id="yango-leaflet-map" style="width:100%;height:310px;border-radius:14px;border:1px solid rgba(255,255,255,.15);overflow:hidden;z-index:2"></div>
+      </div>
+
+      
+
+      <!-- BARRE DE CONTRÔLE GPS UTILISATEUR EN TEMPS RÉEL -->
+      <div class="realtime-gps-toolbar" id="realtime-gps-toolbar">
+        <div class="gps-status-indicator">
+          <span class="gps-radar-dot" id="gps-radar-dot"></span>
+          <div>
+            <div style="font-weight:800;font-size:.84rem;color:#fff" id="gps-status-title">📡 GPS Temps Réel Utilisateur : Prêt</div>
+            <div style="font-size:.72rem;color:var(--muted)" id="gps-status-sub">Utilise la géolocalisation temps réel de votre téléphone / navigateur pour vous guider dans les 5 hectares.</div>
+          </div>
+        </div>
+
+        <div class="gps-telemetry-pills">
+          <span class="gps-telemetry-pill">Lat: <strong id="gps-live-lat">6.82760° N</strong></span>
+          <span class="gps-telemetry-pill">Lng: <strong id="gps-live-lng">-5.28930° W</strong></span>
+          <span class="gps-telemetry-pill">Précision: <strong id="gps-live-acc">±3 m</strong></span>
+          <span class="gps-telemetry-pill">Cap: <strong id="gps-live-heading">Nord (0°)</strong></span>
+          <span class="gps-telemetry-pill">Distance Cible: <strong id="gps-live-dist">-- m</strong></span>
+        </div>
+
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-gps-live" id="btn-activate-realtime-gps" onclick="toggleRealTimeUserGPS()">
+            📡 Activer mon GPS Temps Réel
+          </button>
+          <button class="btn-secondary" onclick="calibrateGPSAtCurrentLocation()" style="font-size:.75rem;padding:.45rem .8rem" title="Calibrer votre position physique actuelle comme point d'entrée du centre commercial">
+            🎯 Calibrer ma Position Ici
+          </button>
+          <button class="btn-secondary" id="btn-simulate-gps-walk" onclick="startLiveGPSSimulation()" style="font-size:.75rem;padding:.45rem .8rem;border-color:var(--gold);color:var(--gold)" title="Simuler un déplacement piéton GPS en direct jusqu'à la boutique">
+            🚶 Simuler Marche GPS Temps Réel
+          </button>
+        </div>
+      </div>
+
+      <!-- Banderole des 6 Espaces du Masterplan de 5 Hectares (Conforme à l'image) -->
+      <div class="poles-grid" style="grid-template-columns:repeat(auto-fit,minmax(195px,1fr))">
+        <div class="pole-card" onclick="selectStoreById('store-yakro-market')" style="border-left:4px solid #7e22ce">
+          <span class="pole-badge" style="background:rgba(126,34,206,.25);color:#e9d5ff">Centre commercial · 3 ha</span>
+          <div class="pole-title">🏬 30 000 m² · 50 Boutiques</div>
+          <div class="pole-sub">Bâtiment central à dôme vitré : 50 boutiques en location + Yakro Market &amp; Zone Présidentielle Fashion.</div>
+        </div>
+        <div class="pole-card" onclick="selectStoreById('space-event-hall')" style="border-left:4px solid #f97316">
+          <span class="pole-badge" style="background:rgba(249,115,22,.25);color:#fed7aa">Salle événement · 400 m²</span>
+          <div class="pole-title">🎪 Salle Événement (400 m²)</div>
+          <div class="pole-sub">Aile Ouest : Mariages, conférences, séminaires, galas et réceptions officielles.</div>
+        </div>
+        <div class="pole-card" onclick="selectStoreById('space-kids-park')" style="border-left:4px solid #db2777">
+          <span class="pole-badge" style="background:rgba(219,39,119,.25);color:#fbcfe8">Manège enfants · 500 m²</span>
+          <div class="pole-title">🎡 Manège des Enfants</div>
+          <div class="pole-sub">Nord-Est (500 m²) : Grande roue illuminée, carrousel, toboggans &amp; jeux sécurisés.</div>
+        </div>
+        <div class="pole-card" onclick="selectStoreById('space-cinema')" style="border-left:4px solid #0284c7">
+          <span class="pole-badge" style="background:rgba(2,132,199,.25);color:#bae6fd">Cinéma · 800 m²</span>
+          <div class="pole-title">🍿 Cinéma Moderne (800 m²)</div>
+          <div class="pole-sub">Aile Est : Complexe cinématographique Dolby 4K, blockbusters &amp; films africains.</div>
+        </div>
+        <div class="pole-card" onclick="selectStoreById('space-admin-center')" style="border-left:4px solid #16a34a">
+          <span class="pole-badge" style="background:rgba(22,163,74,.25);color:#bbf7d0">Administration · 200 m²</span>
+          <div class="pole-title">🏛️ Administration (200 m²)</div>
+          <div class="pole-sub">Direction Générale de Bélier Mall On Line, Régie des 50 baux &amp; Sécurité.</div>
+        </div>
+        <div class="pole-card" onclick="selectStoreById('space-parking')" style="border-left:4px solid #84cc16">
+          <span class="pole-badge" style="background:rgba(132,204,22,.25);color:#d9f99d">Verdure 1,3 ha &amp; Parking</span>
+          <div class="pole-title">🚗 Parking Souterrain &amp; Parc</div>
+          <div class="pole-sub">Accès souterrain visiteurs au centre-sud + 13 000 m² d'espaces verts &amp; bassin.</div>
+        </div>
+      </div>
+
+      <div class="search-toolbar">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="main-search-input" placeholder="Rechercher sur les 5 hectares : Espace 1 à 50, Centre commercial, Salle événement, Cinéma 800 m², Manège 500 m², Administration, Parking souterrain..." autocomplete="off">
+        </div>
+        <div class="filter-chips">
+          <span class="chip active" data-tag="">✨ Tout le Site (5 Ha)</span>
+          <span class="chip" data-tag="yakro market">🛒 Centre Commercial (3 ha)</span>
+          <span class="chip" data-tag="espace">🔑 50 Boutiques en Location</span>
+          <span class="chip" data-tag="événement">🎪 Salle Événement (400 m²)</span>
+          <span class="chip" data-tag="enfants">🎡 Manège Enfants (500 m²)</span>
+          <span class="chip" data-tag="cinéma">🍿 Cinéma (800 m²)</span>
+          <span class="chip" data-tag="administration">🏛️ Administration (200 m²)</span>
+          <span class="chip" data-tag="parking">🚗 Parking Souterrain &amp; Verdure (1,3 ha)</span>
+        </div>
+        <div class="location-bar">
+          <div class="position-selector">
+            <span>📍 <strong>Point de Départ (GPS Temps Réel ou Borne) :</strong></span>
+            <select id="qr-select" class="select-qr">
+              <option value="GPS_LIVE_USER">📡 Ma Position GPS Temps Réel (Direct)</option>
+              <option value="QR_PORTE_SUD">🚗 Entrée Parking Souterrain Visiteurs (Sud)</option>
+              <option value="QR_PLACE_CENTRALE">⛲ Fontaine Centrale &amp; Esplanade</option>
+              <option value="QR_PORTE_NORD">🏬 Entrée Dôme Centre Commercial (3 ha)</option>
+              <option value="QR_PARKING_SUD">🏛️ Parvis Administration (200 m²)</option>
+            </select>
+          </div>
+          <div style="font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.5rem;">🛰️ Suivi GPS Temps Réel <span class="badge badge-success">Actif</span> · 316,2 m × 158,1 m</div>
+        </div>
+      </div>
+
+      <div class="map-view-grid" id="map-view-grid">
+        <div class="map-container-card" id="map-container-card">
+          <div class="map-header">
+            <div>
+              <span class="map-title" id="mall-map-title">Conception Officielle 5 Hectares (50 000 m²) · BÉLIER MALL ON LINE</span> 
+              <span style="font-size:.76rem;color:var(--muted)">· 316,2 m × 158,1 m · Yamoussoukro</span>
+            </div>
+
+            <!-- Sélecteur de Vues / Niveaux -->
+            <div class="gmaps-view-selector" id="gmaps-view-selector">
+              <button class="view-pill active" id="btn-view-site" onclick="switchMallView('site')" title="Maquette & Plan Global 5 Hectares (316,2m x 158,1m)">
+                🌐 <strong>Site 5 Ha (50 000 m²)</strong>
+              </button>
+              <button class="view-pill" id="btn-view-rdc" onclick="switchMallView('rdc')" title="Centre Commercial 3 ha · Rez-de-Chaussée">
+                🏬 <strong>Centre 3 ha · RDC</strong>
+              </button>
+              <button class="view-pill" id="btn-view-r1" onclick="switchMallView('r1')" title="Centre Commercial 3 ha · Galerie des 50 Boutiques en Location">
+                🔑 <strong>50 Boutiques · R+1</strong>
+              </button>
+              <button class="view-pill" id="btn-view-entertainment" onclick="switchMallView('entertainment')" title="Cinéma (800 m²) & Manège des Enfants (500 m²)">
+                🍿 <strong>Cinéma 800m² &amp; Manège 500m²</strong>
+              </button>
+              <button class="view-pill" id="btn-view-parking" onclick="switchMallView('parking')" title="Parking Souterrain Visiteurs & Verdure 1,3 ha">
+                🚗 <strong>Parking Souterrain</strong>
+              </button>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+              <button class="btn-secondary" onclick="toggleArchImageOverlay()" style="font-size:.72rem;padding:.3rem .6rem;border-color:var(--gold);color:var(--gold)" title="Afficher/Masquer le rendu photo-architectural 5 Ha sous les zones interactives">
+                🖼️ Maquette / Plan
+              </button>
+              <button class="btn-secondary" onclick="trigger3DFlyoverTour()" style="font-size:.72rem;padding:.3rem .6rem" title="Survol cinématique par drone 3D du centre commercial">
+                🚁 Survol 3D
+              </button>
+              <button class="btn-secondary" id="btn-toggle-panel" onclick="toggleSidebarPanel()" style="font-size:.72rem;padding:.3rem .6rem" title="Masquer / Afficher le panneau">
+                ◀ Volet
+              </button>
+              <button class="btn-secondary" onclick="resetMap()" style="font-size:.72rem;padding:.3rem .6rem" title="Recentrer la vue">
+                🎯 Recentrer
+              </button>
+              <button class="btn-secondary" onclick="clearHighlightAndRoute()" style="font-size:.72rem;padding:.3rem .6rem">
+                Effacer
+              </button>
+            </div>
+          </div>
+
+          <div class="map-svg-wrapper" id="map-svg-wrapper">
+            <!-- Google Maps Navigation HUD (Actif lors du guidage) -->
+            <div id="gmaps-nav-hud" class="gmaps-nav-hud" style="display:none;">
+              <div class="gmaps-nav-icon" id="nav-hud-turn-icon">⬆</div>
+              <div class="gmaps-nav-text">
+                <div class="gmaps-nav-instruction" id="nav-hud-instruction">Guidage GPS Temps Réel actif vers votre destination</div>
+                <div class="gmaps-nav-meta">
+                  <span id="nav-hud-eta">~1 min</span> • <span id="nav-hud-dist">65 m</span> • <strong id="nav-hud-target">BÉLIER MALL ON LINE</strong>
+                </div>
+              </div>
+              <div class="gmaps-nav-actions">
+                <button class="gmaps-hud-btn" id="btn-toggle-voice" onclick="toggleVoiceGuidance()" title="Guidage vocal (Activer / Couper)">🔊</button>
+                <button class="gmaps-hud-btn close-btn" onclick="stopNavigation()" title="Quitter la navigation">✕</button>
+              </div>
+            </div>
+
+            <!-- Compass -->
+            <button class="gmaps-compass-btn" id="gmaps-compass" onclick="recenterMap()" title="Nord : Yamoussoukro">
+              <div class="compass-dial">
+                <span class="needle-north">▲</span>
+                <span class="needle-south">▼</span>
+              </div>
+              <span class="compass-label">N</span>
+            </button>
+
+            <!-- Commandes Flottantes -->
+            <div class="gmaps-controls-group">
+              <button class="gmaps-ctrl-btn" onclick="zoomInMap()" title="Agrandir / Zoomer (+)">➕</button>
+              <button class="gmaps-ctrl-btn" onclick="zoomOutMap()" title="Réduire / Dézoomer (-)">➖</button>
+              <button class="gmaps-ctrl-btn" onclick="recenterMap()" title="Recentrer sur ma position GPS">🎯</button>
+              <button class="gmaps-ctrl-btn" id="btn-expand-map" onclick="toggleExpandMap()" title="Plein écran">⛶</button>
+            </div>
+
+            <!-- Sélecteur de Calques -->
+            <div class="gmaps-layers-card">
+              <button class="layer-pill active" id="layer-standard" onclick="switchMapLayer('standard')">🖼️ Maquette 5 Ha</button>
+              <button class="layer-pill" id="layer-satellite" onclick="switchMapLayer('satellite')">📐 Plan Cadastral</button>
+              <button class="layer-pill" id="layer-3d" onclick="switchMapLayer('3d')">🏙️ 3D Relief</button>
+            </div>
+
+            <!-- Échelle & Statut -->
+            <div class="gmaps-bottom-bar">
+              <div class="gmaps-traffic-pill">
+                <span class="status-dot"></span> GPS Temps Réel · 5 Hectares (50 000 m²)
+              </div>
+              <div class="gmaps-scale-pill">
+                <span class="scale-ruler"></span> 316,2 m × 158,1 m
+              </div>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="100%" height="100%" id="smartmall-svg" style="position:relative;z-index:1">
+              <defs>
+                <style>
+                  .wall{fill:none;stroke:rgba(245,185,66,.55);stroke-width:3;filter:drop-shadow(0 0 8px rgba(245,185,66,.6))}
+                  .store-cell{cursor:pointer;transition:all .3s ease;stroke-width:2;filter:drop-shadow(0 0 6px var(--glow,transparent))}
+                  .store-cell:hover{stroke-width:3.5;filter:drop-shadow(0 0 16px var(--glow)) brightness(1.25)}
+                  .store-highlighted{stroke:#fff!important;stroke-width:4!important;animation:neon 1.2s infinite}
+                  @keyframes neon{0%,100%{filter:drop-shadow(0 0 6px #ff4d6d)}50%{filter:drop-shadow(0 0 24px #ff4d6d) brightness(1.4)}}
+                  .store-label{font:700 12px Inter,sans-serif;fill:#fff;pointer-events:none}
+                  .store-category{font:500 9.5px Inter,sans-serif;fill:rgba(255,255,255,.75);pointer-events:none}
+                  .amenity-label{font:700 10.5px Inter,sans-serif;fill:#5eead4;pointer-events:none}
+                  .door-label{font:800 10px Inter,sans-serif;fill:#07090f;text-anchor:middle;pointer-events:none}
+                  .qr-station{cursor:pointer}
+                  .qr-station circle{animation:qrpulse 2s infinite}
+                  @keyframes qrpulse{50%{filter:drop-shadow(0 0 12px #ff4d6d)}}
+                  .route-path{fill:none;stroke:url(#routeGrad);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:12,9;animation:dash 1s linear infinite;filter:drop-shadow(0 0 12px #f5b942)}
+                  @keyframes dash{to{stroke-dashoffset:-42}}
+                  .walker-dot{fill:#38bdf8;stroke:#fff;stroke-width:3.5;filter:drop-shadow(0 0 16px #38bdf8)}
+                  .walker-ring{fill:none;stroke:#38bdf8;stroke-width:2.5;animation:ring 1.8s infinite;transform-origin:center;transform-box:fill-box}
+                  @keyframes ring{from{r:9;opacity:.95}to{r:34;opacity:0}}
+                  .arch-callout{cursor:pointer;transition:transform .25s ease,filter .25s ease}
+                  .arch-callout:hover{filter:brightness(1.2) drop-shadow(0 6px 16px rgba(255,255,255,0.4))}
+                </style>
+                <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5b942"/><stop offset="1" stop-color="#ff7a1a"/></linearGradient>
+                <linearGradient id="roadGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0f172a"/><stop offset="0.5" stop-color="#1e293b"/><stop offset="1" stop-color="#0f172a"/></linearGradient>
+                <linearGradient id="glassRoofGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="rgba(126,34,206,0.35)"/><stop offset="1" stop-color="rgba(56,189,248,0.28)"/></linearGradient>
+                <linearGradient id="parkGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(30,41,59,0.9)"/><stop offset="1" stop-color="rgba(15,23,42,0.95)"/></linearGradient>
+                <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/></pattern>
+              </defs>
+
+              <rect width="1000" height="700" fill="url(#gridPattern)"/>
+
+              <!-- ========================================================================= -->
+              <!-- VUE 1 : CONCEPTION OFFICIELLE 5 HECTARES (50 000 m² · 316,2 m x 158,1 m) -->
+              <!-- Identique à l'image jointe avec zones interactives et GPS Temps Réel      -->
+              <!-- ========================================================================= -->
+              <g id="layer-site" class="mall-view-layer">
+                <!-- Fond Image Maquette Officielle 5 Hectares -->
+                <image id="masterplan-bg-image" href="masterplan_5ha.jpg" x="0" y="0" width="1000" height="700" preserveAspectRatio="none" opacity="0.88"/>
+
+                <!-- Cotes & Dimensions Cadastrales Officielles (316,2 m x 158,1 m) -->
+                <g id="cadastral-dimensions" pointer-events="none">
+                  <!-- Flèche horizontale 316,2 m -->
+                  <line x1="155" y1="88" x2="825" y2="88" stroke="#ffffff" stroke-width="2.2" stroke-dasharray="6 3"/>
+                  <polygon points="150,88 164,83 164,93" fill="#ffffff"/>
+                  <polygon points="830,88 816,83 816,93" fill="#ffffff"/>
+                  <rect x="455" y="73" width="90" height="24" rx="6" fill="rgba(15,23,42,0.88)" stroke="#f5b942" stroke-width="1.5"/>
+                  <text x="500" y="89" font-family="Inter" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle">316,2 m</text>
+
+                  <!-- Flèche latérale gauche 158,1 m -->
+                  <line x1="138" y1="96" x2="12" y2="510" stroke="#ffffff" stroke-width="2.2"/>
+                  <polygon points="140,92 131,103 141,106" fill="#ffffff"/>
+                  <polygon points="10,515 19,504 9,501" fill="#ffffff"/>
+                  <g transform="translate(52, 285) rotate(-71)">
+                    <rect x="-45" y="-13" width="90" height="24" rx="6" fill="rgba(15,23,42,0.88)" stroke="#f5b942" stroke-width="1.5"/>
+                    <text x="0" y="3" font-family="Inter" font-size="12.5" font-weight="900" fill="#ffffff" text-anchor="middle">158,1 m</text>
+                  </g>
+                </g>
+
+                <!-- 1. CENTRE COMMERCIAL (3 HECTARES = 30 000 m² · 50 BOUTIQUES EN LOCATION) -->
+                <g class="site-building clickable-pole arch-callout" onclick="switchMallView('rdc')">
+                  <rect id="cell-pole1-site" x="235" y="112" width="455" height="175" rx="18" fill="rgba(126,34,206,0.18)" stroke="#a855f7" stroke-width="2.8" style="--glow:#a855f7" class="store-cell"/>
+                  <!-- Dôme central vitré -->
+                  <ellipse cx="462" cy="188" rx="62" ry="24" fill="rgba(56,189,248,0.28)" stroke="#38bdf8" stroke-width="2"/>
+                  <text x="462" y="232" font-family="Inter" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle" style="text-shadow:0 2px 6px #000">BÉLIER MALL ON LINE</text>
+                  <!-- Étiquette officielle Violette identique à l'image -->
+                  <rect x="388" y="96" width="148" height="62" rx="12" fill="#7e22ce" stroke="#ffffff" stroke-width="2" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.6))"/>
+                  <text x="462" y="115" font-family="Inter" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">Centre commercial</text>
+                  <text x="462" y="131" font-family="Inter" font-size="10.5" font-weight="700" fill="#f3e8ff" text-anchor="middle">(3 hectares)</text>
+                  <text x="462" y="147" font-family="Inter" font-size="10.5" font-weight="900" fill="#fef08a" text-anchor="middle">= 30 000 m² · 50 Boutiques</text>
+                  <circle cx="462" cy="184" r="4" fill="#ffffff"/>
+                  <line x1="462" y1="158" x2="462" y2="184" stroke="#ffffff" stroke-width="1.8"/>
+                </g>
+
+                <!-- 2. SALLE ÉVÉNEMENT (400 m²) - À GAUCHE / OUEST -->
+                <g class="site-building clickable-pole arch-callout" onclick="selectStoreById('space-event-hall')">
+                  <rect id="cell-event-hall" x="115" y="205" width="195" height="98" rx="14" fill="rgba(249,115,22,0.22)" stroke="#f97316" stroke-width="2.5" style="--glow:#f97316" class="store-cell"/>
+                  <rect x="135" y="152" width="122" height="46" rx="11" fill="#ea580c" stroke="#ffffff" stroke-width="2" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.6))"/>
+                  <text x="196" y="172" font-family="Inter" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">Salle événement</text>
+                  <text x="196" y="188" font-family="Inter" font-size="10.5" font-weight="800" fill="#ffedd5" text-anchor="middle">(400 m²)</text>
+                  <line x1="196" y1="198" x2="196" y2="232" stroke="#f97316" stroke-width="2"/>
+                  <circle cx="196" cy="232" r="4" fill="#f97316" stroke="#fff" stroke-width="1.5"/>
+                </g>
+
+                <!-- 3. MANÈGE DES ENFANTS (500 m²) - EN HAUT À DROITE / NORD-EST -->
+                <g class="site-building clickable-pole arch-callout" onclick="selectStoreById('space-kids-park')">
+                  <rect id="cell-pole2-site" x="695" y="95" width="215" height="102" rx="14" fill="rgba(219,39,119,0.22)" stroke="#ec4899" stroke-width="2.5" style="--glow:#ec4899" class="store-cell"/>
+                  <rect x="825" y="45" width="128" height="46" rx="11" fill="#be185d" stroke="#ffffff" stroke-width="2" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.6))"/>
+                  <text x="889" y="65" font-family="Inter" font-size="10.5" font-weight="800" fill="#ffffff" text-anchor="middle">Manège des enfants</text>
+                  <text x="889" y="81" font-family="Inter" font-size="10.5" font-weight="800" fill="#fce7f3" text-anchor="middle">(500 m²)</text>
+                  <line x1="889" y1="91" x2="889" y2="132" stroke="#ec4899" stroke-width="2"/>
+                  <circle cx="889" cy="132" r="4" fill="#ec4899" stroke="#fff" stroke-width="1.5"/>
+                </g>
+
+                <!-- 4. CINÉMA (800 m²) - À DROITE / EST -->
+                <g class="site-building clickable-pole arch-callout" onclick="selectStoreById('space-cinema')">
+                  <rect id="cell-pole3-site" x="720" y="205" width="235" height="118" rx="14" fill="rgba(2,132,199,0.24)" stroke="#38bdf8" stroke-width="2.5" style="--glow:#38bdf8" class="store-cell"/>
+                  <rect x="812" y="164" width="98" height="46" rx="11" fill="#0284c7" stroke="#ffffff" stroke-width="2" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.6))"/>
+                  <text x="861" y="184" font-family="Inter" font-size="11.5" font-weight="800" fill="#ffffff" text-anchor="middle">Cinéma</text>
+                  <text x="861" y="200" font-family="Inter" font-size="10.5" font-weight="800" fill="#e0f2fe" text-anchor="middle">(800 m²)</text>
+                  <line x1="861" y1="210" x2="861" y2="238" stroke="#38bdf8" stroke-width="2"/>
+                  <circle cx="861" cy="238" r="4" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+                </g>
+
+                <!-- 5. ADMINISTRATION DU CENTRE (200 m²) - CENTRE-DROIT -->
+                <g class="site-building clickable-pole arch-callout" onclick="selectStoreById('space-admin-center')">
+                  <rect id="cell-admin-center" x="615" y="305" width="185" height="88" rx="12" fill="rgba(22,163,74,0.24)" stroke="#22c55e" stroke-width="2.5" style="--glow:#22c55e" class="store-cell"/>
+                  <rect x="650" y="268" width="105" height="54" rx="11" fill="#15803d" stroke="#ffffff" stroke-width="2" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.6))"/>
+                  <text x="702" y="286" font-family="Inter" font-size="10.5" font-weight="800" fill="#ffffff" text-anchor="middle">Administration</text>
+                  <text x="702" y="300" font-family="Inter" font-size="10" font-weight="700" fill="#dcfce7" text-anchor="middle">du centre</text>
+                  <text x="702" y="314" font-family="Inter" font-size="10" font-weight="800" fill="#fef08a" text-anchor="middle">(200 m²)</text>
+                </g>
+
+                <!-- 6. VERDURE & ESPACES VERTS ≈ 1,3 HECTARE (13 000 m²) - GAUCHE & DROITE -->
+                <g class="site-building clickable-pole arch-callout" onclick="selectStoreById('space-greenpark')">
+                  <rect id="cell-green-west" x="62" y="335" width="215" height="90" rx="14" fill="rgba(21,128,61,0.22)" stroke="#4ade80" stroke-width="2" style="--glow:#4ade80" class="store-cell"/>
+                  <rect x="68" y="342" width="136" height="58" rx="11" fill="#15803d" stroke="#ffffff" stroke-width="2"/>
+                  <text x="136" y="360" font-family="Inter" font-size="9.5" font-weight="800" fill="#ffffff" text-anchor="middle">Verdure &amp; espaces verts</text>
+                  <text x="136" y="375" font-family="Inter" font-size="10" font-weight="800" fill="#bbf7d0" text-anchor="middle">≈ 1,3 hectare</text>
+                  <text x="136" y="390" font-family="Inter" font-size="9.5" font-weight="700" fill="#ffffff" text-anchor="middle">(13 000 m²)</text>
+
+                  <rect x="825" y="352" width="136" height="58" rx="11" fill="#15803d" stroke="#ffffff" stroke-width="2"/>
+                  <text x="893" y="370" font-family="Inter" font-size="9.5" font-weight="800" fill="#ffffff" text-anchor="middle">Verdure &amp; espaces verts</text>
+                  <text x="893" y="385" font-family="Inter" font-size="10" font-weight="800" fill="#bbf7d0" text-anchor="middle">≈ 1,3 hectare</text>
+                  <text x="893" y="400" font-family="Inter" font-size="9.5" font-weight="700" fill="#ffffff" text-anchor="middle">(13 000 m²)</text>
+                </g>
+
+                <!-- 7. PARKING SOUTERRAIN (POUR LES VISITEURS) - CENTRE SUD -->
+                <g class="site-building clickable-pole arch-callout" onclick="switchMallView('parking')">
+                  <rect id="cell-pole4-site" x="395" y="395" width="205" height="125" rx="16" fill="rgba(15,23,42,0.35)" stroke="#f5b942" stroke-width="2.8" style="--glow:#f5b942" class="store-cell"/>
+                  <rect x="425" y="396" width="146" height="46" rx="11" fill="#0f172a" stroke="#f5b942" stroke-width="2" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.75))"/>
+                  <text x="498" y="416" font-family="Inter" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">Parking souterrain</text>
+                  <text x="498" y="432" font-family="Inter" font-size="10" font-weight="700" fill="#f5b942" text-anchor="middle">(pour les visiteurs)</text>
+                </g>
+
+                <!-- Fontaine Centrale Lumineuse -->
+                <circle cx="478" cy="305" r="24" fill="rgba(56,189,248,0.28)" stroke="#38bdf8" stroke-width="2"/>
+                <text x="478" y="309" font-family="Inter" font-size="8.5" font-weight="800" fill="#ffffff" text-anchor="middle">⛲ FONTAINE</text>
+              </g>
+
+              <!-- VUE 2 : PÔLE 1 · REZ-DE-CHAUSSÉE (RDC - 800 m²)          -->
+              <!-- ======================================================== -->
+              <g id="layer-rdc" class="mall-view-layer" style="display:none;">
+                <text x="500" y="24" font-family="Inter" font-size="11" font-weight="800" fill="#f5b942" text-anchor="middle">🏢 PÔLE 1 · REZ-DE-CHAUSSÉE (RDC) · COEUR COMMERCIAL &amp; RESTAURATION</text>
+
+                <!-- Couloirs et circulations RDC -->
+                <rect x="40" y="38" width="920" height="624" rx="18" fill="rgba(255,255,255,.025)" stroke="rgba(245,185,66,.55)" stroke-width="2.5"/>
+                <g id="corridors-rdc" fill="rgba(255,255,255,.04)">
+                  <rect x="430" y="45" width="140" height="610" rx="6"/>
+                  <rect x="45" y="300" width="910" height="90" rx="6"/>
+                  <rect x="250" y="45" width="80" height="345"/>
+                  <rect x="520" y="45" width="70" height="580"/>
+                  <!-- Place du Bélier & Fontaine -->
+                  <circle cx="500" cy="345" r="75" fill="rgba(245,185,66,.08)" stroke="rgba(245,185,66,.4)" stroke-width="2" stroke-dasharray="4 6"/>
+                  <circle cx="500" cy="345" r="28" fill="rgba(56,189,248,.15)" stroke="#38bdf8" stroke-width="1.5"/>
+                  <text x="500" y="342" font-family="Inter" font-size="10.5" font-weight="800" fill="#f5b942" text-anchor="middle">♈ PLACE DU BÉLIER</text>
+                  <text x="500" y="356" font-family="Inter" font-size="8.5" font-weight="600" fill="rgba(255,255,255,.7)" text-anchor="middle">Fontaine &amp; Escalators vers R+1</text>
+                </g>
+
+                <g id="door-north"><rect x="425" y="30" width="150" height="18" rx="9" fill="#f5b942"/><text x="500" y="43" class="door-label">Porte Zone Présidentielle</text></g>
+                <g id="door-south"><rect x="430" y="650" width="140" height="18" rx="9" fill="#f5b942"/><text x="500" y="663" class="door-label">ACCÈS ESPLANADE SUD</text></g>
+
+                <!-- Boutiques et Cellules RDC -->
+                <g><rect id="cell-fnac" x="60" y="60" width="180" height="130" rx="12" fill="rgba(245,185,66,.18)" stroke="#f5b942" style="--glow:#f5b942" class="store-cell"/><text x="72" y="98" class="store-label">🔑 Espace 1</text><text x="72" y="116" class="store-category">20 m² · En Location</text><text x="72" y="134" font-family="Inter" font-size="8.5" fill="#f5b942">250 000 F/m · +225 05 65 98 22 29</text></g>
+                <g><rect id="cell-apple" x="260" y="60" width="150" height="130" rx="12" fill="rgba(148,163,184,.18)" stroke="#cbd5e1" style="--glow:#cbd5e1" class="store-cell"/><text x="272" y="98" class="store-label">🔑 Espace 2</text><text x="272" y="116" class="store-category">20 m² · En Location</text><text x="272" y="134" font-family="Inter" font-size="8.5" fill="#cbd5e1">250 000 F/m · +225 05 65 98 22 29</text></g>
+                
+                <g><rect id="cell-atm" x="260" y="210" width="70" height="60" rx="10" fill="rgba(25,195,125,.2)" stroke="#19c37d" style="--glow:#19c37d" class="store-cell"/><text x="268" y="242" font-family="Inter" font-weight="800" font-size="10.5" fill="#5df0b0" pointer-events="none">🏧 Wave</text><text x="268" y="256" font-family="Inter" font-size="7.5" fill="#fff" pointer-events="none">DAB / MoMo</text></g>
+                <g><rect id="cell-toilettes" x="840" y="210" width="105" height="70" rx="12" fill="rgba(45,212,191,.16)" stroke="#2dd4bf" style="--glow:#2dd4bf" class="store-cell"/><text x="852" y="245" class="amenity-label">🚻 Sanitaires</text><text x="852" y="260" class="store-category">Bébé &amp; PMR</text></g>
+                
+                <!-- LOCOMOTIVE 1 : SUPERMARCHÉ YAKRO MARKET (800 m²) -->
+                <g><rect id="cell-supermarket" x="60" y="410" width="350" height="230" rx="14" fill="rgba(56,189,248,.22)" stroke="#38bdf8" stroke-width="2.5" style="--glow:#38bdf8" class="store-cell"/>
+                  <text x="80" y="445" class="store-label" font-size="14">🛒 SUPERMARCHÉ YAKRO MARKET</text>
+                  <text x="80" y="470" class="store-category" font-size="10.5">Produit d'appel 800 m² · 5 000 références alimentaires &amp; hygiène</text>
+                  <text x="80" y="492" class="store-category" font-size="9.5">Rayon 'Made in Yamoussoukro' (Produits Toumodi &amp; Didiévi)</text>
+                  <text x="80" y="514" class="store-category" font-size="9">6 Caisses enregistreuses · Chariots PMR &amp; Familles</text>
+                  <text x="80" y="540" font-family="Inter" font-size="9.5" font-weight="700" fill="#38bdf8">LOCOMOTIVE 1 · DG Grace Kouassi</text>
+                  <rect x="80" y="565" width="280" height="20" rx="10" fill="#0284c7"/>
+                  <text x="220" y="579" font-family="Inter" font-size="8" font-weight="800" fill="#fff" text-anchor="middle">80% DU FLUX CLIENT QUOTIDIEN</text>
+                </g>
+                
+                <!-- LOCOMOTIVE 2 : RESTAURANT LE ZONE PRÉSIDENTIELLE GOURMAND (150 PLACES) -->
+                <g><rect id="cell-resto-vip" x="590" y="310" width="355" height="330" rx="14" fill="rgba(245,185,66,.24)" stroke="#f5b942" stroke-width="2.5" style="--glow:#f5b942" class="store-cell"/>
+                  <text x="612" y="345" class="store-label" font-size="14">🔑 ESPACE 3 (EN LOCATION)</text>
+                  <text x="612" y="370" class="store-category" font-size="10.5">150 Places Assises · Salle Climatisée &amp; Terrasse</text>
+                  <text x="612" y="392" class="store-category" font-size="9.5">Carpe Braisée, Attiéké Poisson, Alloco, Garba Chic &amp; Burger</text>
+                  <text x="612" y="414" class="store-category" font-size="9">Cuisine ouverte transparente aux normes HACCP</text>
+                  <text x="612" y="440" font-family="Inter" font-size="9.5" font-weight="700" fill="#f5b942">LOCOMOTIVE 2 · Chef Franck Yao</text>
+                  <rect x="612" y="465" width="280" height="20" rx="10" fill="#d97706"/>
+                  <text x="752" y="479" font-family="Inter" font-size="8" font-weight="800" fill="#fff" text-anchor="middle">COMMANDE SUR PLACE &amp; VIA YAMO-APP</text>
+                </g>
+
+                <g><rect id="cell-foodcourt" x="590" y="60" width="230" height="220" rx="12" fill="rgba(255,122,26,.18)" stroke="#ff7a1a" style="--glow:#ff7a1a" class="store-cell"/><text x="606" y="105" class="store-label">🔑 Espace 4</text><text x="606" y="125" class="store-category">20 m² · En Location</text><text x="606" y="145" font-family="Inter" font-size="8.5" fill="#ff7a1a">250 000 F/m · +225 05 65 98 22 29</text></g>
+              </g>
+
+              <!-- ======================================================== -->
+              <!-- VUE 3 : PÔLE 1 · ÉTAGE R+1 (MODE & GALERIE 46 BOUTIQUES) -->
+              <!-- ======================================================== -->
+              <g id="layer-r1" class="mall-view-layer" style="display:none;">
+                <text x="500" y="24" font-family="Inter" font-size="11" font-weight="800" fill="#f472b6" text-anchor="middle">✨ PÔLE 1 · ÉTAGE R+1 · GALERIE PRESTIGE MODE, BEAUTÉ &amp; 46 BOUTIQUES</text>
+
+                <rect x="40" y="38" width="920" height="624" rx="18" fill="rgba(255,255,255,.025)" stroke="#f472b6" stroke-width="2.5"/>
+                
+                <!-- Atrium vide central avec balustrade dorée surplombant la fontaine -->
+                <circle cx="500" cy="345" r="95" fill="none" stroke="#f5b942" stroke-width="3" stroke-dasharray="6 4"/>
+                <text x="500" y="338" font-family="Inter" font-size="10.5" font-weight="800" fill="#f5b942" text-anchor="middle">MEZZANINE PANORAMIQUE</text>
+                <text x="500" y="354" font-family="Inter" font-size="8.5" fill="#fff" text-anchor="middle">Vue Plongeante sur la Place du Bélier</text>
+                <text x="500" y="370" font-family="Inter" font-size="8" fill="#f5b942" text-anchor="middle">Escalators &amp; Ascenseurs PMR ⬇</text>
+
+                <!-- LOCOMOTIVE 3 : MAGASIN DE VÊTEMENTS ZONE PRÉSIDENTIELLE FASHION -->
+                <g><rect id="cell-lot-104" x="60" y="60" width="350" height="220" rx="14" fill="rgba(245,185,66,.22)" stroke="#f5b942" stroke-width="2.5" style="--glow:#f5b942" class="store-cell"/>
+                  <text x="80" y="98" class="store-label" font-size="13">👗 ZONE PRÉSIDENTIELLE FASHION</text>
+                  <text x="80" y="122" class="store-category" font-size="10">Prêt-à-porter Chic &amp; Tenues Homme, Femme, Enfant</text>
+                  <text x="80" y="142" class="store-category" font-size="9">Fournisseurs Dubaï, Turquie &amp; Créateurs Adjamé</text>
+                  <text x="80" y="162" class="store-category" font-size="8.5">Conseil en stylisme personnalisé &amp; cabines d'essayage</text>
+                  <text x="80" y="188" font-family="Inter" font-size="9.5" font-weight="700" fill="#f5b942">LOCOMOTIVE 3 · Mode &amp; Tendances</text>
+                </g>
+
+                <!-- LOCOMOTIVE 4 : SALON D'ESTHÉTIQUE BELLE DE YAKRO -->
+                <g><rect id="cell-zara" x="590" y="60" width="350" height="220" rx="14" fill="rgba(244,114,182,.22)" stroke="#f472b6" stroke-width="2.5" style="--glow:#f472b6" class="store-cell"/>
+                  <text x="610" y="98" class="store-label" font-size="13">🔑 ESPACE 6 (EN LOCATION)</text>
+                  <text x="610" y="122" class="store-category" font-size="10">Salon de Beauté VIP &amp; Métamorphose Physique</text>
+                  <text x="610" y="142" class="store-category" font-size="9">Coiffure dame, tresses artistiques, onglerie &amp; pédicure</text>
+                  <text x="610" y="162" class="store-category" font-size="8.5">Forfaits Mariage, Cérémonies &amp; Maquillage Haute Définition</text>
+                  <text x="610" y="188" font-family="Inter" font-size="9.5" font-weight="700" fill="#f472b6">LOCOMOTIVE 4 · Mme Koné Mariam</text>
+                </g>
+
+                <!-- B03 : KITA ROYAL -->
+                <g><rect id="cell-arcade" x="60" y="300" width="180" height="150" rx="12" fill="rgba(217,70,239,.18)" stroke="#e879f9" style="--glow:#e879f9" class="store-cell"/><text x="72" y="340" class="store-label">🔑 Espace 5</text><text x="72" y="360" class="store-category">20 m² · En Location (R+1)</text><text x="72" y="380" font-family="Inter" font-size="8.5" fill="#e879f9">250 000 F/m · +225 05 65 98 22 29</text></g>
+
+                <!-- GALERIE DES 46 BOUTIQUES EN LOCATION-GÉRANCE -->
+                <g><rect id="cell-greenpark" x="60" y="470" width="880" height="180" rx="14" fill="rgba(25,195,125,.14)" stroke="#19c37d" stroke-width="2" style="--glow:#19c37d" class="store-cell"/>
+                  <text x="80" y="505" class="store-label" font-size="13">🔑 GALERIE DES 50 BOUTIQUES EN LOCATION (ESPACE 1 À ESPACE 50)</text>
+                  <text x="80" y="528" class="store-category" font-size="10">Cellules modernes climatisées de 20 m² chacune (B05 à B50)</text>
+                  <text x="80" y="548" class="store-category" font-size="9">Loyer fixe : 250 000 FCFA / mois · Contrat 12 mois renouvelable · 3 mois de caution</text>
+                  <text x="80" y="570" font-family="Inter" font-size="9.5" font-weight="700" fill="#5df0b0">50 Boutiques × 250 000 FCFA/mois = 12 500 000 FCFA / mois (150 000 000 FCFA / an)</text>
+                  
+                  <!-- Grille de 12 cellules représentées -->
+                  <g transform="translate(80, 585)" fill="rgba(255,255,255,.05)" stroke="rgba(25,195,125,.4)" stroke-width="1">
+                    <rect x="0" y="0" width="60" height="45" rx="4"/><text x="30" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B05</text>
+                    <rect x="70" y="0" width="60" height="45" rx="4"/><text x="100" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B06</text>
+                    <rect x="140" y="0" width="60" height="45" rx="4"/><text x="170" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B07</text>
+                    <rect x="210" y="0" width="60" height="45" rx="4"/><text x="240" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B08</text>
+                    <rect x="280" y="0" width="60" height="45" rx="4"/><text x="310" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B09</text>
+                    <rect x="350" y="0" width="60" height="45" rx="4"/><text x="380" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B10</text>
+                    <rect x="420" y="0" width="60" height="45" rx="4"/><text x="450" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B11</text>
+                    <rect x="490" y="0" width="60" height="45" rx="4"/><text x="520" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B12</text>
+                    <rect x="560" y="0" width="60" height="45" rx="4"/><text x="590" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B13</text>
+                    <rect x="630" y="0" width="60" height="45" rx="4"/><text x="660" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B14</text>
+                    <rect x="700" y="0" width="60" height="45" rx="4"/><text x="730" y="27" font-family="Inter" font-size="7.5" fill="#fff" text-anchor="middle">B15</text>
+                    <rect x="770" y="0" width="60" height="45" rx="4"/><text x="800" y="27" font-family="Inter" font-size="7.5" fill="#5df0b0" text-anchor="middle">+31</text>
+                  </g>
+                </g>
+              </g>
+
+              <!-- ======================================================== -->
+              <!-- VUE 4 : PÔLE 2 & 3 · LOISIRS ENFANTS & CINÉMA DOLBY      -->
+              <!-- ======================================================== -->
+              <g id="layer-entertainment" class="mall-view-layer" style="display:none;">
+                <text x="500" y="24" font-family="Inter" font-size="11" font-weight="800" fill="#a78bfa" text-anchor="middle">🍿 PÔLE 3 (CINÉMA 100 PLACES) &amp; PÔLE 2 (ANNEXE ENFANTS 300 m²)</text>
+
+                <!-- PÔLE 3 : CINÉMA MODERNE 100 PLACES -->
+                <g><rect id="cell-cinema" x="45" y="45" width="430" height="615" rx="16" fill="rgba(139,92,246,.18)" stroke="#a78bfa" stroke-width="2.5" style="--glow:#a78bfa" class="store-cell"/>
+                  <rect x="60" y="60" width="400" height="35" rx="8" fill="rgba(0,0,0,0.5)"/>
+                  <text x="260" y="83" font-family="Inter" font-size="12" font-weight="800" fill="#c4b5fd" text-anchor="middle">🍿 PÔLE 3 · SALLE DE CINÉMA DOLBY</text>
+                  
+                  <!-- Écran Incurvé Géant 4K Laser -->
+                  <path d="M 80 135 Q 260 115 440 135" fill="none" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" style="filter:drop-shadow(0 0 12px #38bdf8)"/>
+                  <text x="260" y="160" font-family="Inter" font-size="9" font-weight="800" fill="#38bdf8" text-anchor="middle">ÉCRAN GÉANT INCURVÉ 4K LASER &amp; SON DOLBY ATMOS</text>
+
+                  <!-- 10 Rangées de 10 Fauteuils Club en velours rouge (100 Places) -->
+                  <g transform="translate(85, 180)" fill="#e11d48">
+                    <!-- Rangs 1 à 10 -->
+                    <rect x="0" y="0" width="350" height="12" rx="3"/><text x="175" y="9" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 1 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="22" width="350" height="12" rx="3"/><text x="175" y="31" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 2 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="44" width="350" height="12" rx="3"/><text x="175" y="53" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 3 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="66" width="350" height="12" rx="3"/><text x="175" y="75" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 4 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="88" width="350" height="12" rx="3"/><text x="175" y="97" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 5 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="110" width="350" height="12" rx="3"/><text x="175" y="119" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 6 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="132" width="350" height="12" rx="3"/><text x="175" y="141" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 7 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="154" width="350" height="12" rx="3"/><text x="175" y="163" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 8 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="176" width="350" height="12" rx="3"/><text x="175" y="185" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 9 · Fauteuils Club VIP (10 places)</text>
+                    <rect x="0" y="198" width="350" height="12" rx="3"/><text x="175" y="207" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">Rang 10 · Fauteuils Club VIP (10 places)</text>
+                  </g>
+
+                  <!-- Hall d'accueil Cinéma : Billetterie & Popcorn -->
+                  <rect x="65" y="440" width="390" height="100" rx="10" fill="rgba(0,0,0,0.4)" stroke="rgba(139,92,246,.3)"/>
+                  <text x="260" y="465" font-family="Inter" font-size="9.5" font-weight="700" fill="#fff" text-anchor="middle">🎟️ Hall d'Accueil · Billetterie &amp; Bar à Popcorn</text>
+                  <text x="260" y="485" font-family="Inter" font-size="8.5" fill="#ddd6fe" text-anchor="middle">Tarif Billet : 3 500 FCFA · Programmation Films Africains &amp; Blockbusters</text>
+                  <text x="260" y="505" font-family="Inter" font-size="8.5" fill="#f5b942" text-anchor="middle">Privatisation Séminaires &amp; Entreprises Yamoussoukro</text>
+                  
+                  <text x="260" y="580" font-family="Inter" font-size="9" font-weight="700" fill="#c4b5fd" text-anchor="middle">Responsable : M. YAO Kouadio Franck</text>
+                </g>
+
+                <!-- PÔLE 2 : ANNEXE LOISIRS POUR ENFANTS 300 m² -->
+                <g><rect id="cell-rest" x="525" y="45" width="430" height="615" rx="16" fill="rgba(25,195,125,.18)" stroke="#19c37d" stroke-width="2.5" style="--glow:#19c37d" class="store-cell"/>
+                  <rect x="540" y="60" width="400" height="35" rx="8" fill="rgba(0,0,0,0.5)"/>
+                  <text x="740" y="83" font-family="Inter" font-size="12" font-weight="800" fill="#5df0b0" text-anchor="middle">🎡 PÔLE 2 · ANNEXE LOISIRS ENFANTS (300 m²)</text>
+                  
+                  <!-- Attractions représentées -->
+                  <!-- Piscine à boules -->
+                  <circle cx="630" cy="180" r="55" fill="rgba(244,114,182,.25)" stroke="#f472b6" stroke-width="2"/>
+                  <text x="630" y="176" font-family="Inter" font-size="9" font-weight="800" fill="#fff" text-anchor="middle">PISCINE À BOULES</text>
+                  <text x="630" y="192" font-family="Inter" font-size="7.5" fill="#fbcfe8" text-anchor="middle">10 000 boules pastel</text>
+
+                  <!-- Manège Carrousel -->
+                  <circle cx="840" cy="180" r="55" fill="rgba(245,185,66,.25)" stroke="#f5b942" stroke-width="2"/>
+                  <text x="840" y="176" font-family="Inter" font-size="9" font-weight="800" fill="#fff" text-anchor="middle">MANÈGE ENFANTS</text>
+                  <text x="840" y="192" font-family="Inter" font-size="7.5" fill="#fef08a" text-anchor="middle">Chevaux de bois &amp; Autos</text>
+
+                  <!-- Toboggans géants & motricité -->
+                  <rect x="545" y="270" width="390" height="110" rx="10" fill="rgba(56,189,248,.18)" stroke="#38bdf8"/>
+                  <text x="740" y="300" font-family="Inter" font-size="10" font-weight="700" fill="#38bdf8" text-anchor="middle">🎢 GRANDS TOBOGGANS TUBULAIRES &amp; PARCOURS AVENTURE</text>
+                  <text x="740" y="322" font-family="Inter" font-size="8.5" fill="#fff" text-anchor="middle">Sol amortissant sécurisé aux normes européennes</text>
+                  <text x="740" y="342" font-family="Inter" font-size="8" fill="#bae6fd" text-anchor="middle">Zone Jeux Vidéo &amp; Consoles Éducatives</text>
+
+                  <!-- Sas d'accueil & Sécurité des enfants -->
+                  <rect x="545" y="410" width="390" height="130" rx="10" fill="rgba(0,0,0,0.4)" stroke="rgba(25,195,125,.3)"/>
+                  <text x="740" y="435" font-family="Inter" font-size="10" font-weight="800" fill="#5df0b0" text-anchor="middle">🛡️ SAS DE SÉCURITÉ &amp; BRACELETS NFC</text>
+                  <text x="740" y="458" font-family="Inter" font-size="8.5" fill="#fff" text-anchor="middle">Tarif : 1 500 FCFA / heure de jeu</text>
+                  <text x="740" y="478" font-family="Inter" font-size="8.5" fill="#a7f3d0" text-anchor="middle">2 Animatrices diplômées en permanence</text>
+                  <text x="740" y="498" font-family="Inter" font-size="8" fill="#5df0b0" text-anchor="middle">Seule aire de jeux moderne et sécurisée de Yamoussoukro</text>
+                  <text x="740" y="520" font-family="Inter" font-size="8" fill="rgba(255,255,255,.7)" text-anchor="middle">Salon détente parents avec vue vitrée sur l'aire de jeu</text>
+                </g>
+              </g>
+
+              <!-- ======================================================== -->
+              <!-- VUE 5 : PÔLE 4 · GRAND PARKING 300 PLACES                -->
+              <!-- ======================================================== -->
+              <g id="layer-parking" class="mall-view-layer" style="display:none;">
+                <text x="500" y="24" font-family="Inter" font-size="11" font-weight="800" fill="#38bdf8" text-anchor="middle">🚗 PÔLE 4 · GRAND PARKING SÉCURISÉ (300 PLACES) · ZONE PRÉSIDENTIELLE</text>
+
+                <rect x="40" y="38" width="920" height="624" rx="18" fill="rgba(15,23,42,0.85)" stroke="#38bdf8" stroke-width="2.5"/>
+
+                <!-- SECTEUR A : 180 PLACES VOITURES CLIENTS (200 FCFA) -->
+                <g><rect id="cell-parking-sud" x="60" y="60" width="560" height="260" rx="14" fill="rgba(56,189,248,.15)" stroke="#38bdf8" stroke-width="2" style="--glow:#38bdf8" class="store-cell"/>
+                  <text x="80" y="92" class="store-label" font-size="13">🚙 SECTEUR A · PARKING CLIENTS DU CENTRE (180 PLACES)</text>
+                  <text x="80" y="115" class="store-category" font-size="9.5">Tarif préférentiel : 200 FCFA (Sur présentation ticket d'achat > 5 000 FCFA)</text>
+                  <text x="80" y="135" class="store-category" font-size="9">Éclairage LED solaire haute puissance · Places larges avec marquage au sol</text>
+                  
+                  <!-- Baies de stationnement représentées -->
+                  <g transform="translate(80, 155)" fill="rgba(56,189,248,.2)" stroke="#38bdf8" stroke-width="1">
+                    <rect x="0" y="0" width="45" height="40" rx="4"/><text x="22" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A01</text>
+                    <rect x="55" y="0" width="45" height="40" rx="4"/><text x="77" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A02</text>
+                    <rect x="110" y="0" width="45" height="40" rx="4"/><text x="132" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A03</text>
+                    <rect x="165" y="0" width="45" height="40" rx="4"/><text x="187" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A04</text>
+                    <rect x="220" y="0" width="45" height="40" rx="4"/><text x="242" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A05</text>
+                    <rect x="275" y="0" width="45" height="40" rx="4"/><text x="297" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A06</text>
+                    <rect x="330" y="0" width="45" height="40" rx="4"/><text x="352" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A07</text>
+                    <rect x="385" y="0" width="45" height="40" rx="4"/><text x="407" y="24" font-family="Inter" font-size="7" fill="#fff" text-anchor="middle">A08</text>
+                    <rect x="440" y="0" width="45" height="40" rx="4"/><text x="462" y="24" font-family="Inter" font-size="7" fill="#38bdf8" text-anchor="middle">+172</text>
+                  </g>
+                </g>
+
+                <!-- SECTEUR B : 60 PLACES DEUX-ROUES (MOTOS & SCOOTERS) -->
+                <g><rect x="640" y="60" width="300" height="260" rx="14" fill="rgba(245,185,66,.15)" stroke="#f5b942" stroke-width="2"/>
+                  <text x="660" y="92" class="store-label" font-size="12">🏍️ SECTEUR B · MOTOS &amp; SCOOTERS (60 PLACES)</text>
+                  <text x="660" y="115" class="store-category" font-size="9">Abri couvert avec antivols d'ancrage au sol</text>
+                  <text x="660" y="135" class="store-category" font-size="8.5">Sécurise les motos des étudiants INPHB &amp; travailleurs</text>
+                  <text x="660" y="155" class="store-category" font-size="8.5">Zéro risque de vol · Gardiennage rapproché</text>
+                  <rect x="660" y="180" width="260" height="30" rx="6" fill="rgba(245,185,66,.2)"/>
+                  <text x="790" y="200" font-family="Inter" font-size="8.5" font-weight="700" fill="#f5b942" text-anchor="middle">60 BOX SÉCURISÉS 2 ROUES</text>
+                </g>
+
+                <!-- SECTEUR C : 60 PLACES VÉHICULES EXTÉRIEURS (500 FCFA) -->
+                <g><rect x="60" y="340" width="560" height="200" rx="14" fill="rgba(148,163,184,.14)" stroke="#94a3b8" stroke-width="2"/>
+                  <text x="80" y="372" class="store-label" font-size="13">🚗 SECTEUR C · VÉHICULES EXTÉRIEURS (60 PLACES)</text>
+                  <text x="80" y="395" class="store-category" font-size="9.5">Tarif usagers extérieurs : 500 FCFA / jour</text>
+                  <text x="80" y="415" class="store-category" font-size="9">Pour fonctionnaires, commerçants et travailleurs du Zone Présidentielle</text>
+                  <text x="80" y="435" class="store-category" font-size="8.5">Ticket électronique à code-barres horodaté à l'entrée</text>
+                </g>
+
+                <!-- POSTE DE GARDIENNAGE 24H/24 & VIDÉOSURVEILLANCE -->
+                <g><rect x="640" y="340" width="300" height="290" rx="14" fill="rgba(239,68,68,.14)" stroke="#ef4444" stroke-width="2"/>
+                  <text x="660" y="372" class="store-label" font-size="12">🛡️ POSTE CENTRAL DE SÉCURITÉ</text>
+                  <text x="660" y="398" class="store-category" font-size="9">📹 Mur d'images 16 Caméras 4K Vision Nocturne</text>
+                  <text x="660" y="418" class="store-category" font-size="9">👮 Équipe de gardiens 24h/24 et 7j/7</text>
+                  <text x="660" y="438" class="store-category" font-size="9">🚧 2 Barrières automatiques levantes (Entrée / Sortie)</text>
+                  <text x="660" y="458" class="store-category" font-size="8.5">⚡ Borne de recharge rapide pour véhicules électriques</text>
+                  <rect x="660" y="490" width="260" height="35" rx="8" fill="#dc2626"/>
+                  <text x="790" y="512" font-family="Inter" font-size="8.5" font-weight="800" fill="#fff" text-anchor="middle">SÉCURITÉ MAXIMALE GARANTIE</text>
+                </g>
+
+                <!-- Voies de sortie et entrées du parking -->
+                <g id="parking-gate-in"><rect x="60" y="560" width="260" height="70" rx="10" fill="rgba(34,197,94,.2)" stroke="#22c55e"/><text x="190" y="600" font-family="Inter" font-size="10.5" font-weight="800" fill="#22c55e" text-anchor="middle">ENTRÉE AVEC BORNE TICKET ➔</text></g>
+                <g id="parking-gate-out"><rect x="340" y="560" width="280" height="70" rx="10" fill="rgba(239,68,68,.2)" stroke="#ef4444"/><text x="480" y="600" font-family="Inter" font-size="10.5" font-weight="800" fill="#f87171" text-anchor="middle">SORTIE AVEC SCANNER PAIEMENT ➔</text></g>
+              </g>
+
+              <!-- BORNES QR CODE D'ORIENTATION (COMMUNES) -->
+              <g id="qr-stations-layer">
+                <g class="qr-station" transform="translate(500,95)" data-node="QR_PORTE_NORD" onclick="setOriginFromQR('QR_PORTE_NORD')"><circle r="14" fill="#ff4d6d" stroke="#fff" stroke-width="2.5"/><rect x="-5" y="-5" width="10" height="10" fill="#fff"/><text y="26" font-family="Inter" font-weight="700" font-size="9" fill="#ff8fa3" text-anchor="middle">QR 1</text></g>
+                <g class="qr-station" transform="translate(500,345)" data-node="QR_PLACE_CENTRALE" onclick="setOriginFromQR('QR_PLACE_CENTRALE')"><circle r="14" fill="#ff4d6d" stroke="#fff" stroke-width="2.5"/><rect x="-5" y="-5" width="10" height="10" fill="#fff"/><text y="26" font-family="Inter" font-weight="700" font-size="9" fill="#ff8fa3" text-anchor="middle">QR 2</text></g>
+                <g class="qr-station" transform="translate(500,605)" data-node="QR_PORTE_SUD" onclick="setOriginFromQR('QR_PORTE_SUD')"><circle r="14" fill="#ff4d6d" stroke="#fff" stroke-width="2.5"/><rect x="-5" y="-5" width="10" height="10" fill="#fff"/><text y="26" font-family="Inter" font-weight="700" font-size="9" fill="#ff8fa3" text-anchor="middle">QR 3</text></g>
+                <g class="qr-station" transform="translate(560,550)" data-node="QR_PARKING_SUD" onclick="setOriginFromQR('QR_PARKING_SUD')"><circle r="13" fill="#ff4d6d" stroke="#fff" stroke-width="2.5"/><rect x="-5" y="-5" width="10" height="10" fill="#fff"/></g>
+              </g>
+
+              <!-- TRACÉ D'ITINÉRAIRE & PUNAISE GOOGLE MAPS (COMMUNS) -->
+              <g id="route-path-container">
+                <path id="active-route-line" class="route-path" d=""/>
+                <circle class="walker-ring" cx="500" cy="95" r="9"/>
+                <circle id="start-position-pin" class="walker-dot" cx="500" cy="95" r="9"/>
+                <circle id="end-position-pin" cx="-100" cy="-100" r="11" fill="#ff4d6d" stroke="#fff" stroke-width="3" style="filter:drop-shadow(0 0 14px #ff4d6d)"/>
+
+                <!-- Punaise Google Maps animée (Drop Pin) -->
+                <g id="gmap-target-pin" transform="translate(-100,-100)" style="transition:transform .45s cubic-bezier(.34,1.56,.64,1);pointer-events:none;">
+                  <ellipse cx="0" cy="0" rx="10" ry="4" fill="rgba(0,0,0,0.55)" style="filter:blur(1px)"/>
+                  <g class="gmap-pin-body">
+                    <path d="M 0 0 C -11 -11, -16 -24, -16 -34 C -16 -48, -7 -56, 0 -56 C 7 -56, 16 -48, 16 -34 C 16 -24, 11 -11, 0 0 Z" fill="#ea4335" stroke="#ffffff" stroke-width="2.2" style="filter:drop-shadow(0 4px 12px rgba(234,67,53,.7))"/>
+                    <circle cx="0" cy="-34" r="6.5" fill="#ffffff"/>
+                    <circle cx="0" cy="-34" r="3.4" fill="#ea4335"/>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="sidebar-panel">
+          <div class="card" id="dynamic-card-content"></div>
+        </div>
+      </div>
+    
+      <!-- Détails Architecturaux du Complexe de 5 Hectares (Affichés uniquement dans la vue Plan) -->
+      <div id="contextual-arch-breakdown" style="margin-top:1.4rem">
+        <div class="arch-top-badges-row" style="margin-bottom:.8rem">
+          <div class="arch-superficie-badge">
+            <div class="sup-label">Superficie totale du site :</div>
+            <div class="sup-main">5 hectares (50 000 m²)</div>
+            <div class="sup-sub">Dimensions : 316,2 m × 158,1 m</div>
+          </div>
+          <div class="arch-center-banner">
+            <div class="arch-title">CENTRE COMMERCIAL MODERNE DE YAMOUSSOUKRO</div>
+            <div class="arch-subtitle">Shopping • Loisirs • Bien-être • Événements</div>
+          </div>
+        </div>
+
+        <div class="arch-bottom-panels-grid">
+          <div class="arch-repartition-card">
+            <div class="arch-repartition-header">Répartition des espaces (5 Ha)</div>
+            <ul class="arch-repartition-list">
+              <li onclick="switchMallView('rdc')"><span class="arch-color-dot" style="background:#7e22ce"></span> <strong>Centre commercial :</strong> 3 ha (30 000 m²) · 50 Boutiques</li>
+              <li onclick="selectStoreById('space-kids-park')"><span class="arch-color-dot" style="background:#db2777"></span> <strong>Manège des enfants :</strong> 500 m²</li>
+              <li onclick="selectStoreById('space-cinema')"><span class="arch-color-dot" style="background:#0284c7"></span> <strong>Cinéma :</strong> 800 m²</li>
+              <li onclick="selectStoreById('space-event-hall')"><span class="arch-color-dot" style="background:#f97316"></span> <strong>Salle événement :</strong> 400 m²</li>
+              <li onclick="selectStoreById('space-admin-center')"><span class="arch-color-dot" style="background:#16a34a"></span> <strong>Administration :</strong> 200 m²</li>
+              <li onclick="selectStoreById('space-parking')"><span class="arch-color-dot" style="background:#84cc16"></span> <strong>Verdure &amp; parking visiteur :</strong> 1,3 ha (13 000 m²)</li>
+            </ul>
+          </div>
+
+          <div class="arch-atouts-card">
+            <div class="arch-atouts-header">Les atouts du projet</div>
+            <ul class="arch-atouts-list">
+              <li><span class="arch-check-icon">✓</span> Un espace moderne et climatisé</li>
+              <li><span class="arch-check-icon">✓</span> Un parking souterrain pratique</li>
+              <li><span class="arch-check-icon">✓</span> Une offre variée pour tous (50 boutiques en location)</li>
+              <li><span class="arch-check-icon">✓</span> Un cadre agréable et sécurisé (1,3 ha de verdure)</li>
+            </ul>
+          </div>
+
+          <div class="arch-slogan-card">
+            <div class="arch-slogan-text">
+              Un centre de vie complet<br>au cœur de Yamoussoukro
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LOISIRS : PÔLE 2 (ENFANTS 300 m²) & PÔLE 3 (CINÉMA 100 PLACES) -->
+    <div id="tab-entertainment" class="tab-content">
+      <div class="entertain-grid">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+            <span class="pole-badge">Pôle 3 · Salle Spectacle</span>
+            <span class="badge badge-primary">Dir. M. YAO Kouadio Franck</span>
+          </div>
+          <div class="card-title">🍿 Salle de Cinéma Dolby · 100 Places Assises</div>
+          <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem">Salle climatisée grand confort de 100 fauteuils club, écran géant laser 4K et son immersif Dolby Digital Surround.</p>
+          <div class="film"><strong>Marabout Chéri (Comédie Ivoirienne)</strong> <span style="color:var(--muted)">(1h45)</span><br><span style="font-size:.8rem;color:var(--gold)">Salle Dolby 100 Places · Tarif : 3 000 FCFA</span><div style="display:flex;gap:.5rem;margin-top:.5rem"><span class="badge badge-primary">14:30</span><span class="badge badge-primary">17:30</span><span class="badge badge-primary">20:30</span></div></div>
+          <div class="film"><strong>Dune : Deuxième Partie (Blockbuster)</strong> <span style="color:var(--muted)">(2h46)</span><br><span style="font-size:.8rem;color:var(--gold)">Salle Dolby 100 Places · Tarif : 5 000 FCFA</span><div style="display:flex;gap:.5rem;margin-top:.5rem"><span class="badge badge-primary">15:00</span><span class="badge badge-primary">18:45</span><span class="badge badge-primary">21:45</span></div></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.6rem" onclick="document.querySelector('[data-tab=tab-map]').click();selectStoreById('space-cinema')">📍 Me guider vers le Cinéma (Pôle 3)</button>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+            <span class="pole-badge">Pôle 2 · Annexe Dédiée</span>
+            <span class="badge badge-success">Dir. M. N'GUESSAN Serge</span>
+          </div>
+          <div class="card-title">🎡 Annexe Loisirs Enfants · 300 m² Sécurisés</div>
+          <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem">La première aire de jeux moderne et 100% sécurisée de Yamoussoukro pour permettre aux parents de faire leurs courses en toute sérénité.</p>
+          <ul>
+            <li><strong>Tarif unique : 1 500 FCFA / heure</strong> par enfant</li>
+            <li><strong>Bracelet électronique de sécurité</strong> remis à l'entrée</li>
+            <li>Encadrement par <strong>2 animatrices diplômées</strong></li>
+            <li>Manèges, toboggans géants, piscine à boules &amp; jeux vidéo d'éveil</li>
+            <li>Forfait Anniversaire Royal dès 35 000 FCFA</li>
+          </ul>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.6rem" onclick="document.querySelector('[data-tab=tab-map]').click();selectStoreById('space-kids-park')">📍 Me guider vers l'Espace Enfants (Pôle 2)</button>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+            <span class="pole-badge">B2B &amp; Événementiel</span>
+            <span class="badge badge-primary">100 Places Climatisées</span>
+          </div>
+          <div class="card-title">🎤 Séminaires, Conférences &amp; Privatisation</div>
+          <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem">Entreprises, ministères, ONG et grandes écoles (INPHB) : privatisez notre salle de cinéma de 100 places avec sonorisation Dolby et pause-café traiteur.</p>
+          <ul>
+            <li>Projection HDMI / Sans-fil sur écran géant</li>
+            <li>Pause-café &amp; cocktail par <strong>LE ZONE PRÉSIDENTIELLE GOURMAND</strong></li>
+            <li>Stationnement réservé au <strong>Parking 300 places</strong></li>
+            <li>Forfait demi-journée : <strong>150 000 FCFA</strong></li>
+          </ul>
+          <a href="https://wa.me/2250565982229?text=Bonjour,%20je%20souhaite%20contacter%20la%20Direction%20Commerciale%20de%20Bélier%20Mall." target="_blank" class="btn-primary" style="width:100%;justify-content:center;margin-top:.6rem;text-decoration:none">📞 Contacter la Direction Commerciale (+225 05 65 98 22 29)</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-parking" class="tab-content"><div id="parking-content"></div></div>
+
+    <!-- ======================================================== -->
+    <!-- 🏪 ESPACE CLIENT / LOCATAIRE DE BOUTIQUE (PORTAIL COMMERÇANT) -->
+    <!-- (Personnalisation de boutique, ajout de produits, tableau de bord) -->
+    <!-- ======================================================== -->
+    <div id="tab-client-space" class="tab-content">
+      
+      <!-- 1. ÉCRAN DE CONNEXION LOCATAIRE (AVEC IDENTIFIANTS REÇUS PAR WHATSAPP) -->
+      <div id="tenant-login-view" class="card" style="max-width:520px;margin:2rem auto;padding:2.2rem;border:1.5px solid rgba(245,185,66,.35);background:linear-gradient(135deg,rgba(245,185,66,.08),rgba(15,23,42,.96));border-radius:18px;text-align:center">
+        <div style="font-size:2.8rem;margin-bottom:.5rem">🏪</div>
+        <div class="card-title" style="margin-bottom:.35rem;font-size:1.35rem">Espace Commerçant &amp; Boutique</div>
+        <p style="color:var(--muted);font-size:.84rem;margin-bottom:1.4rem;line-height:1.5">
+          Connectez-vous pour <strong>personnaliser votre boutique</strong>, publier vos <strong>articles au catalogue public</strong> et piloter votre activité sur <strong>BÉLIER MALL ON LINE</strong>.
+        </p>
+
+        <div id="tenant-login-error-box" style="display:none;background:rgba(239,68,68,.16);border:1px solid #ef4444;color:#fca5a5;padding:.75rem;border-radius:10px;margin-bottom:1rem;font-size:.82rem;text-align:left"></div>
+
+        <form onsubmit="handleTenantLogin(event)" style="display:flex;flex-direction:column;gap:1rem;text-align:left">
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Identifiant / Login de votre boutique *
+            </label>
+            <input type="text" id="tenant-login-user" class="main-search-input" style="padding-left:1rem;font-size:.92rem" placeholder="Ex: kyao4829 (reçu sur WhatsApp)" required autocomplete="username">
+            <small style="color:var(--muted);font-size:.72rem;display:block;margin-top:3px">⚠️ Cet identifiant est fixe et ne peut pas être modifié.</small>
+          </div>
+
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Mot de passe *
+            </label>
+            <input type="password" id="tenant-login-pwd" class="main-search-input" style="padding-left:1rem;font-size:.95rem" placeholder="Mot de passe reçu par WhatsApp" required autocomplete="current-password">
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.88rem;font-size:.92rem;font-weight:800;margin-top:.4rem">
+            🔓 Accéder à mon Espace Boutique
+          </button>
+        </form>
+
+        <div style="margin-top:1.5rem;padding-top:1.1rem;border-top:1px dashed var(--border);font-size:.78rem;color:var(--muted)">
+          Vous avez réservé un espace et n'avez pas encore reçu vos accès ?<br>
+          <a href="https://wa.me/2250565982229?text=Bonjour%20la%20Régie%20Bélier%20Mall,%20je%20souhaite%20recevoir%20les%20accès%20de%20ma%20boutique." target="_blank" style="color:var(--gold);font-weight:700;text-decoration:none">
+            💬 Contacter la Régie Commerciale sur WhatsApp (+225 05 65 98 22 29)
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. TABLEAU DE BORD DU COMMERÇANT (UNE FOIS CONNECTÉ) -->
+      <div id="tenant-dashboard-view" style="display:none;max-width:1120px;margin:0 auto">
+        
+        <!-- En-tête de la Boutique -->
+        <div class="card" style="margin-bottom:1.3rem;background:linear-gradient(135deg,rgba(245,185,66,.14),rgba(15,23,42,.92));border:1.5px solid rgba(245,185,66,.4);padding:1.4rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+            <div style="display:flex;align-items:center;gap:1rem">
+              <span id="tenant-store-logo-badge" style="font-size:2.6rem;background:rgba(245,185,66,.15);border:1px solid rgba(245,185,66,.35);width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center">🏪</span>
+              <div>
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <div id="tenant-store-name-title" style="font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;color:#fff">Ma Boutique Commerciale</div>
+                  <span class="badge badge-success">🟢 Boutique Active</span>
+                  <span class="badge badge-primary" id="tenant-store-cell-badge">Cellule Espace 1</span>
+                </div>
+                <div style="font-size:.82rem;color:var(--gold);margin-top:3px">
+                  Gérant(e) : <strong id="tenant-manager-name" style="color:#fff">--</strong> · Contact : <strong id="tenant-phone-display" style="color:#fff">--</strong>
+                </div>
+                <div style="font-size:.74rem;color:var(--muted);margin-top:2px">
+                  🔑 <strong>Identifiant fixe du magasin :</strong> <code id="tenant-login-pill" style="color:#5df0b0;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:4px">espace1</code> (non modifiable)
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+              <button class="btn-secondary" onclick="viewMyStoreOnMap()" style="font-size:.8rem;padding:.45rem .85rem;border-color:var(--gold);color:var(--gold)">
+                🗺️ Voir sur le Plan
+              </button>
+              <button class="btn-secondary" onclick="handleTenantLogout()" style="font-size:.8rem;padding:.45rem .85rem;border-color:rgba(239,68,68,.35);color:#fca5a5">
+                🚪 Déconnexion
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sous-onglets de l'Espace Locataire -->
+        <div class="pro-subtabs" style="margin-bottom:1.3rem">
+          <button type="button" class="pro-subtab-btn active" id="btn-tenant-tab-profile" onclick="switchTenantTab('profile')">
+            🏬 1. Personnaliser mon Magasin
+          </button>
+          <button type="button" class="pro-subtab-btn" id="btn-tenant-tab-products" onclick="switchTenantTab('products')">
+            📦 2. Mes Produits &amp; Articles (<span id="tenant-products-count">0</span>)
+          </button>
+          <button type="button" class="pro-subtab-btn" id="btn-tenant-tab-billing" onclick="switchTenantTab('billing')">
+            📊 3. Suivi du Bail &amp; Commandes
+          </button>
+          <button type="button" class="pro-subtab-btn" id="btn-tenant-tab-security" onclick="switchTenantTab('security')">
+            🔐 4. Changer mon Mot de passe
+          </button>
+        </div>
+
+        <!-- Notification d'action Commerçant -->
+        <div id="tenant-action-alert" style="display:none;padding:.9rem 1.1rem;border-radius:12px;margin-bottom:1.2rem;font-size:.85rem"></div>
+
+        <!-- ONGLET 1 : PERSONNALISATION DU MAGASIN / ENSEIGNE -->
+        <div id="tenant-view-profile" class="card">
+          <div class="card-title">🏬 Identité &amp; Configuration de votre Magasin</div>
+          <p style="color:var(--muted);font-size:.84rem;margin-bottom:1.4rem">
+            Personnalisez le nom commercial de votre boutique, votre description et vos moyens de paiement. Les modifications s'affichent instantanément sur le plan 2D et dans le Marketplace pour tous les clients.
+          </p>
+
+          <form id="tenant-store-profile-form" onsubmit="saveTenantStoreCustomization(event)" style="display:flex;flex-direction:column;gap:1.1rem">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem">
+              <div>
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Nom Commercial de la Boutique / Enseigne *</label>
+                <input type="text" id="tenant-form-store-name" class="main-search-input" style="padding-left:1rem" required placeholder="Ex: Parfumerie Royale d'Abidjan, High Tech Express...">
+              </div>
+              <div>
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Secteur / Catégorie d'Activité *</label>
+                <select id="tenant-form-category" class="select-qr" style="width:100%">
+                  <option value="Mode, Prêt-à-Porter & Wax">👗 Mode, Prêt-à-Porter &amp; Wax</option>
+                  <option value="Beauté, Coiffure & Esthétique">💄 Beauté, Coiffure &amp; Esthétique</option>
+                  <option value="High-Tech, Téléphonie & Accessoires">📱 High-Tech, Téléphonie &amp; Accessoires</option>
+                  <option value="Bijouterie & Joaillerie">💍 Bijouterie &amp; Joaillerie</option>
+                  <option value="Supermarché & Épicerie Fine">🛒 Supermarché &amp; Épicerie Fine</option>
+                  <option value="Restauration, Fast-Food & Café">🍽️ Restauration, Fast-Food &amp; Café</option>
+                  <option value="Boulangerie & Pâtisserie">🥐 Boulangerie &amp; Pâtisserie</option>
+                  <option value="Librairie, Papeterie & Informatique">📚 Librairie, Papeterie &amp; Services INPHB</option>
+                  <option value="Banque, Mobile Money & Services">🏦 Transfert d'Argent (Wave, Orange), Banque &amp; Assurance</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Émoji Logo Emblème -->
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Émoji Logo / Emblème de la Boutique</label>
+              <div class="emoji-picker-row">
+                <button type="button" class="emoji-btn active" onclick="pickTenantEmoji('🏬', this)">🏬</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('👗', this)">👗</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🛒', this)">🛒</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('💄', this)">💄</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('📱', this)">📱</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🍽️', this)">🍽️</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🥐', this)">🥐</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('💍', this)">💍</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('☕', this)">☕</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('📚', this)">📚</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🛍️', this)">🛍️</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('✨', this)">✨</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('👑', this)">👑</button>
+              </div>
+              <input type="hidden" id="tenant-form-logo" value="🏬">
+            </div>
+
+            <!-- Slogan & Description -->
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Description Commerciale &amp; Spécialités</label>
+              <textarea id="tenant-form-desc" class="main-search-input" style="padding:1rem;height:80px;resize:vertical;font-family:inherit" placeholder="Présentez votre boutique, vos nouveautés, vos marques distribuées..."></textarea>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem">
+              <div>
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Téléphone / WhatsApp de la Boutique (+225) *</label>
+                <input type="tel" id="tenant-form-phone" class="main-search-input" style="padding-left:1rem" required placeholder="+225 07 00 00 00 00">
+              </div>
+              <div>
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Horaires d'Ouverture</label>
+                <input type="text" id="tenant-form-hours" class="main-search-input" style="padding-left:1rem" value="08:00 - 21:30 (7j/7)">
+              </div>
+            </div>
+
+            <!-- Moyens de paiement acceptés -->
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Moyens de Paiement &amp; Services Proposés à vos Clients</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Wave" checked> 📱 Wave Mobile Money</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Orange Money" checked> 🟠 Orange Money</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="MTN MoMo" checked> 🟡 MTN MoMo</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Moov Money" checked> 🔵 Moov Money</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Espèces" checked> 💵 Espèces à la livraison</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Carte Bancaire" checked> 💳 Carte Visa / Mastercard</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Climatisation" checked> ❄️ Espace Climatisé</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Livraison Moto 45 min" checked> 🛵 Livraison Moto 45 min</label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content:center;padding:1rem;font-size:1rem;font-weight:800;margin-top:.5rem">
+              💾 Enregistrer les Modifications de ma Boutique
+            </button>
+          </form>
+        </div>
+
+        <!-- ONGLET 2 : GESTION DES PRODUITS & ARTICLES DE LA BOUTIQUE -->
+        <div id="tenant-view-products" class="card" style="display:none">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;flex-wrap:wrap;gap:1rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.2rem">📦 Rayon &amp; Articles de votre Boutique</div>
+              <p style="color:var(--muted);font-size:.83rem">
+                Ajoutez vos produits en vente avec leurs prix en FCFA. Dès publication, vos articles sont visibles sur le Marketplace public et commandables en livraison express moto sous 45 min.
+              </p>
+            </div>
+            <button class="btn-primary" onclick="toggleTenantProductAddForm()" style="font-size:.82rem;padding:.5rem 1rem">
+              ➕ Publier un Nouvel Article
+            </button>
+          </div>
+
+          <!-- Formulaire d'ajout d'article (dépliable) -->
+          <div id="tenant-add-product-box" style="display:none;background:rgba(255,255,255,.03);border:1.5px solid rgba(245,185,66,.35);border-radius:14px;padding:1.3rem;margin-bottom:1.5rem">
+            <div style="font-weight:800;font-size:1rem;color:var(--gold);margin-bottom:.8rem">
+              ➕ Ajouter un Article au Catalogue Bélier Mall
+            </div>
+            <form onsubmit="handleAddTenantProduct(event)" style="display:flex;flex-direction:column;gap:1rem">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Nom de l'article ou plat *</label>
+                  <input type="text" id="tenant-prod-name" class="main-search-input" style="padding-left:.9rem" required placeholder="Ex: Robe en Soie de Dubaï, Pagne Kita, Sac de Luxe...">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Prix Net de Vente (en FCFA) *</label>
+                  <input type="number" id="tenant-prod-price" class="main-search-input" style="padding-left:.9rem" required min="100" step="50" placeholder="Ex: 15000">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Quantité en Stock *</label>
+                  <input type="number" id="tenant-prod-stock" class="main-search-input" style="padding-left:.9rem" required min="1" value="20">
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Catégorie du Produit</label>
+                  <input type="text" id="tenant-prod-cat" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: Mode Féminine, Chaussures, Parfumerie...">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Émoji / Icône de l'Article</label>
+                  <input type="text" id="tenant-prod-emoji" class="main-search-input" style="padding-left:.9rem" value="🛍️">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Mots-clés de recherche</label>
+                  <input type="text" id="tenant-prod-tags" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: robe, soirée, femme, mode, dubaï">
+                </div>
+              </div>
+
+              <div>
+                <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Description de l'Article</label>
+                <textarea id="tenant-prod-desc" class="main-search-input" style="padding:.9rem;height:65px;resize:vertical;font-family:inherit" placeholder="Détails du produit (matière, tailles disponibles, garantie...)"></textarea>
+              </div>
+
+              <div style="display:flex;gap:.8rem;justify-content:flex-end">
+                <button type="button" class="btn-secondary" onclick="toggleTenantProductAddForm()">Annuler</button>
+                <button type="submit" class="btn-primary" style="padding:.75rem 1.4rem">🚀 Publier l'Article sur Bélier Mall</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Tableau des Articles de la Boutique -->
+          <div id="tenant-products-table-container">
+            <!-- Rendu dynamique par app.js -->
+          </div>
+        </div>
+
+        <!-- ONGLET 3 : SUIVI DU BAIL & COMMANDES CLIENTS -->
+        <div id="tenant-view-billing" class="card" style="display:none">
+          <div class="card-title">📊 Suivi de votre Bail Commercial &amp; Commandes Clients</div>
+          <p style="color:var(--muted);font-size:.83rem;margin-bottom:1.3rem">
+            Consultez les informations administratives de votre cellule et les commandes en direct passées par vos clients.
+          </p>
+
+          <!-- 4 Cartes récapitulatives du bail -->
+          <div class="leasing-kpi-grid" style="margin-bottom:1.5rem">
+            <div class="leasing-kpi"><b id="tenant-kpi-space">Espace 1</b><span>Cellule Commerciale</span></div>
+            <div class="leasing-kpi"><b id="tenant-kpi-rent" style="color:#5df0b0">250 000 F</b><span>Loyer Mensuel Net</span></div>
+            <div class="leasing-kpi"><b id="tenant-kpi-deposit" style="color:var(--gold)">750 000 F</b><span>Caution Légale (3 mois)</span></div>
+            <div class="leasing-kpi"><b id="tenant-kpi-status" style="color:#5df0b0">À JOUR</b><span>État du Loyer</span></div>
+          </div>
+
+          <!-- Commandes Express reçues pour cette boutique -->
+          <div style="background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:14px;padding:1.2rem">
+            <div style="font-weight:800;font-size:1rem;color:#fff;margin-bottom:.8rem;display:flex;align-items:center;gap:8px">
+              <span>🛵</span> Commandes Express Clients pour vos Articles
+            </div>
+            <div id="tenant-orders-table-container">
+              <!-- Rendu dynamique par app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ONGLET 4 : SÉCURITÉ & CHANGEMENT DE MOT DE PASSE -->
+        <div id="tenant-view-security" class="card" style="display:none;max-width:580px;margin:0 auto">
+          <div class="card-title">🔐 Sécurité &amp; Modification de votre Mot de passe</div>
+          <p style="color:var(--muted);font-size:.83rem;margin-bottom:1.3rem">
+            Remplacez le mot de passe provisoire reçu sur WhatsApp par votre mot de passe personnel.<br>
+            <strong>Votre identifiant / login reste définitivement fixe et ne peut pas être modifié.</strong>
+          </p>
+
+          <form onsubmit="handleTenantPasswordChange(event)" style="display:flex;flex-direction:column;gap:1.1rem">
+            <div>
+              <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Identifiant / Login fixe (non modifiable) :</label>
+              <input type="text" id="tenant-sec-login-fixed" class="main-search-input" style="padding-left:1rem;background:rgba(255,255,255,.05);color:var(--gold);font-weight:800;cursor:not-allowed" readonly disabled>
+              <small style="color:var(--gold);font-size:.72rem;display:block;margin-top:3px">🔒 Cet identifiant vous a été attribué définitivement lors de la signature de votre bail.</small>
+            </div>
+
+            <div>
+              <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Nouveau Mot de passe Personnel *</label>
+              <input type="password" id="tenant-sec-new-pwd" class="main-search-input" style="padding-left:1rem" required minlength="4" placeholder="Nouveau mot de passe">
+            </div>
+
+            <div>
+              <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Confirmer le Nouveau Mot de passe *</label>
+              <input type="password" id="tenant-sec-confirm-pwd" class="main-search-input" style="padding-left:1rem" required minlength="4" placeholder="Confirmez le nouveau mot de passe">
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content:center;padding:.9rem;font-size:.92rem;font-weight:800;margin-top:.4rem">
+              🔐 Mettre à jour mon Mot de passe
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <!-- ======================================================== -->
+    <!-- 🔐 ESPACE ADMINISTRATEUR & CONSOLE DIRECTION GÉNÉRALE    -->
+    <!-- (Gestion complète, baux, suppressions, stocks)           -->
+    <!-- ======================================================== -->
+    <div id="tab-admin" class="tab-content">
+      <!-- 1. ÉCRAN DE CONNEXION SÉCURISÉ (SUPERADMIN & 2 ADMINS) -->
+      <div id="admin-login-screen" class="card" style="max-width:520px;margin:2rem auto;text-align:center;padding:2.1rem;border:1.5px solid rgba(245,185,66,.35)">
+        <div class="hero-logo-medallion" style="width:84px;height:84px;margin-bottom:.75rem"><img src="Belier_mall.jpeg" alt="Logo Bélier Mall"></div>
+        <div class="card-title" style="margin-bottom:.35rem">Portail d'Administration · BÉLIER MALL ON LINE</div>
+        <p style="color:var(--muted);font-size:.83rem;margin-bottom:1.4rem">
+          Accès réservé aux <strong>3 membres de l'Administration</strong> :<br>
+          <strong>1 SuperAdmin</strong> (droits complets &amp; suppression) et <strong>2 Administrateurs</strong> (gestion &amp; validation).
+        </p>
+
+        <div id="admin-login-error-box" style="display:none;background:rgba(239,68,68,.16);border:1px solid #ef4444;color:#fca5a5;padding:.75rem;border-radius:10px;margin-bottom:1rem;font-size:.8rem;text-align:left"></div>
+
+        <form onsubmit="handleAdminLogin(event)" style="display:flex;flex-direction:column;gap:1rem;text-align:left">
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Identifiant / Login *
+            </label>
+            <input type="text" id="admin-login-user" class="main-search-input" style="padding-left:1rem;font-size:.92rem" placeholder="Votre login (1ère connexion SuperAdmin : superadmin)" required autocomplete="username">
+          </div>
+
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Mot de passe *
+            </label>
+            <input type="password" id="admin-pin-input" class="main-search-input" style="padding-left:1rem;font-size:.95rem" placeholder="Saisissez votre mot de passe..." required autocomplete="current-password">
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.88rem;font-size:.92rem;font-weight:800">
+            🔓 Se connecter à l'Espace Administration
+          </button>
+        </form>
+
+        <div style="margin-top:1.2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:1rem">
+          <button type="button" class="btn-secondary" onclick="closeAdminSpace()" style="background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;text-decoration:underline">
+            ✕ Quitter l'Espace Administration (Retour au Marketplace)
+          </button>
+        </div>
+      </div>
+
+      <!-- 2A. ÉCRAN DE PREMIÈRE CONNEXION & CONFIGURATION DU SUPERADMIN (Infos personnelles + Nouveau Login & Nouveau Mot de passe) -->
+      <div id="superadmin-profile-screen" class="card" style="display:none;max-width:580px;margin:2rem auto;padding:2rem;border:1.5px solid var(--gold);background:linear-gradient(135deg,rgba(245,185,66,.1),rgba(15,23,42,.96))">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+          <span style="font-size:2.4rem;background:rgba(245,185,66,.2);border:1px solid var(--gold);width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center">👑</span>
+          <div>
+            <div style="font-weight:900;font-size:1.2rem;color:#fff">Première Connexion Super Administrateur</div>
+            <div style="font-size:.8rem;color:var(--gold)">Renseignez vos informations personnelles et créez votre nouveau mot de passe personnel pour vos prochaines connexions.</div>
+          </div>
+        </div>
+
+        <form onsubmit="submitSuperAdminProfile(event)" style="display:flex;flex-direction:column;gap:.95rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:4px">Votre Nom *</label>
+              <input type="text" id="superadmin-nom-input" class="main-search-input" style="padding-left:1rem" placeholder="Ex: SANGARÉ" required>
+            </div>
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:4px">Votre Prénom(s) *</label>
+              <input type="text" id="superadmin-prenom-input" class="main-search-input" style="padding-left:1rem" placeholder="Ex: Kadi" required>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:4px">Adresse Email officielle *</label>
+              <input type="email" id="superadmin-email-input" class="main-search-input" style="padding-left:1rem" placeholder="Ex: kadi.sangare@beliermall.ci" required>
+            </div>
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--gold);display:block;margin-bottom:4px">Votre Login de connexion *</label>
+              <input type="text" id="superadmin-login-input" class="main-search-input" style="padding-left:1rem" placeholder="Ex: kadi.sangare" value="superadmin" required>
+            </div>
+          </div>
+
+          <div style="background:rgba(25,195,125,.08);border:1px solid rgba(25,195,125,.35);border-radius:12px;padding:.9rem">
+            <div style="font-size:.8rem;font-weight:800;color:#5df0b0;margin-bottom:.55rem">
+              🔐 Créer votre nouveau mot de passe personnel (remplace le mot de passe initial) :
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+              <div>
+                <label style="font-size:.75rem;color:#cbd5e1;display:block;margin-bottom:4px">Nouveau mot de passe *</label>
+                <input type="password" id="superadmin-new-pwd" class="main-search-input" style="padding-left:.9rem" placeholder="Nouveau mot de passe" required minlength="4">
+              </div>
+              <div>
+                <label style="font-size:.75rem;color:#cbd5e1;display:block;margin-bottom:4px">Confirmer le mot de passe *</label>
+                <input type="password" id="superadmin-confirm-pwd" class="main-search-input" style="padding-left:.9rem" placeholder="Confirmez le mot de passe" required minlength="4">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.9rem;font-size:.95rem;font-weight:800;margin-top:.3rem">
+            👑 Enregistrer mon nouveau mot de passe &amp; Accéder à l'Espace SuperAdmin
+          </button>
+        </form>
+      </div>
+
+      <!-- 2B. ÉCRAN DE PREMIÈRE CONNEXION D'UN ADMIN (CHANGEMENT OBLIGATOIRE DU MOT DE PASSE) -->
+      <div id="admin-first-login-screen" class="card" style="display:none;max-width:560px;margin:2rem auto;padding:2rem;border:1.5px solid #38bdf8;background:linear-gradient(135deg,rgba(56,189,248,.1),rgba(15,23,42,.96))">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
+          <span style="font-size:2.3rem;background:rgba(56,189,248,.2);border:1px solid #38bdf8;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center">🛡️</span>
+          <div>
+            <div style="font-weight:900;font-size:1.18rem;color:#fff">Première Connexion Administrateur</div>
+            <div style="font-size:.8rem;color:#bae6fd">Pour votre sécurité, vous devez obligatoirement remplacer votre mot de passe provisoire créé par le SuperAdmin.</div>
+          </div>
+        </div>
+
+        <form onsubmit="submitAdminFirstLoginPasswordChange(event)" style="display:flex;flex-direction:column;gap:.95rem">
+          <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .9rem;font-size:.82rem;color:#cbd5e1">
+            Compte connecté : <strong style="color:var(--gold)" id="first-login-admin-label">admin</strong>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+            <div>
+              <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Nom *</label>
+              <input type="text" id="first-login-nom" class="main-search-input" style="padding-left:.9rem" required placeholder="Votre nom">
+            </div>
+            <div>
+              <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Prénom *</label>
+              <input type="text" id="first-login-prenom" class="main-search-input" style="padding-left:.9rem" required placeholder="Votre prénom">
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Email *</label>
+            <input type="email" id="first-login-email" class="main-search-input" style="padding-left:.9rem" required placeholder="exemple@beliermall.ci">
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+            <div>
+              <label style="font-size:.76rem;color:#5df0b0;font-weight:700;display:block;margin-bottom:4px">Nouveau mot de passe *</label>
+              <input type="password" id="first-login-new-pwd" class="main-search-input" style="padding-left:.9rem" required minlength="4" placeholder="Nouveau mot de passe">
+            </div>
+            <div>
+              <label style="font-size:.76rem;color:#5df0b0;font-weight:700;display:block;margin-bottom:4px">Confirmer le mot de passe *</label>
+              <input type="password" id="first-login-confirm-pwd" class="main-search-input" style="padding-left:.9rem" required minlength="4" placeholder="Confirmez le mot de passe">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.88rem;font-size:.92rem;font-weight:800;margin-top:.3rem">
+            ✅ Enregistrer mon nouveau mot de passe &amp; Accéder à l'Espace Admin
+          </button>
+        </form>
+      </div>
+
+      <!-- 3. TABLEAU DE BORD ADMINISTRATEUR / SUPERADMIN (Une fois connecté) -->
+      <div id="admin-dashboard-screen" style="display:none;">
+        <!-- Header Console DG -->
+        <div class="card" style="margin-bottom:1.2rem;padding:1.2rem 1.4rem;background:linear-gradient(135deg,rgba(245,185,66,.12),rgba(15,23,42,.85));border-color:rgba(245,185,66,.35)">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem">
+            <div style="display:flex;align-items:center;gap:.8rem">
+              <span id="admin-header-role-icon" style="font-size:2.2rem;background:rgba(245,185,66,.15);border:1px solid rgba(245,185,66,.4);width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center">👑</span>
+              <div>
+                <div style="font-weight:800;font-size:1.15rem;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span id="admin-header-console-title">Espace Super Administrateur</span>
+                  <span class="badge badge-success" id="admin-header-role-badge">👑 SUPER ADMIN · Tous les droits + Suppression</span>
+                </div>
+                <div style="font-size:.82rem;color:var(--gold);margin-top:2px" id="admin-connected-identity">
+                  SuperAdmin · BÉLIER MALL ON LINE
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+              <button class="btn-secondary" id="btn-edit-superadmin-profile" onclick="openSuperAdminProfileEdit()" style="font-size:.76rem;padding:.4rem .85rem;color:var(--gold);border-color:rgba(245,185,66,.4)">
+                ✏️ Modifier mes infos (Nom / Mail)
+              </button>
+              <button class="btn-secondary" onclick="closeAdminSpace()" style="font-size:.76rem;padding:.4rem .9rem;color:#cbd5e1;border-color:rgba(255,255,255,.2)">
+                🚪 Retour Vitrine
+              </button>
+              <button class="btn-secondary" onclick="handleAdminLogout()" style="font-size:.76rem;padding:.4rem .9rem;color:#f87171;border-color:rgba(239,68,68,.35)">
+                🔒 Déconnexion
+              </button>
+            </div>
+          </div>
+
+          <!-- KPIs Exécutifs -->
+          <div class="admin-kpis-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin-top:1.2rem">
+            <div class="admin-kpi-card">
+              <div class="admin-kpi-val" style="color:var(--gold)">12 500 000 <small style="font-size:.65rem">FCFA/m</small></div>
+              <div class="admin-kpi-lbl">Revenus Locatifs (50 Boutiques en Location)</div>
+            </div>
+            <div class="admin-kpi-card">
+              <div class="admin-kpi-val" style="color:#38bdf8" id="kpi-admin-stores-count">58</div>
+              <div class="admin-kpi-lbl">Boutiques &amp; Espaces (5 Hectares)</div>
+            </div>
+            <div class="admin-kpi-card">
+              <div class="admin-kpi-val" style="color:#f5b942" id="kpi-admin-pending-count">3</div>
+              <div class="admin-kpi-lbl">Demandes de Location à Valider</div>
+            </div>
+            <div class="admin-kpi-card">
+              <div class="admin-kpi-val" style="color:#5df0b0" id="kpi-admin-team-count">1 / 3</div>
+              <div class="admin-kpi-lbl">Membres Équipe Admin Actifs (1 SuperAdmin + 2 Admins)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sous-navigation des onglets Admin -->
+        <div class="admin-subnav" style="display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap">
+          <button class="admin-tab-pill active" id="btn-admin-subtab-stats" onclick="switchAdminSubtab('stats')">
+            📊 Statistiques, CA &amp; Loyers Impayés <span class="badge badge-danger" id="badge-admin-unpaid-count">4</span>
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-apps" onclick="switchAdminSubtab('apps')">
+            📋 Demandes de Location <span class="badge badge-warning" id="badge-admin-pending-apps">0</span>
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-orders" onclick="switchAdminSubtab('orders')">
+            🛵 Commandes Clients <span class="badge badge-success" id="badge-admin-orders-count">0</span>
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-team" onclick="switchAdminSubtab('team')" style="border-color:rgba(245,185,66,.45)">
+            👥 Gestion des Admins (1 SuperAdmin + 2 Admins)
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-stores" onclick="switchAdminSubtab('stores')">
+            🏬 Gestion des Boutiques <span class="badge badge-primary" id="badge-admin-stores-count">50</span>
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-products" onclick="switchAdminSubtab('products')">
+            📦 Gestion des Articles &amp; Stocks <span class="badge badge-primary" id="badge-admin-prods-count">10</span>
+          </button>
+          <button class="admin-tab-pill" id="btn-admin-subtab-create" onclick="switchAdminSubtab('create')">
+            ➕ Implantation Manuelle
+          </button>
+        </div>
+
+        <!-- Notification d'action Admin -->
+        <div id="admin-action-alert" style="display:none;padding:.85rem 1.1rem;border-radius:12px;margin-bottom:1.2rem;font-size:.84rem"></div>
+
+                <!-- SOUS-ONGLET 0 : VUE STATISTIQUES, CHIFFRE D'AFFAIRES, OCCUPATION & LOYERS IMPAYÉS -->
+        <div id="admin-view-stats" class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem;border-bottom:1px solid var(--border);padding-bottom:1rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.25rem">📊 Tableau de Bord Statistique, Occupation &amp; Suivi Financier</div>
+              <p style="color:var(--muted);font-size:.83rem">
+                Pilotage en temps réel du centre commercial : <strong>boutiques occupées vs libres</strong>, <strong>chiffre d'affaires global</strong>, <strong>barème par dimension (15 m² à 80 m²)</strong> et <strong>état des loyers impayés</strong>.
+              </p>
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+              <span class="badge badge-success" id="stat-header-occupancy-pill">Taux d'occupation : -- %</span>
+              <span class="badge badge-danger" id="stat-header-unpaid-pill">🚨 4 Loyers Impayés</span>
+            </div>
+          </div>
+
+          <!-- 6 CARTES KPI DÉTAILLÉES -->
+          <div class="stats-exec-grid" id="admin-stats-exec-cards">
+            <!-- Rempli dynamiquement par renderAdminStatisticsDashboard() -->
+          </div>
+
+          <!-- GRAPHIQUES : VENTILATION DU CA & OCCUPATION PAR DIMENSION -->
+          <div class="stats-charts-grid">
+            <div style="background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:14px;padding:1.15rem">
+              <div style="font-weight:800;font-size:.94rem;color:var(--gold);margin-bottom:.85rem;display:flex;justify-content:space-between;align-items:center">
+                <span>💰 Ventilation du Chiffre d'Affaires Mensuel par Pôle</span>
+                <span class="badge badge-success">Temps Réel</span>
+              </div>
+              <div id="admin-stats-revenue-bars">
+                <!-- Barres de progression CA -->
+              </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:14px;padding:1.15rem">
+              <div style="font-weight:800;font-size:.94rem;color:#38bdf8;margin-bottom:.85rem;display:flex;justify-content:space-between;align-items:center">
+                <span>📐 Occupation &amp; Tarifs par Dimension (15 m² à 80 m²)</span>
+                <span class="badge badge-primary">8 Formats</span>
+              </div>
+              <div id="admin-stats-dimensions-breakdown">
+                <!-- Répartition par superficie -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TABLEAU DES LOCATAIRES OCCUPANTS & GESTION DES LOYERS IMPAYÉS -->
+          <div style="background:rgba(15,23,42,.65);border:1.5px solid rgba(239,68,68,.35);border-radius:16px;padding:1.2rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;margin-bottom:1rem">
+              <div>
+                <div style="font-weight:800;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:8px">
+                  <span>🚨</span> État des Locataires Actifs &amp; Recouvrement des Loyers Impayés
+                </div>
+                <p style="font-size:.79rem;color:var(--muted);margin-top:2px">
+                  Identifiez immédiatement les locataires en retard de paiement, relancez-les sur WhatsApp ou encaissez leur loyer en 1 clic.
+                </p>
+              </div>
+
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                <button class="filter-btn-pill active" id="btn-tenant-filter-all" onclick="filterAdminTenants('all')">
+                  📋 Tous les Locataires (<span id="count-tenants-all">12</span>)
+                </button>
+                <button class="filter-btn-pill" id="btn-tenant-filter-unpaid" onclick="filterAdminTenants('unpaid')">
+                  🚨 Loyers Impayés (<span id="count-tenants-unpaid">4</span>)
+                </button>
+                <button class="filter-btn-pill" id="btn-tenant-filter-paid" onclick="filterAdminTenants('paid')">
+                  ✅ Loyers à Jour (<span id="count-tenants-paid">8</span>)
+                </button>
+              </div>
+            </div>
+
+            <div id="admin-tenants-unpaid-table-container">
+              <!-- Rempli dynamiquement par app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SOUS-ONGLET 1 : VALIDATION DES DEMANDES D'IMPLANTATION (ACCEPTER / REFUSER) -->
+        <div id="admin-view-apps" class="card" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.2rem">📋 Demandes de Location Commerciale en Attente</div>
+              <p style="color:var(--muted);font-size:.82rem">Examinez les candidatures pour les 50 boutiques du centre. Les demandes immédiates sont mises en évidence.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:.6rem;margin-bottom:1rem;flex-wrap:wrap" id="admin-apps-filter-bar">
+            <button class="filter-btn-pill active" id="btn-filter-app-all" onclick="filterAdminApplications('all')">Tous les dossiers (<span id="count-filter-all">3</span>)</button>
+            <button class="filter-btn-pill" id="btn-filter-app-immediate" onclick="filterAdminApplications('immediate')">🔥 Prises Immédiates (<span id="count-filter-imm">2</span>)</button>
+            <button class="filter-btn-pill" id="btn-filter-app-delayed" onclick="filterAdminApplications('delayed')">🗓️ Prises Différées (<span id="count-filter-del">1</span>)</button>
+          </div>
+
+          <div id="admin-applications-table-container">
+            <!-- Rendu dynamique par app.js -->
+          </div>
+        </div>
+
+                <!-- SOUS-ONGLET COMMANDES CLIENTS EN DIRECT -->
+        <div id="admin-view-orders" class="card" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.2rem">🛵 Commandes Express Clients Reçues en Direct</div>
+              <p style="color:var(--muted);font-size:.82rem">Toutes les commandes passées par les visiteurs sur le Marketplace apparaissent ici pour tous les Admins et le SuperAdmin. Une fois traitée, la commande disparaît de la liste.</p>
+            </div>
+          </div>
+          <div id="admin-orders-table-container">
+            <!-- Rempli dynamiquement en temps réel -->
+          </div>
+        </div>
+
+        <!-- SOUS-ONGLET ÉQUIPE : GESTION DES 3 PERSONNES (1 SUPERADMIN + 2 ADMINS) -->
+        <div id="admin-view-team" class="card" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.25rem">👥 Gestion de l'Équipe d'Administration (3 Personnes : 1 SuperAdmin &amp; 2 Admins)</div>
+              <p style="color:var(--muted);font-size:.83rem">
+                Le <strong>SuperAdmin</strong> peut créer jusqu'à <strong>2 comptes Administrateurs</strong> (login + mot de passe provisoire) et supprimer un Admin en saisissant son mot de passe SuperAdmin.<br>
+                À leur première connexion, les Admins doivent obligatoirement personnaliser leur mot de passe.
+              </p>
+            </div>
+            <span class="badge badge-success" id="admin-team-slots-badge">Capacité : 3 Personnes</span>
+          </div>
+
+          <!-- Cartes des 3 membres (1 SuperAdmin + 2 Admins) -->
+          <div id="admin-team-members-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:1.5rem">
+            <!-- Rendu dynamique par app.js -->
+          </div>
+
+          <!-- Formulaire de Création d'un Admin (Réservé au SuperAdmin) -->
+          <div id="superadmin-create-admin-box" style="background:rgba(245,185,66,.07);border:1.5px solid rgba(245,185,66,.35);border-radius:14px;padding:1.3rem">
+            <div style="font-weight:800;font-size:.98rem;color:var(--gold);margin-bottom:.35rem">
+              ➕ Créer un Compte Administrateur (Poste Admin 1 ou Admin 2)
+            </div>
+            <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">
+              Définissez un <strong>Login</strong> et un <strong>Mot de passe provisoire</strong> pour votre collaborateur. Lors de sa première connexion, il sera invité à modifier son mot de passe. Il aura tous les droits de gestion <strong>sauf la suppression</strong>.
+            </p>
+
+            <form id="create-admin-account-form" onsubmit="handleCreateAdminAccount(event)" style="display:flex;flex-direction:column;gap:.95rem">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem">
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Login de connexion de l'Admin *</label>
+                  <input type="text" id="new-admin-login" class="main-search-input" style="padding-left:.9rem" required placeholder="Ex: admin1 ou kouassi.yao">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Mot de passe provisoire *</label>
+                  <input type="text" id="new-admin-temp-pwd" class="main-search-input" style="padding-left:.9rem" required placeholder="Ex: Belier2026!">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Nom &amp; Prénom (ou complété à la 1ère connexion)</label>
+                  <input type="text" id="new-admin-fullname" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: M. YAO Kouadio">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Email (optionnel)</label>
+                  <input type="email" id="new-admin-email" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: admin1@beliermall.ci">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="justify-content:center;padding:.8rem;font-size:.88rem;font-weight:800">
+                ✨ Créer ce Compte Administrateur
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- SOUS-ONGLET 2 : GESTION DES BOUTIQUES (STATUTS & SUPPRESSION) -->
+        <div id="admin-view-stores" class="card" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.2rem">🏬 Répertoire &amp; Modération des Boutiques</div>
+              <p style="color:var(--muted);font-size:.82rem">Contrôlez l'accessibilité des boutiques (Actif / Maintenance). <strong>Note : Seul le SuperAdmin peut supprimer définitivement une boutique en saisissant son mot de passe.</strong></p>
+            </div>
+            <input type="text" id="admin-search-store" class="main-search-input" style="max-width:280px;padding-left:1rem;font-size:.8rem" placeholder="🔍 Filtrer les boutiques..." oninput="renderAdminStoresTable(this.value)">
+          </div>
+
+          <div id="admin-stores-table-container">
+            <!-- Rendu dynamique par app.js -->
+          </div>
+        </div>
+
+        <!-- SOUS-ONGLET 3 : GESTION DES ARTICLES DU MARKETPLACE -->
+        <div id="admin-view-products" class="card" style="display:none;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
+            <div>
+              <div class="card-title" style="margin-bottom:.2rem">📦 Modération des Articles &amp; Stocks</div>
+              <p style="color:var(--muted);font-size:.82rem">Basculez le statut de stock. <strong>Note : Seul le SuperAdmin a le droit de supprimer un article.</strong></p>
+            </div>
+            <input type="text" id="admin-search-prod" class="main-search-input" style="max-width:280px;padding-left:1rem;font-size:.8rem" placeholder="🔍 Filtrer les articles..." oninput="renderAdminProductsTable(this.value)">
+          </div>
+
+          <div id="admin-products-table-container">
+            <!-- Rendu dynamique par app.js -->
+          </div>
+        </div>
+
+        <!-- SOUS-ONGLET 4 : CRÉATION MANUELLE D'UNE ENSEIGNE -->
+        <div id="admin-view-create" class="card" style="display:none;">
+          <div class="card-title">➕ Implantation Directe d'une Enseigne par la Direction</div>
+          <p style="color:var(--muted);font-size:.82rem;margin-bottom:1rem">Implantation manuelle immédiate sans passer par le formulaire de candidature.</p>
+          <form onsubmit="handleAdminDirectStoreCreate(event)" style="display:flex;flex-direction:column;gap:.9rem">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem">
+              <div>
+                <label style="font-size:.76rem;color:var(--muted)">Nom Commercial de l'Enseigne *</label>
+                <input type="text" id="admin-new-store-name" class="main-search-input" style="padding-left:.8rem" required placeholder="Ex: Bijouterie Royale du Bélier">
+              </div>
+              <div>
+                <label style="font-size:.76rem;color:var(--muted)">Catégorie d'Activité *</label>
+                <input type="text" id="admin-new-store-cat" class="main-search-input" style="padding-left:.8rem" required placeholder="Ex: Bijouterie &amp; Joaillerie">
+              </div>
+              <div>
+                <label style="font-size:.76rem;color:var(--muted)">Étage / Emplacement</label>
+                <select id="admin-new-store-floor" class="select-qr" style="width:100%">
+                  <option value="0">Pôle 1 · Rez-de-Chaussée (RDC)</option>
+                  <option value="1" selected>Pôle 1 · Étage R+1 (Galerie)</option>
+                  <option value="entertainment">Pôles 2 &amp; 3 · Loisirs &amp; Ciné</option>
+                  <option value="parking">Pôle 4 · Parking</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem">
+              <div>
+                <label style="font-size:.76rem;color:var(--muted)">Nom du Gérant / Promoteur</label>
+                <input type="text" id="admin-new-store-manager" class="main-search-input" style="padding-left:.8rem" placeholder="Ex: M. Bamba Karim">
+              </div>
+              <div>
+                <label style="font-size:.76rem;color:var(--muted)">Téléphone Officiel</label>
+                <input type="text" id="admin-new-store-phone" class="main-search-input" style="padding-left:.8rem" placeholder="+225 07 00 00 00 00" required>
+              </div>
+              <div>
+                <label style="font-size:.76rem;color:var(--muted)">Émoji / Logo</label>
+                <input type="text" id="admin-new-store-logo" class="main-search-input" style="padding-left:.8rem" value="💎">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content:center;padding:.8rem;font-size:.85rem;margin-top:.4rem">
+              ✨ Valider &amp; Implanter la Boutique dans le Centre
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="flag"></div><br>
+    <b>BÉLIER MALL ON LINE</b> · Centre Commercial Moderne de Yamoussoukro (5 Hectares · 50 000 m² · 316,2 m × 158,1 m), Axe Yamoussoukro-Bouaké · Application <b>YAMO-APP</b> · Tous les prix en FCFA
+    <span class="footer-admin-discreet" onclick="openAdminSpace()" title="Portail Privé Direction &amp; Administration" aria-label="Portail Direction">🔒</span>
+  </footer>
+
+  <!-- MODALE DE COMMANDE EXPRESS YAMO-APP -->
+  <div class="order-modal-backdrop" id="order-modal-backdrop" onclick="if(event.target === this) closeOrderModal()">
+    <div class="order-modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
+        <div style="font-weight:800;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:6px">
+          <span>🛵</span> Commande Express YAMO-APP
+        </div>
+        <button onclick="closeOrderModal()" style="background:none;border:none;color:#94a3b8;font-size:1.3rem;cursor:pointer">✕</button>
+      </div>
+
+      <div id="order-modal-product-summary"></div>
+
+      <form id="order-express-form" onsubmit="submitExpressOrder(event)" style="margin-top:.85rem">
+        <div class="form-group" style="margin-bottom:.65rem">
+          <label style="font-size:.74rem;color:var(--muted);display:block;margin-bottom:3px">Nom complet du client</label>
+          <input type="text" id="order-customer-name" class="form-control" required placeholder="Ex: Kouamé Jean" style="background:#1e293b;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.82rem;padding:.5rem .75rem">
+        </div>
+        <div class="form-group" style="margin-bottom:.65rem">
+          <label style="font-size:.74rem;color:var(--muted);display:block;margin-bottom:3px">Numéro de téléphone Mobile Money</label>
+          <input type="tel" id="order-customer-phone" class="form-control" required placeholder="Ex: 07 48 30 11 00" style="background:#1e293b;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.82rem;padding:.5rem .75rem">
+        </div>
+        <div class="form-group" style="margin-bottom:.65rem">
+          <label style="font-size:.74rem;color:var(--muted);display:block;margin-bottom:3px">Adresse ou Quartier à Yamoussoukro</label>
+          <input type="text" id="order-customer-address" class="form-control" required placeholder="Ex: Zone Présidentielle, Morofé, Résidentiel, INPHB..." style="background:#1e293b;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.82rem;padding:.5rem .75rem">
+        </div>
+        <div class="form-group" style="margin-bottom:1rem">
+          <label style="font-size:.74rem;color:var(--muted);display:block;margin-bottom:3px">Mode de Règlement</label>
+          <select id="order-payment-method" class="form-control" style="background:#1e293b;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.82rem;padding:.5rem .75rem">
+            <option value="Wave">🟠 Wave (Zéro frais de transfert)</option>
+            <option value="Orange Money">🟡 Orange Money</option>
+            <option value="MTN MoMo">🔵 MTN Mobile Money</option>
+            <option value="Moov Money">🟢 Moov Money</option>
+            <option value="Espèces">💵 Espèces à la livraison</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:.65rem;font-size:.82rem">
+          ✅ Valider la Commande (Livraison moto 45 min)
+        </button>
+      </form>
+
+      <div id="order-success-msg" style="display:none;background:rgba(25,195,125,.18);border:1px solid #19c37d;padding:1rem;border-radius:12px;margin-top:.85rem;color:#5df0b0;font-size:.82rem;text-align:center"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <!-- MODALE OFFICIELLE DE DEMANDE DE LOCATION COMMERCIALE -->
+  <div class="order-modal-backdrop" id="lease-modal-backdrop" style="display:none;" onclick="if(event.target === this) closeLeaseModal()">
+    <div class="order-modal-box" style="max-width:580px;max-height:92vh;overflow-y:auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;border-bottom:1px solid var(--border);padding-bottom:.6rem">
+        <div style="font-weight:800;font-size:1.15rem;color:#fff;display:flex;align-items:center;gap:8px">
+          <span style="font-size:1.5rem">🔑</span> Formulaire de Demande de Location Commerciale
+        </div>
+        <button onclick="closeLeaseModal()" style="background:none;border:none;color:#94a3b8;font-size:1.4rem;cursor:pointer">✕</button>
+      </div>
+
+      <!-- Résumé de l'espace -->
+      <div style="background:rgba(245,185,66,.1);border:1px solid rgba(245,185,66,.3);border-radius:12px;padding:.85rem;margin-bottom:1rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+          <div>
+            <div style="font-weight:800;color:var(--gold);font-size:1rem" id="modal-lease-space-title">Espace 1 (20 m² Climatisé)</div>
+            <div style="font-size:.76rem;color:var(--muted)">BÉLIER MALL · Zone Présidentielle · Axe Yamoussoukro-Bouaké</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:1.1rem;font-weight:900;color:#5df0b0"><span id="modal-lease-rent-val">250 000 FCFA</span> <small style="font-size:.7rem;color:#cbd5e1">/ mois</small></div>
+            <div style="font-size:.72rem;color:var(--muted)">Caution (3 mois) : <strong id="modal-lease-deposit-val">750 000 FCFA</strong></div>
+          </div>
+        </div>
+        <div style="margin-top:.5rem;padding-top:.5rem;border-top:1px dashed rgba(245,185,66,.25);font-size:.76rem;color:#fef08a">
+          📞 Contact officiel régie : <strong>+225 05 65 98 22 29</strong> (Appel direct ou WhatsApp)
+        </div>
+      </div>
+
+      <form id="lease-application-form" onsubmit="submitLeasingApplication(event)">
+        <!-- Nom & Prénom -->
+        <div style="margin-bottom:.85rem">
+          <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:3px">Nom &amp; Prénom(s) du Demandeur / Promoteur *</label>
+          <input type="text" id="modal-lease-name" class="main-search-input" style="padding-left:.9rem;font-size:.85rem" required placeholder="Ex: M. KOUASSI Yao Jean">
+        </div>
+
+        <!-- Téléphone -->
+        <div style="margin-bottom:.85rem">
+          <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:3px">Numéro de Téléphone / WhatsApp (+225) *</label>
+          <input type="tel" id="modal-lease-phone" class="main-search-input" style="padding-left:.9rem;font-size:.85rem" required placeholder="+225 07 48 12 34 56">
+        </div>
+
+        <!-- Espace Souhaité -->
+        <div style="margin-bottom:.85rem">
+          <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:3px">Numéro de l'Espace Souhaité *</label>
+          <select id="modal-lease-space-select" class="select-qr" style="width:100%;font-size:.85rem;padding:.55rem .8rem" onchange="updateModalLeaseInfo(this.value)">
+            <!-- Rempli dynamiquement (Espace 1 à Espace 50) -->
+          </select>
+        </div>
+
+        <!-- Disponibilité / Prise Immédiate vs Prise Différée -->
+        <div style="margin-bottom:1rem">
+          <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:6px">Êtes-vous prêt à prendre l'espace maintenant immédiatement ? *</label>
+          <div class="timing-radio-grid">
+            <label class="timing-radio-card active-immediate" id="card-timing-immediate">
+              <input type="radio" name="lease-readiness" value="immediate" checked onchange="toggleTimingRadio(this)" style="margin-top:3px">
+              <div class="timing-content">
+                <div style="font-weight:800;color:#f97316;font-size:.84rem">🔥 Prise Immédiate</div>
+                <div style="font-size:.72rem;color:var(--muted);line-height:1.35;margin-top:2px">
+                  Je suis prêt à signer le bail et intégrer l'espace <strong>tout de suite / ce mois-ci</strong>.
+                </div>
+              </div>
+            </label>
+
+            <label class="timing-radio-card" id="card-timing-delayed">
+              <input type="radio" name="lease-readiness" value="delayed" onchange="toggleTimingRadio(this)" style="margin-top:3px">
+              <div class="timing-content">
+                <div style="font-weight:700;color:#38bdf8;font-size:.84rem">🗓️ Prise Différée</div>
+                <div style="font-size:.72rem;color:var(--muted);line-height:1.35;margin-top:2px">
+                  Réservation pour les <strong>prochains mois</strong> ou préparation de projet futur.
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Case à cocher obligatoire : Règlement de Location en Côte d'Ivoire -->
+        <div class="ci-legal-box" style="margin-bottom:1.1rem">
+          <div style="font-weight:800;color:#5df0b0;margin-bottom:.4rem;display:flex;align-items:center;gap:6px">
+            <span>🇨🇮</span> Conditions &amp; Règlement de Location Commerciale (Côte d'Ivoire)
+          </div>
+          <div style="font-size:.72rem;color:#cbd5e1;line-height:1.45;margin-bottom:.65rem">
+            • <strong>Caution Légale :</strong> 3 mois de dépôt de garantie (<strong>750 000 FCFA</strong>) conformément aux usages commerciaux en République de Côte d'Ivoire.<br>
+            • <strong>Loyer d'Avance :</strong> Paiement du premier mois de loyer (<strong>250 000 FCFA</strong>) à la remise des clés.<br>
+            • <strong>Cadre Juridique :</strong> Bail commercial soumis à l'Acte Uniforme OHADA portant sur le Droit Commercial Général et à la législation ivoirienne.<br>
+            • <strong>Contact Officiel Régie :</strong> <strong>+225 05 65 98 22 29</strong> pour toute visite ou finalisation du contrat.
+          </div>
+          <label style="display:flex;align-items:flex-start;gap:.6rem;cursor:pointer;font-size:.76rem;color:#fff;font-weight:600">
+            <input type="checkbox" id="modal-lease-reglement-check" required style="margin-top:3px;transform:scale(1.15)">
+            <span>J'ai lu et j'accepte expressément le règlement de location commerciale en vigueur en République de Côte d'Ivoire. *</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:.85rem;font-size:.9rem;font-weight:800">
+          🚀 Envoyer ma Demande de Location à la Direction
+        </button>
+      </form>
+
+      <div id="modal-lease-success-msg" style="display:none;background:rgba(25,195,125,.18);border:1px solid #19c37d;padding:1rem;border-radius:12px;margin-top:.9rem;color:#5df0b0;font-size:.82rem;text-align:center"></div>
+    </div>
+  </div>
+
+  <!-- MODALE DE DEMANDE D'AUTORISATION DE LOCALISATION GPS (COMME YANGO / GOOGLE MAPS) -->
+  <div class="order-modal-backdrop" id="gps-permission-modal-backdrop" style="display:none;z-index:9999" onclick="if(event.target === this) closeGPSPermissionModal()">
+    <div class="order-modal-box" style="max-width:480px;text-align:center;padding:1.8rem;border:1.5px solid #38bdf8;box-shadow:0 20px 50px rgba(0,0,0,0.85), 0 0 30px rgba(56,189,248,0.25)">
+      <div style="width:68px;height:68px;border-radius:50%;background:rgba(56,189,248,.15);border:2px solid #38bdf8;display:flex;align-items:center;justify-content:center;font-size:2.1rem;margin:0 auto 1rem;box-shadow:0 0 20px rgba(56,189,248,.35)">
+        📍
+      </div>
+
+      <div style="font-weight:900;font-size:1.22rem;color:#fff;margin-bottom:.45rem">
+        Autoriser l'accès à votre position GPS
+      </div>
+
+      <p style="font-size:.84rem;color:#cbd5e1;line-height:1.5;margin-bottom:1.1rem" id="gps-perm-modal-desc">
+        Pour vous montrer le chemin en temps réel depuis votre position actuelle jusqu'à <strong>BÉLIER MALL ON LINE</strong> puis jusqu'à votre boutique (comme sur <strong>Yango</strong> ou <strong>Google Maps</strong>), veuillez activer votre localisation GPS.
+      </p>
+
+      <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:.75rem;margin-bottom:1.2rem;text-align:left;font-size:.76rem;color:var(--muted)">
+        <div style="color:#fff;font-weight:700;margin-bottom:3px">🛰️ Ce que le guidage GPS va afficher :</div>
+        1. <strong>Trajet routier en direct</strong> depuis votre position actuelle jusqu'à l'entrée du centre commercial.<br>
+        2. <strong>Guidage intérieur précis</strong> dans les 5 hectares jusqu'au rayon ou à la boutique choisie.
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:.65rem">
+        <button type="button" class="btn-gps-live" style="width:100%;justify-content:center;padding:.85rem;font-size:.9rem" onclick="confirmAndRequestBrowserGPS()">
+          🛰️ Autoriser ma localisation GPS maintenant
+        </button>
+        <button type="button" class="btn-secondary" style="width:100%;justify-content:center;padding:.65rem;font-size:.8rem" onclick="proceedWithoutExternalGPS()">
+          🏢 Je suis déjà à l'entrée du Centre Commercial (Mode sur place)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALE HAUTE SÉCURITÉ : CONFIRMATION DE SUPPRESSION PAR MOT DE PASSE SUPERADMIN -->
+  <div class="order-modal-backdrop" id="superadmin-delete-modal-backdrop" style="display:none;z-index:10000" onclick="if(event.target === this) closeSuperAdminDeleteModal()">
+    <div class="order-modal-box" style="max-width:460px;padding:1.7rem;border:1.5px solid #ef4444;box-shadow:0 20px 50px rgba(0,0,0,0.85), 0 0 28px rgba(239,68,68,0.3)">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem">
+        <span style="font-size:2rem;background:rgba(239,68,68,.18);border:1px solid #ef4444;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center">👑</span>
+        <div>
+          <div style="font-weight:900;font-size:1.08rem;color:#fff">Confirmation SuperAdmin Requise</div>
+          <div style="font-size:.75rem;color:#fca5a5">Seul le SuperAdmin est habilité à supprimer un élément.</div>
+        </div>
+      </div>
+
+      <div id="superadmin-delete-target-label" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.75rem;font-size:.83rem;color:#e2e8f0;margin-bottom:1rem">
+        Élément à supprimer : <strong>--</strong>
+      </div>
+
+      <div id="superadmin-delete-error" style="display:none;background:rgba(239,68,68,.2);border:1px solid #ef4444;color:#fca5a5;padding:.6rem .8rem;border-radius:8px;font-size:.78rem;margin-bottom:.85rem"></div>
+
+      <form onsubmit="confirmSuperAdminDeletionWithPassword(event)">
+        <div style="margin-bottom:1rem">
+          <label style="font-size:.78rem;font-weight:700;color:#fff;display:block;margin-bottom:5px">
+            Saisissez votre mot de passe SuperAdmin pour confirmer * :
+          </label>
+          <input type="password" id="superadmin-confirm-pwd-input" class="main-search-input" style="padding-left:1rem;border-color:rgba(239,68,68,.5)" placeholder="Mot de passe SuperAdmin..." required>
+        </div>
+
+        <div style="display:flex;gap:.6rem">
+          <button type="button" class="btn-secondary" style="flex:1;justify-content:center;padding:.7rem" onclick="closeSuperAdminDeleteModal()">
+            Annuler
+          </button>
+          <button type="submit" class="btn-primary" style="flex:1.3;justify-content:center;padding:.7rem;background:linear-gradient(135deg,#ef4444,#dc2626);border-color:#f87171;color:#fff;font-weight:800">
+            🗑️ Confirmer la Suppression
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODALE OFFICIELLE : ATTRIBUTION DE BAIL & ENVOI DES IDENTIFIANTS SUR WHATSAPP -->
+  <div class="order-modal-backdrop" id="tenant-approval-modal-backdrop" style="display:none;z-index:10001" onclick="if(event.target === this) closeTenantApprovalModal()">
+    <div class="order-modal-box" style="max-width:540px;padding:1.8rem;border:1.5px solid #10b981;box-shadow:0 20px 50px rgba(0,0,0,0.9), 0 0 32px rgba(16,185,129,0.3)">
+      <div style="display:flex;align-items:center;gap:.85rem;margin-bottom:1rem">
+        <span style="font-size:2.4rem;background:rgba(16,185,129,.18);border:1px solid #10b981;width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center">🔑</span>
+        <div>
+          <div style="font-weight:900;font-size:1.18rem;color:#fff">Bail Attribué &amp; Espace Boutique Créé !</div>
+          <div style="font-size:.78rem;color:#6ee7b7">Le contrat est validé et les identifiants de la boutique sont prêts.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:1.1rem;font-size:.84rem;line-height:1.6">
+        <div>Locataire : <strong id="approved-modal-tenant-name" style="color:#fff">--</strong></div>
+        <div>Espace loué : <strong id="approved-modal-space-name" style="color:var(--gold)">--</strong></div>
+        <div>Téléphone WhatsApp : <strong id="approved-modal-phone" style="color:#38bdf8">--</strong></div>
+      </div>
+
+      <!-- Encadré des identifiants générés -->
+      <div style="background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(15,23,42,.95));border:1.5px solid #10b981;border-radius:14px;padding:1.1rem;margin-bottom:1.2rem">
+        <div style="font-size:.82rem;font-weight:800;color:#5df0b0;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:1px">
+          📲 Identifiants de Connexion à envoyer au Locataire :
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;font-size:.88rem">
+          <div style="background:rgba(0,0,0,.35);padding:.6rem .8rem;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+              <span style="font-size:.72rem;color:var(--muted)">Identifiant (Login fixe) :</span>
+              <button type="button" class="btn-secondary" style="font-size:.68rem;padding:.15rem .45rem;border-color:var(--gold);color:var(--gold)" onclick="regenerateTenantLoginInApprovalModal()" title="Générer un autre login aléatoire">🔄 Régénérer</button>
+            </div>
+            <strong id="approved-modal-login" style="color:var(--gold);font-size:1.05rem">kyao4829</strong>
+            <small style="display:block;font-size:.65rem;color:#94a3b8">1ère lettre nom + 3 lettres prénom + 4 chiffres</small>
+          </div>
+          <div style="background:rgba(0,0,0,.35);padding:.6rem .8rem;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
+            <span style="font-size:.72rem;color:var(--muted);display:block">Mot de passe temporaire :</span>
+            <strong id="approved-modal-password" style="color:#5df0b0;font-size:1.05rem">BM12026!</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions : Envoi direct WhatsApp & Copie -->
+      <div style="display:flex;flex-direction:column;gap:.7rem">
+        <a id="approved-modal-whatsapp-btn" href="#" target="_blank" class="btn-primary" style="justify-content:center;padding:.9rem;background:linear-gradient(135deg,#10b981,#059669);border-color:#34d399;font-weight:800;font-size:.95rem;text-decoration:none">
+          💬 Envoyer les Identifiants par WhatsApp au Locataire
+        </a>
+        <div style="display:flex;gap:.6rem">
+          <button type="button" class="btn-secondary" style="flex:1;justify-content:center;padding:.65rem;font-size:.8rem" onclick="copyApprovedTenantCredentials()">
+            📋 Copier les Identifiants
+          </button>
+          <button type="button" class="btn-secondary" style="flex:1;justify-content:center;padding:.65rem;font-size:.8rem" onclick="closeTenantApprovalModal()">
+            ✓ Terminer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
