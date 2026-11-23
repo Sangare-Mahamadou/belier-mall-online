@@ -1,6 +1,6 @@
 /**
  * BÉLIER MALL · Application YAMO-APP
- * Site : Terrain d'un hectare - Zone Présidentiel - Axe Yamoussoukro-Bouaké.
+ * Site : Terrain d'un hectare - Zone Présidentielle - Axe Yamoussoukro-Bouaké.
  * Gère la recherche instantanée en FCFA, le GPS indoor 2D, les 4 Pôles,
  * la gouvernance et la location-gérance des 46 boutiques.
  */
@@ -27,7 +27,7 @@ const LOCAL_DATA = {
     {
       name: "M. YAO Kouadio Franck",
       role: "Responsable Restaurant & Cinéma",
-      pole: "Pôle 1 & 3 · LE ZONE PRESIDENTIEL GOURMAND (150 pl.) & Cinéma Dolby (100 pl.)",
+      pole: "Pôle 1 & 3 · LE ZONE PRÉSIDENTIELLE GOURMAND (150 pl.) & Cinéma Dolby (100 pl.)",
       phone: "+225 27 30 64 10 02",
       avatar: "👨🏾‍🍳",
       personality: "Jovial, accueillant, créatif, résistant au stress.",
@@ -38,7 +38,7 @@ const LOCAL_DATA = {
     {
       name: "Mme KONÉ Mariam",
       role: "Responsable Magasin Vêtements & Esthétique",
-      pole: "Pôle 1 · ZONE PRESIDENTIEL FASHION & Salon BELLE DE YAKRO",
+      pole: "Pôle 1 · ZONE PRÉSIDENTIELLE FASHION & Salon BELLE DE YAKRO",
       phone: "+225 27 30 64 10 03",
       avatar: "✨",
       personality: "Coquette, à la mode, bonne conseillère, sociable.",
@@ -89,7 +89,7 @@ const LOCAL_DATA = {
     },
     {
       id: "store-mimos-fashion",
-      name: "Magasin ZONE PRESIDENTIEL FASHION",
+      name: "Magasin ZONE PRÉSIDENTIELLE FASHION",
       category: "Mode & Prêt-à-porter Chic",
       cell_id: "cell-lot-104",
       cell_code: "POLE-1-LOCO-03",
@@ -1642,9 +1642,9 @@ const LOCAL_DATA = {
     { id: "p-ym-4", store_id: "store-yakro-market", name: "Café Pur Terroir de Toumodi 'Made in Yamoussoukro' (500 g)", price: 2800, in_stock: true, stock: 40, emoji: "☕", category_name: "Made in Yamoussoukro", desc: "Café moulu d'exception récolté à Toumodi et Didiévi, torréfaction artisanale ivoirienne.", tags: ["café", "toumodi", "made in yamoussoukro", "yakro market", "local"] },
     { id: "p-ym-5", store_id: "store-yakro-market", name: "Lait Concentré Sucré Bonnet Rouge (Pack de 6)", price: 4200, in_stock: true, stock: 95, emoji: "🥛", category_name: "Produits Laitiers", desc: "Lait concentré sucré riche en calcium et vitamines, idéal pour le petit déjeuner et la bouillie.", tags: ["lait", "bonnet rouge", "supermarché", "yakro market", "petit dejeuner"] },
 
-    // MAGASIN ZONE PRESIDENTIEL FASHION (MODE CHIC - PÔLE 1 R+1 - ADMIN)
-    { id: "p-mf-1", store_id: "store-mimos-fashion", name: "Robe Satinée Tendance TikTok 'Bélier Chic'", price: 18000, in_stock: true, stock: 22, emoji: "👗", category_name: "Mode Féminine", desc: "Robe de soirée fluide en satin de soie, coupe élégante moderne 1er choix neuf importée de Dubaï.", tags: ["robe", "mode", "vêtement", "zone présidentiel fashion", "tiktok", "manteau"] },
-    { id: "p-mf-2", store_id: "store-mimos-fashion", name: "Ensemble Chemise en Lin & Pantalon Homme", price: 25000, in_stock: true, stock: 18, emoji: "👔", category_name: "Mode Masculine", desc: "Chemise col officier en lin naturel et pantalon chino assorti, coupe cintrée respirante.", tags: ["chemise", "vêtement", "mode", "lin", "zone présidentiel fashion", "homme"] },
+    // MAGASIN ZONE PRÉSIDENTIELLE FASHION (MODE CHIC - PÔLE 1 R+1 - ADMIN)
+    { id: "p-mf-1", store_id: "store-mimos-fashion", name: "Robe Satinée Tendance TikTok 'Bélier Chic'", price: 18000, in_stock: true, stock: 22, emoji: "👗", category_name: "Mode Féminine", desc: "Robe de soirée fluide en satin de soie, coupe élégante moderne 1er choix neuf importée de Dubaï.", tags: ["robe", "mode", "vêtement", "zone présidentielle fashion", "tiktok", "manteau"] },
+    { id: "p-mf-2", store_id: "store-mimos-fashion", name: "Ensemble Chemise en Lin & Pantalon Homme", price: 25000, in_stock: true, stock: 18, emoji: "👔", category_name: "Mode Masculine", desc: "Chemise col officier en lin naturel et pantalon chino assorti, coupe cintrée respirante.", tags: ["chemise", "vêtement", "mode", "lin", "zone présidentielle fashion", "homme"] },
 
     // PÔLE 2 : ANNEXE LOISIRS ENFANTS (300 m²)
     { id: "p-kp-1", store_id: "space-kids-park", name: "Pass 1 Heure Aire de Jeux Enfants (Bracelet Sécurité Inclus)", price: 1500, in_stock: true, stock: 100, emoji: "🎡", category_name: "Loisirs & Jeux Enfants", desc: "Accès illimité pendant 1h : piscine à 10 000 boules, grands toboggans tubulaires, manège et jeux vidéo. Surveillance assurée par 2 animatrices diplômées.", tags: ["enfants", "jeux", "manège", "toboggan", "loisir", "garderie"] },
@@ -1657,23 +1657,23 @@ const LOCAL_DATA = {
   ],
   routes: {
     "QR_PORTE_NORD": {
-      "cell-supermarket": { dist: 65, time: 55, coords: [[500,95], [500,345], [330,345], [150,470]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Descendez l'Allée Centrale vers la Place du Bélier", "Tournez à droite vers l'Aile Ouest", "Entrée du Supermarché YAKRO MARKET (800 m²) devant vous."] },
-      "cell-resto-vip": { dist: 68, time: 58, coords: [[500,95], [500,345], [650,345], [825,370]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Avancez jusqu'à la Place du Bélier", "Tournez à gauche vers l'Aile Est", "Arrivée au Restaurant LE ZONE PRESIDENTIEL GOURMAND (150 places)."] },
-      "cell-lot-104": { dist: 35, time: 30, coords: [[500,95], [500,210], [340,210]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Prenez l'allée Ouest sur 20m", "Magasin ZONE PRESIDENTIEL FASHION sur votre gauche."] },
-      "cell-zara": { dist: 58, time: 50, coords: [[500,95], [500,345], [330,345], [240,295]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Descendez jusqu'à la Place du Bélier", "Tournez à droite vers l'Aile Beauté", "Entrée du Salon BELLE DE YAKRO sur votre droite."] },
-      "cell-cinema": { dist: 42, time: 40, coords: [[500,95], [500,130], [650,130], [590,195]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Tournez à gauche vers le Pôle 3", "Entrée de la Salle de Cinéma Dolby (100 places) sur votre droite."] },
-      "cell-rest": { dist: 78, time: 65, coords: [[500,95], [500,345], [650,345], [830,550]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Traversez la Place du Bélier vers le Sud-Est", "Accès direct au Pôle 2 : Annexe Loisirs Enfants (300 m²)."] },
-      "cell-fnac": { dist: 38, time: 35, coords: [[500,95], [500,130], [330,130], [240,125]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Tournez à droite dans la Galerie Nord-Ouest", "Cellule B01 (Librairie du Bélier) sur votre droite."] },
-      "cell-apple": { dist: 28, time: 25, coords: [[500,95], [500,130], [390,125]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Prenez l'allée Ouest sur 15m", "Cellule B02 (INPHB Tech) devant vous."] },
-      "cell-foodcourt": { dist: 65, time: 55, coords: [[500,95], [500,345], [650,345], [590,365]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Descendez l'Allée Centrale", "Tournez à gauche à la Place du Bélier vers la Cellule B04."] },
-      "cell-toilettes": { dist: 55, time: 50, coords: [[500,95], [500,130], [650,130], [840,150], [840,245]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Prenez l'allée Est", "Les sanitaires & espace bébé se trouvent au bout du couloir Est."] },
-      "cell-greenpark": { dist: 60, time: 55, coords: [[500,95], [500,345], [330,345], [330,430]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Rejoignez la Place du Bélier puis tournez à droite", "Accès à la Galerie des 46 Boutiques en Location-Gérance."] },
-      "cell-parking-sud": { dist: 85, time: 75, coords: [[500,95], [500,520], [560,550], [590,550]], steps: ["Départ Porte Zone Présidentiel (QR 1)", "Descendez toute l'allée centrale vers le Sud", "Accès Pôle 4 : Grand Parking Sécurisé 300 places."] }
+      "cell-supermarket": { dist: 65, time: 55, coords: [[500,95], [500,345], [330,345], [150,470]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Descendez l'Allée Centrale vers la Place du Bélier", "Tournez à droite vers l'Aile Ouest", "Entrée du Supermarché YAKRO MARKET (800 m²) devant vous."] },
+      "cell-resto-vip": { dist: 68, time: 58, coords: [[500,95], [500,345], [650,345], [825,370]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Avancez jusqu'à la Place du Bélier", "Tournez à gauche vers l'Aile Est", "Arrivée au Restaurant LE ZONE PRÉSIDENTIELLE GOURMAND (150 places)."] },
+      "cell-lot-104": { dist: 35, time: 30, coords: [[500,95], [500,210], [340,210]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Prenez l'allée Ouest sur 20m", "Magasin ZONE PRÉSIDENTIELLE FASHION sur votre gauche."] },
+      "cell-zara": { dist: 58, time: 50, coords: [[500,95], [500,345], [330,345], [240,295]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Descendez jusqu'à la Place du Bélier", "Tournez à droite vers l'Aile Beauté", "Entrée du Salon BELLE DE YAKRO sur votre droite."] },
+      "cell-cinema": { dist: 42, time: 40, coords: [[500,95], [500,130], [650,130], [590,195]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Tournez à gauche vers le Pôle 3", "Entrée de la Salle de Cinéma Dolby (100 places) sur votre droite."] },
+      "cell-rest": { dist: 78, time: 65, coords: [[500,95], [500,345], [650,345], [830,550]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Traversez la Place du Bélier vers le Sud-Est", "Accès direct au Pôle 2 : Annexe Loisirs Enfants (300 m²)."] },
+      "cell-fnac": { dist: 38, time: 35, coords: [[500,95], [500,130], [330,130], [240,125]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Tournez à droite dans la Galerie Nord-Ouest", "Cellule B01 (Librairie du Bélier) sur votre droite."] },
+      "cell-apple": { dist: 28, time: 25, coords: [[500,95], [500,130], [390,125]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Prenez l'allée Ouest sur 15m", "Cellule B02 (INPHB Tech) devant vous."] },
+      "cell-foodcourt": { dist: 65, time: 55, coords: [[500,95], [500,345], [650,345], [590,365]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Descendez l'Allée Centrale", "Tournez à gauche à la Place du Bélier vers la Cellule B04."] },
+      "cell-toilettes": { dist: 55, time: 50, coords: [[500,95], [500,130], [650,130], [840,150], [840,245]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Prenez l'allée Est", "Les sanitaires & espace bébé se trouvent au bout du couloir Est."] },
+      "cell-greenpark": { dist: 60, time: 55, coords: [[500,95], [500,345], [330,345], [330,430]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Rejoignez la Place du Bélier puis tournez à droite", "Accès à la Galerie des 46 Boutiques en Location-Gérance."] },
+      "cell-parking-sud": { dist: 85, time: 75, coords: [[500,95], [500,520], [560,550], [590,550]], steps: ["Départ Porte Zone Présidentielle (QR 1)", "Descendez toute l'allée centrale vers le Sud", "Accès Pôle 4 : Grand Parking Sécurisé 300 places."] }
     },
     "QR_PLACE_CENTRALE": {
       "cell-supermarket": { dist: 35, time: 30, coords: [[500,345], [330,345], [150,470]], steps: ["Départ Place du Bélier (QR 2)", "Prenez l'allée Sud-Ouest", "Entrée Supermarché YAKRO MARKET (800 m²)."] },
-      "cell-resto-vip": { dist: 32, time: 28, coords: [[500,345], [650,345], [825,370]], steps: ["Départ Place du Bélier (QR 2)", "Prenez l'allée Est vers la terrasse", "Arrivée Restaurant LE ZONE PRESIDENTIEL GOURMAND."] },
-      "cell-lot-104": { dist: 25, time: 20, coords: [[500,345], [340,345], [340,210]], steps: ["Départ Place du Bélier (QR 2)", "Prenez l'allée Ouest sur 15m", "Magasin ZONE PRESIDENTIEL FASHION."] },
+      "cell-resto-vip": { dist: 32, time: 28, coords: [[500,345], [650,345], [825,370]], steps: ["Départ Place du Bélier (QR 2)", "Prenez l'allée Est vers la terrasse", "Arrivée Restaurant LE ZONE PRÉSIDENTIELLE GOURMAND."] },
+      "cell-lot-104": { dist: 25, time: 20, coords: [[500,345], [340,345], [340,210]], steps: ["Départ Place du Bélier (QR 2)", "Prenez l'allée Ouest sur 15m", "Magasin ZONE PRÉSIDENTIELLE FASHION."] },
       "cell-zara": { dist: 25, time: 20, coords: [[500,345], [330,345], [240,295]], steps: ["Départ Place du Bélier (QR 2)", "Prenez l'allée Ouest sur 20m", "Entrée Salon BELLE DE YAKRO."] },
       "cell-rest": { dist: 42, time: 35, coords: [[500,345], [650,345], [830,550]], steps: ["Départ Place du Bélier (QR 2)", "Dirigez-vous vers le Sud-Est", "Entrée Pôle 2 : Annexe Loisirs Enfants (300 m²)."] },
       "cell-cinema": { dist: 38, time: 35, coords: [[500,345], [650,345], [650,130], [590,195]], steps: ["Départ Place du Bélier (QR 2)", "Prenez l'allée Est puis remontez vers le Pôle 3 Cinéma Dolby."] },
@@ -1683,7 +1683,7 @@ const LOCAL_DATA = {
     },
     "QR_PORTE_SUD": {
       "cell-supermarket": { dist: 40, time: 35, coords: [[500,605], [330,605], [150,470]], steps: ["Départ Esplanade Sud (QR 3)", "Tournez à gauche vers l'Aile Ouest", "Entrée directe Supermarché YAKRO MARKET."] },
-      "cell-resto-vip": { dist: 45, time: 40, coords: [[500,605], [650,605], [825,370]], steps: ["Départ Esplanade Sud (QR 3)", "Prenez l'allée Est vers la terrasse", "Entrée du Restaurant LE ZONE PRESIDENTIEL GOURMAND."] },
+      "cell-resto-vip": { dist: 45, time: 40, coords: [[500,605], [650,605], [825,370]], steps: ["Départ Esplanade Sud (QR 3)", "Prenez l'allée Est vers la terrasse", "Entrée du Restaurant LE ZONE PRÉSIDENTIELLE GOURMAND."] },
       "cell-rest": { dist: 32, time: 28, coords: [[500,605], [650,605], [830,550]], steps: ["Départ Esplanade Sud (QR 3)", "Longez l'esplanade vers l'Est", "Entrée Pôle 2 : Annexe Loisirs Enfants (300 m²)."] },
       "cell-fnac": { dist: 82, time: 75, coords: [[500,605], [500,130], [330,130], [240,125]], steps: ["Départ Esplanade Sud (QR 3)", "Remontez toute l'Allée Centrale vers le Nord", "Tournez à gauche vers la Cellule B01."] },
       "cell-foodcourt": { dist: 40, time: 35, coords: [[500,605], [500,345], [650,345], [590,365]], steps: ["Départ Esplanade Sud (QR 3)", "Avancez jusqu'à la Place du Bélier", "Tournez à droite."] }
@@ -1729,6 +1729,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderParkingData();
   showWelcomeCard();
   initAdminTriggers();
+  initTenantSpace();
   syncStateFromBackend();
   setInterval(syncStateFromBackend, 4000);
 });
@@ -2366,7 +2367,7 @@ function renderPlacePreviewCard(store, product = null) {
           <span style="font-size:2.4rem;background:rgba(255,255,255,.08);padding:.4rem .6rem;border-radius:14px;border:1px solid rgba(255,255,255,.15)">${store.logo}</span>
           <div>
             <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:#fff">${escapeHtml(store.name)}</div>
-            <div style="font-size:.78rem;color:var(--muted)">Cellule <strong>${store.cell_id.toUpperCase()}</strong> · Zone Présidentiel</div>
+            <div style="font-size:.78rem;color:var(--muted)">Cellule <strong>${store.cell_id.toUpperCase()}</strong> · Zone Présidentielle</div>
           </div>
         </div>
         <div class="gmaps-rating-row">
@@ -2414,7 +2415,7 @@ function renderPlacePreviewCard(store, product = null) {
           <span class="gmaps-info-icon">📍</span>
           <div>
             <strong>Emplacement :</strong> Bâtiment Principal (R+1) · Cellule ${store.cell_id.toUpperCase()}
-            <div style="font-size:.76rem;color:var(--muted)">Près de l'allée centrale · Zone Présidentiel</div>
+            <div style="font-size:.76rem;color:var(--muted)">Près de l'allée centrale · Zone Présidentielle</div>
           </div>
         </div>
         <div class="gmaps-info-item">
@@ -3129,7 +3130,7 @@ function showWelcomeCard() {
   container.innerHTML = `
     <div class="card-title">♈ BÉLIER MALL · Yamoussoukro</div>
     <p style="color: var(--text-muted); font-size: 0.86rem; margin-bottom: 0.9rem;">
-      <strong>Zone Présidentiel</strong> (Axe Yamoussoukro-Bouaké · 1 Hectare).<br>
+      <strong>Zone Présidentielle</strong> (Axe Yamoussoukro-Bouaké · 1 Hectare).<br>
       Explorez la carte <strong>style Google Maps</strong> : cliquez sur une boutique pour voir sa fiche, ou démarrez l'itinéraire à tout moment !
     </p>
     <div style="display:flex;flex-direction:column;gap:.45rem;margin-bottom:.9rem;font-size:.8rem">
@@ -3138,7 +3139,7 @@ function showWelcomeCard() {
         <span style="color:var(--gold);font-weight:700">Fiche ➔</span>
       </div>
       <div style="background:rgba(245,185,66,.12);border:1px solid rgba(245,185,66,.3);padding:.55rem .75rem;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="selectStoreById('store-mimos-gourmand')">
-        <div>🍽️ <strong>LE ZONE PRESIDENTIEL GOURMAND</strong> · 150 pl.</div>
+        <div>🍽️ <strong>LE ZONE PRÉSIDENTIELLE GOURMAND</strong> · 150 pl.</div>
         <span style="color:var(--gold);font-weight:700">Fiche ➔</span>
       </div>
       <div style="background:rgba(25,195,125,.12);border:1px solid rgba(25,195,125,.3);padding:.55rem .75rem;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="selectStoreById('space-kids-park')">
@@ -3191,7 +3192,7 @@ function updateStartPinPosition() {
 
 function getStartQRLabel(nodeId) {
   switch (nodeId) {
-    case "QR_PORTE_NORD": return "Borne QR 1 (Porte Zone Présidentiel)";
+    case "QR_PORTE_NORD": return "Borne QR 1 (Porte Zone Présidentielle)";
     case "QR_PLACE_CENTRALE": return "Borne QR 2 (Place du Bélier)";
     case "QR_PORTE_SUD": return "Borne QR 3 (Porte Esplanade Sud)";
     case "QR_PARKING_SUD": return "Borne QR 4 (Guérite Parking 300 places)";
@@ -3215,7 +3216,7 @@ function renderParkingData() {
           <span class="pole-badge">Pôle 4 · Sécurité 24h/24 &amp; Caméras HD</span>
           <div class="card-title" style="margin-bottom:.2rem">🚗 Grand Parking Extérieur Sécurisé · 300 Places (Voitures, Motos &amp; Scooters)</div>
           <p style="color:var(--muted);font-size:.86rem">
-            Supervisé par <strong>M. N'GUESSAN Serge</strong>. Guérite électronique, gardiennage physique 24h/24 et vidéosurveillance intégrale au Zone Présidentiel.
+            Supervisé par <strong>M. N'GUESSAN Serge</strong>. Guérite électronique, gardiennage physique 24h/24 et vidéosurveillance intégrale au Zone Présidentielle.
           </p>
         </div>
         <div style="text-align:right">
@@ -3227,8 +3228,8 @@ function renderParkingData() {
 
     <div class="parking-grid">
       <div class="card">
-        <div class="card-title">🅿️ Secteur A · Entrée Zone Présidentiel (150 places)</div>
-        <p style="color: var(--text-muted); font-size: 0.85rem;">Accès direct Supermarché YAKRO MARKET (800 m²), ZONE PRESIDENTIEL FASHION &amp; BELLE DE YAKRO</p>
+        <div class="card-title">🅿️ Secteur A · Entrée Zone Présidentielle (150 places)</div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Accès direct Supermarché YAKRO MARKET (800 m²), ZONE PRÉSIDENTIELLE FASHION &amp; BELLE DE YAKRO</p>
         <div class="parking-meter">
           <div class="parking-fill" style="width: ${p1Rate}%; background: ${p1Rate > 85 ? 'var(--danger)' : 'var(--primary)'};"></div>
         </div>
@@ -3243,7 +3244,7 @@ function renderParkingData() {
 
       <div class="card">
         <div class="card-title">🅿️ Secteur B · Esplanade Loisirs &amp; Motos (150 places)</div>
-        <p style="color: var(--text-muted); font-size: 0.85rem;">Accès direct Restaurant LE ZONE PRESIDENTIEL GOURMAND, Salle Cinéma Dolby &amp; Annexe Enfants 300 m²</p>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Accès direct Restaurant LE ZONE PRÉSIDENTIELLE GOURMAND, Salle Cinéma Dolby &amp; Annexe Enfants 300 m²</p>
         <div class="parking-meter">
           <div class="parking-fill" style="width: ${p2Rate}%; background: ${p2Rate > 85 ? 'var(--danger)' : 'var(--primary)'};"></div>
         </div>
@@ -3272,7 +3273,7 @@ function renderParkingData() {
           <div style="background:rgba(245,185,66,.1);border:1px solid rgba(245,185,66,.3);padding:.75rem;border-radius:12px;display:flex;justify-content:space-between;align-items:center">
             <div>
               <strong style="color:var(--gold)">Stationnement Externe</strong><br>
-              <span style="font-size:.75rem;color:var(--muted)">Travailleurs Zone Présidentiel / Sans achat</span>
+              <span style="font-size:.75rem;color:var(--muted)">Travailleurs Zone Présidentielle / Sans achat</span>
             </div>
             <span style="font-size:1.25rem;font-weight:900;color:var(--gold)">500 FCFA</span>
           </div>
@@ -3800,6 +3801,35 @@ const SUPERADMIN_SECRET_PWD = "Kadi epouse sangare";
 const ADMIN_STORAGE_KEY = "belier_mall_admin_rbac_v2";
 
 const STATE_STORAGE_KEY = "belier_mall_production_state_v3";
+const TENANT_SESSION_KEY = "belier_mall_tenant_session_v2";
+
+// Génération officielle du Login Commerçant:
+// 1ère lettre du Nom + 3 premières lettres du Prénom + 4 chiffres aléatoires
+function generateTenantLogin(fullName) {
+  let clean = (fullName || "").replace(/^(M\.|Mme|Mlle|Monsieur|Madame|Mademoiselle|Dr|Me)\s+/i, "").trim();
+  let parts = clean.split(/\s+/).filter(Boolean);
+  let nom = parts[0] || "Client";
+  let prenom = parts[1] || parts[0] || "Belier";
+
+  const norm = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z]/g, "");
+  let nomClean = norm(nom) || "c";
+  let prenomClean = norm(prenom) || "bel";
+
+  let firstNom = nomClean.charAt(0);
+  let firstThreePrenom = (prenomClean + "xxx").substring(0, 3);
+  let randDigits = Math.floor(1000 + Math.random() * 9000);
+
+  return `${firstNom}${firstThreePrenom}${randDigits}`;
+}
+
+
+const tenantState = {
+  isAuthenticated: false,
+  account: null, // { id, login, space_number, store_id, tenant_name, phone, must_change_password }
+  store: null,
+  products: [],
+  currentTab: "profile"
+};
 
 const adminState = {
   isAuthenticated: false,
@@ -4870,29 +4900,60 @@ function renderAdminApplicationsTable() {
   container.innerHTML = html;
 }
 
-// 5. ACCEPTER UNE DEMANDE DE LOCATION D'ESPACE (La demande validée disparaît de la liste et l'espace passe en Occupé !)
-function approveLeasingApplication(appId) {
+// 5. ACCEPTER UNE DEMANDE DE LOCATION D'ESPACE (Bail accordé, Compte Commerçant créé et Notification WhatsApp)
+async function approveLeasingApplication(appId) {
   const app = adminState.applications.find(a => a.id === appId);
   if (!app) return;
 
   const spaceName = app.space_number || "Espace 1";
+  const numDigits = spaceName.replace(/[^0-9]/g, "") || "1";
+  // Format officiel: 1ère lettre du Nom + 3 lettres du Prénom + 4 chiffres aléatoires
+  const tenantLogin = generateTenantLogin(app.applicant_name);
+  const defaultPwd = "BM2026!";
 
   // 1. Retirer définitivement la demande de la liste des demandes en attente
   adminState.applications = adminState.applications.filter(a => a.id !== appId);
 
   // 2. Marquer la boutique comme LOUÉE / OCCUPÉE avec les coordonnées du locataire
-  const store = LOCAL_DATA.stores.find(s => s.name === spaceName || s.name.startsWith(spaceName));
+  let store = LOCAL_DATA.stores.find(s => s.name === spaceName || s.name.startsWith(spaceName));
+  if (!store) {
+    store = LOCAL_DATA.stores.find(s => s.id === "store-espace-" + numDigits);
+  }
+
   if (store) {
     store.status = "LOUE";
     store.tenant_name = app.applicant_name;
-    store.tenant_activity = "Commerce & Distribution";
+    store.tenant_activity = store.tenant_activity || "Commerce & Vente";
     store.phone = app.phone;
     store.manager = `${app.applicant_name} (${app.phone})`;
     store.rent_paid = true;
     store.unpaid_months = 0;
     store.unpaid_amount_fcfa = 0;
     store.due_date = "05/12/2026";
+    store.tenant_account_login = tenantLogin;
     store.desc = `${store.format_label || 'Espace commercial'} de ${store.dimension} loué à ${app.applicant_name} (${fcfa(store.monthly_rent_fcfa)}/mois).`;
+  }
+
+  // Enregistrer le compte locataire localement
+  if (!LOCAL_DATA.tenant_accounts) LOCAL_DATA.tenant_accounts = [];
+  let existingAcc = LOCAL_DATA.tenant_accounts.find(t => t.login === tenantLogin || t.space_number === spaceName);
+  if (!existingAcc) {
+    existingAcc = {
+      id: "tenant-" + tenantLogin,
+      login: tenantLogin,
+      password: defaultPwd,
+      default_password: defaultPwd,
+      must_change_password: true,
+      space_number: spaceName,
+      store_id: store ? store.id : "store-espace-" + numDigits,
+      tenant_name: app.applicant_name,
+      phone: app.phone,
+      created_at: app.date || new Date().toLocaleDateString("fr-FR")
+    };
+    LOCAL_DATA.tenant_accounts.push(existingAcc);
+  } else {
+    existingAcc.tenant_name = app.applicant_name;
+    existingAcc.phone = app.phone;
   }
 
   saveProductionStateToLocal();
@@ -4909,19 +4970,59 @@ function approveLeasingApplication(appId) {
   renderProStoresList();
 
   playChime(880, 0.2);
-  showAdminAlert(`
-    🎉 <strong>DEMANDE VALIDÉE &amp; ESPACE ATTRIBUÉ !</strong><br>
-    La demande pour <strong>« ${escapeHtml(spaceName)} »</strong> (${escapeHtml(app.applicant_name)}) a été acceptée et retirée de la liste d'attente.<br>
-    L'espace est désormais comptabilisé comme <strong>Occupé</strong> dans vos statistiques et votre chiffre d'affaires.
-  `, "success");
 
-  // 4. Persister sur le serveur Backend (production_db.json)
+  // 4. Préparer le lien WhatsApp
+  let cleanPhone = (app.phone || "").replace(/[^0-9]/g, "");
+  if (!cleanPhone.startsWith("225") && cleanPhone.length === 10) {
+    cleanPhone = "225" + cleanPhone;
+  }
+
+  const activePassword = existingAcc.password || defaultPwd;
+  const waMessage = 
+    `🎉 Félicitations ${app.applicant_name} ! Votre contrat de location pour *${spaceName}* à *BÉLIER MALL ON LINE* a été validé avec succès par la Direction.\n\n` +
+    `Voici vos identifiants personnels pour accéder à votre Espace Boutique et configurer votre magasin en ligne :\n` +
+    `🔑 *Identifiant (Login fixe)* : \`${tenantLogin}\`\n` +
+    `🔐 *Mot de passe temporaire* : \`${activePassword}\`\n\n` +
+    `👉 Cliquez sur l'onglet *« 🏪 Espace Boutique »* sur Bélier Mall pour :\n` +
+    `1. Donner un nom personnalisé à votre magasin (ex: votre enseigne commerciale)\n` +
+    `2. Ajouter vos articles et produits avec leurs prix en FCFA\n` +
+    `3. Définir vos moyens de paiement (Wave, Orange Money, etc.)\n` +
+    `4. Modifier votre mot de passe pour sécuriser votre compte (votre identifiant \`${tenantLogin}\` reste fixe).\n\n` +
+    `La Régie Bélier Mall vous souhaite un excellent commerce !`;
+
+  const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waMessage)}`;
+
+  // 5. Afficher la modale d'attribution et d'envoi WhatsApp
+  openTenantApprovalModal({
+    tenant_name: app.applicant_name,
+    space_name: spaceName,
+    phone: app.phone,
+    login: tenantLogin,
+    password: activePassword,
+    wa_url: waUrl,
+    wa_text: waMessage
+  });
+
+  // 6. Synchroniser avec le serveur backend
   isSubmittingStateChange = true;
-  fetch(`${API_BASE}/admin/applications/approve`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ application_id: appId })
-  }).catch(() => {}).finally(() => { isSubmittingStateChange = false; });
+  try {
+    const resp = await fetch(`${API_BASE}/admin/applications/approve`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ application_id: appId })
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data.whatsapp_url) {
+        const linkEl = document.getElementById("approved-modal-whatsapp-btn");
+        if (linkEl) linkEl.href = data.whatsapp_url;
+      }
+    }
+  } catch (err) {
+    console.warn("Mode autonome (Backend hors-ligne):", err);
+  } finally {
+    isSubmittingStateChange = false;
+  }
 }
 
 // 6. REJETER UNE DEMANDE (La demande rejetée disparaît de la liste !)
@@ -5008,6 +5109,11 @@ function renderAdminStoresTable(query = "") {
         <td>${statusPill}</td>
         <td style="text-align:right">
           <div style="display:inline-flex;gap:6px;align-items:center">
+            ${(s.status === "LOUE" || s.tenant_name) ? `
+              <button class="btn-secondary" style="font-size:.72rem;padding:.3rem .55rem;border-color:#10b981;color:#6ee7b7" onclick="adminGenerateOrResendTenantLogin('${s.id}')" title="Générer un nouvel identifiant (1ère lettre nom + 3 lettres prénom + 4 chiffres) et envoyer sur WhatsApp">
+                🔑 Login WhatsApp
+              </button>
+            ` : ''}
             <button class="btn-admin-toggle" onclick="toggleStoreAvailability('${s.id}')" title="Marquer ouvert ou temporairement inaccessible">
               ${isActive ? '⏸️ Désactiver' : '▶️ Réactiver'}
             </button>
@@ -5702,7 +5808,7 @@ const METERS_PER_SVG_Y = 158.1 / 700.0;  // 0.2258 m / px
 const MASTERPLAN_5HA_TARGETS = {
   "cell-pole1-site": { x: 462, y: 210, label: "Centre Commercial (3 ha · 30 000 m²)" },
   "cell-supermarket": { x: 380, y: 215, label: "Supermarché YAKRO MARKET (Centre 3 ha)" },
-  "cell-lot-104": { x: 520, y: 215, label: "Magasin ZONE PRESIDENTIEL FASHION (Centre 3 ha)" },
+  "cell-lot-104": { x: 520, y: 215, label: "Magasin ZONE PRÉSIDENTIELLE FASHION (Centre 3 ha)" },
   "cell-greenpark": { x: 462, y: 195, label: "Galerie des 50 Boutiques en Location" },
   "cell-fnac": { x: 410, y: 205, label: "Espace 1 (Centre Commercial 3 ha)" },
   "cell-apple": { x: 440, y: 205, label: "Espace 2 (Centre Commercial 3 ha)" },
@@ -6099,7 +6205,7 @@ let yangoUserMarker = null;
 let yangoMallMarker = null;
 let yangoRoutePolyline = null;
 
-// Coordonnées officielles de BÉLIER MALL ON LINE (Zone Présidentiel, Yamoussoukro)
+// Coordonnées officielles de BÉLIER MALL ON LINE (Zone Présidentielle, Yamoussoukro)
 const BELIER_MALL_COORDS = { lat: 6.82760, lng: -5.28930 };
 
 function initOrUpdateYangoRoadMap(targetStore = null, targetProd = null) {
@@ -6399,7 +6505,7 @@ function renderAdminStatisticsDashboard() {
     const poles = [
       { label: "🔑 Loyers Encaissés des Boutiques Louées", val: st.collectedMonthlyRent, color: "#f5b942" },
       { label: "🛒 Commandes Supermarché YAKRO MARKET", val: st.caYakroMarket, color: "#38bdf8" },
-      { label: "👗 Commandes Magasin ZONE PRESIDENTIEL FASHION", val: st.caZonePresidentielFashion, color: "#f472b6" },
+      { label: "👗 Commandes Magasin ZONE PRÉSIDENTIELLE FASHION", val: st.caZonePresidentielFashion, color: "#f472b6" },
       { label: "🍿 Billetterie Cinéma, Manège & Parking", val: st.caLoisirsEtParking, color: "#a855f7" }
     ];
 
@@ -6514,7 +6620,7 @@ function renderAdminTenantsUnpaidTable() {
             Les 50 boutiques en location (Espace 1 à Espace 50) sont actuellement libres (non occupées)
           </div>
           <p style="color:var(--muted);font-size:.8rem;max-width:620px;margin:0 auto .8rem">
-            Seuls les <strong>2 magasins de l'Administration</strong> (<em>Supermarché YAKRO MARKET</em> et <em>Magasin ZONE PRESIDENTIEL FASHION</em>) sont occupés.<br>
+            Seuls les <strong>2 magasins de l'Administration</strong> (<em>Supermarché YAKRO MARKET</em> et <em>Magasin ZONE PRÉSIDENTIELLE FASHION</em>) sont occupés.<br>
             Dès que vous validez une candidature dans l'onglet <strong>« 📋 Demandes de Location »</strong>, le locataire s'affichera ici pour le suivi de son loyer et des éventuels impayés.
           </p>
           <button class="btn-primary" style="font-size:.78rem;padding:.45rem .95rem" onclick="switchAdminSubtab('apps')">
@@ -6593,10 +6699,16 @@ function renderAdminTenantsUnpaidTable() {
               <a href="https://wa.me/${cleanPhone}?text=${waText}" target="_blank" class="btn-secondary" style="text-decoration:none;font-size:.72rem;padding:.35rem .65rem;border-color:#f97316;color:#fdba74" title="Envoyer une relance WhatsApp au locataire">
                 💬 Relancer
               </a>
+              <button class="btn-secondary" style="font-size:.72rem;padding:.35rem .65rem;border-color:#10b981;color:#6ee7b7" onclick="adminGenerateOrResendTenantLogin('${s.id}')" title="Générer / Renvoyer le login officiel sur WhatsApp">
+                🔑 Login WhatsApp
+              </button>
               <button class="btn-admin-approve" onclick="toggleTenantRentPaymentStatus('${s.id}', true)" title="Enregistrer le paiement et régulariser ce locataire">
                 💳 Encaisser Loyer
               </button>
             ` : `
+              <button class="btn-secondary" style="font-size:.72rem;padding:.35rem .65rem;border-color:#10b981;color:#6ee7b7" onclick="adminGenerateOrResendTenantLogin('${s.id}')" title="Générer / Renvoyer le login officiel sur WhatsApp">
+                🔑 Login WhatsApp
+              </button>
               <button class="btn-admin-toggle" onclick="toggleTenantRentPaymentStatus('${s.id}', false)" title="Signaler un retard de paiement sur ce locataire">
                 ⚠️ Signaler Impayé
               </button>
@@ -6643,3 +6755,764 @@ function toggleTenantRentPaymentStatus(storeId, markAsPaid) {
   renderAdminStatisticsDashboard();
   updateAdminKPIs();
 }
+
+
+// ============================================================================
+// 🏪 MODULE ESPACE BOUTIQUE / COMMERÇANT (PORTAIL LOCATAIRE)
+// ============================================================================
+
+let currentApprovedModalData = null;
+
+function openTenantApprovalModal(data) {
+  currentApprovedModalData = data;
+  const modal = document.getElementById("tenant-approval-modal-backdrop");
+  if (!modal) return;
+
+  const tName = document.getElementById("approved-modal-tenant-name");
+  const sName = document.getElementById("approved-modal-space-name");
+  const phone = document.getElementById("approved-modal-phone");
+  const login = document.getElementById("approved-modal-login");
+  const pwd = document.getElementById("approved-modal-password");
+  const waBtn = document.getElementById("approved-modal-whatsapp-btn");
+
+  if (tName) tName.innerText = data.tenant_name;
+  if (sName) sName.innerText = data.space_name;
+  if (phone) phone.innerText = data.phone;
+  if (login) login.innerText = data.login;
+  if (pwd) pwd.innerText = data.password;
+  if (waBtn) waBtn.href = data.wa_url;
+
+  modal.style.display = "flex";
+}
+
+function closeTenantApprovalModal() {
+  const modal = document.getElementById("tenant-approval-modal-backdrop");
+  if (modal) modal.style.display = "none";
+}
+
+function copyApprovedTenantCredentials() {
+  if (!currentApprovedModalData) return;
+  const text = currentApprovedModalData.wa_text;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("✅ Message WhatsApp et identifiants copiés dans le presse-papier !");
+    });
+  } else {
+    prompt("Copiez ce message pour l'envoyer au client :", text);
+  }
+}
+
+function initTenantSpace() {
+  loadTenantSession();
+  if (tenantState.isAuthenticated && tenantState.account) {
+    showTenantDashboard();
+  } else {
+    showTenantLogin();
+  }
+}
+
+function saveTenantSession() {
+  try {
+    if (tenantState.isAuthenticated && tenantState.account) {
+      localStorage.setItem(TENANT_SESSION_KEY, JSON.stringify({
+        account: tenantState.account,
+        storeId: tenantState.store ? tenantState.store.id : null
+      }));
+    } else {
+      localStorage.removeItem(TENANT_SESSION_KEY);
+    }
+  } catch (e) {}
+}
+
+function loadTenantSession() {
+  try {
+    const raw = localStorage.getItem(TENANT_SESSION_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (parsed && parsed.account) {
+      tenantState.isAuthenticated = true;
+      tenantState.account = parsed.account;
+      if (parsed.storeId) {
+        tenantState.store = LOCAL_DATA.stores.find(s => s.id === parsed.storeId) || null;
+      }
+    }
+  } catch (e) {}
+}
+
+function showTenantLogin() {
+  const loginView = document.getElementById("tenant-login-view");
+  const dashView = document.getElementById("tenant-dashboard-view");
+  if (loginView) loginView.style.display = "block";
+  if (dashView) dashView.style.display = "none";
+}
+
+function showTenantDashboard() {
+  const loginView = document.getElementById("tenant-login-view");
+  const dashView = document.getElementById("tenant-dashboard-view");
+  if (loginView) loginView.style.display = "none";
+  if (dashView) dashView.style.display = "block";
+  renderTenantDashboard();
+}
+
+async function handleTenantLogin(e) {
+  e.preventDefault();
+  const loginInput = (document.getElementById("tenant-login-user")?.value || "").trim().toLowerCase();
+  const pwdInput = (document.getElementById("tenant-login-pwd")?.value || "").trim();
+  const errBox = document.getElementById("tenant-login-error-box");
+  if (errBox) errBox.style.display = "none";
+
+  if (!loginInput || !pwdInput) {
+    if (errBox) {
+      errBox.style.display = "block";
+      errBox.innerText = "Veuillez renseigner votre identifiant et votre mot de passe.";
+    }
+    return;
+  }
+
+  // 1. Tenter via le serveur backend
+  try {
+    const resp = await fetch(`${API_BASE}/tenant/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ login: loginInput, password: pwdInput })
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data.success) {
+        tenantState.isAuthenticated = true;
+        tenantState.account = data.account;
+        tenantState.store = data.store || LOCAL_DATA.stores.find(s => s.tenant_account_login === loginInput || s.name === data.account.space_number);
+        tenantState.products = data.products || [];
+        saveTenantSession();
+        playChime(660, 0.15);
+        showTenantDashboard();
+        return;
+      }
+    }
+  } catch (err) {}
+
+  // 2. Fallback autonome local
+  if (LOCAL_DATA.tenant_accounts) {
+    const acc = LOCAL_DATA.tenant_accounts.find(t => t.login.toLowerCase() === loginInput && t.password === pwdInput);
+    if (acc) {
+      tenantState.isAuthenticated = true;
+      tenantState.account = acc;
+      tenantState.store = LOCAL_DATA.stores.find(s => s.tenant_account_login === loginInput || s.name === acc.space_number || s.id === acc.store_id) || null;
+      tenantState.products = LOCAL_DATA.products.filter(p => p.store_id === (tenantState.store ? tenantState.store.id : acc.store_id));
+      saveTenantSession();
+      playChime(660, 0.15);
+      showTenantDashboard();
+      return;
+    }
+  }
+
+  // Si non trouvé
+  if (errBox) {
+    errBox.style.display = "block";
+    errBox.innerHTML = `
+      ❌ <strong>Identifiant ou mot de passe incorrect.</strong><br>
+      Vérifiez les identifiants envoyés sur votre WhatsApp (ex: login <code>espace1</code>).<br>
+      Besoin d'aide ? Contactez la Régie au <strong>+225 05 65 98 22 29</strong>.
+    `;
+  }
+}
+
+function handleTenantLogout() {
+  tenantState.isAuthenticated = false;
+  tenantState.account = null;
+  tenantState.store = null;
+  tenantState.products = [];
+  saveTenantSession();
+  showTenantLogin();
+}
+
+function switchTenantTab(tabName) {
+  tenantState.currentTab = tabName;
+  const tabs = ["profile", "products", "billing", "security"];
+  tabs.forEach(t => {
+    const btn = document.getElementById("btn-tenant-tab-" + t);
+    const view = document.getElementById("tenant-view-" + t);
+    if (btn) btn.classList.toggle("active", t === tabName);
+    if (view) view.style.display = (t === tabName) ? "block" : "none";
+  });
+  if (tabName === "products") {
+    renderTenantProductsTable();
+  }
+}
+
+function renderTenantDashboard() {
+  const acc = tenantState.account;
+  if (!acc) return;
+
+  // Retrouver la boutique associée
+  if (!tenantState.store) {
+    tenantState.store = LOCAL_DATA.stores.find(s => s.tenant_account_login === acc.login || s.name === acc.space_number || s.id === acc.store_id) || null;
+  }
+  const store = tenantState.store || {};
+
+  // 1. En-tête
+  const logoBadge = document.getElementById("tenant-store-logo-badge");
+  const nameTitle = document.getElementById("tenant-store-name-title");
+  const cellBadge = document.getElementById("tenant-store-cell-badge");
+  const mgrName = document.getElementById("tenant-manager-name");
+  const phoneDisp = document.getElementById("tenant-phone-display");
+  const loginPill = document.getElementById("tenant-login-pill");
+
+  if (logoBadge) logoBadge.innerText = store.logo || "🏪";
+  if (nameTitle) nameTitle.innerText = store.name || acc.space_number || "Ma Boutique";
+  if (cellBadge) cellBadge.innerText = `Cellule ${acc.space_number || store.cell_code || 'Attribuée'} · ${store.dimension || '20 m²'}`;
+  if (mgrName) mgrName.innerText = acc.tenant_name || store.tenant_name || "Commerçant Bélier Mall";
+  if (phoneDisp) phoneDisp.innerText = acc.phone || store.phone || "+225";
+  if (loginPill) loginPill.innerText = acc.login;
+
+  // 2. Pré-remplir le formulaire de profil
+  const fName = document.getElementById("tenant-form-store-name");
+  const fCat = document.getElementById("tenant-form-category");
+  const fDesc = document.getElementById("tenant-form-desc");
+  const fPhone = document.getElementById("tenant-form-phone");
+  const fHours = document.getElementById("tenant-form-hours");
+  const fLogo = document.getElementById("tenant-form-logo");
+
+  if (fName) fName.value = store.name || acc.space_number || "";
+  if (fCat && store.category) fCat.value = store.category;
+  if (fDesc) fDesc.value = store.desc || "";
+  if (fPhone) fPhone.value = store.phone || acc.phone || "";
+  if (fHours) fHours.value = store.hours || "08:00 - 21:30 (7j/7)";
+  if (fLogo) fLogo.value = store.logo || "🏬";
+
+  // Boutons émojis
+  document.querySelectorAll(".emoji-picker-row .emoji-btn").forEach(b => {
+    b.classList.toggle("active", b.innerText === (store.logo || "🏬"));
+  });
+
+  // Services / Moyens de paiement
+  const services = store.services || ["Wave", "Orange Money", "MTN MoMo", "Moov Money", "Espèces", "Carte Bancaire", "Climatisation", "Livraison Moto 45 min"];
+  document.querySelectorAll('input[name="tenant-service"]').forEach(chk => {
+    chk.checked = services.includes(chk.value);
+  });
+
+  // 3. Pré-remplir l'onglet sécurité (Login STRICTEMENT FIXE)
+  const secLogin = document.getElementById("tenant-sec-login-fixed");
+  if (secLogin) secLogin.value = acc.login;
+
+  // 4. Suivi du bail & Facturation
+  const kpiSpace = document.getElementById("tenant-kpi-space");
+  const kpiRent = document.getElementById("tenant-kpi-rent");
+  const kpiDep = document.getElementById("tenant-kpi-deposit");
+  const kpiStat = document.getElementById("tenant-kpi-status");
+
+  if (kpiSpace) kpiSpace.innerText = acc.space_number || "Espace 1";
+  if (kpiRent) kpiRent.innerText = fcfa(store.monthly_rent_fcfa || 250000);
+  if (kpiDep) kpiDep.innerText = fcfa(store.deposit_fcfa || (store.monthly_rent_fcfa ? store.monthly_rent_fcfa * 3 : 750000));
+  if (kpiStat) {
+    const isPaid = (store.rent_paid !== false);
+    kpiStat.innerText = isPaid ? "À JOUR" : "IMPAYÉ";
+    kpiStat.style.color = isPaid ? "#5df0b0" : "#f87171";
+  }
+
+  // 5. Commandes de sa boutique
+  renderTenantOrdersTable();
+
+  // 6. Articles de sa boutique
+  renderTenantProductsTable();
+}
+
+function pickTenantEmoji(emoji, btn) {
+  document.querySelectorAll(".emoji-picker-row .emoji-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  const input = document.getElementById("tenant-form-logo");
+  if (input) input.value = emoji;
+}
+
+async function saveTenantStoreCustomization(e) {
+  e.preventDefault();
+  if (!tenantState.account) return;
+
+  const newName = (document.getElementById("tenant-form-store-name")?.value || "").trim();
+  const newCat = document.getElementById("tenant-form-category")?.value || "Commerce";
+  const newDesc = (document.getElementById("tenant-form-desc")?.value || "").trim();
+  const newPhone = (document.getElementById("tenant-form-phone")?.value || "").trim();
+  const newHours = (document.getElementById("tenant-form-hours")?.value || "").trim();
+  const newLogo = document.getElementById("tenant-form-logo")?.value || "🏬";
+
+  const selectedServices = [];
+  document.querySelectorAll('input[name="tenant-service"]:checked').forEach(c => {
+    selectedServices.push(c.value);
+  });
+
+  const store = tenantState.store;
+  if (store) {
+    if (newName) store.name = newName;
+    store.category = newCat;
+    store.category_label = newCat;
+    store.desc = newDesc;
+    store.phone = newPhone;
+    store.hours = newHours;
+    store.logo = newLogo;
+    store.services = selectedServices;
+  }
+
+  saveProductionStateToLocal();
+  updateAdminKPIs();
+  renderMarketplaceProducts();
+  renderProStoresList();
+  renderLeasingSpacesGrid();
+  renderTenantDashboard();
+
+  playChime(784, 0.15);
+  showTenantAlert(`✅ Les modifications de votre magasin <strong>« ${escapeHtml(newName || store.name)} »</strong> ont été enregistrées avec succès et sont actives sur toute la plateforme !`);
+
+  // Sauvegarde backend
+  try {
+    await fetch(`${API_BASE}/tenant/update-store`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        login: tenantState.account.login,
+        name: newName,
+        category: newCat,
+        desc: newDesc,
+        phone: newPhone,
+        hours: newHours,
+        logo: newLogo,
+        services: selectedServices
+      })
+    });
+  } catch (err) {}
+}
+
+function showTenantAlert(msg, type = "success") {
+  const box = document.getElementById("tenant-action-alert");
+  if (!box) return;
+  box.style.display = "block";
+  box.style.background = (type === "success") ? "rgba(25,195,125,.18)" : "rgba(239,68,68,.18)";
+  box.style.border = (type === "success") ? "1px solid #19c37d" : "1px solid #ef4444";
+  box.style.color = (type === "success") ? "#5df0b0" : "#fca5a5";
+  box.innerHTML = msg;
+  box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function toggleTenantProductAddForm() {
+  const box = document.getElementById("tenant-add-product-box");
+  if (!box) return;
+  box.style.display = (box.style.display === "none") ? "block" : "none";
+  if (box.style.display === "block") {
+    document.getElementById("tenant-prod-name")?.focus();
+  }
+}
+
+async function handleAddTenantProduct(e) {
+  e.preventDefault();
+  if (!tenantState.account) return;
+
+  const store = tenantState.store;
+  const storeId = store ? store.id : (tenantState.account.store_id || "store-custom");
+
+  const name = (document.getElementById("tenant-prod-name")?.value || "").trim();
+  const price = parseFloat(document.getElementById("tenant-prod-price")?.value || 0);
+  const stock = parseInt(document.getElementById("tenant-prod-stock")?.value || 1, 10);
+  const cat = (document.getElementById("tenant-prod-cat")?.value || (store ? store.category : "Commerce")).trim();
+  const emoji = (document.getElementById("tenant-prod-emoji")?.value || (store ? store.logo : "🛍️")).trim();
+  const tagsStr = (document.getElementById("tenant-prod-tags")?.value || "").trim();
+  const desc = (document.getElementById("tenant-prod-desc")?.value || "").trim();
+
+  const tags = tagsStr.split(",").map(t => t.trim().toLowerCase()).filter(Boolean);
+  tags.push(name.toLowerCase());
+  if (store && store.name) tags.push(store.name.toLowerCase());
+
+  const newProd = {
+    id: "prod-t-" + Date.now(),
+    store_id: storeId,
+    name: name,
+    price: price,
+    stock: stock,
+    in_stock: stock > 0,
+    emoji: emoji,
+    category_name: cat,
+    desc: desc || `Article disponible chez ${store ? store.name : 'cette boutique'}.`,
+    tags: tags
+  };
+
+  LOCAL_DATA.products.unshift(newProd);
+  if (!tenantState.products) tenantState.products = [];
+  tenantState.products.unshift(newProd);
+
+  saveProductionStateToLocal();
+  renderMarketplaceProducts();
+  renderTenantProductsTable();
+  toggleTenantProductAddForm();
+
+  playChime(880, 0.18);
+  showTenantAlert(`🎉 L'article <strong>« ${escapeHtml(name)} »</strong> (${fcfa(price)}) a été publié avec succès dans le Marketplace de Bélier Mall !`);
+
+  // Sauvegarde backend
+  try {
+    await fetch(`${API_BASE}/tenant/products/add`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        login: tenantState.account.login,
+        name: name,
+        price: price,
+        stock: stock,
+        emoji: emoji,
+        category_name: cat,
+        desc: desc,
+        tags: tags
+      })
+    });
+  } catch (err) {}
+}
+
+function renderTenantProductsTable() {
+  const container = document.getElementById("tenant-products-table-container");
+  const countBadge = document.getElementById("tenant-products-count");
+  if (!container) return;
+
+  const storeId = tenantState.store ? tenantState.store.id : (tenantState.account ? tenantState.account.store_id : null);
+  const prods = LOCAL_DATA.products.filter(p => p.store_id === storeId);
+
+  if (countBadge) countBadge.innerText = prods.length;
+
+  if (prods.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:2.5rem 1rem;background:rgba(255,255,255,.02);border:1px dashed var(--border);border-radius:14px">
+        <div style="font-size:2.5rem;margin-bottom:.5rem">📦</div>
+        <div style="font-weight:700;color:#fff;font-size:1.05rem;margin-bottom:.3rem">Aucun article publié pour le moment</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">
+          Ajoutez dès maintenant vos premiers produits avec leurs prix en FCFA pour commencer à vendre à Bélier Mall.
+        </p>
+        <button class="btn-primary" onclick="toggleTenantProductAddForm()">
+          ➕ Ajouter mon Premier Article
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  let html = `
+    <div class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Visuel &amp; Article</th>
+            <th>Catégorie</th>
+            <th>Prix Net (FCFA)</th>
+            <th>Stock</th>
+            <th>Statut</th>
+            <th style="text-align:right">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  prods.forEach(p => {
+    html += `
+      <tr>
+        <td>
+          <div style="display:flex;align-items:center;gap:.7rem">
+            <span style="font-size:1.6rem">${p.emoji || '🛍️'}</span>
+            <div>
+              <div style="font-weight:700;color:#fff">${escapeHtml(p.name)}</div>
+              <small style="color:var(--muted)">${escapeHtml(p.desc ? p.desc.substring(0, 45) + '...' : '')}</small>
+            </div>
+          </div>
+        </td>
+        <td><span class="badge badge-primary">${escapeHtml(p.category_name || 'Commerce')}</span></td>
+        <td><strong style="color:var(--gold);font-size:.95rem">${fcfa(p.price)}</strong></td>
+        <td><span style="font-weight:700">${p.stock} unités</span></td>
+        <td>
+          ${p.in_stock 
+            ? `<span class="badge badge-success">● En Vente</span>` 
+            : `<span class="badge badge-danger">🔴 Rupture</span>`}
+        </td>
+        <td style="text-align:right">
+          <button class="btn-admin-delete" onclick="handleDeleteTenantProduct('${p.id}')" title="Retirer cet article du catalogue">
+            🗑️ Supprimer
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+async function handleDeleteTenantProduct(prodId) {
+  const prod = LOCAL_DATA.products.find(p => p.id === prodId);
+  if (!prod) return;
+  if (!confirm(`Confirmez-vous la suppression de l'article "${prod.name}" ?`)) return;
+
+  LOCAL_DATA.products = LOCAL_DATA.products.filter(p => p.id !== prodId);
+  if (tenantState.products) {
+    tenantState.products = tenantState.products.filter(p => p.id !== prodId);
+  }
+
+  saveProductionStateToLocal();
+  renderMarketplaceProducts();
+  renderTenantProductsTable();
+
+  showTenantAlert(`ℹ️ L'article « ${escapeHtml(prod.name)} » a été retiré de votre boutique et du Marketplace.`);
+
+  try {
+    await fetch(`${API_BASE}/tenant/products/delete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        login: tenantState.account.login,
+        product_id: prodId
+      })
+    });
+  } catch (err) {}
+}
+
+function renderTenantOrdersTable() {
+  const container = document.getElementById("tenant-orders-table-container");
+  if (!container) return;
+
+  const store = tenantState.store;
+  const storeName = store ? store.name.toLowerCase() : "";
+  const orders = (adminState.orders || []).filter(o => {
+    return o.store_name && o.store_name.toLowerCase().includes(storeName);
+  });
+
+  if (orders.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.82rem">
+        Aucune commande en attente pour le moment. Dès qu'un client passe commande en livraison express moto sur l'un de vos articles, elle s'affiche ici !
+      </div>
+    `;
+    return;
+  }
+
+  let html = `
+    <div class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Réf &amp; Client</th>
+            <th>Article Commandé</th>
+            <th>Total (FCFA)</th>
+            <th>Paiement</th>
+            <th>Adresse Yamoussoukro</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  orders.forEach(o => {
+    html += `
+      <tr>
+        <td>
+          <strong style="color:#fff">${escapeHtml(o.id)}</strong><br>
+          <small style="color:var(--gold)">${escapeHtml(o.customer_name)} (${escapeHtml(o.customer_phone)})</small>
+        </td>
+        <td><strong>${escapeHtml(o.product_name)}</strong></td>
+        <td><strong style="color:#5df0b0">${fcfa(o.total_fcfa || o.price_fcfa)}</strong></td>
+        <td><span class="badge badge-success">${escapeHtml(o.payment_method)}</span></td>
+        <td>${escapeHtml(o.customer_address)}</td>
+      </tr>
+    `;
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+async function handleTenantPasswordChange(e) {
+  e.preventDefault();
+  if (!tenantState.account) return;
+
+  const newPwd = (document.getElementById("tenant-sec-new-pwd")?.value || "").trim();
+  const confPwd = (document.getElementById("tenant-sec-confirm-pwd")?.value || "").trim();
+
+  if (newPwd !== confPwd) {
+    alert("Les deux nouveaux mots de passe ne correspondent pas.");
+    return;
+  }
+  if (newPwd.length < 4) {
+    alert("Le mot de passe doit contenir au moins 4 caractères.");
+    return;
+  }
+
+  // Mise à jour locale
+  tenantState.account.password = newPwd;
+  tenantState.account.must_change_password = false;
+  if (LOCAL_DATA.tenant_accounts) {
+    const acc = LOCAL_DATA.tenant_accounts.find(t => t.login === tenantState.account.login);
+    if (acc) {
+      acc.password = newPwd;
+      acc.must_change_password = false;
+    }
+  }
+
+  saveTenantSession();
+  saveProductionStateToLocal();
+  playChime(880, 0.2);
+  showTenantAlert("🔐 Votre mot de passe personnel a été enregistré avec succès ! Utilisez-le désormais pour vos prochaines connexions.");
+
+  document.getElementById("tenant-sec-new-pwd").value = "";
+  document.getElementById("tenant-sec-confirm-pwd").value = "";
+
+  // Synchronisation backend
+  try {
+    await fetch(`${API_BASE}/tenant/change-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        login: tenantState.account.login,
+        new_password: newPwd
+      })
+    });
+  } catch (err) {}
+}
+
+function viewMyStoreOnMap() {
+  const store = tenantState.store;
+  if (store && store.cell_id) {
+    locateStoreOnMap(store.cell_id);
+  } else {
+    document.querySelector('[data-tab="tab-map"]')?.click();
+  }
+}
+
+
+// Génération et Renvoi de Login Locataire par l'Admin ou le SuperAdmin
+async function adminGenerateOrResendTenantLogin(storeId) {
+  const store = LOCAL_DATA.stores.find(s => s.id === storeId);
+  if (!store) return;
+
+  const tenantName = store.tenant_name || (store.manager ? store.manager.split("(")[0].trim() : "Locataire");
+  const phone = store.phone || "+225 07 00 00 00 00";
+  const spaceName = store.name || "Espace";
+
+  let newLogin = "";
+  let activePassword = "BM2026!";
+  let waUrl = "";
+  let waText = "";
+
+  try {
+    const resp = await fetch(`${API_BASE}/admin/tenant/generate-login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        store_id: store.id,
+        space_number: spaceName,
+        tenant_name: tenantName,
+        phone: phone
+      })
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data.success) {
+        newLogin = data.login;
+        activePassword = data.tenant_account ? (data.tenant_account.password || "BM2026!") : "BM2026!";
+        waUrl = data.whatsapp_url;
+        waText = data.whatsapp_text;
+        store.tenant_account_login = newLogin;
+      }
+    }
+  } catch (err) {}
+
+  if (!newLogin) {
+    newLogin = generateTenantLogin(tenantName);
+    if (!LOCAL_DATA.tenant_accounts) LOCAL_DATA.tenant_accounts = [];
+    let acc = LOCAL_DATA.tenant_accounts.find(t => t.store_id === store.id || t.space_number === spaceName || t.login === store.tenant_account_login);
+    if (!acc) {
+      acc = {
+        id: "tenant-" + newLogin,
+        login: newLogin,
+        password: "BM2026!",
+        default_password: "BM2026!",
+        must_change_password: true,
+        space_number: spaceName,
+        store_id: store.id,
+        tenant_name: tenantName,
+        phone: phone,
+        created_at: new Date().toLocaleDateString("fr-FR")
+      };
+      LOCAL_DATA.tenant_accounts.push(acc);
+    } else {
+      acc.login = newLogin;
+      acc.tenant_name = tenantName;
+      acc.phone = phone;
+    }
+    store.tenant_account_login = newLogin;
+    activePassword = acc.password || "BM2026!";
+
+    let cleanPhone = phone.replace(/[^0-9]/g, "");
+    if (!cleanPhone.startswith("225") && cleanPhone.length === 10) cleanPhone = "225" + cleanPhone;
+    waText = 
+      `🎉 Bonjour ${tenantName} ! Voici vos identifiants pour accéder à votre Espace Boutique sur *BÉLIER MALL ON LINE* (*${spaceName}*) :\n\n` +
+      `🔑 *Identifiant (Login fixe)* : \`${newLogin}\`\n` +
+      `🔐 *Mot de passe* : \`${activePassword}\`\n\n` +
+      `👉 Rendez-vous sur l'onglet *« 🏪 Espace Boutique »* pour nommer votre magasin, publier vos articles et tarifs, et modifier votre mot de passe si souhaité.\n\n` +
+      `Régie Bélier Mall - Yamoussoukro`;
+    waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waText)}`;
+  }
+
+  saveProductionStateToLocal();
+  playChime(784, 0.15);
+
+  openTenantApprovalModal({
+    tenant_name: tenantName,
+    space_name: spaceName,
+    phone: phone,
+    login: newLogin,
+    password: activePassword,
+    wa_url: waUrl,
+    wa_text: waText
+  });
+}
+
+function regenerateTenantLoginInApprovalModal() {
+  if (!currentApprovedModalData) return;
+  const tName = currentApprovedModalData.tenant_name || "Locataire";
+  const newLogin = generateTenantLogin(tName);
+  currentApprovedModalData.login = newLogin;
+
+  const loginEl = document.getElementById("approved-modal-login");
+  if (loginEl) loginEl.innerText = newLogin;
+
+  let cleanPhone = (currentApprovedModalData.phone || "").replace(/[^0-9]/g, "");
+  if (!cleanPhone.startsWith("225") && cleanPhone.length === 10) cleanPhone = "225" + cleanPhone;
+
+  const spaceName = currentApprovedModalData.space_name || "Espace";
+  const activePassword = currentApprovedModalData.password || "BM2026!";
+
+  const waText = 
+    `🎉 Bonjour ${tName} ! Voici vos identifiants pour accéder à votre Espace Boutique sur *BÉLIER MALL ON LINE* (*${spaceName}*) :\n\n` +
+    `🔑 *Identifiant (Login fixe)* : \`${newLogin}\`\n` +
+    `🔐 *Mot de passe* : \`${activePassword}\`\n\n` +
+    `👉 Rendez-vous sur l'onglet *« 🏪 Espace Boutique »* pour nommer votre magasin, publier vos articles et tarifs, et modifier votre mot de passe si souhaité.\n\n` +
+    `Régie Bélier Mall - Yamoussoukro`;
+
+  const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waText)}`;
+  currentApprovedModalData.wa_text = waText;
+  currentApprovedModalData.wa_url = waUrl;
+
+  const waBtn = document.getElementById("approved-modal-whatsapp-btn");
+  if (waBtn) waBtn.href = waUrl;
+
+  if (LOCAL_DATA.tenant_accounts) {
+    const acc = LOCAL_DATA.tenant_accounts.find(t => t.space_number === spaceName || t.tenant_name === tName);
+    if (acc) {
+      acc.login = newLogin;
+      saveProductionStateToLocal();
+    }
+  }
+
+  playChime(660, 0.1);
+}
+

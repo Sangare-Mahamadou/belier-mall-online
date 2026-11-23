@@ -1,6 +1,6 @@
 """
 Jeu de données de référence (Seed Data) pour BÉLIER MALL ON LINE.
-Site : Complexe de 5 hectares (50 000 m² - 316,2 m × 158,1 m) au Zone Présidentiel, Axe Yamoussoukro-Bouaké.
+Site : Complexe de 5 hectares (50 000 m² - 316,2 m × 158,1 m) au Zone Présidentielle, Axe Yamoussoukro-Bouaké.
 Application : YAMO-APP.
 """
 
@@ -12,7 +12,7 @@ MALL_INFO = {
     "tagline": "Un centre de vie complet au cœur de Yamoussoukro",
     "app_name": "YAMO-APP",
     "city": "Yamoussoukro",
-    "site": "Complexe de 5 hectares (50 000 m²) - Zone Présidentiel - Axe Yamoussoukro-Bouaké",
+    "site": "Complexe de 5 hectares (50 000 m²) - Zone Présidentielle - Axe Yamoussoukro-Bouaké",
     "country": "Côte d'Ivoire",
     "currency": "FCFA",
     "opening_hours": "07:30 - 23:00 (7j/7)",
@@ -38,7 +38,7 @@ MALL_INFO = {
         {
             "id": "pole-1",
             "name": "Pôle 1 : Centre Commercial Principal (3 ha / 30 000 m²)",
-            "description": "Espace moderne et climatisé : 2 magasins phares en gestion directe (Yakro Market et Zone Présidentiel Fashion) et 50 boutiques en location à 250 000 FCFA/mois."
+            "description": "Espace moderne et climatisé : 2 magasins phares en gestion directe (Yakro Market et Zone Présidentielle Fashion) et 50 boutiques en location à 250 000 FCFA/mois."
         },
         {
             "id": "pole-2",
@@ -58,7 +58,7 @@ MALL_INFO = {
     ],
     "floors": [
         {"id": "floor-rdc", "level": 0, "name": "Rez-de-Chaussée (Plan Directeur 5 ha : Centre Commercial 3 ha, Cinéma 800 m², Manège 500 m², Salle Événement 400 m², Admin 200 m², Verdure 1,3 ha)", "svg_url": "/assets/maps/floor_rdc_pilot.svg"},
-        {"id": "floor-r1", "level": 1, "name": "Étage 1 & Parking Souterrain (Zone Présidentiel Fashion & Galerie des 50 Espaces en Location)"}
+        {"id": "floor-r1", "level": 1, "name": "Étage 1 & Parking Souterrain (Zone Présidentielle Fashion & Galerie des 50 Espaces en Location)"}
     ]
 }
 
@@ -84,7 +84,7 @@ GOVERNANCE_TEAM = [
     {
         "name": "Mme KONÉ Mariam",
         "role": "Directrice Mode & Galerie des 50 Boutiques",
-        "pole": "Centre Commercial (3 ha) · ZONE PRESIDENTIEL FASHION",
+        "pole": "Centre Commercial (3 ha) · ZONE PRÉSIDENTIELLE FASHION",
         "phone": "+225 27 30 64 10 03",
         "email": "mode.beaute@beliermall.ci",
         "avatar": "✨",
@@ -128,7 +128,7 @@ LEASING_INFO = {
         "Fiche vitrine commerciale certifiée sur BÉLIER MALL ON LINE",
         "Référencement GPS indoor piétonnier automatique sur 5 hectares",
         "Sécurité incendie & gardiennage physique 24/7",
-        "Accès parking souterrain & quai logistique Zone Présidentiel"
+        "Accès parking souterrain & quai logistique Zone Présidentielle"
     ]
 }
 
@@ -153,7 +153,7 @@ STORES = [
     },
     {
         "id": "store-mimos-fashion",
-        "name": "Magasin ZONE PRESIDENTIEL FASHION",
+        "name": "Magasin ZONE PRÉSIDENTIELLE FASHION",
         "category": "MODE",
         "category_label": "Boutique Mode & Prêt-à-porter Tendance",
         "cell_id": "cell-lot-104",
@@ -253,7 +253,7 @@ STORES = [
         "manager": "M. N'GUESSAN Serge",
         "is_admin": True,
         "is_leasable": False,
-        "services": ["Parking Souterrain", "Surveillance 24/7", "Gardiennage", "Accès Zone Présidentiel", "Places PMR"]
+        "services": ["Parking Souterrain", "Surveillance 24/7", "Gardiennage", "Accès Zone Présidentielle", "Places PMR"]
     },
     {
         "id": "space-green-zones",
@@ -1777,7 +1777,7 @@ STORES.append({"id": "space-parking-sud", "name": "Parking Souterrain & Visiteur
 STORES.append({"id": "cell-parking", "name": "Parking Souterrain & Visiteurs", "category": "PARKING", "category_label": "Parking Souterrain & Visiteurs", "description": "Parking sécurisé du centre", "cell_id": "cell-parking", "floor": 0, "phone": "+225 27 30 64 10 04"})
 STORES.append({"id": "cell-kids-park", "name": "Manège des enfants (500 m²)", "category": "LOISIRS_ENFANTS", "category_label": "Manège des enfants (500 m²)", "description": "Espace manège enfants 500 m²", "cell_id": "cell-kids-park", "floor": 0, "phone": "+225 27 30 64 10 04"})
 
-# CATALOGUE DES PRODUITS : UNIQUEMENT YAKRO MARKET, ZONE PRESIDENTIEL FASHION & SERVICES PUBLICS
+# CATALOGUE DES PRODUITS : UNIQUEMENT YAKRO MARKET, ZONE PRÉSIDENTIELLE FASHION & SERVICES PUBLICS
 # (AUCUN ARTICLE POUR LES 50 ESPACES EN LOCATION)
 PRODUCTS_CATALOG = [
     # YAKRO MARKET (SUPERMARCHÉ EN GESTION ADMINISTRATIVE)
@@ -1832,7 +1832,7 @@ PRODUCTS_CATALOG = [
         "tags": ["lait", "bonnet rouge", "supermarché", "yakro market", "petit dejeuner"]
     },
 
-    # ZONE PRESIDENTIEL FASHION (MAGASIN EN GESTION ADMINISTRATIVE)
+    # ZONE PRÉSIDENTIELLE FASHION (MAGASIN EN GESTION ADMINISTRATIVE)
     {
         "id": "prod-mf-01",
         "store_id": "store-mimos-fashion",
@@ -1841,7 +1841,7 @@ PRODUCTS_CATALOG = [
         "price": 18000,
         "in_stock": True,
         "stock_count": 22,
-        "tags": ["robe", "mode", "vêtement", "zone présidentiel fashion", "tiktok", "femme"]
+        "tags": ["robe", "mode", "vêtement", "zone présidentielle fashion", "tiktok", "femme"]
     },
     {
         "id": "prod-mf-02",
@@ -1851,7 +1851,7 @@ PRODUCTS_CATALOG = [
         "price": 28000,
         "in_stock": True,
         "stock_count": 15,
-        "tags": ["chemise", "lin", "pantalon", "homme", "mode", "zone présidentiel fashion"]
+        "tags": ["chemise", "lin", "pantalon", "homme", "mode", "zone présidentielle fashion"]
     },
 
     # SERVICES PUBLICS DU CENTRE (MANÈGE ENFANTS, CINÉMA, SALLE ÉVÉNEMENT, PARKING)

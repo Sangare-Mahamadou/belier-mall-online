@@ -16,7 +16,7 @@ TERRAIN_DEPTH_M = 158.1
 SVG_VIEWBOX_WIDTH = 1000.0
 SVG_VIEWBOX_HEIGHT = 700.0
 
-# Point d'ancrage GPS de référence : Zone Présidentiel, Axe Yamoussoukro-Bouaké
+# Point d'ancrage GPS de référence : Zone Présidentielle, Axe Yamoussoukro-Bouaké
 DEFAULT_ANCHOR_LAT = 6.8276
 DEFAULT_ANCHOR_LNG = -5.2893
 
@@ -93,7 +93,7 @@ class IndoorRoutingEngine:
         self._add_node("ENTRY_FOODCOURT", 590, 365, "Entrée Espace 5 / Food Court", "SPACE_ENTRY")
         self._add_node("ENTRY_RESTO_VIP", 825, 370, "Entrée Espace 1 / Restauration", "SPACE_ENTRY")
         self._add_node("ENTRY_SUPERMARKET", 150, 470, "Entrée Supermarché YAKRO MARKET (Centre Commercial 3 ha)", "SPACE_ENTRY")
-        self._add_node("ENTRY_LOT_104", 340, 210, "Entrée ZONE PRESIDENTIEL FASHION (Gestion Admin)", "STORE_ENTRY")
+        self._add_node("ENTRY_LOT_104", 340, 210, "Entrée ZONE PRÉSIDENTIELLE FASHION (Gestion Admin)", "STORE_ENTRY")
         self._add_node("ENTRY_BELLE_YAKRO", 390, 210, "Entrée Galerie Beauté", "STORE_ENTRY")
         self._add_node("ENTRY_KIDS_PARK", 840, 480, "Entrée Manège des Enfants (500 m²)", "SPACE_ENTRY")
         self._add_node("ENTRY_PARKING_SUD", 590, 550, "Accès Parking Souterrain & Visiteurs", "SPACE_ENTRY")

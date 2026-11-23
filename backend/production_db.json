@@ -11,22 +11,8 @@
     "must_change_password": false
   },
   "admins": [],
-  "applications": [
-    {
-      "id": "BAIL-BELIER-582",
-      "applicant_name": "test",
-      "phone": "0701010101",
-      "space_number": "Espace 1",
-      "is_immediate": true,
-      "monthly_rent_fcfa": 250000,
-      "deposit_fcfa": 750000,
-      "dimension": "20 m²",
-      "contact_phone": "+225 05 65 98 22 29",
-      "ci_reglement_accepted": true,
-      "status": "EN_ATTENTE",
-      "date": "15/11/2026"
-    }
-  ],
+  "tenant_accounts": [],
+  "applications": [],
   "orders": [],
   "stores": [
     {
@@ -57,17 +43,17 @@
     },
     {
       "id": "store-mimos-fashion",
-      "name": "Magasin ZONE PRESIDENTIEL FASHION",
+      "name": "Magasin ZONE PRÉSIDENTIELLE FASHION",
       "category": "MODE",
       "category_label": "Boutique Mode & Prêt-à-porter Tendance",
       "cell_id": "cell-lot-104",
       "cell_code": "POLE-1-LOCO-03",
       "floor": 1,
-      "phone": "+225 27 30 64 10 03",
+      "phone": "+225 27 30 64 00 00",
       "description": "Les tendances mode virales TikTok et streetwear chic pour hommes, femmes et ados. Cabines d'essayage climatisées et conseils en stylisme.",
       "opening_hours": "09:00 - 21:00 (7j/7)",
       "logo": "👗",
-      "manager": "Mme KONÉ Mariam",
+      "manager": "Responsable Espace",
       "is_admin": true,
       "is_leasable": false,
       "services": [
@@ -77,7 +63,13 @@
         "Carte Bancaire",
         "Cabines VIP",
         "Climatisation"
-      ]
+      ],
+      "tenant_name": "",
+      "status": "A_LOUER",
+      "tenant_activity": "Commerce & Vente",
+      "rent_paid": true,
+      "unpaid_months": 0,
+      "unpaid_amount_fcfa": 0
     },
     {
       "id": "space-kids-park",
@@ -189,7 +181,7 @@
         "Parking Souterrain",
         "Surveillance 24/7",
         "Gardiennage",
-        "Accès Zone Présidentiel",
+        "Accès Zone Présidentielle",
         "Places PMR"
       ]
     },
@@ -255,17 +247,17 @@
     {
       "id": "store-espace-1",
       "name": "Espace 1",
-      "category": "LOCATION",
-      "category_label": "Boutique Standard (20 m²)",
+      "category": "Mode, Prêt-à-Porter & Wax",
+      "category_label": "Mode, Prêt-à-Porter & Wax",
       "cell_id": "cell-fnac",
       "cell_code": "ESPACE-01",
       "floor": 0,
-      "phone": "+225 05 65 98 22 29",
+      "phone": "+225 07 11 22 33 44",
       "description": "Boutique Standard climatisé de 20 m² (Rez-de-Chaussée). Disponible en location : 250000 FCFA/mois · Caution (3 mois) : 750000 FCFA.",
       "opening_hours": "Disponible à la location",
-      "logo": "🔑",
-      "manager": "Disponible à la location · Régie (+225 05 65 98 22 29)",
-      "tenant_name": "",
+      "logo": "👗",
+      "manager": "Mme Awa Kouamé (+225 07 11 22 33 44)",
+      "tenant_name": null,
       "tenant_activity": "Disponible tout commerce",
       "is_admin": false,
       "is_leasable": true,
@@ -279,7 +271,16 @@
       "rent_paid": true,
       "unpaid_months": 0,
       "unpaid_amount_fcfa": 0,
-      "due_date": "05/12/2026"
+      "due_date": "05/12/2026",
+      "tenant_account_login": "espace1",
+      "desc": "Boutique chic de pagnes et créations de Côte d'Ivoire.",
+      "hours": "08:00 - 21:00",
+      "services": [
+        "Wave",
+        "Orange Money",
+        "Carte Bancaire",
+        "Espèces"
+      ]
     },
     {
       "id": "store-espace-2",
@@ -1908,7 +1909,7 @@
         "robe",
         "mode",
         "vêtement",
-        "zone présidentiel fashion",
+        "zone présidentielle fashion",
         "tiktok",
         "femme"
       ]
@@ -1927,7 +1928,7 @@
         "pantalon",
         "homme",
         "mode",
-        "zone présidentiel fashion"
+        "zone présidentielle fashion"
       ]
     },
     {
@@ -2015,5 +2016,6 @@
         "externe"
       ]
     }
-  ]
+  ],
+  "leasing_applications": []
 }

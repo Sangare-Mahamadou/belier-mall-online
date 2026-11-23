@@ -31,7 +31,7 @@
         <button class="tab-btn" data-tab="tab-map" id="tab-btn-map">🗺️ Plan 5 Ha &amp; GPS Temps Réel</button>
         <button class="tab-btn" data-tab="tab-entertainment" id="tab-btn-entertainment">🎡 Loisirs, Cinéma &amp; Événements</button>
         <button class="tab-btn" data-tab="tab-parking" id="tab-btn-parking">🚗 Parking Souterrain</button>
-        <button class="tab-btn" data-tab="tab-vendor" id="tab-btn-vendor">🏢 Administration (200 m²)</button>
+        <button class="tab-btn" data-tab="tab-client-space" id="tab-btn-client-space">🏪 Espace Boutique</button>
         <button class="tab-btn" data-tab="tab-admin" id="tab-btn-admin" style="display:none;" aria-hidden="true"></button>
       </nav>
     </div>
@@ -41,7 +41,7 @@
     <div class="hero-logo-medallion" onclick="handleBrandIconClick()" style="cursor:pointer" title="BÉLIER MALL ON LINE · Shoppez • Profitez • Vivez mieux">
       <img src="Belier_mall.jpeg" alt="Logo Officiel Bélier Mall">
     </div>
-    <div class="hero-tag"> Centre Commercial Moderne de Yamoussoukro · Zone Présidentiel</div>
+    <div class="hero-tag"> Centre Commercial Moderne de Yamoussoukro · Zone Présidentielle</div>
     <h1><span class="shine">BÉLIER MALL ON LINE</span></h1>
     <p style="margin-bottom:0.4rem"><em>« Shoppez • Profitez • Vivez mieux »</em> — Découvrez les articles disponibles en direct, commandez en livraison express ou cliquez sur <strong>« 📍 S'y rendre »</strong> pour activer le guidage GPS jusqu'à la boutique.</p>
   </section>
@@ -74,7 +74,7 @@
           <div class="loco-card" onclick="filterMarketplaceByStore('store-mimos-fashion')">
             <div class="loco-icon">👗</div>
             <div class="loco-info">
-              <div class="loco-name">ZONE PRESIDENTIEL FASHION</div>
+              <div class="loco-name">ZONE PRÉSIDENTIELLE FASHION</div>
               <div class="loco-meta">Mode Tendance TikTok · Pôle 1 R+1 (Admin)</div>
               <div class="loco-desc">Robes tendance, lin homme &amp; accessoires</div>
             </div>
@@ -109,7 +109,7 @@
           <div class="filter-chips" style="margin-top:.6rem">
             <span class="chip active" data-market-tag="" onclick="filterMarketplaceTag('', this)">✨ Tous les articles</span>
             <span class="chip" data-market-tag="supermarché" onclick="filterMarketplaceTag('supermarché', this)">🛒 Yakro Market (800 m²)</span>
-            <span class="chip" data-market-tag="mode" onclick="filterMarketplaceTag('mode', this)">👗 Zone Présidentiel Fashion</span>
+            <span class="chip" data-market-tag="mode" onclick="filterMarketplaceTag('mode', this)">👗 Zone Présidentielle Fashion</span>
             <span class="chip" data-market-tag="cinéma" onclick="filterMarketplaceTag('cinéma', this)">🍿 Cinéma Dolby (100 pl.)</span>
             <span class="chip" data-market-tag="enfants" onclick="filterMarketplaceTag('enfants', this)">🎡 Loisirs Enfants (300 m²)</span>
             <span class="chip" data-market-tag="parking" onclick="filterMarketplaceTag('parking', this)">🚗 Parking 300 Pl. (200 F)</span>
@@ -146,7 +146,7 @@
               <span>50 Boutiques en Location dans le Centre Commercial (3 ha / 30 000 m²) · BÉLIER MALL ON LINE</span>
             </div>
             <div class="marketplace-header-subtitle">
-              50 cellules commerciales modernes climatisées de <strong>dimensions variées (15 m² à 80 m²)</strong> au <strong>Zone Présidentiel</strong>. <strong>Le prix mensuel varie selon la superficie choisie (de 185 000 FCFA à 980 000 FCFA / mois)</strong> · Caution légale 3 mois. Conforme à la réglementation des baux commerciaux en République de Côte d'Ivoire.
+              50 cellules commerciales modernes climatisées de <strong>dimensions variées (15 m² à 80 m²)</strong> au <strong>Zone Présidentielle</strong>. <strong>Le prix mensuel varie selon la superficie choisie (de 185 000 FCFA à 980 000 FCFA / mois)</strong> · Caution légale 3 mois. Conforme à la réglementation des baux commerciaux en République de Côte d'Ivoire.
             </div>
           </div>
           <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
@@ -392,7 +392,7 @@
         <div class="pole-card" onclick="selectStoreById('store-yakro-market')" style="border-left:4px solid #7e22ce">
           <span class="pole-badge" style="background:rgba(126,34,206,.25);color:#e9d5ff">Centre commercial · 3 ha</span>
           <div class="pole-title">🏬 30 000 m² · 50 Boutiques</div>
-          <div class="pole-sub">Bâtiment central à dôme vitré : 50 boutiques en location + Yakro Market &amp; Zone Présidentiel Fashion.</div>
+          <div class="pole-sub">Bâtiment central à dôme vitré : 50 boutiques en location + Yakro Market &amp; Zone Présidentielle Fashion.</div>
         </div>
         <div class="pole-card" onclick="selectStoreById('space-event-hall')" style="border-left:4px solid #f97316">
           <span class="pole-badge" style="background:rgba(249,115,22,.25);color:#fed7aa">Salle événement · 400 m²</span>
@@ -706,7 +706,7 @@
                   <text x="500" y="356" font-family="Inter" font-size="8.5" font-weight="600" fill="rgba(255,255,255,.7)" text-anchor="middle">Fontaine &amp; Escalators vers R+1</text>
                 </g>
 
-                <g id="door-north"><rect x="425" y="30" width="150" height="18" rx="9" fill="#f5b942"/><text x="500" y="43" class="door-label">PORTE ZONE PRESIDENTIEL</text></g>
+                <g id="door-north"><rect x="425" y="30" width="150" height="18" rx="9" fill="#f5b942"/><text x="500" y="43" class="door-label">Porte Zone Présidentielle</text></g>
                 <g id="door-south"><rect x="430" y="650" width="140" height="18" rx="9" fill="#f5b942"/><text x="500" y="663" class="door-label">ACCÈS ESPLANADE SUD</text></g>
 
                 <!-- Boutiques et Cellules RDC -->
@@ -727,7 +727,7 @@
                   <text x="220" y="579" font-family="Inter" font-size="8" font-weight="800" fill="#fff" text-anchor="middle">80% DU FLUX CLIENT QUOTIDIEN</text>
                 </g>
                 
-                <!-- LOCOMOTIVE 2 : RESTAURANT LE ZONE PRESIDENTIEL GOURMAND (150 PLACES) -->
+                <!-- LOCOMOTIVE 2 : RESTAURANT LE ZONE PRÉSIDENTIELLE GOURMAND (150 PLACES) -->
                 <g><rect id="cell-resto-vip" x="590" y="310" width="355" height="330" rx="14" fill="rgba(245,185,66,.24)" stroke="#f5b942" stroke-width="2.5" style="--glow:#f5b942" class="store-cell"/>
                   <text x="612" y="345" class="store-label" font-size="14">🔑 ESPACE 3 (EN LOCATION)</text>
                   <text x="612" y="370" class="store-category" font-size="10.5">150 Places Assises · Salle Climatisée &amp; Terrasse</text>
@@ -755,9 +755,9 @@
                 <text x="500" y="354" font-family="Inter" font-size="8.5" fill="#fff" text-anchor="middle">Vue Plongeante sur la Place du Bélier</text>
                 <text x="500" y="370" font-family="Inter" font-size="8" fill="#f5b942" text-anchor="middle">Escalators &amp; Ascenseurs PMR ⬇</text>
 
-                <!-- LOCOMOTIVE 3 : MAGASIN DE VÊTEMENTS ZONE PRESIDENTIEL FASHION -->
+                <!-- LOCOMOTIVE 3 : MAGASIN DE VÊTEMENTS ZONE PRÉSIDENTIELLE FASHION -->
                 <g><rect id="cell-lot-104" x="60" y="60" width="350" height="220" rx="14" fill="rgba(245,185,66,.22)" stroke="#f5b942" stroke-width="2.5" style="--glow:#f5b942" class="store-cell"/>
-                  <text x="80" y="98" class="store-label" font-size="13">👗 ZONE PRESIDENTIEL FASHION</text>
+                  <text x="80" y="98" class="store-label" font-size="13">👗 ZONE PRÉSIDENTIELLE FASHION</text>
                   <text x="80" y="122" class="store-category" font-size="10">Prêt-à-porter Chic &amp; Tenues Homme, Femme, Enfant</text>
                   <text x="80" y="142" class="store-category" font-size="9">Fournisseurs Dubaï, Turquie &amp; Créateurs Adjamé</text>
                   <text x="80" y="162" class="store-category" font-size="8.5">Conseil en stylisme personnalisé &amp; cabines d'essayage</text>
@@ -876,7 +876,7 @@
               <!-- VUE 5 : PÔLE 4 · GRAND PARKING 300 PLACES                -->
               <!-- ======================================================== -->
               <g id="layer-parking" class="mall-view-layer" style="display:none;">
-                <text x="500" y="24" font-family="Inter" font-size="11" font-weight="800" fill="#38bdf8" text-anchor="middle">🚗 PÔLE 4 · GRAND PARKING SÉCURISÉ (300 PLACES) · ZONE PRESIDENTIEL</text>
+                <text x="500" y="24" font-family="Inter" font-size="11" font-weight="800" fill="#38bdf8" text-anchor="middle">🚗 PÔLE 4 · GRAND PARKING SÉCURISÉ (300 PLACES) · ZONE PRÉSIDENTIELLE</text>
 
                 <rect x="40" y="38" width="920" height="624" rx="18" fill="rgba(15,23,42,0.85)" stroke="#38bdf8" stroke-width="2.5"/>
 
@@ -914,7 +914,7 @@
                 <g><rect x="60" y="340" width="560" height="200" rx="14" fill="rgba(148,163,184,.14)" stroke="#94a3b8" stroke-width="2"/>
                   <text x="80" y="372" class="store-label" font-size="13">🚗 SECTEUR C · VÉHICULES EXTÉRIEURS (60 PLACES)</text>
                   <text x="80" y="395" class="store-category" font-size="9.5">Tarif usagers extérieurs : 500 FCFA / jour</text>
-                  <text x="80" y="415" class="store-category" font-size="9">Pour fonctionnaires, commerçants et travailleurs du Zone Présidentiel</text>
+                  <text x="80" y="415" class="store-category" font-size="9">Pour fonctionnaires, commerçants et travailleurs du Zone Présidentielle</text>
                   <text x="80" y="435" class="store-category" font-size="8.5">Ticket électronique à code-barres horodaté à l'entrée</text>
                 </g>
 
@@ -1056,480 +1056,330 @@
           <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem">Entreprises, ministères, ONG et grandes écoles (INPHB) : privatisez notre salle de cinéma de 100 places avec sonorisation Dolby et pause-café traiteur.</p>
           <ul>
             <li>Projection HDMI / Sans-fil sur écran géant</li>
-            <li>Pause-café &amp; cocktail par <strong>LE ZONE PRESIDENTIEL GOURMAND</strong></li>
+            <li>Pause-café &amp; cocktail par <strong>LE ZONE PRÉSIDENTIELLE GOURMAND</strong></li>
             <li>Stationnement réservé au <strong>Parking 300 places</strong></li>
             <li>Forfait demi-journée : <strong>150 000 FCFA</strong></li>
           </ul>
-          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:.6rem" onclick="document.querySelector('[data-tab=tab-vendor]').click();switchProSubtab('team')">📞 Contacter la Direction Commerciale</button>
+          <a href="https://wa.me/2250565982229?text=Bonjour,%20je%20souhaite%20contacter%20la%20Direction%20Commerciale%20de%20Bélier%20Mall." target="_blank" class="btn-primary" style="width:100%;justify-content:center;margin-top:.6rem;text-decoration:none">📞 Contacter la Direction Commerciale (+225 05 65 98 22 29)</a>
         </div>
       </div>
     </div>
 
     <div id="tab-parking" class="tab-content"><div id="parking-content"></div></div>
 
-    <!-- ESPACE COMMERÇANT, LOCATION-GÉRANCE & DIRECTION GÉNÉRALE -->
-    <div id="tab-vendor" class="tab-content">
-      <div style="max-width:1040px;margin:0 auto">
+    <!-- ======================================================== -->
+    <!-- 🏪 ESPACE CLIENT / LOCATAIRE DE BOUTIQUE (PORTAIL COMMERÇANT) -->
+    <!-- (Personnalisation de boutique, ajout de produits, tableau de bord) -->
+    <!-- ======================================================== -->
+    <div id="tab-client-space" class="tab-content">
+      
+      <!-- 1. ÉCRAN DE CONNEXION LOCATAIRE (AVEC IDENTIFIANTS REÇUS PAR WHATSAPP) -->
+      <div id="tenant-login-view" class="card" style="max-width:520px;margin:2rem auto;padding:2.2rem;border:1.5px solid rgba(245,185,66,.35);background:linear-gradient(135deg,rgba(245,185,66,.08),rgba(15,23,42,.96));border-radius:18px;text-align:center">
+        <div style="font-size:2.8rem;margin-bottom:.5rem">🏪</div>
+        <div class="card-title" style="margin-bottom:.35rem;font-size:1.35rem">Espace Commerçant &amp; Boutique</div>
+        <p style="color:var(--muted);font-size:.84rem;margin-bottom:1.4rem;line-height:1.5">
+          Connectez-vous pour <strong>personnaliser votre boutique</strong>, publier vos <strong>articles au catalogue public</strong> et piloter votre activité sur <strong>BÉLIER MALL ON LINE</strong>.
+        </p>
+
+        <div id="tenant-login-error-box" style="display:none;background:rgba(239,68,68,.16);border:1px solid #ef4444;color:#fca5a5;padding:.75rem;border-radius:10px;margin-bottom:1rem;font-size:.82rem;text-align:left"></div>
+
+        <form onsubmit="handleTenantLogin(event)" style="display:flex;flex-direction:column;gap:1rem;text-align:left">
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Identifiant / Login de votre boutique *
+            </label>
+            <input type="text" id="tenant-login-user" class="main-search-input" style="padding-left:1rem;font-size:.92rem" placeholder="Ex: kyao4829 (reçu sur WhatsApp)" required autocomplete="username">
+            <small style="color:var(--muted);font-size:.72rem;display:block;margin-top:3px">⚠️ Cet identifiant est fixe et ne peut pas être modifié.</small>
+          </div>
+
+          <div>
+            <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">
+              Mot de passe *
+            </label>
+            <input type="password" id="tenant-login-pwd" class="main-search-input" style="padding-left:1rem;font-size:.95rem" placeholder="Mot de passe reçu par WhatsApp" required autocomplete="current-password">
+          </div>
+
+          <button type="submit" class="btn-primary" style="justify-content:center;padding:.88rem;font-size:.92rem;font-weight:800;margin-top:.4rem">
+            🔓 Accéder à mon Espace Boutique
+          </button>
+        </form>
+
+        <div style="margin-top:1.5rem;padding-top:1.1rem;border-top:1px dashed var(--border);font-size:.78rem;color:var(--muted)">
+          Vous avez réservé un espace et n'avez pas encore reçu vos accès ?<br>
+          <a href="https://wa.me/2250565982229?text=Bonjour%20la%20Régie%20Bélier%20Mall,%20je%20souhaite%20recevoir%20les%20accès%20de%20ma%20boutique." target="_blank" style="color:var(--gold);font-weight:700;text-decoration:none">
+            💬 Contacter la Régie Commerciale sur WhatsApp (+225 05 65 98 22 29)
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. TABLEAU DE BORD DU COMMERÇANT (UNE FOIS CONNECTÉ) -->
+      <div id="tenant-dashboard-view" style="display:none;max-width:1120px;margin:0 auto">
         
-        <!-- En-tête Pro -->
-        <div class="card" style="margin-bottom:1.2rem;background:linear-gradient(135deg,rgba(255,122,26,.14),rgba(245,185,66,.09));border-color:rgba(245,185,66,.4)">
+        <!-- En-tête de la Boutique -->
+        <div class="card" style="margin-bottom:1.3rem;background:linear-gradient(135deg,rgba(245,185,66,.14),rgba(15,23,42,.92));border:1.5px solid rgba(245,185,66,.4);padding:1.4rem">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
-            <div>
-              <div class="card-title" style="margin-bottom:.3rem">♈ Direction Générale BÉLIER MALL &amp; Guichet des 46 Boutiques</div>
-              <p style="color:var(--muted);font-size:.88rem">
-                Gouvernance officielle du centre, location-gérance à <strong>250 000 FCFA/mois</strong>, création d'enseignes et gestion du catalogue <strong>YAMO-APP</strong>.
-              </p>
+            <div style="display:flex;align-items:center;gap:1rem">
+              <span id="tenant-store-logo-badge" style="font-size:2.6rem;background:rgba(245,185,66,.15);border:1px solid rgba(245,185,66,.35);width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center">🏪</span>
+              <div>
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <div id="tenant-store-name-title" style="font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;color:#fff">Ma Boutique Commerciale</div>
+                  <span class="badge badge-success">🟢 Boutique Active</span>
+                  <span class="badge badge-primary" id="tenant-store-cell-badge">Cellule Espace 1</span>
+                </div>
+                <div style="font-size:.82rem;color:var(--gold);margin-top:3px">
+                  Gérant(e) : <strong id="tenant-manager-name" style="color:#fff">--</strong> · Contact : <strong id="tenant-phone-display" style="color:#fff">--</strong>
+                </div>
+                <div style="font-size:.74rem;color:var(--muted);margin-top:2px">
+                  🔑 <strong>Identifiant fixe du magasin :</strong> <code id="tenant-login-pill" style="color:#5df0b0;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:4px">espace1</code> (non modifiable)
+                </div>
+              </div>
             </div>
-            <div style="display:flex;gap:.6rem;align-items:center">
-              <span class="badge badge-success">● Zone Présidentiel · 1 Ha</span>
-              <span style="font-size:.8rem;color:var(--gold);font-weight:700">Yamoussoukro</span>
+
+            <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+              <button class="btn-secondary" onclick="viewMyStoreOnMap()" style="font-size:.8rem;padding:.45rem .85rem;border-color:var(--gold);color:var(--gold)">
+                🗺️ Voir sur le Plan
+              </button>
+              <button class="btn-secondary" onclick="handleTenantLogout()" style="font-size:.8rem;padding:.45rem .85rem;border-color:rgba(239,68,68,.35);color:#fca5a5">
+                🚪 Déconnexion
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Sous-navigation Pro -->
-        <div class="pro-subtabs">
-          <button type="button" class="pro-subtab-btn active" id="btn-subtab-create" onclick="switchProSubtab('create')">
-            ➕ Créer mon Établissement
+        <!-- Sous-onglets de l'Espace Locataire -->
+        <div class="pro-subtabs" style="margin-bottom:1.3rem">
+          <button type="button" class="pro-subtab-btn active" id="btn-tenant-tab-profile" onclick="switchTenantTab('profile')">
+            🏬 1. Personnaliser mon Magasin
           </button>
-          <button type="button" class="pro-subtab-btn" id="btn-subtab-leasing" onclick="switchProSubtab('leasing')">
-            🔑 Louer une Boutique (250 000 F/mois)
+          <button type="button" class="pro-subtab-btn" id="btn-tenant-tab-products" onclick="switchTenantTab('products')">
+            📦 2. Mes Produits &amp; Articles (<span id="tenant-products-count">0</span>)
           </button>
-          <button type="button" class="pro-subtab-btn" id="btn-subtab-team" onclick="switchProSubtab('team')">
-            👑 Équipe Projet (5 Dirigeants)
+          <button type="button" class="pro-subtab-btn" id="btn-tenant-tab-billing" onclick="switchTenantTab('billing')">
+            📊 3. Suivi du Bail &amp; Commandes
           </button>
-          <button type="button" class="pro-subtab-btn" id="btn-subtab-dossier" onclick="switchProSubtab('dossier')">
-            📊 Marché Cible (4 Tableaux) &amp; 5 Forces
-          </button>
-          <button type="button" class="pro-subtab-btn" id="btn-subtab-product" onclick="switchProSubtab('product')">
-            📦 Publier Produits (FCFA)
-          </button>
-          <button type="button" class="pro-subtab-btn" id="btn-subtab-stores" onclick="switchProSubtab('stores')">
-            🏬 Établissements Actifs (<span id="stores-counter">14</span>)
+          <button type="button" class="pro-subtab-btn" id="btn-tenant-tab-security" onclick="switchTenantTab('security')">
+            🔐 4. Changer mon Mot de passe
           </button>
         </div>
 
-        <!-- VUE ÉTUDE DE MARCHÉ (4 TABLEAUX), 5 BESOINS, 3 CANAUX & 5 FORCES -->
-        <div id="pro-view-dossier" class="card" style="display:none;">
-          <div class="card-title">📊 Dossier Officiel : Délimitation du Marché Cible, Besoins &amp; Forces du Projet</div>
-          <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.2rem">
-            Synthèse intégrale de l'implantation de <strong>BÉLIER MALL</strong> au <strong>Zone Présidentiel</strong> (Axe Yamoussoukro-Bouaké · 1 Hectare · Ouvert de <strong>08h à 22h, 7j/7</strong>).
+        <!-- Notification d'action Commerçant -->
+        <div id="tenant-action-alert" style="display:none;padding:.9rem 1.1rem;border-radius:12px;margin-bottom:1.2rem;font-size:.85rem"></div>
+
+        <!-- ONGLET 1 : PERSONNALISATION DU MAGASIN / ENSEIGNE -->
+        <div id="tenant-view-profile" class="card">
+          <div class="card-title">🏬 Identité &amp; Configuration de votre Magasin</div>
+          <p style="color:var(--muted);font-size:.84rem;margin-bottom:1.4rem">
+            Personnalisez le nom commercial de votre boutique, votre description et vos moyens de paiement. Les modifications s'affichent instantanément sur le plan 2D et dans le Marketplace pour tous les clients.
           </p>
 
-          <!-- Chiffres démographiques & Cible -->
-          <div class="leasing-kpi-grid" style="margin-bottom:1.4rem">
-            <div class="leasing-kpi"><b>422 072</b><span>Habitants à Yamoussoukro</span></div>
-            <div class="leasing-kpi"><b>82 760</b><span>Ménages Ciblés</span></div>
-            <div class="leasing-kpi"><b>150 000</b><span>Hab. Zone Nord (Zone Présidentiel, Morofé, INPHB...)</span></div>
-            <div class="leasing-kpi"><b>60 %</b><span>Clientèle Féminine Cible</span></div>
-            <div class="leasing-kpi"><b>11,5 M F</b><span>Loyers Garantis / Mois (46 Boutiques)</span></div>
-            <div class="leasing-kpi"><b>115</b><span>Emplois Directs Créés</span></div>
-          </div>
-
-          <!-- Les 5 Besoins & 5 Forces -->
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-bottom:1.5rem">
-            <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:1.1rem">
-              <div style="font-weight:800;color:var(--gold);margin-bottom:.6rem;font-size:.95rem">🎯 Les 5 Besoins Précis Résolus</div>
-              <ul style="font-size:.82rem;color:var(--muted);line-height:1.55;padding-left:1.1rem">
-                <li><strong>Besoin 1 · Proximité :</strong> Évite aux habitants de Zone Présidentiel, Morofé, Habitat, Millionnaire, Kpoussoussou et INPHB de payer un taxi à <strong>1 000 FCFA A/R</strong> vers le sud.</li>
-                <li><strong>Besoin 2 · Tout-en-un :</strong> En <strong>1 heure climatisée</strong> (au lieu de 4h), une mère fait son marché, ses achats mode, sa coiffure pendant que ses enfants sont gardés.</li>
-                <li><strong>Besoin 3 · Loisir Enfants :</strong> Seule aire de jeux 100% sécurisée de Yamoussoukro (<strong>1 500 FCFA/h</strong> avec bracelet électronique et 2 animatrices).</li>
-                <li><strong>Besoin 4 · Stationnement Sécurisé :</strong> Parking 300 places avec gardien et caméras 24h/24 (<strong>200 FCFA</strong> client achat &gt; 5 000 F vs <strong>500 FCFA</strong> externe).</li>
-                <li><strong>Besoin 5 · Information Instantanée :</strong> Avec le GPS <strong>YAMO-APP</strong>, le client vérifie la disponibilité et le prix avant même de quitter sa maison (ou se fait livrer à moto en <strong>45 min</strong>).</li>
-              </ul>
-            </div>
-
-            <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:1.1rem">
-              <div style="font-weight:800;color:#5df0b0;margin-bottom:.6rem;font-size:.95rem">💪 Les 5 Forces Stratégiques &amp; 3 Canaux</div>
-              <ul style="font-size:.82rem;color:var(--muted);line-height:1.55;padding-left:1.1rem">
-                <li><strong>Force 1 · Monopole Géographique :</strong> Seul centre commercial moderne au Nord de Yamoussoukro.</li>
-                <li><strong>Force 2 · Solidité Économique :</strong> <strong>11 500 000 FCFA/mois garantis</strong> grâce aux loyers des 46 boutiques (250 000 F/mois, caution 3 mois).</li>
-                <li><strong>Force 3 · Avance Technologique (5 ans) :</strong> Première application <strong>YAMO-APP</strong> avec GPS indoor à l'intérieur du pays (abonnement commerçant 5 000 F/mois).</li>
-                <li><strong>Force 4 · Impact Social :</strong> <strong>115 emplois créés</strong>, valorisation des producteurs locaux de <strong>Toumodi et Didiévi</strong> (marge 15 à 25%).</li>
-                <li><strong>Force 5 · Rétention Commerciale :</strong> Parking + Cinéma + Jeux font rester les familles <strong>3 heures au lieu de 30 min</strong> (dépense multipliée par 6).</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Les 4 Tableaux de Délimitation du Marché Cible -->
-          <div style="font-weight:800;color:#fff;margin-bottom:.8rem;font-size:1rem">📈 Délimitation du Marché Cible en 4 Tableaux (Les 4 Locomotives)</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:1rem">
-            <div style="background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.3);border-radius:14px;padding:1rem">
-              <div style="font-weight:800;color:#38bdf8;margin-bottom:.5rem">🛒 TABLEAU 1 : SUPERMARCHÉ YAKRO MARKET (800 m²)</div>
-              <div style="font-size:.8rem;color:#e2e8f0;line-height:1.5">
-                • <strong>Nature &amp; Taille du marché :</strong> Marché de nécessité quotidien. 82 760 ménages × 150 000 F = <strong>12,4 Milliards F/mois</strong>. Notre part (2%) = <strong>248 Millions FCFA/mois</strong>.<br>
-                • <strong>Type de clientèle :</strong> Femmes ménagères 25-55 ans, fonctionnaires, familles pressées (prix fixes &amp; hygiène).<br>
-                • <strong>Tendance :</strong> En forte <strong>CROISSANCE</strong> (passage du marché traditionnel au supermarché climatisé).<br>
-                • <strong>Forces :</strong> Seul au Nord, parking quasi-gratuit (200 F), GPS rayons YAMO-APP, rayon <em>"Made in Yamoussoukro"</em> (grossistes Bouaké/Abidjan &amp; producteurs Toumodi/Didiévi).
-              </div>
-            </div>
-
-            <div style="background:rgba(245,185,66,.07);border:1px solid rgba(245,185,66,.3);border-radius:14px;padding:1rem">
-              <div style="font-weight:800;color:var(--gold);margin-bottom:.5rem">🍽️ TABLEAU 2 : RESTAURANT LE ZONE PRESIDENTIEL GOURMAND (150 Places)</div>
-              <div style="font-size:.8rem;color:#e2e8f0;line-height:1.5">
-                • <strong>Nature &amp; Taille du marché :</strong> Marché plaisir &amp; pause déjeuner. 30 000 pers. × 2 500 F = 75 Millions/jour. Notre part (1%) = 750 000 F/jour soit <strong>22,5 Millions FCFA/mois</strong>.<br>
-                • <strong>Type de clientèle :</strong> Étudiants INPHB, travailleurs le midi, familles le soir et dimanche.<br>
-                • <strong>Tendance :</strong> En <strong>CROISSANCE</strong> (recherche de lieux propres, climatisés et instagrammables).<br>
-                • <strong>Forces :</strong> Salle de jeux juste à côté (parents tranquilles), terrasse sécurisée, commande YAMO-APP, poulet braisé, garba, attiéké poisson, burger, shawarma.
-              </div>
-            </div>
-
-            <div style="background:rgba(255,122,26,.07);border:1px solid rgba(255,122,26,.3);border-radius:14px;padding:1rem">
-              <div style="font-weight:800;color:var(--orange);margin-bottom:.5rem">👗 TABLEAU 3 : MAGASIN DE VÊTEMENTS ZONE PRESIDENTIEL FASHION</div>
-              <div style="font-size:.8rem;color:#e2e8f0;line-height:1.5">
-                • <strong>Nature &amp; Taille du marché :</strong> Marché de désir saisonnier. 40% des habitants achètent 1 vêtement/mois à 10 000 F = 1,6 Milliard/mois. Notre part (1,5%) = <strong>24 Millions FCFA/mois</strong>.<br>
-                • <strong>Type de clientèle :</strong> Jeunes 18-35 ans connectés, femmes coquettes 25-45 ans, abonnés TikTok.<br>
-                • <strong>Tendance :</strong> En <strong>MUTATION</strong> (baisse de la friperie au profit du 1er choix neuf abordable Adjamé / Dubaï / Turquie).<br>
-                • <strong>Forces :</strong> Modèles TikTok disponibles à Yakro sans aller à Abidjan, cabines climatisées, réservation de taille sur YAMO-APP.
-              </div>
-            </div>
-
-            <div style="background:rgba(244,114,182,.07);border:1px solid rgba(244,114,182,.3);border-radius:14px;padding:1rem">
-              <div style="font-weight:800;color:#f472b6;margin-bottom:.5rem">💄 TABLEAU 4 : SALON D'ESTHÉTIQUE BELLE DE YAKRO</div>
-              <div style="font-size:.8rem;color:#e2e8f0;line-height:1.5">
-                • <strong>Nature &amp; Taille du marché :</strong> Marché de fidélisation récurrent. 105 000 femmes × 5 000 F = 525 Millions/mois. Notre part (2%) = <strong>10,5 Millions FCFA/mois</strong>.<br>
-                • <strong>Type de clientèle :</strong> Femmes 20-50 ans, mariées de fonctionnaires, futures mariées, étudiantes exigeantes sur l'hygiène.<br>
-                • <strong>Tendance :</strong> En <strong>EXPLOSION</strong> (porté par Instagram et les cérémonies de mariage).<br>
-                • <strong>Forces :</strong> Hygiène irréprochable, caméras, <strong>Pack Mariage</strong> (coiffure + habit + restaurant), prise de RDV sur YAMO-APP sans attente.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- VUE GOUVERNANCE & ÉQUIPE DE DIRECTION -->
-        <div id="pro-view-team" class="card" style="display:none;">
-          <div class="card-title">👑 Présentation de l'Équipe Projet (Gouvernance BÉLIER MALL)</div>
-          <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.2rem">
-            Profils complets (Poste, Personnalité, Compétence et Motivation) des 5 dirigeants qui pilotent le centre commercial et l'application <strong>YAMO-APP</strong>.
-          </p>
-          <div id="governance-team-grid" class="team-grid">
-            <!-- Rendu dynamique par app.js -->
-          </div>
-          <div style="margin-top:1.5rem;text-align:right">
-            <a href="#admin" onclick="openAdminSpace(); return false;" style="color:var(--muted);font-size:.76rem;text-decoration:none;opacity:.6;transition:all .2s" onmouseover="this.style.opacity='1';this.style.color='var(--gold)'" onmouseout="this.style.opacity='.6';this.style.color='var(--muted)'">
-              🔒 Accès réservé aux membres de la Direction Générale &rarr;
-            </a>
-          </div>
-        </div>
-
-        <!-- VUE LOCATION-GÉRANCE DES 46 BOUTIQUES (250 000 FCFA / MOIS) -->
-        <div id="pro-view-leasing" class="card" style="display:none;">
-          <div class="card-title">🔑 Programme de Location-Gérance des 46 Boutiques Modernes (Pôle 1 · R+1)</div>
-          <p style="color:var(--muted);font-size:.88rem">
-            Aux côtés de nos 4 locomotives stratégiques (<em>Yakro Market, Le Zone Présidentiel Gourmand, Zone Présidentiel Fashion, Belle de Yakro</em>) qui génèrent 80% du flux quotidien, <strong>46 cellules commerciales climatisées de 20 m²</strong> sont proposées aux entrepreneurs et commerçants.
-          </p>
-
-          <div class="leasing-kpi-grid">
-            <div class="leasing-kpi"><b>46</b><span>Boutiques Climatisées (20 m²)</span></div>
-            <div class="leasing-kpi"><b>250 000 F</b><span>Loyer Mensuel Fixe (HT)</span></div>
-            <div class="leasing-kpi"><b>750 000 F</b><span>Caution (3 Mois de garantie)</span></div>
-            <div class="leasing-kpi"><b>5 000 F</b><span>Pack Visibilité YAMO-APP / mois</span></div>
-            <div class="leasing-kpi"><b>12 Mois</b><span>Contrat Renouvelable</span></div>
-          </div>
-
-          <div id="leasing-success-box" style="display:none;" class="certif-box"></div>
-
-          <form id="leasing-apply-form" style="display:flex;flex-direction:column;gap:1.2rem;margin-top:1rem;border-top:1px solid var(--border);padding-top:1.2rem">
-            <div style="font-weight:800;color:var(--gold);font-size:.95rem">📋 Formulaire de Pré-Réservation de Cellule Commerciale (B01 à B46)</div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
-              <div>
-                <label>Nom &amp; Prénoms du Gérant / Promoteur *</label>
-                <input type="text" id="lease-applicant" class="main-search-input" style="padding-left:1rem" placeholder="ex: Mme Konan Adjoua" required>
-              </div>
-              <div>
-                <label>Nom Commercial de la Boutique *</label>
-                <input type="text" id="lease-brand" class="main-search-input" style="padding-left:1rem" placeholder="ex: Parfumerie Royale des Lacs" required>
-              </div>
-              <div>
-                <label>Téléphone / WhatsApp (+225) *</label>
-                <input type="text" id="lease-phone" class="main-search-input" style="padding-left:1rem" placeholder="+225 07 08 12 34 56" required>
-              </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
-              <div>
-                <label>Secteur d'Activité</label>
-                <select id="lease-activity" class="select-qr" style="width:100%">
-                  <option value="Mode, Prêt-à-Porter & Chaussures">👗 Mode, Prêt-à-Porter &amp; Chaussures</option>
-                  <option value="Téléphonie, High-Tech & Accessoires">📱 Téléphonie, High-Tech &amp; Accessoires</option>
-                  <option value="Pharmacie, Optique & Santé">👓 Optique, Parapharmacie &amp; Santé</option>
-                  <option value="Cosmétique, Parfumerie & Bijouterie">💍 Cosmétique, Parfumerie &amp; Bijouterie</option>
-                  <option value="Transfert d'Argent, Banque & Assurance">🏦 Transfert d'Argent (Wave/Orange), Banque &amp; Assurance</option>
-                  <option value="Pâtisserie, Glacier & Salon de Thé">🥐 Pâtisserie, Glacier &amp; Salon de Thé</option>
-                  <option value="Librairie, Papeterie & Bureautique">📚 Librairie, Papeterie &amp; Services INPHB</option>
-                </select>
-              </div>
-              <div>
-                <label>Cellule Souhaitée (20 m² Climatisée)</label>
-                <select id="lease-cell" class="select-qr" style="width:100%">
-                  <option value="B06 (RDC - Allée Centrale)">Cellule B06 · RDC Allée Centrale (Face Yakro Market)</option>
-                  <option value="B08 (RDC - Aile Nord)">Cellule B08 · RDC Aile Nord (Entrée Zone Présidentiel)</option>
-                  <option value="B12 (RDC - Place du Bélier)">Cellule B12 · RDC Place du Bélier</option>
-                  <option value="B24 (Étage R+1 - Galerie Mode)">Cellule B24 · Étage R+1 Galerie Mode</option>
-                  <option value="B35 (Étage R+1 - Terrasse Est)">Cellule B35 · Étage R+1 Vue Terrasse</option>
-                </select>
-              </div>
-              <div>
-                <label>Durée du Bail Initial</label>
-                <select id="lease-duration" class="select-qr" style="width:100%" onchange="updateLeasingSummary()">
-                  <option value="12">12 Mois (Standard renouvelable)</option>
-                  <option value="24">24 Mois (Priorité emplacement)</option>
-                  <option value="36">36 Mois (Bail commercial longue durée)</option>
-                </select>
-              </div>
-            </div>
-
-            <div style="background:rgba(25,195,125,.09);border:1px solid rgba(25,195,125,.35);border-radius:14px;padding:1rem;font-size:.84rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem">
-              <div>
-                <strong style="color:#5df0b0">📊 Récapitulatif Financier à la Signature :</strong><br>
-                <span style="color:var(--muted)">Caution 3 mois (750 000 FCFA) + 1er mois de loyer (250 000 FCFA) + Abonnement YAMO-APP (5 000 FCFA)</span>
-              </div>
-              <div style="font-size:1.15rem;font-weight:900;color:var(--gold)" id="lease-initial-total">1 005 000 FCFA</div>
-            </div>
-
-            <button type="submit" class="btn-primary" style="justify-content:center;padding:1rem;font-size:1rem">
-              ✍️ Soumettre ma Candidature de Location-Gérance à la Direction Générale
-            </button>
-          </form>
-        </div>
-
-        <!-- VUE 1 : CRÉATION D'ÉTABLISSEMENT (BOUTIQUE / RESTO / SUPERMARCHÉ) -->
-        <div id="pro-view-create" class="card">
-          <div class="card-title">📝 Inscription &amp; Implantation d'un Nouvel Établissement sur YAMO-APP</div>
-          <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.5rem">
-            Remplissez les informations de votre enseigne. Dès validation, votre établissement est positionné sur la <strong>carte interactive 2D</strong>, calculé dans les itinéraires piétons et trouvable par tous les visiteurs de <strong>BÉLIER MALL</strong>.
-          </p>
-
-          <div id="store-creation-success-box" style="display:none;" class="certif-box"></div>
-
-          <form id="store-create-form" style="display:flex;flex-direction:column;gap:1.4rem">
-            
-            <!-- Étape 1 : Vocation de l'Établissement -->
-            <div>
-              <label>1. TYPE D'ÉTABLISSEMENT *</label>
-              <div class="type-selector-grid">
-                <div class="type-card active" data-type="SUPERMARCHE" onclick="selectStoreType(this, 'SUPERMARCHE', '🛒', 'cell-supermarket')">
-                  <div class="type-icon">🛒</div>
-                  <div class="type-title">Supermarché / Hypermarché</div>
-                  <div class="type-desc">Grande distribution, alimentation générale, boucherie, frais &amp; produits locaux</div>
-                </div>
-                <div class="type-card" data-type="RESTAURANT" onclick="selectStoreType(this, 'RESTAURANT', '🍽️', 'cell-resto-vip')">
-                  <div class="type-icon">🍽️</div>
-                  <div class="type-title">Restaurant / Maquis Chic</div>
-                  <div class="type-desc">Gastronomie ivoirienne (carpe braisée, alloco, garba), terrasse &amp; fast-food</div>
-                </div>
-                <div class="type-card" data-type="MODE" onclick="selectStoreType(this, 'MODE', '👗', 'cell-lot-104')">
-                  <div class="type-icon">👗</div>
-                  <div class="type-title">Boutique Mode &amp; Wax</div>
-                  <div class="type-desc">Prêt-à-porter tendances TikTok, pagnes Kita &amp; Baoulé, maroquinerie</div>
-                </div>
-                <div class="type-card" data-type="TECH" onclick="selectStoreType(this, 'TECH', '📱', 'cell-apple')">
-                  <div class="type-icon">📱</div>
-                  <div class="type-title">High-Tech &amp; Électronique</div>
-                  <div class="type-desc">Smartphones, informatique INPHB, multimédia, gaming &amp; réparation</div>
-                </div>
-                <div class="type-card" data-type="PATISSERIE" onclick="selectStoreType(this, 'PATISSERIE', '🥐', 'cell-foodcourt')">
-                  <div class="type-icon">🥐</div>
-                  <div class="type-title">Boulangerie / Pâtisserie / Café</div>
-                  <div class="type-desc">Viennoiseries fraîches, gâteaux de cérémonie, glaces &amp; cafés du terroir</div>
-                </div>
-                <div class="type-card" data-type="BEAUTE" onclick="selectStoreType(this, 'BEAUTE', '💄', 'cell-zara')">
-                  <div class="type-icon">💄</div>
-                  <div class="type-title">Beauté, Coiffure &amp; Mariage</div>
-                  <div class="type-desc">Salon de coiffure, onglerie nail art, maquillage &amp; Forfait Mariage</div>
-                </div>
-                <div class="type-card" data-type="LOISIRS" onclick="selectStoreType(this, 'LOISIRS', '🎡', 'cell-rest')">
-                  <div class="type-icon">🎡</div>
-                  <div class="type-title">Loisirs Enfants &amp; Cinéma</div>
-                  <div class="type-desc">Manèges enfants (1 500 F/h), salle cinéma Dolby 100 places &amp; jeux</div>
-                </div>
-                <div class="type-card" data-type="SERVICES" onclick="selectStoreType(this, 'SERVICES', '🏦', 'cell-atm')">
-                  <div class="type-icon">🏦</div>
-                  <div class="type-title">Banque, Wave &amp; Services</div>
-                  <div class="type-desc">Agence bancaire, Mobile Money (Wave, Orange, MTN, Moov), pressing</div>
-                </div>
-              </div>
-              <input type="hidden" id="new-store-category" value="SUPERMARCHE">
-            </div>
-
-            <!-- Étape 2 : Identité de l'Enseigne -->
+          <form id="tenant-store-profile-form" onsubmit="saveTenantStoreCustomization(event)" style="display:flex;flex-direction:column;gap:1.1rem">
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem">
               <div>
-                <label>Nom de l'Établissement / Enseigne *</label>
-                <input type="text" id="new-store-name" class="main-search-input" style="padding-left:1.1rem" placeholder="ex: Supermarché YAKRO MARKET ou Boutique B12" required>
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Nom Commercial de la Boutique / Enseigne *</label>
+                <input type="text" id="tenant-form-store-name" class="main-search-input" style="padding-left:1rem" required placeholder="Ex: Parfumerie Royale d'Abidjan, High Tech Express...">
               </div>
               <div>
-                <label>Slogan ou Phrase d'Accroche</label>
-                <input type="text" id="new-store-slogan" class="main-search-input" style="padding-left:1.1rem" placeholder="ex: Le meilleur du frais et du Made in Yamoussoukro">
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Secteur / Catégorie d'Activité *</label>
+                <select id="tenant-form-category" class="select-qr" style="width:100%">
+                  <option value="Mode, Prêt-à-Porter & Wax">👗 Mode, Prêt-à-Porter &amp; Wax</option>
+                  <option value="Beauté, Coiffure & Esthétique">💄 Beauté, Coiffure &amp; Esthétique</option>
+                  <option value="High-Tech, Téléphonie & Accessoires">📱 High-Tech, Téléphonie &amp; Accessoires</option>
+                  <option value="Bijouterie & Joaillerie">💍 Bijouterie &amp; Joaillerie</option>
+                  <option value="Supermarché & Épicerie Fine">🛒 Supermarché &amp; Épicerie Fine</option>
+                  <option value="Restauration, Fast-Food & Café">🍽️ Restauration, Fast-Food &amp; Café</option>
+                  <option value="Boulangerie & Pâtisserie">🥐 Boulangerie &amp; Pâtisserie</option>
+                  <option value="Librairie, Papeterie & Informatique">📚 Librairie, Papeterie &amp; Services INPHB</option>
+                  <option value="Banque, Mobile Money & Services">🏦 Transfert d'Argent (Wave, Orange), Banque &amp; Assurance</option>
+                </select>
               </div>
             </div>
 
             <!-- Émoji Logo Emblème -->
             <div>
-              <label>Émoji Logo / Emblème de l'Enseigne</label>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Émoji Logo / Emblème de la Boutique</label>
               <div class="emoji-picker-row">
-                <button type="button" class="emoji-btn active" onclick="pickEmoji('🛒', this)">🛒</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('🍽️', this)">🍽️</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('👗', this)">👗</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('💄', this)">💄</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('🎡', this)">🎡</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('🍿', this)">🍿</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('📱', this)">📱</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('☕', this)">☕</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('🥐', this)">🥐</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('👑', this)">👑</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('💍', this)">💍</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('📚', this)">📚</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('🥩', this)">🥩</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('✂️', this)">✂️</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('🛍️', this)">🛍️</button>
-                <button type="button" class="emoji-btn" onclick="pickEmoji('♈', this)">♈</button>
+                <button type="button" class="emoji-btn active" onclick="pickTenantEmoji('🏬', this)">🏬</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('👗', this)">👗</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🛒', this)">🛒</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('💄', this)">💄</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('📱', this)">📱</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🍽️', this)">🍽️</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🥐', this)">🥐</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('💍', this)">💍</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('☕', this)">☕</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('📚', this)">📚</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('🛍️', this)">🛍️</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('✨', this)">✨</button>
+                <button type="button" class="emoji-btn" onclick="pickTenantEmoji('👑', this)">👑</button>
               </div>
-              <input type="hidden" id="new-store-logo" value="🛒">
+              <input type="hidden" id="tenant-form-logo" value="🏬">
             </div>
 
-            <!-- Description -->
+            <!-- Slogan & Description -->
             <div>
-              <label>Description des activités &amp; produits proposés</label>
-              <textarea id="new-store-desc" class="main-search-input" style="padding:1rem;height:80px;resize:vertical;font-family:inherit" placeholder="Présentez votre établissement : vos spécialités, marques distribuées, arrivages frais, etc..."></textarea>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Description Commerciale &amp; Spécialités</label>
+              <textarea id="tenant-form-desc" class="main-search-input" style="padding:1rem;height:80px;resize:vertical;font-family:inherit" placeholder="Présentez votre boutique, vos nouveautés, vos marques distribuées..."></textarea>
             </div>
 
-            <!-- Étape 3 : Emplacement dans Bélier Mall -->
-            <div style="border-top:1px solid var(--border);padding-top:1.2rem">
-              <label>2. LOCALISATION &amp; ATTRIBUTION DE CELLULE (PÔLE 1 à 4) *</label>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem;margin-top:.4rem">
-                <div>
-                  <label>Niveau / Étage</label>
-                  <select id="new-store-floor" class="select-qr" style="width:100%">
-                    <option value="0">Rez-de-Chaussée (Niveau 0 - Locomotives &amp; Pôles)</option>
-                    <option value="1">Étage R+1 (Galerie des 46 Boutiques Climatisées)</option>
-                  </select>
-                </div>
-                <div>
-                  <label>Cellule sur le Plan Interactif</label>
-                  <select id="new-store-cell" class="select-qr" style="width:100%">
-                    <option value="cell-supermarket">🛒 LOCO 1 · Supermarché YAKRO MARKET (800 m²)</option>
-                    <option value="cell-resto-vip">🍽️ LOCO 2 · Restaurant LE ZONE PRESIDENTIEL GOURMAND (150 pl.)</option>
-                    <option value="cell-lot-104">👗 LOCO 3 · Magasin ZONE PRESIDENTIEL FASHION (Mode)</option>
-                    <option value="cell-zara">💄 LOCO 4 · Salon BELLE DE YAKRO (Coiffure &amp; Beauté)</option>
-                    <option value="cell-rest">🎡 PÔLE 2 · Annexe Loisirs Enfants (300 m²)</option>
-                    <option value="cell-cinema">🍿 PÔLE 3 · Salle de Cinéma Dolby (100 places)</option>
-                    <option value="cell-fnac">📚 CELLULE B01 · Librairie &amp; Espace INPHB (20 m²)</option>
-                    <option value="cell-apple">📱 CELLULE B02 · Espace High-Tech (20 m²)</option>
-                    <option value="cell-foodcourt">☕ CELLULE B04 · Café &amp; Pâtisserie Zone Présidentiel (20 m²)</option>
-                    <option value="cell-custom">✨ Nouvelle Cellule Locative B06-B46 (Générée sur le plan)</option>
-                  </select>
-                </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem">
+              <div>
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Téléphone / WhatsApp de la Boutique (+225) *</label>
+                <input type="tel" id="tenant-form-phone" class="main-search-input" style="padding-left:1rem" required placeholder="+225 07 00 00 00 00">
+              </div>
+              <div>
+                <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Horaires d'Ouverture</label>
+                <input type="text" id="tenant-form-hours" class="main-search-input" style="padding-left:1rem" value="08:00 - 21:30 (7j/7)">
               </div>
             </div>
 
-            <!-- Étape 4 : Direction & Services -->
-            <div style="border-top:1px solid var(--border);padding-top:1.2rem">
-              <label>3. CONTACTS DIRECTEUR / GÉRANT &amp; SERVICES YAMO-APP</label>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem;margin-top:.4rem">
-                <div>
-                  <label>Nom du DG ou Gérant</label>
-                  <input type="text" id="new-store-manager" class="main-search-input" style="padding-left:1.1rem" placeholder="ex: Mme KOUASSI Amenan Grace (DG)">
-                </div>
-                <div>
-                  <label>Téléphone Officiel / WhatsApp (+225)</label>
-                  <input type="text" id="new-store-phone" class="main-search-input" style="padding-left:1.1rem" placeholder="+225 27 30 64 10 01" required>
-                </div>
-                <div>
-                  <label>Horaires d'Ouverture</label>
-                  <input type="text" id="new-store-hours" class="main-search-input" style="padding-left:1.1rem" value="07:30 - 22:00 (7j/7)">
-                </div>
-              </div>
-
-              <!-- Services & Paiements -->
-              <div style="margin-top:1rem">
-                <label>Moyens de Paiement &amp; Services Proposés</label>
-                <div class="checkbox-grid">
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Wave" checked> 📱 Wave Mobile</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Orange Money" checked> 🟠 Orange Money</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Moov Money" checked> 🔵 Moov Money</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="MTN MoMo" checked> 🟡 MTN MoMo</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Carte Bancaire" checked> 💳 Carte Visa / Mastercard</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Climatisation" checked> ❄️ Boutique Climatisée</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Livraison Moto 45 min" checked> 🛵 Livraison Moto 45 min</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Ticket Parking 200 F" checked> 🚗 Ticket Parking 200 FCFA</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="PMR" checked> ♿ Accès Facile PMR</label>
-                  <label class="checkbox-item"><input type="checkbox" name="services" value="Wifi"> 📶 Wifi Gratuit Clients</label>
-                </div>
+            <!-- Moyens de paiement acceptés -->
+            <div>
+              <label style="font-size:.78rem;font-weight:700;color:var(--text);display:block;margin-bottom:5px">Moyens de Paiement &amp; Services Proposés à vos Clients</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Wave" checked> 📱 Wave Mobile Money</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Orange Money" checked> 🟠 Orange Money</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="MTN MoMo" checked> 🟡 MTN MoMo</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Moov Money" checked> 🔵 Moov Money</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Espèces" checked> 💵 Espèces à la livraison</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Carte Bancaire" checked> 💳 Carte Visa / Mastercard</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Climatisation" checked> ❄️ Espace Climatisé</label>
+                <label class="checkbox-item"><input type="checkbox" name="tenant-service" value="Livraison Moto 45 min" checked> 🛵 Livraison Moto 45 min</label>
               </div>
             </div>
 
-            <!-- Soumission -->
-            <button type="submit" class="btn-primary" style="justify-content:center;padding:1.1rem;font-size:1.05rem;margin-top:.6rem">
-              ✨ Inaugurer &amp; Activer mon Établissement à BÉLIER MALL (YAMO-APP)
+            <button type="submit" class="btn-primary" style="justify-content:center;padding:1rem;font-size:1rem;font-weight:800;margin-top:.5rem">
+              💾 Enregistrer les Modifications de ma Boutique
             </button>
           </form>
         </div>
 
-        <!-- VUE 2 : AJOUT DE PRODUIT / PLAT / MENU -->
-        <div id="pro-view-product" class="card" style="display:none;">
-          <div class="card-title">📦 Publier un Produit, Plat ou Service au Catalogue YAMO-APP</div>
-          <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.4rem">
-            Choisissez votre boutique et ajoutez un nouvel article. Tous les prix sont exprimés en <strong>FCFA</strong> et indexés instantanément dans le moteur de recherche et la livraison en 45 min.
-          </p>
-
-          <div id="vendor-success-alert" style="display:none;background:rgba(25,195,125,.14);border:1px solid rgba(25,195,125,.4);color:#5df0b0;padding:.9rem;border-radius:14px;margin-bottom:1rem;font-size:.88rem"></div>
-
-          <form id="vendor-add-product-form" style="display:flex;flex-direction:column;gap:1.1rem">
+        <!-- ONGLET 2 : GESTION DES PRODUITS & ARTICLES DE LA BOUTIQUE -->
+        <div id="tenant-view-products" class="card" style="display:none">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;flex-wrap:wrap;gap:1rem">
             <div>
-              <label>Boutique, Locomotive ou Restaurant affilié :</label>
-              <select id="vendor-store-select" class="select-qr" style="width:100%;margin-top:.35rem">
-                <!-- Rempli dynamiquement -->
-              </select>
+              <div class="card-title" style="margin-bottom:.2rem">📦 Rayon &amp; Articles de votre Boutique</div>
+              <p style="color:var(--muted);font-size:.83rem">
+                Ajoutez vos produits en vente avec leurs prix en FCFA. Dès publication, vos articles sont visibles sur le Marketplace public et commandables en livraison express moto sous 45 min.
+              </p>
             </div>
-
-            <div>
-              <label>Nom de l'article, plat ou service :</label>
-              <input type="text" id="vendor-prod-name" class="main-search-input" style="padding-left:1.1rem;margin-top:.35rem" placeholder="ex: Carpe braisée d'Alépé, Pagne Kita Royal, Sac de riz parfumé 25kg..." required>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-              <div>
-                <label>Prix (en FCFA) :</label>
-                <input type="number" step="100" id="vendor-prod-price" class="main-search-input" style="padding-left:1.1rem;margin-top:.35rem" placeholder="6500" required>
-              </div>
-              <div>
-                <label>Quantité en stock :</label>
-                <input type="number" id="vendor-prod-stock" class="main-search-input" style="padding-left:1.1rem;margin-top:.35rem" value="25" required>
-              </div>
-            </div>
-
-            <div>
-              <label>Mots-clés de recherche (séparés par des virgules) :</label>
-              <input type="text" id="vendor-prod-tags" class="main-search-input" style="padding-left:1.1rem;margin-top:.35rem" placeholder="ex: poisson, braisé, carpe, restaurant, zone présidentiel gourmand, yamoussoukro">
-            </div>
-
-            <button type="submit" class="btn-primary" style="justify-content:center;padding:.95rem;font-size:1rem">
-              🚀 Publier dans le catalogue YAMO-APP (BÉLIER MALL)
-            </button>
-          </form>
-        </div>
-
-        <!-- VUE 3 : RÉPERTOIRE DES ÉTABLISSEMENTS ACTIFS -->
-        <div id="pro-view-stores" class="card" style="display:none;">
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem">
-            <div>
-              <div class="card-title" style="margin-bottom:.2rem">🏬 Répertoire des Locomotives, Pôles &amp; Boutiques</div>
-              <p style="color:var(--muted);font-size:.85rem">Vue d'ensemble de tous les commerces actifs à BÉLIER MALL.</p>
-            </div>
-            <button class="btn-primary" onclick="switchProSubtab('create')" style="font-size:.82rem;padding:.5rem 1rem">
-              ➕ Ajouter une enseigne
+            <button class="btn-primary" onclick="toggleTenantProductAddForm()" style="font-size:.82rem;padding:.5rem 1rem">
+              ➕ Publier un Nouvel Article
             </button>
           </div>
 
-          <div id="pro-stores-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem">
+          <!-- Formulaire d'ajout d'article (dépliable) -->
+          <div id="tenant-add-product-box" style="display:none;background:rgba(255,255,255,.03);border:1.5px solid rgba(245,185,66,.35);border-radius:14px;padding:1.3rem;margin-bottom:1.5rem">
+            <div style="font-weight:800;font-size:1rem;color:var(--gold);margin-bottom:.8rem">
+              ➕ Ajouter un Article au Catalogue Bélier Mall
+            </div>
+            <form onsubmit="handleAddTenantProduct(event)" style="display:flex;flex-direction:column;gap:1rem">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Nom de l'article ou plat *</label>
+                  <input type="text" id="tenant-prod-name" class="main-search-input" style="padding-left:.9rem" required placeholder="Ex: Robe en Soie de Dubaï, Pagne Kita, Sac de Luxe...">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Prix Net de Vente (en FCFA) *</label>
+                  <input type="number" id="tenant-prod-price" class="main-search-input" style="padding-left:.9rem" required min="100" step="50" placeholder="Ex: 15000">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Quantité en Stock *</label>
+                  <input type="number" id="tenant-prod-stock" class="main-search-input" style="padding-left:.9rem" required min="1" value="20">
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Catégorie du Produit</label>
+                  <input type="text" id="tenant-prod-cat" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: Mode Féminine, Chaussures, Parfumerie...">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Émoji / Icône de l'Article</label>
+                  <input type="text" id="tenant-prod-emoji" class="main-search-input" style="padding-left:.9rem" value="🛍️">
+                </div>
+                <div>
+                  <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Mots-clés de recherche</label>
+                  <input type="text" id="tenant-prod-tags" class="main-search-input" style="padding-left:.9rem" placeholder="Ex: robe, soirée, femme, mode, dubaï">
+                </div>
+              </div>
+
+              <div>
+                <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Description de l'Article</label>
+                <textarea id="tenant-prod-desc" class="main-search-input" style="padding:.9rem;height:65px;resize:vertical;font-family:inherit" placeholder="Détails du produit (matière, tailles disponibles, garantie...)"></textarea>
+              </div>
+
+              <div style="display:flex;gap:.8rem;justify-content:flex-end">
+                <button type="button" class="btn-secondary" onclick="toggleTenantProductAddForm()">Annuler</button>
+                <button type="submit" class="btn-primary" style="padding:.75rem 1.4rem">🚀 Publier l'Article sur Bélier Mall</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Tableau des Articles de la Boutique -->
+          <div id="tenant-products-table-container">
             <!-- Rendu dynamique par app.js -->
           </div>
         </div>
 
+        <!-- ONGLET 3 : SUIVI DU BAIL & COMMANDES CLIENTS -->
+        <div id="tenant-view-billing" class="card" style="display:none">
+          <div class="card-title">📊 Suivi de votre Bail Commercial &amp; Commandes Clients</div>
+          <p style="color:var(--muted);font-size:.83rem;margin-bottom:1.3rem">
+            Consultez les informations administratives de votre cellule et les commandes en direct passées par vos clients.
+          </p>
+
+          <!-- 4 Cartes récapitulatives du bail -->
+          <div class="leasing-kpi-grid" style="margin-bottom:1.5rem">
+            <div class="leasing-kpi"><b id="tenant-kpi-space">Espace 1</b><span>Cellule Commerciale</span></div>
+            <div class="leasing-kpi"><b id="tenant-kpi-rent" style="color:#5df0b0">250 000 F</b><span>Loyer Mensuel Net</span></div>
+            <div class="leasing-kpi"><b id="tenant-kpi-deposit" style="color:var(--gold)">750 000 F</b><span>Caution Légale (3 mois)</span></div>
+            <div class="leasing-kpi"><b id="tenant-kpi-status" style="color:#5df0b0">À JOUR</b><span>État du Loyer</span></div>
+          </div>
+
+          <!-- Commandes Express reçues pour cette boutique -->
+          <div style="background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:14px;padding:1.2rem">
+            <div style="font-weight:800;font-size:1rem;color:#fff;margin-bottom:.8rem;display:flex;align-items:center;gap:8px">
+              <span>🛵</span> Commandes Express Clients pour vos Articles
+            </div>
+            <div id="tenant-orders-table-container">
+              <!-- Rendu dynamique par app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ONGLET 4 : SÉCURITÉ & CHANGEMENT DE MOT DE PASSE -->
+        <div id="tenant-view-security" class="card" style="display:none;max-width:580px;margin:0 auto">
+          <div class="card-title">🔐 Sécurité &amp; Modification de votre Mot de passe</div>
+          <p style="color:var(--muted);font-size:.83rem;margin-bottom:1.3rem">
+            Remplacez le mot de passe provisoire reçu sur WhatsApp par votre mot de passe personnel.<br>
+            <strong>Votre identifiant / login reste définitivement fixe et ne peut pas être modifié.</strong>
+          </p>
+
+          <form onsubmit="handleTenantPasswordChange(event)" style="display:flex;flex-direction:column;gap:1.1rem">
+            <div>
+              <label style="font-size:.76rem;color:var(--muted);display:block;margin-bottom:4px">Votre Identifiant / Login fixe (non modifiable) :</label>
+              <input type="text" id="tenant-sec-login-fixed" class="main-search-input" style="padding-left:1rem;background:rgba(255,255,255,.05);color:var(--gold);font-weight:800;cursor:not-allowed" readonly disabled>
+              <small style="color:var(--gold);font-size:.72rem;display:block;margin-top:3px">🔒 Cet identifiant vous a été attribué définitivement lors de la signature de votre bail.</small>
+            </div>
+
+            <div>
+              <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Nouveau Mot de passe Personnel *</label>
+              <input type="password" id="tenant-sec-new-pwd" class="main-search-input" style="padding-left:1rem" required minlength="4" placeholder="Nouveau mot de passe">
+            </div>
+
+            <div>
+              <label style="font-size:.76rem;color:var(--text);font-weight:700;display:block;margin-bottom:4px">Confirmer le Nouveau Mot de passe *</label>
+              <input type="password" id="tenant-sec-confirm-pwd" class="main-search-input" style="padding-left:1rem" required minlength="4" placeholder="Confirmez le nouveau mot de passe">
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content:center;padding:.9rem;font-size:.92rem;font-weight:800;margin-top:.4rem">
+              🔐 Mettre à jour mon Mot de passe
+            </button>
+          </form>
+        </div>
+
       </div>
     </div>
-
     <!-- ======================================================== -->
     <!-- 🔐 ESPACE ADMINISTRATEUR & CONSOLE DIRECTION GÉNÉRALE    -->
     <!-- (Gestion complète, baux, suppressions, stocks)           -->
@@ -2025,7 +1875,7 @@
         </div>
         <div class="form-group" style="margin-bottom:.65rem">
           <label style="font-size:.74rem;color:var(--muted);display:block;margin-bottom:3px">Adresse ou Quartier à Yamoussoukro</label>
-          <input type="text" id="order-customer-address" class="form-control" required placeholder="Ex: Zone Présidentiel, Morofé, Résidentiel, INPHB..." style="background:#1e293b;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.82rem;padding:.5rem .75rem">
+          <input type="text" id="order-customer-address" class="form-control" required placeholder="Ex: Zone Présidentielle, Morofé, Résidentiel, INPHB..." style="background:#1e293b;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.82rem;padding:.5rem .75rem">
         </div>
         <div class="form-group" style="margin-bottom:1rem">
           <label style="font-size:.74rem;color:var(--muted);display:block;margin-bottom:3px">Mode de Règlement</label>
@@ -2062,7 +1912,7 @@
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
           <div>
             <div style="font-weight:800;color:var(--gold);font-size:1rem" id="modal-lease-space-title">Espace 1 (20 m² Climatisé)</div>
-            <div style="font-size:.76rem;color:var(--muted)">BÉLIER MALL · Zone Présidentiel · Axe Yamoussoukro-Bouaké</div>
+            <div style="font-size:.76rem;color:var(--muted)">BÉLIER MALL · Zone Présidentielle · Axe Yamoussoukro-Bouaké</div>
           </div>
           <div style="text-align:right">
             <div style="font-size:1.1rem;font-weight:900;color:#5df0b0"><span id="modal-lease-rent-val">250 000 FCFA</span> <small style="font-size:.7rem;color:#cbd5e1">/ mois</small></div>
@@ -2213,6 +2063,61 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- MODALE OFFICIELLE : ATTRIBUTION DE BAIL & ENVOI DES IDENTIFIANTS SUR WHATSAPP -->
+  <div class="order-modal-backdrop" id="tenant-approval-modal-backdrop" style="display:none;z-index:10001" onclick="if(event.target === this) closeTenantApprovalModal()">
+    <div class="order-modal-box" style="max-width:540px;padding:1.8rem;border:1.5px solid #10b981;box-shadow:0 20px 50px rgba(0,0,0,0.9), 0 0 32px rgba(16,185,129,0.3)">
+      <div style="display:flex;align-items:center;gap:.85rem;margin-bottom:1rem">
+        <span style="font-size:2.4rem;background:rgba(16,185,129,.18);border:1px solid #10b981;width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center">🔑</span>
+        <div>
+          <div style="font-weight:900;font-size:1.18rem;color:#fff">Bail Attribué &amp; Espace Boutique Créé !</div>
+          <div style="font-size:.78rem;color:#6ee7b7">Le contrat est validé et les identifiants de la boutique sont prêts.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:1.1rem;font-size:.84rem;line-height:1.6">
+        <div>Locataire : <strong id="approved-modal-tenant-name" style="color:#fff">--</strong></div>
+        <div>Espace loué : <strong id="approved-modal-space-name" style="color:var(--gold)">--</strong></div>
+        <div>Téléphone WhatsApp : <strong id="approved-modal-phone" style="color:#38bdf8">--</strong></div>
+      </div>
+
+      <!-- Encadré des identifiants générés -->
+      <div style="background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(15,23,42,.95));border:1.5px solid #10b981;border-radius:14px;padding:1.1rem;margin-bottom:1.2rem">
+        <div style="font-size:.82rem;font-weight:800;color:#5df0b0;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:1px">
+          📲 Identifiants de Connexion à envoyer au Locataire :
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;font-size:.88rem">
+          <div style="background:rgba(0,0,0,.35);padding:.6rem .8rem;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+              <span style="font-size:.72rem;color:var(--muted)">Identifiant (Login fixe) :</span>
+              <button type="button" class="btn-secondary" style="font-size:.68rem;padding:.15rem .45rem;border-color:var(--gold);color:var(--gold)" onclick="regenerateTenantLoginInApprovalModal()" title="Générer un autre login aléatoire">🔄 Régénérer</button>
+            </div>
+            <strong id="approved-modal-login" style="color:var(--gold);font-size:1.05rem">kyao4829</strong>
+            <small style="display:block;font-size:.65rem;color:#94a3b8">1ère lettre nom + 3 lettres prénom + 4 chiffres</small>
+          </div>
+          <div style="background:rgba(0,0,0,.35);padding:.6rem .8rem;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
+            <span style="font-size:.72rem;color:var(--muted);display:block">Mot de passe temporaire :</span>
+            <strong id="approved-modal-password" style="color:#5df0b0;font-size:1.05rem">BM12026!</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions : Envoi direct WhatsApp & Copie -->
+      <div style="display:flex;flex-direction:column;gap:.7rem">
+        <a id="approved-modal-whatsapp-btn" href="#" target="_blank" class="btn-primary" style="justify-content:center;padding:.9rem;background:linear-gradient(135deg,#10b981,#059669);border-color:#34d399;font-weight:800;font-size:.95rem;text-decoration:none">
+          💬 Envoyer les Identifiants par WhatsApp au Locataire
+        </a>
+        <div style="display:flex;gap:.6rem">
+          <button type="button" class="btn-secondary" style="flex:1;justify-content:center;padding:.65rem;font-size:.8rem" onclick="copyApprovedTenantCredentials()">
+            📋 Copier les Identifiants
+          </button>
+          <button type="button" class="btn-secondary" style="flex:1;justify-content:center;padding:.65rem;font-size:.8rem" onclick="closeTenantApprovalModal()">
+            ✓ Terminer
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
