@@ -2,13 +2,13 @@
   "superadmin": {
     "id": "superadmin-01",
     "role": "SUPERADMIN",
-    "login": "Sangare kadi",
-    "password": "test",
-    "nom": "sangare",
-    "prenom": "kadi",
-    "email": "sang@gmail.com",
-    "profile_completed": true,
-    "must_change_password": false
+    "login": "superadmin",
+    "password": "Kadi epouse sangare",
+    "nom": "",
+    "prenom": "",
+    "email": "",
+    "profile_completed": false,
+    "must_change_password": true
   },
   "admins": [],
   "tenant_accounts": [],
