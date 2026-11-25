@@ -1,5 +1,5 @@
 /**
- * BÉLIER MALL · Application YAMO-APP
+ * BÉLIER MALL · Application BELIER MALL
  * Site : Terrain d'un hectare - Zone Présidentielle - Axe Yamoussoukro-Bouaké.
  * Gère la recherche instantanée en FCFA, le GPS indoor 2D, les 4 Pôles,
  * la gouvernance et la location-gérance des 46 boutiques.
@@ -59,14 +59,14 @@ const LOCAL_DATA = {
     },
     {
       name: "M. BAMBA Lamine",
-      role: "Responsable Digital & Application YAMO-APP",
+      role: "Responsable Digital & Application BELIER MALL",
       pole: "Ingénierie INPHB · GPS Indoor & Marketplace Mobile Money",
       phone: "+225 27 30 64 10 05",
       avatar: "💻",
       personality: "Curieux, geek, patient, pédagogue.",
       skills: "Licence Informatique INPHB, développeur d'applications, a déjà créé une app de livraison à Bouaké.",
       motivation: "Convaincu que le digital va sauver le commerce africain. Veut connecter les petites vendeuses aux clients via le téléphone.",
-      bio: "Ingénieur diplômé de l'INPHB Yamoussoukro, architecte de YAMO-APP, du guidage piétonnier et de la livraison moto 45 min."
+      bio: "Ingénieur diplômé de l'INPHB Yamoussoukro, architecte de BELIER MALL, du guidage piétonnier et de la livraison moto 45 min."
     }
   ],
   stores: [
@@ -2062,7 +2062,7 @@ function initMarketplaceSearch() {
   });
 }
 
-// Modale de Commande Express YAMO-APP
+// Modale de Commande Express BELIER MALL
 let activeOrderProduct = null;
 
 function openOrderModal(productId) {
@@ -3350,7 +3350,7 @@ function updateLeasingSummary() {
   const store = LOCAL_DATA.stores.find(s => s.name === spaceName) || {};
   const rent = store.monthly_rent_fcfa || 250000;
   const dep = store.deposit_fcfa || (rent * 3);
-  // Caution 3 mois + 1er mois loyer + Abonnement YAMO-APP (5 000)
+  // Caution 3 mois + 1er mois loyer + Abonnement BELIER MALL (5 000)
   totalEl.innerText = fcfa(dep + rent + 5000);
 }
 
